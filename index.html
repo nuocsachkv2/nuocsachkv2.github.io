@@ -95,6 +95,7 @@
   nav.menu-duoi button { flex:1; border:0; background:none; padding:7px 2px 6px; font-size:11px; color:var(--xam); display:flex; flex-direction:column;
                          align-items:center; gap:2px; cursor:pointer; min-width:0; position:relative; }
   nav.menu-duoi button .ic { font-size:21px; line-height:1; }
+  nav.menu-duoi button { line-height:1.15; text-align:center; }
   nav.menu-duoi button.on { color:var(--xanh); font-weight:700; }
   nav.menu-duoi button.on::before { content:""; position:absolute; top:0; left:25%; right:25%; height:3px; border-radius:0 0 3px 3px; background:var(--xanh); }
   nav.menu-duoi .huy-hieu { position:absolute; top:3px; right:calc(50% - 22px); }
@@ -145,7 +146,8 @@
   .cuon { overflow-x:auto; -webkit-overflow-scrolling:touch; }
   .o-chon { display:flex; gap:10px; align-items:flex-start; padding:10px 12px; border:1px solid var(--vien); border-radius:10px; margin-bottom:8px; cursor:pointer; background:#fff; }
   .o-chon input { width:20px; height:20px; margin:2px 0 0; flex:0 0 auto; }
-  .o-tat { display:grid; grid-template-columns:repeat(auto-fit, minmax(150px,1fr)); gap:10px; margin-bottom:16px; }
+  .o-tat { display:grid; grid-template-columns:repeat(2, minmax(0,1fr)); gap:10px; }
+  .o-tat-khung h3 { margin-bottom:10px; }
   .o-tat button { background:#fff; border:1px solid var(--vien); border-radius:12px; padding:14px 10px; text-align:center; cursor:pointer; font-size:15px; box-shadow:var(--bong); color:var(--chu); }
   .o-tat button .ic { display:block; font-size:26px; margin-bottom:4px; }
   .o-tat button:hover { border-color:var(--nuoc); }
@@ -251,11 +253,56 @@
   #thanhNhom button.on { border-color:var(--xanh); background:var(--xanh2); color:var(--xanh); font-weight:700; box-shadow:inset 0 -3px 0 var(--xanh); }
   #thanhNhom .huy-hieu { position:absolute; top:5px; right:8px; }
   /* chữ phát sáng nhẹ: tên trạm + chữ ký thiết kế */
-  .ten-web .t1 { animation:sangTen 4.5s ease-in-out infinite; }
-  @keyframes sangTen { 0%,100% { text-shadow:0 0 0 rgba(255,255,255,0); } 50% { text-shadow:0 0 10px rgba(173,216,255,.85), 0 0 22px rgba(120,190,255,.45); } }
-  .sang-chu { background:linear-gradient(100deg, var(--xanh-dam) 0%, var(--xanh-dam) 40%, #4fc3f7 50%, var(--xanh-dam) 60%, var(--xanh-dam) 100%); background-size:250% 100%;
-              -webkit-background-clip:text; background-clip:text; color:transparent; animation:luotSang 5s linear infinite; text-shadow:none; }
-  @keyframes luotSang { from { background-position:100% 0; } to { background-position:-150% 0; } }
+  /* nộp tiền: bảng chọn cán bộ */
+  .tc-tien-hang { display:flex; justify-content:space-between; align-items:flex-end; gap:12px; flex-wrap:wrap; position:relative; z-index:1; }
+  .tc-nop { display:flex; gap:8px; flex-wrap:wrap; }
+  .tc-nop button { border:0; border-radius:12px; padding:11px 16px; font-size:15px; font-weight:700; cursor:pointer; min-height:46px; }
+  .tc-nop .chinh { background:#fff; color:var(--xanh-dam); box-shadow:0 4px 12px rgba(0,0,0,.15); }
+  .tc-nop .phu2 { background:rgba(255,255,255,.16); color:#fff; border:1.5px solid rgba(255,255,255,.75); }
+  #nenNop { position:fixed; inset:0; background:rgba(16,24,40,.5); z-index:60; display:none; align-items:center; justify-content:center; padding:16px; }
+  #nenNop.mo { display:flex; animation:hienLen .2s ease both; }
+  #bangNop { background:#fff; border-radius:18px; width:min(560px, 100%); max-height:calc(100vh - 32px); overflow:auto; box-shadow:0 24px 60px rgba(16,24,40,.35); }
+  #bangNop .bn-dau { position:sticky; top:0; background:#fff; display:flex; justify-content:space-between; align-items:center; padding:14px 16px 10px; border-bottom:1px solid var(--vien); z-index:1; }
+  #bangNop .bn-dau h3 { margin:0; }
+  #bangNop .bn-than { padding:14px 16px 18px; }
+  .bn-hd { border:1px solid var(--vien); border-radius:12px; padding:10px 12px; display:grid; grid-template-columns:auto 1fr; gap:4px 12px; font-size:14.5px; background:#f8fafc; }
+  .bn-hd span:nth-child(odd) { color:var(--xam); }
+  .bn-hd b.tien-hd { color:var(--do); font-size:17px; }
+  .bn-canh { margin:12px 0; border:2px solid #f59e0b; background:#fffbeb; color:#78350f; border-radius:12px; padding:12px 14px; font-size:14.5px; line-height:1.55; }
+  .bn-canh b { color:#92400e; }
+  .bn-canh ul { margin:6px 0 0; padding-left:18px; }
+  .bn-dongy { display:flex; gap:10px; align-items:flex-start; padding:12px; border-radius:12px; border:2px solid var(--xanh); background:var(--xanh2); cursor:pointer; font-weight:600; }
+  .bn-dongy input { width:22px; height:22px; margin:0; flex:0 0 auto; }
+  .bn-ds { margin-top:12px; display:grid; gap:8px; }
+  .bn-ds.khoa { opacity:.4; pointer-events:none; filter:grayscale(1); }
+  .bn-cb { display:flex; align-items:center; gap:10px; border:1px solid var(--vien); border-radius:12px; padding:10px 12px; }
+  .bn-cb .av { width:40px; height:40px; border-radius:50%; background:linear-gradient(135deg,#42a5f5,#0b5394); color:#fff; display:flex; align-items:center; justify-content:center; font-weight:800; flex:0 0 auto; }
+  .bn-cb .tt { flex:1; min-width:0; }
+  .bn-cb .tt b { display:block; }
+  .bn-cb a { text-decoration:none; font-weight:700; border-radius:10px; padding:9px 12px; font-size:14px; flex:0 0 auto; }
+  .bn-cb a.zalo { background:#0068ff; color:#fff; }
+  .bn-cb a.goi2 { background:#fff; color:var(--la); border:1.5px solid var(--la); }
+  /* cơ cấu tổ chức */
+  .cc-luoi { display:grid; grid-template-columns:repeat(auto-fill, minmax(250px,1fr)); gap:12px; }
+  .cc-the { background:rgba(255,255,255,.97); border:1px solid var(--vien); border-radius:14px; padding:14px; box-shadow:var(--bong); display:flex; gap:12px; align-items:center; }
+  .cc-the.dau { border-top:4px solid var(--xanh); }
+  .cc-the .av { width:48px; height:48px; border-radius:50%; background:linear-gradient(135deg,#42a5f5,#0b5394); color:#fff; display:flex; align-items:center; justify-content:center; font-weight:800; font-size:19px; flex:0 0 auto; }
+  .cc-the .tt { flex:1; min-width:0; }
+  .cc-the .ten { font-weight:800; font-size:16px; color:var(--xanh-dam); }
+  .cc-the .cv { font-size:13px; font-weight:700; color:var(--xam); margin:2px 0 6px; }
+  .cc-the .nut-cc { display:flex; gap:6px; flex-wrap:wrap; }
+  .cc-the .nut-cc a { font-size:13.5px; font-weight:700; text-decoration:none; border-radius:9px; padding:6px 10px; }
+  .cc-the .nut-cc a.zalo { background:#0068ff; color:#fff; }
+  .cc-the .nut-cc a.goi2 { color:var(--la); border:1.5px solid var(--la); }
+  .cc-nhom { font-weight:800; color:var(--xanh-dam); margin:18px 0 8px; font-size:15px; text-transform:uppercase; letter-spacing:.4px; }
+  /* chuyên nghiệp hơn: nút thống nhất */
+  button.nut { min-height:46px; letter-spacing:.2px; box-shadow:0 2px 6px rgba(11,83,148,.18); }
+  button.nut:hover:not(:disabled) { filter:brightness(1.08); }
+  button.nut.phu { box-shadow:none; }
+  button.nut:disabled { opacity:.65; cursor:wait; }
+  h2 { letter-spacing:.1px; }
+  .the h2 .ic, .the h3 .ic { color:var(--nuoc); }
+
   /* menu bay: rê chuột / chạm vào nhóm → hiện các mục con */
   #menuBay { position:fixed; z-index:40; background:#fff; border:1px solid var(--vien); border-radius:14px; box-shadow:0 14px 34px rgba(16,24,40,.2); padding:6px; display:none; min-width:210px; }
   #menuBay.mo { display:block; animation:noiLen .18s ease both; }
@@ -403,7 +450,8 @@
     #bangGoi { bottom:calc(140px + env(safe-area-inset-bottom)); }
     .nut-khoa .chu-khoa { font-size:13px; }
     .nut-khoa { padding:7px 11px; }
-    .o-tat { display:none; }
+    .o-tat { grid-template-columns:repeat(2, minmax(0,1fr)); gap:8px; }
+    .o-tat button { padding:12px 6px; font-size:14px; min-height:84px; }
   }
   @media (max-width: 420px) {
     .nut-khoa { padding:6px 9px; gap:4px; }
@@ -424,6 +472,11 @@
     .tc-dong-ho .o b { font-size:16px; }
     .tc-nut button { font-size:14px; padding:11px 6px; }
     .nhom-nb { grid-template-columns:repeat(2, minmax(0,1fr)); }
+    #nenNop { padding:0; align-items:flex-end; }
+    #bangNop { border-radius:18px 18px 0 0; max-height:92vh; }
+    .tc-nop { width:100%; }
+    .tc-nop button { flex:1; }
+    .bn-cb a { padding:9px 10px; }
     .hai-o { grid-template-columns:1fr; }
     .o-hanh-vi { grid-template-columns:repeat(2, minmax(0,1fr)); }
     .o-hanh-vi.ba { grid-template-columns:repeat(3, minmax(0,1fr)); }
@@ -448,8 +501,8 @@
   </div>
   <nav class="menu-tren">
     <button data-nhom="traCuu" class="on"><i class="ic" data-ic="search"></i> Tra cứu</button>
-    <button data-nhom="baoHong"><i class="ic" data-ic="wrench"></i> Báo hỏng</button>
     <button data-nhom="dichVu"><i class="ic" data-ic="grid"></i> Dịch vụ <span class="mui">▾</span></button>
+    <button data-nhom="baoHong"><i class="ic" data-ic="wrench"></i> Báo hỏng</button>
     <button data-nhom="viPham"><i class="ic" data-ic="alert"></i> Báo vi phạm</button>
     <button data-nhom="tinTuc"><i class="ic" data-ic="bell"></i> Tin tức <span class="huy-hieu demTB"></span> <span class="mui">▾</span></button>
     <button data-nhom="taiKhoan"><i class="ic" data-ic="user"></i> Tài khoản</button>
@@ -476,7 +529,7 @@
           <div class="goi-y"><span>🔢 Mã đầy đủ: 01.36010116.143</span><span>✂️ Hoặc 4 số cuối: 6143</span><span>👤 Hoặc họ tên chủ hộ</span></div>
           <div class="loi" id="loiTra"></div>
           <div id="chonMa" class="chon-ma an"></div>
-          <div style="margin-top:10px"><a href="#" id="moMau" style="color:var(--xanh)">📄 Mã khách hàng ở đâu? Xem mẫu hóa đơn</a></div>
+          <div style="margin-top:10px"><a href="#" id="moMau" style="color:var(--xanh)">📄 Xem mẫu hóa đơn để tìm mã khách hàng</a></div>
           <div id="khungMau" class="an" style="margin-top:10px">
             <img id="anhMau" alt="Mẫu giấy biên nhận tiền nước" style="width:100%;max-width:560px;border-radius:8px;border:1px solid var(--vien);min-height:40px">
             <p class="nho">Mã khách hàng gồm 13 số, in ở dòng "Mã khách hàng" trên giấy biên nhận. Gõ có hoặc không có dấu chấm đều được; không nhớ mã thì gõ họ tên chủ hộ rồi chọn đúng nhà theo thôn/xóm.
@@ -486,12 +539,13 @@
         <div id="kqTra"></div>
       </div>
       <div>
+        <div class="the o-tat-khung"><h3><i class="ic" data-ic="grid"></i> Phím tắt nhanh</h3>
         <div class="o-tat">
-          <button data-tab="suaChua"><i class="ic lon-ic" data-ic="wrench"></i>Báo hỏng, vỡ ống, mất nước</button>
-          <button data-tab="yeuCau"><i class="ic lon-ic" data-ic="flask"></i>Yêu cầu kiểm tra chất lượng nước</button>
-          <button data-tab="thanhToan"><i class="ic lon-ic" data-ic="card"></i>Thanh toán tiền nước</button>
-          <button data-tab="baoViPham"><i class="ic lon-ic" data-ic="alert"></i>Báo dùng nước trái quy định</button>
-        </div>
+          <button data-tab="suaChua"><i class="ic lon-ic" data-ic="wrench"></i>Báo hỏng</button>
+          <button data-tab="baoViPham"><i class="ic lon-ic" data-ic="alert"></i>Báo vi phạm</button>
+          <button data-tab="yeuCau"><i class="ic lon-ic" data-ic="flask"></i>Kiểm tra chất lượng nước</button>
+          <button data-tab="bangGia"><i class="ic lon-ic" data-ic="drop"></i>Giá nước</button>
+        </div></div>
         <div class="the"><h3><i class="ic" data-ic="clock"></i> Giờ bơm nước</h3><div class="dsGioBom"></div></div>
         <div class="the" id="tbMoi"><h3><i class="ic" data-ic="bell"></i> Thông báo mới</h3><div id="dsTbMoi"></div></div>
         <div class="the an" id="lienHe"><h3><i class="ic" data-ic="phone"></i> Liên hệ</h3><div id="dsLienHe"></div></div>
@@ -509,20 +563,20 @@
         <p class="nho" style="margin-top:0">Nhân viên đến đo <b>chất lượng nước</b> (clo dư, độ đục, pH…), <b>áp lực nước</b> và báo <b>giờ bơm</b>, chụp ảnh kết quả gửi qua <b>Zalo</b>. Điền đủ 4 bước bên dưới.</p>
         <div id="gioNhan" class="thongbao" style="margin-bottom:6px"></div>
         <form id="fYC" autocomplete="off">
-          <div class="buoc"><i>1</i> Hộ nào? <span class="tuy-chon">(khớp hóa đơn)</span></div>
+          <div class="buoc"><i>1</i> Thông tin hộ dùng nước <span class="tuy-chon">(ghi đúng như trên hóa đơn)</span></div>
           <div class="hai-o">
             <input id="ycMa" class="day" placeholder="Mã KH hoặc 4 số cuối" inputmode="decimal" maxlength="40" aria-label="Mã khách hàng">
             <input id="ycTen" class="day" placeholder="Họ tên chủ hộ" maxlength="80" aria-label="Họ tên chủ hộ">
           </div>
-          <div class="buoc"><i>2</i> Cần kiểm tra gì?</div>
+          <div class="buoc"><i>2</i> Nội dung quý khách cần kiểm tra</div>
           <div class="o-hanh-vi xanh ba" id="ycNoiDung" role="group" aria-label="Nội dung kiểm tra"></div>
-          <div class="buoc"><i>3</i> Số Zalo nhận ảnh kết quả</div>
+          <div class="buoc"><i>3</i> Số Zalo để trạm gửi ảnh kết quả</div>
           <input id="ycZalo" class="day" placeholder="Số điện thoại có Zalo" inputmode="tel" maxlength="16" aria-label="Số Zalo">
-          <div class="buoc"><i>4</i> Ghi chú <span class="tuy-chon">(không bắt buộc)</span></div>
+          <div class="buoc"><i>4</i> Ghi chú thêm <span class="tuy-chon">(không bắt buộc)</span></div>
           <textarea id="ycGhiChu" maxlength="300" rows="2" placeholder="VD: nước yếu từ chiều qua, nước có mùi…"></textarea>
           <label class="o-chon" style="margin-top:12px"><input type="checkbox" id="ycDongY">
             <span>Đồng ý cho trạm dùng số Zalo này để liên hệ và gửi ảnh kết quả.</span></label>
-          <button class="nut day" id="nutYC" type="submit" style="margin-top:6px">🧪 Gửi yêu cầu kiểm tra</button>
+          <button class="nut day" id="nutYC" type="submit" style="margin-top:6px">Gửi yêu cầu kiểm tra</button>
           <div class="loi" id="loiYC"></div>
         </form>
         <div id="kqYC"></div>
@@ -539,24 +593,24 @@
     <div class="luoi2">
       <div class="the">
         <h2><i class="ic" data-ic="wrench"></i> Báo hỏng / Yêu cầu sửa chữa</h2>
-        <div class="khung-goi-gap">🚨 Vỡ ống lớn, nước phun mạnh? <b>Gọi ngay:</b> <span id="scGoiGap" class="hang" style="gap:6px"></span></div>
+        <div class="khung-goi-gap">🚨 Trường hợp vỡ ống lớn, nước phun mạnh, quý khách vui lòng <b>gọi ngay trạm phó:</b> <span id="scGoiGap" class="hang" style="gap:6px"></span></div>
         <form id="fSC" autocomplete="off">
-          <div class="buoc"><i>1</i> Hỏng gì?</div>
+          <div class="buoc"><i>1</i> Quý khách vui lòng chọn loại sự cố</div>
           <div class="o-hanh-vi xanh" id="scLoaiO" role="radiogroup" aria-label="Loại sự cố"></div>
-          <div class="buoc"><i>2</i> Ở đâu?</div>
+          <div class="buoc"><i>2</i> Vị trí xảy ra sự cố</div>
           <div class="o-nhap-nut">
-            <input id="scDiaChi" class="day" placeholder="Xóm, xã, gần nhà ai…" maxlength="200" aria-label="Địa chỉ chỗ hỏng">
+            <input id="scDiaChi" class="day" placeholder="Xóm, xã, gần địa điểm dễ nhận biết…" maxlength="200" aria-label="Địa chỉ chỗ hỏng">
             <button class="nut phu" id="nutGhim" type="button" title="Ghim vị trí GPS">📍 Ghim</button>
           </div>
           <div class="nho" id="scViTriKQ" style="margin-top:4px"></div>
           <input type="hidden" id="scLat"><input type="hidden" id="scLng">
           <a href="#" class="nho" id="scMoLink" style="color:var(--xanh)">+ Dán link Google Maps</a>
           <input id="scLink" class="day an" placeholder="Link Google Maps (maps.app.goo.gl/…)" maxlength="500" style="margin-top:6px">
-          <div class="buoc"><i>3</i> Số điện thoại để thợ gọi lại</div>
+          <div class="buoc"><i>3</i> Số điện thoại để thợ của trạm liên hệ</div>
           <input id="scSdt" class="day" placeholder="Số điện thoại" inputmode="tel" maxlength="16" aria-label="Số điện thoại">
-          <div class="buoc"><i>4</i> Mô tả thêm <span class="tuy-chon">(không bắt buộc)</span></div>
+          <div class="buoc"><i>4</i> Mô tả thêm về sự cố <span class="tuy-chon">(không bắt buộc)</span></div>
           <textarea id="scNoiDung" maxlength="500" rows="2" placeholder="VD: ống vỡ trước cổng, nước phun mạnh từ 7h sáng…"></textarea>
-          <button class="nut day" id="nutSC" type="submit" style="margin-top:12px">🔧 Gửi báo hỏng</button>
+          <button class="nut day" id="nutSC" type="submit" style="margin-top:12px">Gửi báo hỏng</button>
           <div class="loi" id="loiSC"></div>
         </form>
         <div id="kqSC"></div>
@@ -573,20 +627,20 @@
     <div class="luoi2">
       <div class="the">
         <h2><i class="ic" data-ic="edit"></i> Yêu cầu đổi thông tin / Liên hệ làm việc</h2>
-        <div class="thongbao" style="display:flex;gap:10px;align-items:center;flex-wrap:wrap">👤 Đã có tài khoản khách hàng? Đăng nhập để tự cập nhật họ tên, số điện thoại, địa chỉ – trạm duyệt và báo lại.
+        <div class="thongbao" style="display:flex;gap:10px;align-items:center;flex-wrap:wrap">👤 Quý khách đã có tài khoản có thể đăng nhập để tự cập nhật họ tên, số điện thoại, địa chỉ – trạm duyệt và báo lại.
           <button class="nut phu nho-nut" type="button" data-tab="noiBo">Đăng nhập</button></div>
         <form id="fLH" autocomplete="off">
-          <div class="buoc"><i>1</i> Anh/chị cần làm gì?</div>
+          <div class="buoc"><i>1</i> Quý khách vui lòng chọn nội dung cần làm</div>
           <div class="o-hanh-vi xanh" id="lhLoaiO" role="radiogroup" aria-label="Loại yêu cầu"></div>
-          <div class="buoc"><i>2</i> Hộ nào? <span class="tuy-chon">(khớp hóa đơn)</span></div>
+          <div class="buoc"><i>2</i> Thông tin hộ dùng nước <span class="tuy-chon">(ghi đúng như trên hóa đơn)</span></div>
           <div class="hai-o">
             <input id="lhMa" class="day" placeholder="Mã KH hoặc 4 số cuối" inputmode="decimal" maxlength="40" aria-label="Mã khách hàng">
             <input id="lhTen" class="day" placeholder="Họ tên chủ hộ" maxlength="80" aria-label="Họ tên chủ hộ">
           </div>
           <input id="lhSdt" class="day" placeholder="Số điện thoại / Zalo để trạm gọi lại" inputmode="tel" maxlength="16" aria-label="Số điện thoại" style="margin-top:8px">
-          <div class="buoc"><i>3</i> Nội dung <span class="tuy-chon">(không bắt buộc)</span></div>
+          <div class="buoc"><i>3</i> Nội dung chi tiết <span class="tuy-chon">(không bắt buộc)</span></div>
           <textarea id="lhNoiDung" maxlength="500" rows="2" placeholder="VD: đổi tên chủ hộ sang con trai; số mới là…; hẹn sáng thứ 3…"></textarea>
-          <button class="nut day" id="nutLH" type="submit" style="margin-top:12px">📨 Gửi yêu cầu</button>
+          <button class="nut day" id="nutLH" type="submit" style="margin-top:12px">Gửi yêu cầu</button>
           <div class="cam-ket">Bấm gửi là anh/chị cam kết thông tin đúng sự thật và đồng ý cho trạm gọi lại.</div>
           <div class="loi" id="loiLH"></div>
         </form>
@@ -606,20 +660,20 @@
         <h2><i class="ic" data-ic="alert"></i> Báo sử dụng nước trái quy định</h2>
         <div class="luu-y-do">🔒 Giữ kín tuyệt đối người báo · Báo đúng được THƯỞNG theo quy định</div>
         <form id="fBC" autocomplete="off">
-          <div class="buoc"><i>1</i> Thấy hành vi gì?</div>
+          <div class="buoc"><i>1</i> Quý khách vui lòng chọn hành vi vi phạm</div>
           <div class="o-hanh-vi" id="bcLoaiO" role="radiogroup" aria-label="Hành vi vi phạm"></div>
-          <div class="buoc"><i>2</i> Ở đâu?</div>
+          <div class="buoc"><i>2</i> Địa điểm xảy ra vi phạm</div>
           <div class="o-nhap-nut">
-            <input id="bcDiaDiem" class="day" placeholder="Xóm, xã, gần nhà ai…" maxlength="200" aria-label="Địa điểm">
+            <input id="bcDiaDiem" class="day" placeholder="Xóm, xã, gần địa điểm dễ nhận biết…" maxlength="200" aria-label="Địa điểm">
             <button class="nut phu" id="bcGhim" type="button" title="Ghim vị trí GPS">📍 Ghim</button>
           </div>
           <div class="nho" id="bcViTriKQ" style="margin-top:4px"></div>
           <input type="hidden" id="bcLat"><input type="hidden" id="bcLng">
           <a href="#" class="nho" id="bcMoLink" style="color:var(--xanh)">+ Dán link Google Maps</a>
           <input id="bcLink" class="day an" placeholder="Link Google Maps (maps.app.goo.gl/…)" maxlength="500" style="margin-top:6px">
-          <div class="buoc"><i>3</i> Mô tả ngắn</div>
-          <textarea id="bcNoiDung" maxlength="800" rows="3" placeholder="Thấy gì, lúc nào… VD: tối 3/11 thấy ống nhựa nối thẳng từ ống chính vào bể"></textarea>
-          <div class="buoc"><i>4</i> Số điện thoại để trạm xác minh, trả thưởng</div>
+          <div class="buoc"><i>3</i> Mô tả ngắn sự việc</div>
+          <textarea id="bcNoiDung" maxlength="800" rows="3" placeholder="Sự việc, thời gian phát hiện… VD: tối 3/11 thấy ống nhựa nối thẳng từ ống chính vào bể"></textarea>
+          <div class="buoc"><i>4</i> Số điện thoại để trạm liên hệ xác minh và trả thưởng</div>
           <input id="bcSdt" class="day" placeholder="Số điện thoại / Zalo" inputmode="tel" maxlength="16" aria-label="Số điện thoại">
           <label class="o-chon" style="margin-top:10px"><input type="checkbox" id="bcCoTen">
             <span>Báo <b>có tên</b> (mã KH + họ tên) – xác minh, trả thưởng nhanh hơn. Không tích = <b>ẩn danh</b>.</span></label>
@@ -627,7 +681,7 @@
             <input id="bcMa" class="day" placeholder="Mã khách hàng của anh/chị" inputmode="decimal" maxlength="40" aria-label="Mã khách hàng">
             <input id="bcTen" class="day" placeholder="Họ tên chủ hộ như trên hóa đơn" maxlength="80" aria-label="Họ tên" style="margin-top:8px">
           </div>
-          <button class="nut day" id="nutBC" type="submit" style="margin-top:12px;background:var(--do)">🔒 Gửi báo cáo bảo mật</button>
+          <button class="nut day" id="nutBC" type="submit" style="margin-top:12px;background:var(--do)">Gửi báo cáo bảo mật</button>
           <div class="cam-ket">Bấm gửi là anh/chị cam kết nội dung báo cáo đúng sự thật.</div>
           <div class="loi" id="loiBC"></div>
         </form>
@@ -675,6 +729,13 @@
     <div class="tt-luoi" id="dsTuyenTruyen"></div>
   </section>
 
+  <!-- ========== CƠ CẤU TỔ CHỨC ========== -->
+  <section id="coCau" class="an">
+    <h2><i class="ic" data-ic="users"></i> Cơ cấu tổ chức</h2>
+    <p class="nho" style="margin-top:-4px">Trạm Nước sạch và Vệ sinh môi trường Khu vực II. Chỉ liên hệ, nộp tiền với đúng các cán bộ có tên dưới đây.</p>
+    <div id="dsCoCau"></div>
+  </section>
+
   <!-- ========== THÔNG BÁO ========== -->
   <section id="thongBaoTab" class="an"><h2><i class="ic" data-ic="bell"></i> Thông báo</h2><div id="dsThongBao"></div></section>
 
@@ -690,7 +751,7 @@
   <section id="bangGia" class="an">
     <div class="luoi2">
       <div class="the">
-        <h2><i class="ic" data-ic="drop"></i> Giá bán lẻ nước sạch</h2>
+        <h2><i class="ic" data-ic="drop"></i> Giá nước sạch</h2>
         <div class="cuon"><table id="tblGia"></table></div>
         <p class="nho" id="ghiChuGia"></p>
       </div>
@@ -721,7 +782,7 @@
         <button class="nut day" id="nutKH" type="submit" style="margin-top:12px">Đăng nhập</button>
         <div class="loi" id="loiKH"></div>
         <p class="nho">Tên đăng nhập là <b>mã khách hàng</b> in trên hóa đơn. Lần đầu dùng mật khẩu mặc định <b>111111</b>, sau đó đổi mật khẩu riêng để xem hồ sơ và cập nhật thông tin.</p>
-        <a href="#" id="moQuenMK" style="color:var(--xanh);font-weight:700">🔑 Quên mật khẩu? Yêu cầu đặt lại</a>
+        <a href="#" id="moQuenMK" style="color:var(--xanh);font-weight:700">🔑 Quên mật khẩu – gửi yêu cầu đặt lại</a>
       </form>
       <form id="fQuenMK" class="an tc-hen" autocomplete="off">
         <b>Yêu cầu đặt lại mật khẩu</b>
@@ -1087,18 +1148,24 @@
 
 <footer class="chan">
   <div>© <span id="namNay"></span> <span id="tenChan">Trạm Nước sạch và Vệ sinh môi trường Khu vực II</span></div>
-  <div class="tk sang-chu">Designer: <span id="thietKe">Nguyễn Văn Phong</span></div>
+  <div class="tk">Designer: <span id="thietKe">Nguyễn Văn Phong</span></div>
 </footer>
 
 <nav class="menu-duoi">
   <button data-nhom="traCuu" class="on"><i class="ic lon-ic" data-ic="search"></i>Tra cứu</button>
-  <button data-nhom="baoHong"><i class="ic lon-ic" data-ic="wrench"></i>Báo hỏng</button>
   <button data-nhom="dichVu"><i class="ic lon-ic" data-ic="grid"></i>Dịch vụ</button>
-  <button data-nhom="viPham"><i class="ic lon-ic" data-ic="alert"></i>Vi phạm</button>
+  <button data-nhom="baoHong"><i class="ic lon-ic" data-ic="wrench"></i>Báo hỏng</button>
+  <button data-nhom="viPham"><i class="ic lon-ic" data-ic="alert"></i>Báo vi phạm</button>
   <button data-nhom="tinTuc"><i class="ic lon-ic" data-ic="bell"></i>Tin tức<span class="huy-hieu demTB"></span></button>
   <button data-nhom="taiKhoan"><i class="ic lon-ic" data-ic="user"></i>Tài khoản</button>
 </nav>
 <div id="menuBay" role="menu" aria-label="Mục con"></div>
+<div id="nenNop" role="dialog" aria-modal="true" aria-labelledby="bnTieuDe">
+  <div id="bangNop">
+    <div class="bn-dau"><h3 id="bnTieuDe">Nộp tiền nước</h3><button class="bg-dong" id="dongNop" type="button" aria-label="Đóng" style="border:0;background:none;font-size:26px;cursor:pointer;color:var(--xam)">×</button></div>
+    <div class="bn-than" id="bnThan"></div>
+  </div>
+</div>
 <button id="nutGoi" type="button" aria-label="Gọi điện cho trạm" title="Gọi điện cho trạm"><i class="ic" data-ic="phone"></i></button>
 <div id="bangGoi" role="dialog" aria-label="Chọn số để gọi">
   <div class="bg-dau"><span>📞 Bấm để gọi ngay</span><button class="bg-dong" id="dongGoi" type="button" aria-label="Đóng">×</button></div>
@@ -1176,6 +1243,7 @@
     pin: '<path d="M12 21s-7-6.5-7-11.5a7 7 0 0 1 14 0C19 14.5 12 21 12 21Z"/><circle cx="12" cy="9.5" r="2.5"/>',
     chart: '<path d="M4 20V10M10 20V4M16 20v-8M22 20H2"/>',
     check: '<path d="m5 12 5 5L20 7"/>',
+    users: '<circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0"/><circle cx="17" cy="9" r="2.8"/><path d="M15.5 14.2A5 5 0 0 1 21.5 19"/>',
     grid: '<rect x="3.5" y="3.5" width="7" height="7" rx="1.5"/><rect x="13.5" y="3.5" width="7" height="7" rx="1.5"/><rect x="3.5" y="13.5" width="7" height="7" rx="1.5"/><rect x="13.5" y="13.5" width="7" height="7" rx="1.5"/>',
     card: '<rect x="2.5" y="5" width="19" height="14" rx="2"/><path d="M2.5 10h19M6 15h4"/>'
   };
@@ -1252,9 +1320,9 @@
   const NHOM = {
     traCuu: [['traCuu', 'search', 'Tra cứu']],
     baoHong: [['suaChua', 'wrench', 'Báo hỏng']],
-    dichVu: [['yeuCau', 'flask', 'Kiểm tra chất lượng nước'], ['lienHeTab', 'edit', 'Đổi thông tin'], ['thanhToan', 'card', 'Thanh toán']],
+    dichVu: [['yeuCau', 'flask', 'Kiểm tra chất lượng nước'], ['lienHeTab', 'edit', 'Đổi thông tin'], ['thanhToan', 'card', 'Thanh toán'], ['bangGia', 'drop', 'Giá nước']],
     viPham: [['baoViPham', 'alert', 'Báo vi phạm']],
-    tinTuc: [['thongBaoTab', 'bell', 'Thông báo'], ['tuyenTruyen', 'wave', 'Tuyên truyền'], ['vanBan', 'doc', 'Văn bản'], ['bangGia', 'drop', 'Bảng giá']],
+    tinTuc: [['thongBaoTab', 'bell', 'Thông báo'], ['tuyenTruyen', 'wave', 'Tuyên truyền'], ['vanBan', 'doc', 'Văn bản'], ['coCau', 'users', 'Cơ cấu tổ chức']],
     taiKhoan: [['noiBo', 'user', 'Tài khoản']]
   };
   const NHOM_CUA = {}; Object.keys(NHOM).forEach(g => NHOM[g].forEach(x => { NHOM_CUA[x[0]] = g; }));
@@ -1455,11 +1523,15 @@
       : '<div class="the">Đang cập nhật nội dung tuyên truyền.</div>';
     $$('#dsTuyenTruyen .tt-them').forEach(b => b.onclick = () => { const the = b.closest('.tt-the'); the.classList.toggle('mo'); b.textContent = the.classList.contains('mo') ? 'Thu gọn ▴' : 'Đọc tiếp ▾'; });
     // số điện thoại: nút gọi nổi + thanh toán
+    veCoCau(c.coCau || []);
+    const phoTram = (c.coCau || []).filter(x => x.sdt && /Trạm phó/i.test(x.chucVu)).map(x => ({ nhan: 'Sửa chữa gấp · ' + x.ten + ' (Trạm phó)', so: dinhSdt(x.sdt), tel: x.sdt, ten: x.ten }));
     const dsSo = tachSo(c.hotline), canBo = (c.canBo || []).map(x => { const m = tachSo(x.lh)[0]; return m ? { nhan: 'Cán bộ ' + x.khu + (m.nhan !== 'Trạm' ? ' · ' + m.nhan : ''), so: m.so, tel: m.tel } : null; }).filter(Boolean);
-    $('dsGoi').innerHTML = (dsSo.concat(canBo).map(nutGoiHTML).join('')) || '<span class="nho">Trạm đang cập nhật số điện thoại.</span>';
-    $('dsCanBo').innerHTML = canBo.length ? canBo.map(nutGoiHTML).join('') : `<p class="nho" style="margin-top:0">Gọi trạm để được nối với cán bộ phụ trách xóm của anh/chị:</p>` + (dsSo.map(nutGoiHTML).join('') || '<span class="nho">Đang cập nhật.</span>');
+    $('dsGoi').innerHTML = (phoTram.concat(dsSo, canBo).map(nutGoiHTML).join('')) || '<span class="nho">Trạm đang cập nhật số điện thoại.</span>';
+    const thu = (c.coCau || []).filter(x => x.sdt && /Trạm phó|Quản lý địa bàn/i.test(x.chucVu));
+    $('dsCanBo').innerHTML = `<div class="bn-canh" style="margin-top:0">⚠️ Chỉ nộp tiền khi đã nhận <b>hóa đơn / giấy biên nhận ghi đủ thông tin và số tiền</b>, và chỉ nộp cho đúng cán bộ dưới đây.</div>`
+      + (thu.length ? thu.map(x => nutGoiHTML({ nhan: x.ten + ' · ' + x.chucVu, so: dinhSdt(x.sdt), tel: x.sdt })).join('') : (canBo.concat(dsSo).map(nutGoiHTML).join('') || '<span class="nho">Đang cập nhật.</span>'));
     $('dsCanBo').querySelectorAll('a.goi').forEach(a => a.classList.add('goi-tt'));
-    $('scGoiGap').innerHTML = dsSo.map(x => `<a class="goi" href="tel:${esc(x.tel)}">${ic('phone')}<div><b>${esc(x.nhan.replace(/^Sửa chữa · /, ''))}</b><span>${esc(x.so)}</span></div></a>`).join('') || '<span class="nho">gọi trạm</span>';
+    $('scGoiGap').innerHTML = (phoTram.length ? phoTram.map(x => ({ nhan: x.ten, so: x.so, tel: x.tel })) : dsSo).map(x => `<a class="goi" href="tel:${esc(x.tel)}">${ic('phone')}<div><b>${esc(x.nhan.replace(/^Sửa chữa · /, ''))}</b><span>${esc(x.so)}</span></div></a>`).join('') || '<span class="nho">gọi trạm</span>';
     // dòng chữ chạy cảnh báo lừa đảo
     const ld = (c.canhBaoLuaDao || []).filter(Boolean);
     if (ld.length) {
@@ -1543,6 +1615,78 @@
       .finally(() => { $('nutTra').disabled = false; $('nutTra').textContent = 'Xem'; });
   };
   const chuDau = t => { const w = String(t || '').trim().split(/\s+/).filter(x => /^\p{L}/u.test(x)); return w.length ? w[w.length - 1].charAt(0).toUpperCase() : '?'; };
+  // ---------- nộp tiền / nộp tiền hộ: chọn cán bộ, kết nối Zalo – có cảnh báo hóa đơn ----------
+  const canBoThu = () => (CHUNG && CHUNG.coCau || []).filter(x => x.sdt && /Trạm phó|Quản lý địa bàn/i.test(x.chucVu))
+    .sort((a, b) => (/Quản lý/i.test(a.chucVu) ? 0 : 1) - (/Quản lý/i.test(b.chucVu) ? 0 : 1));
+  const dinhSdt = s => String(s || '').replace(/^(\d{4})(\d{3})(\d{3})$/, '$1 $2 $3');
+  function moNop(ho) {
+    if (!TC || !TC.ky.length) return;
+    const k = TC.ky[0], t = k.tien, ds = canBoThu();
+    const noiDung = (ho ? 'Tôi muốn nộp tiền nước HỘ cho' : 'Tôi muốn nộp tiền nước cho') + ' mã KH ' + TC.ma + ' – chủ hộ ' + TC.ten + ' – ' + TC.xom + ', tháng ' + k.thang + ': ' + (t ? tien(t.tong) : '') + '.';
+    $('bnTieuDe').textContent = ho ? 'Nộp tiền hộ' : 'Nộp tiền nước';
+    $('bnThan').innerHTML = `<div class="bn-hd">
+        <span>Mã khách hàng</span><b>${esc(TC.ma)}</b>
+        <span>Chủ hộ</span><b>${esc(TC.ten)}</b>
+        <span>Thôn / xóm</span><b>${esc(TC.xom)}${TC.khu ? ', ' + esc(TC.khu) : ''}</b>
+        <span>Tháng</span><b>${esc(k.thang)}</b>
+        <span>Số tiền</span><b class="tien-hd">${t ? tien(t.tong) : '–'}</b></div>
+      <div class="bn-canh"><b>⚠️ LƯU Ý TRƯỚC KHI NỘP TIỀN</b>
+        <ul>
+          <li>Chỉ nộp khi đã nhận <b>hóa đơn / giấy biên nhận ghi đầy đủ</b>: tên trạm, mã khách hàng, họ tên chủ hộ, tháng, chỉ số cũ – mới và <b>số tiền ${t ? esc(tien(t.tong)) : ''}</b>.</li>
+          <li>Số tiền trên hóa đơn phải <b>khớp</b> số tiền ở trên. Sai lệch thì hỏi lại trạm, chưa nộp.</li>
+          <li>Chỉ liên hệ đúng <b>các cán bộ trong danh sách dưới đây</b>. Ai khác nhắn tin, gọi điện đòi chuyển tiền là lừa đảo.</li>
+          ${ho ? '<li>Nộp hộ: ghi rõ <b>mã khách hàng và họ tên chủ hộ</b> được nộp hộ khi nhắn cho cán bộ.</li>' : ''}
+          <li>Nộp xong, giữ lại hóa đơn / biên nhận để đối chiếu.</li>
+        </ul></div>
+      <label class="bn-dongy"><input type="checkbox" id="bnDongY"><span>Tôi đã đọc và hiểu các lưu ý trên</span></label>
+      <div class="nho" style="margin:12px 2px 0">Quý khách vui lòng chọn cán bộ để nhắn Zalo hoặc gọi điện:</div>
+      <div class="bn-ds khoa" id="bnDs">${ds.length ? ds.map(x => `<div class="bn-cb"><div class="av">${esc(chuDau(x.ten))}</div><div class="tt"><b>${esc(x.ten)}</b><span class="nho">${esc(x.chucVu)} · ${esc(dinhSdt(x.sdt))}</span></div>
+          <a class="zalo" href="${URL_ZALO}${esc(x.sdt)}" target="_blank" rel="noopener" data-ten="${esc(x.ten)}">Zalo</a><a class="goi2" href="tel:${esc(x.sdt)}" data-ten="${esc(x.ten)}">Gọi</a></div>`).join('') : '<div class="nho">Trạm đang cập nhật danh sách cán bộ.</div>'}</div>
+      <div class="bn-ds khoa" id="bnThem" style="margin-top:10px">
+        <button class="nut phu day" type="button" id="bnChep">Sao chép nội dung để dán vào Zalo</button>
+        <div class="nho" id="bnChepKQ" style="text-align:center"></div>
+        <a href="#" id="bnGoiLai" style="color:var(--xanh);font-weight:700;text-align:center">Hoặc để nhân viên gọi lại cho tôi</a>
+        <form class="tc-hen an" id="fHen" autocomplete="off">
+          <label class="nhan-o" for="henSdt">Số điện thoại để gọi lại</label>
+          <input id="henSdt" class="day" inputmode="tel" maxlength="16" placeholder="Số điện thoại / Zalo">
+          <label class="nhan-o" for="henGhiChu">Ghi chú <span class="nho">(không bắt buộc)</span></label>
+          <input id="henGhiChu" class="day" maxlength="200" placeholder="VD: gọi sau 17h">
+          <button class="nut day" id="nutHen" type="submit" style="margin-top:10px">Gửi yêu cầu</button>
+          <div class="loi" id="loiHen"></div>
+        </form><div id="kqHen"></div>
+      </div>`;
+    $('nenNop').classList.add('mo'); document.body.style.overflow = 'hidden';
+    ghiTC(ho ? 'Mở nộp tiền hộ' : 'Mở nộp tiền', TC.ma);
+    $('bnDongY').onchange = () => { const on = $('bnDongY').checked; $('bnDs').classList.toggle('khoa', !on); $('bnThem').classList.toggle('khoa', !on); };
+    $$('#bnDs a').forEach(a => a.onclick = () => ghiTC((a.classList.contains('zalo') ? 'Nộp tiền – nhắn Zalo ' : 'Nộp tiền – gọi ') + a.dataset.ten, TC.ma));
+    $('bnChep').onclick = () => {
+      const xong = () => { $('bnChepKQ').textContent = '✓ Đã sao chép. Mở Zalo cán bộ rồi dán vào ô tin nhắn.'; };
+      try { navigator.clipboard.writeText(noiDung).then(xong, () => { window.prompt('Sao chép nội dung:', noiDung); }); } catch (e) { window.prompt('Sao chép nội dung:', noiDung); }
+    };
+    $('bnGoiLai').onclick = e => { e.preventDefault(); $('fHen').classList.toggle('an'); if (!$('fHen').classList.contains('an')) $('henSdt').focus(); };
+    $('fHen').onsubmit = e => {
+      e.preventDefault(); $('loiHen').textContent = '';
+      if (!sdtOK($('henSdt').value)) { $('loiHen').textContent = 'Số điện thoại chưa đúng (10 số).'; return; }
+      $('nutHen').disabled = true; $('nutHen').textContent = 'Đang gửi…';
+      goi('guiHenThu', { ma: TC.ma, sdt: $('henSdt').value.trim(), ghichu: (ho ? '[Nộp hộ] ' : '') + $('henGhiChu').value }).then(x => { ghiTC('Hẹn nhân viên thu tiền', TC.ma);
+        $('fHen').classList.add('an');
+        $('kqHen').innerHTML = `<div class="thanhcong"><b>✅ Đã gửi – phiếu số ${esc(x.phieu)}</b><br>Nhân viên trạm sẽ gọi lại số anh/chị vừa ghi.</div>`;
+      }).catch(e => $('loiHen').textContent = e).finally(() => { $('nutHen').disabled = false; $('nutHen').textContent = 'Gửi yêu cầu'; });
+    };
+    setTimeout(() => $('dongNop').focus(), 50);
+  }
+  function dongNop() { $('nenNop').classList.remove('mo'); document.body.style.overflow = ''; }
+  $('dongNop').onclick = dongNop;
+  $('nenNop').addEventListener('click', e => { if (e.target === $('nenNop')) dongNop(); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape' && $('nenNop').classList.contains('mo')) dongNop(); });
+  // ---------- cơ cấu tổ chức ----------
+  function veCoCau(ds) {
+    const the = x => `<div class="cc-the ${/Trạm trưởng/i.test(x.chucVu) ? 'dau' : ''}"><div class="av">${esc(chuDau(x.ten))}</div><div class="tt">
+        <div class="ten">${esc(x.ten)}</div><div class="cv">${esc(x.chucVu)}</div>
+        ${x.sdt ? `<div class="nut-cc"><a class="goi2" href="tel:${esc(x.sdt)}">${esc(dinhSdt(x.sdt))}</a><a class="zalo" href="${URL_ZALO}${esc(x.sdt)}" target="_blank" rel="noopener">Zalo</a></div>` : ''}</div></div>`;
+    const nhom = [['Lãnh đạo trạm', x => /Trạm trưởng|Trạm phó/i.test(x.chucVu)], ['Quản lý địa bàn', x => /Quản lý địa bàn/i.test(x.chucVu)], ['Bộ phận khác', x => !/Trạm trưởng|Trạm phó|Quản lý địa bàn/i.test(x.chucVu)]];
+    $('dsCoCau').innerHTML = ds.length ? nhom.map(([ten, f]) => { const d = ds.filter(f); return d.length ? `<div class="cc-nhom">${esc(ten)}</div><div class="cc-luoi">${d.map(the).join('')}</div>` : ''; }).join('') : '<div class="the">Đang cập nhật.</div>';
+  }
   let TC = null;
   function hienTraCuu(r) {
     if (r.nhieu) {
@@ -1565,8 +1709,9 @@
     const k = r.ky[0], t = k.tien;
     let html = `<div class="the">${dau}
       <div class="tc-the-tien"><div class="nho">💧 Tiền nước tháng ${esc(k.thang)}${kyCua(k.thang)}</div>
-        <div class="tc-tien">${t ? tien(t.tong) : '–'}</div>
+        <div class="tc-tien-hang"><div><div class="tc-tien">${t ? tien(t.tong) : '–'}</div>
         <div class="nho">${t ? 'Đã gồm thuế GTGT ' + vat + '%' + (t.bvmt ? ' và phí BVMT nước thải ' + bvmt + '%' : '') : 'Chỉ số đang được kiểm tra'}</div></div>
+        ${t ? `<div class="tc-nop"><button type="button" class="chinh" id="tcNop">Nộp tiền</button><button type="button" class="phu2" id="tcNopHo">Nộp tiền hộ</button></div>` : ''}</div></div>
       <div class="tc-dong-ho" aria-label="Chỉ số đồng hồ">
         <div class="o"><span class="nho">Chỉ số cũ</span><b>${so(k.cu)}</b></div><span class="mui-ten">→</span>
         <div class="o"><span class="nho">Chỉ số mới</span><b>${so(k.moi)}</b></div><span class="mui-ten">=</span>
@@ -1581,18 +1726,7 @@
     } else if (k.m3 !== null && k.m3 < 0) {
       html += `<div class="canhbao" style="margin-top:12px">Chỉ số tháng này đang được trạm kiểm tra lại.</div>`;
     }
-    html += `<div class="tc-nut">
-        <button type="button" class="nop" id="tcNop">💳 Nộp qua tài khoản</button>
-        <button type="button" class="goi-lai" id="tcHen">📞 Nhân viên liên hệ để nộp tiền</button></div>
-      <form class="tc-hen an" id="fHen" autocomplete="off">
-        <b>Yêu cầu nhân viên gọi lại thu tiền</b>
-        <label class="nhan-o" for="henSdt">Số điện thoại để gọi lại</label>
-        <input id="henSdt" class="day" inputmode="tel" maxlength="16" placeholder="Số điện thoại / Zalo">
-        <label class="nhan-o" for="henGhiChu">Ghi chú <span class="nho">(không bắt buộc)</span></label>
-        <input id="henGhiChu" class="day" maxlength="200" placeholder="VD: gọi sau 17h, nhà ở cuối ngõ…">
-        <button class="nut day" id="nutHen" type="submit" style="margin-top:10px">Gửi yêu cầu</button>
-        <div class="loi" id="loiHen"></div>
-      </form><div id="kqHen"></div>` + bom + `</div>`;
+    html += bom + `</div>`;
     const nam = r.ky.slice(0, 6).reverse();
     if (nam.length >= 2) html += `<div class="the"><h3>${ic('chart')} Nước đã dùng ${nam.length} tháng gần nhất</h3>${bieuDo(nam.map(k => ({ nhan: 'T' + Number(k.thang.slice(0, 2)), gt: k.m3 === null ? 0 : Math.max(0, k.m3), chu: so(k.m3) + ' m³', phu: k.tien ? tien(k.tien.tong) : '' })), 'm³')}
       <div class="nho">Trung bình ${so(Math.round(nam.reduce((a, k) => a + Math.max(0, k.m3 || 0), 0) / nam.length))} m³/tháng.</div></div>`;
@@ -1603,17 +1737,7 @@
         `</table></div></div>`;
     }
     $('kqTra').innerHTML = html;
-    $('tcNop').onclick = () => moTab('thanhToan');
-    $('tcHen').onclick = () => { $('fHen').classList.toggle('an'); if (!$('fHen').classList.contains('an')) $('henSdt').focus(); };
-    $('fHen').onsubmit = e => {
-      e.preventDefault(); $('loiHen').textContent = '';
-      if (!sdtOK($('henSdt').value)) { $('loiHen').textContent = 'Số điện thoại chưa đúng (10 số).'; return; }
-      $('nutHen').disabled = true; $('nutHen').textContent = 'Đang gửi…';
-      goi('guiHenThu', { ma: TC.ma, sdt: $('henSdt').value.trim(), ghichu: $('henGhiChu').value }).then(x => { ghiTC('Hẹn nhân viên thu tiền', TC.ma);
-        $('fHen').classList.add('an');
-        $('kqHen').innerHTML = `<div class="thanhcong"><b>✅ Đã gửi – phiếu số ${esc(x.phieu)}</b><br>Lúc ${esc(x.thoiGian)}. Nhân viên trạm sẽ gọi lại số anh/chị vừa ghi để thu tiền.${x.daBao ? ' Đã báo cho quản lý trạm.' : ''}</div>`;
-      }).catch(e => $('loiHen').textContent = e).finally(() => { $('nutHen').disabled = false; $('nutHen').textContent = 'Gửi yêu cầu'; });
-    };
+    if ($('tcNop')) { $('tcNop').onclick = () => moNop(false); $('tcNopHo').onclick = () => moNop(true); }
     $('ycMa').value = r.ma; $('lhMa').value = r.ma; $('bcMa').value = r.ma;
   }
 
@@ -1634,7 +1758,7 @@
         Lúc ${esc(r.thoiGian)} · ${esc(r.noidung.join(', '))}<br>Nhân viên trạm sẽ kiểm tra và gửi ảnh kết quả qua Zalo.${r.daBao ? ' Đã báo cho quản lý trạm.' : ''}
         ${r.gioBom ? '<div style="margin-top:6px">Giờ bơm khu ' + esc(r.khu) + ': ' + hienBom(r.gioBom) + '</div>' : ''}</div>`;
       $('ycGhiChu').value = ''; ghiTC('Gửi kiểm tra chất lượng nước', r.noidung.join(', '));
-    }).catch(e => $('loiYC').textContent = e).finally(() => { $('nutYC').disabled = false; $('nutYC').textContent = '🧪 Gửi yêu cầu kiểm tra'; });
+    }).catch(e => $('loiYC').textContent = e).finally(() => { $('nutYC').disabled = false; $('nutYC').textContent = 'Gửi yêu cầu kiểm tra'; });
   };
 
   // ---------- báo hỏng / sửa chữa ----------
@@ -1657,8 +1781,8 @@
     $('loiSC').textContent = ''; $('kqSC').innerHTML = '';
     const chonSC = document.querySelector('#scLoaiO input:checked');
     const d = { sdt: $('scSdt').value.trim(), loai: chonSC ? chonSC.value : '', noidung: $('scNoiDung').value, link: $('scLink').value.trim(), lat: $('scLat').value, lng: $('scLng').value, diachi: $('scDiaChi').value.trim() };
-    if (!d.loai) { $('loiSC').textContent = 'Bấm chọn 1 ô ở bước 1 (hỏng gì).'; return; }
-    if (!d.lat && !d.link && d.diachi.length < 5) { $('loiSC').textContent = 'Ghi chỗ hỏng (xóm, gần nhà ai…) hoặc bấm 📍 Ghim.'; return; }
+    if (!d.loai) { $('loiSC').textContent = 'Quý khách vui lòng chọn loại sự cố ở bước 1.'; return; }
+    if (!d.lat && !d.link && d.diachi.length < 5) { $('loiSC').textContent = 'Quý khách vui lòng ghi vị trí sự cố (xóm, gần địa điểm dễ nhận biết) hoặc bấm 📍 Ghim.'; return; }
     if (!sdtOK(d.sdt)) { $('loiSC').textContent = 'Số điện thoại chưa đúng (10 số).'; return; }
     $('nutSC').disabled = true; $('nutSC').textContent = 'Đang gửi…';
     goi('guiSuaChua', d).then(r => {
@@ -1666,7 +1790,7 @@
         <div style="margin-top:8px;font-size:17px">🙏 ${esc(r.camOn)}</div>${r.daBao ? '<div class="nho" style="margin-top:4px">Đã báo cho quản lý trạm.</div>' : ''}</div>`;
       $('scNoiDung').value = ''; $('scLink').value = ''; $('scDiaChi').value = ''; $('scLat').value = ''; $('scLng').value = ''; $('scViTriKQ').textContent = '';
       $$('#scLoaiO input').forEach(x => x.checked = false); danhDauChon('#scLoaiO'); ghiTC('Gửi báo hỏng', r.loai);
-    }).catch(e => $('loiSC').textContent = e).finally(() => { $('nutSC').disabled = false; $('nutSC').textContent = '🔧 Gửi báo hỏng'; });
+    }).catch(e => $('loiSC').textContent = e).finally(() => { $('nutSC').disabled = false; $('nutSC').textContent = 'Gửi báo hỏng'; });
   };
 
   // ---------- đổi thông tin / liên hệ ----------
@@ -1675,7 +1799,7 @@
     $('loiLH').textContent = ''; $('kqLH').innerHTML = '';
     const chonLH = document.querySelector('#lhLoaiO input:checked');
     const d = { ma: $('lhMa').value.trim(), hoTen: $('lhTen').value.trim(), sdt: $('lhSdt').value.trim(), loai: chonLH ? chonLH.value : '', noidung: $('lhNoiDung').value, dongY: true };
-    if (!d.loai) { $('loiLH').textContent = 'Bấm chọn 1 ô ở bước 1 (cần làm gì).'; return; }
+    if (!d.loai) { $('loiLH').textContent = 'Quý khách vui lòng chọn nội dung cần làm ở bước 1.'; return; }
     if (d.ma.replace(/[^0-9a-z]/gi, '').length < 4) { $('loiLH').textContent = 'Nhập mã khách hàng (đầy đủ hoặc 4 số cuối).'; return; }
     if (d.hoTen.length < 2) { $('loiLH').textContent = 'Nhập họ tên chủ hộ như trên hóa đơn.'; return; }
     if (!sdtOK(d.sdt)) { $('loiLH').textContent = 'Số điện thoại chưa đúng (10 số, VD: 0912345678).'; return; }
@@ -1684,7 +1808,7 @@
     goi('guiLienHe', d).then(r => {
       $('kqLH').innerHTML = `<div class="thanhcong"><b>✅ Đã gửi – phiếu số ${esc(r.phieu)}</b><br>Lúc ${esc(r.thoiGian)} · ${esc(r.loai)}<br>Trạm sẽ liên hệ lại qua số điện thoại anh/chị đã ghi.${r.daBao ? ' Đã báo cho quản lý trạm.' : ''}</div>`;
       $('lhNoiDung').value = ''; ghiTC('Gửi đổi thông tin', r.loai);
-    }).catch(e => $('loiLH').textContent = e).finally(() => { $('nutLH').disabled = false; $('nutLH').textContent = '📨 Gửi yêu cầu'; });
+    }).catch(e => $('loiLH').textContent = e).finally(() => { $('nutLH').disabled = false; $('nutLH').textContent = 'Gửi yêu cầu'; });
   };
 
   // ---------- báo cáo vi phạm ----------
@@ -1697,9 +1821,9 @@
     const d = { loai: chon ? chon.value : '', diadiem: diadiem, thoidiem: '', noidung: $('bcNoiDung').value,
                 link: $('bcLink').value.trim(), lat: $('bcLat').value, lng: $('bcLng').value, anDanh: !coTen,
                 ma: coTen ? $('bcMa').value.trim() : '', hoTen: coTen ? $('bcTen').value.trim() : '', sdt: $('bcSdt').value.trim(), dongY: true };
-    if (!d.loai) { $('loiBC').textContent = 'Bấm chọn 1 hành vi ở bước 1.'; return; }
-    if (d.diadiem.length < 3) { if (d.lat || d.link) d.diadiem = 'Theo vị trí đã ghim'; else { $('loiBC').textContent = 'Ghi địa điểm hoặc bấm 📍 Ghim.'; return; } }
-    if (d.noidung.trim().length < 10) { $('loiBC').textContent = 'Mô tả ngắn sự việc (ít nhất một câu).'; return; }
+    if (!d.loai) { $('loiBC').textContent = 'Quý khách vui lòng chọn hành vi vi phạm ở bước 1.'; return; }
+    if (d.diadiem.length < 3) { if (d.lat || d.link) d.diadiem = 'Theo vị trí đã ghim'; else { $('loiBC').textContent = 'Quý khách vui lòng ghi địa điểm hoặc bấm 📍 Ghim.'; return; } }
+    if (d.noidung.trim().length < 10) { $('loiBC').textContent = 'Quý khách vui lòng mô tả ngắn sự việc (ít nhất một câu).'; return; }
     if (!sdtOK(d.sdt)) { $('loiBC').textContent = 'Số điện thoại chưa đúng (10 số).'; return; }
     if (coTen && d.ma.replace(/[^0-9a-z]/gi, '').length < 4) { $('loiBC').textContent = 'Nhập mã khách hàng của anh/chị, hoặc bỏ tích để báo ẩn danh.'; return; }
     if (coTen && d.hoTen.length < 2) { $('loiBC').textContent = 'Nhập họ tên chủ hộ như trên hóa đơn.'; return; }
@@ -1708,7 +1832,7 @@
       $('kqBC').innerHTML = `<div class="thanhcong"><b>✅ Đã nhận báo cáo${r.anDanh ? ' ẩn danh' : ''} – phiếu số ${esc(r.phieu)}</b><br>Lúc ${esc(r.thoiGian)} · ${esc(r.loai)}${r.vitri ? ' · ' + lk(r.vitri, '📍 vị trí đã ghim') : ''}<br>Cảm ơn anh/chị. Trạm sẽ xác minh và giữ kín thông tin người báo.${r.daBao ? ' Đã báo cho quản lý trạm.' : ''}</div>`;
       $('bcNoiDung').value = ''; $('bcDiaDiem').value = ''; $('bcLink').value = ''; $('bcLat').value = ''; $('bcLng').value = ''; $('bcViTriKQ').textContent = '';
       $$('#bcLoaiO input').forEach(x => x.checked = false); danhDauChon('#bcLoaiO');
-    }).catch(e => $('loiBC').textContent = e).finally(() => { $('nutBC').disabled = false; $('nutBC').textContent = '🔒 Gửi báo cáo bảo mật'; });
+    }).catch(e => $('loiBC').textContent = e).finally(() => { $('nutBC').disabled = false; $('nutBC').textContent = 'Gửi báo cáo bảo mật'; });
   };
 
   // ---------- chọn loại đăng nhập ----------
@@ -2391,7 +2515,7 @@
       const capNhatM3 = () => { const a = Number(tr.querySelector('.cs-cu').value), b = Number(tr.querySelector('.cs-moi').value); tr.querySelector('.cs-m3').textContent = isFinite(a) && isFinite(b) && tr.querySelector('.cs-moi').value !== '' ? so(b - a) : '–'; };
       tr.querySelector('.cs-cu').oninput = capNhatM3; tr.querySelector('.cs-moi').oninput = capNhatM3;
       tr.querySelector('.cs-luu').onclick = () => { kq.textContent = 'Đang lưu…'; goiNB('admSuaChiSo', dong, tr.querySelector('.cs-cu').value, tr.querySelector('.cs-moi').value, tr.querySelector('.cs-gc').value).then(r => { kq.textContent = 'Đã lưu ✓ (' + so(r.m3) + ' m³)'; BC = null; SS = null; }).catch(e => kq.textContent = e); };
-      tr.querySelector('.cs-xoa').onclick = () => { if (!confirm('Xóa dòng chỉ số tháng ' + tr.querySelector('b').textContent + ' của hộ này?')) return; kq.textContent = 'Đang xóa…'; goiNB('admXoaChiSo', dong).then(() => { BC = null; SS = null; $('fQtCS').requestSubmit(); }).catch(e => kq.textContent = e); };
+      tr.querySelector('.cs-xoa').onclick = () => { if (!confirm('Xóa dòng chỉ số tháng ' + tr.querySelector('b').textContent + ' của hộ này không?')) return; kq.textContent = 'Đang xóa…'; goiNB('admXoaChiSo', dong).then(() => { BC = null; SS = null; $('fQtCS').requestSubmit(); }).catch(e => kq.textContent = e); };
     });
   }
   $('fQtCSThem').onsubmit = e => {
