@@ -214,6 +214,8 @@
   .chi-adm { display:none !important; }
   body.la-adm .chi-adm { display:revert !important; }
   body.la-adm button.chi-adm, body.la-adm .tabcon button.chi-adm { display:flex !important; }
+  body.la-adm .nhom-nb button.chi-adm { display:block !important; }
+  body.la-adm #tabNB button.chi-adm.an-nhom { display:none !important; }
   .nd-thanh { display:flex; align-items:center; gap:10px; flex-wrap:wrap; }
   .nd-thanh .ten-nd { font-weight:800; }
   .luoi-form { display:grid; grid-template-columns:1fr; gap:10px 14px; }
@@ -248,6 +250,53 @@
   #thanhNhom button .ic { width:24px; height:24px; color:var(--nuoc); }
   #thanhNhom button.on { border-color:var(--xanh); background:var(--xanh2); color:var(--xanh); font-weight:700; box-shadow:inset 0 -3px 0 var(--xanh); }
   #thanhNhom .huy-hieu { position:absolute; top:5px; right:8px; }
+  /* chữ phát sáng nhẹ: tên trạm + chữ ký thiết kế */
+  .ten-web .t1 { animation:sangTen 4.5s ease-in-out infinite; }
+  @keyframes sangTen { 0%,100% { text-shadow:0 0 0 rgba(255,255,255,0); } 50% { text-shadow:0 0 10px rgba(173,216,255,.85), 0 0 22px rgba(120,190,255,.45); } }
+  .sang-chu { background:linear-gradient(100deg, var(--xanh-dam) 0%, var(--xanh-dam) 40%, #4fc3f7 50%, var(--xanh-dam) 60%, var(--xanh-dam) 100%); background-size:250% 100%;
+              -webkit-background-clip:text; background-clip:text; color:transparent; animation:luotSang 5s linear infinite; text-shadow:none; }
+  @keyframes luotSang { from { background-position:100% 0; } to { background-position:-150% 0; } }
+  /* menu bay: rê chuột / chạm vào nhóm → hiện các mục con */
+  #menuBay { position:fixed; z-index:40; background:#fff; border:1px solid var(--vien); border-radius:14px; box-shadow:0 14px 34px rgba(16,24,40,.2); padding:6px; display:none; min-width:210px; }
+  #menuBay.mo { display:block; animation:noiLen .18s ease both; }
+  #menuBay button { display:flex; align-items:center; gap:10px; width:100%; border:0; background:none; padding:10px 12px; border-radius:10px; font-size:15px; color:var(--chu); cursor:pointer; text-align:left; }
+  #menuBay button:hover, #menuBay button.on { background:var(--xanh2); color:var(--xanh); font-weight:700; }
+  #menuBay button .ic { width:22px; height:22px; color:var(--nuoc); flex:0 0 auto; }
+  nav.menu-tren button .mui { font-size:10px; opacity:.7; margin-left:2px; }
+  /* tra cứu trực quan */
+  .tc-dau { display:flex; gap:12px; align-items:center; margin-bottom:14px; }
+  .tc-av { flex:0 0 auto; width:52px; height:52px; border-radius:50%; background:linear-gradient(135deg,#42a5f5,#0b5394); color:#fff; display:flex; align-items:center; justify-content:center; font-weight:800; font-size:20px; box-shadow:0 4px 12px rgba(11,83,148,.3); }
+  .tc-ten { font-size:20px; font-weight:800; color:var(--xanh-dam); line-height:1.25; }
+  .tc-the-tien { border-radius:16px; padding:16px 18px; color:#fff; background:linear-gradient(130deg,#0b5394 0%,#1e88e5 60%,#29b6f6 100%); box-shadow:0 10px 26px rgba(30,136,229,.32); position:relative; overflow:hidden; }
+  .tc-the-tien::after { content:""; position:absolute; right:-30px; top:-30px; width:140px; height:140px; border-radius:50%; background:rgba(255,255,255,.12); }
+  .tc-the-tien .nho { color:#d6ecff; }
+  .tc-tien { font-size:34px; font-weight:800; letter-spacing:.3px; margin:2px 0; }
+  .tc-dong-ho { display:grid; grid-template-columns:1fr auto 1fr auto 1fr; gap:6px; align-items:center; margin-top:12px; }
+  .tc-dong-ho .o { text-align:center; padding:10px 6px; background:#fff; border:1px solid var(--vien); }
+  .tc-dong-ho .o b { font-size:19px; }
+  .tc-dong-ho .mui-ten { color:var(--nuoc); font-weight:800; font-size:18px; }
+  .tc-dong-ho .o.m3 { background:var(--la2); border-color:#a5d6a7; }
+  .tc-dong-ho .o.m3 b { color:var(--la); }
+  .tc-ct { margin-top:12px; border:1px solid var(--vien); border-radius:12px; overflow:hidden; }
+  .tc-ct div { display:flex; justify-content:space-between; gap:10px; padding:9px 12px; border-bottom:1px solid var(--vien); font-size:15px; }
+  .tc-ct div:last-child { border-bottom:0; background:var(--xanh2); font-weight:800; color:var(--xanh-dam); }
+  .tc-ct .pt { display:inline-block; font-size:12px; font-weight:700; background:var(--vang2); color:var(--vang); border-radius:6px; padding:1px 6px; margin-left:4px; }
+  .tc-nut { display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:14px; }
+  .tc-nut button { border-radius:12px; padding:12px 10px; font-size:15px; font-weight:700; cursor:pointer; display:flex; align-items:center; justify-content:center; gap:8px; line-height:1.25; }
+  .tc-nut .nop { background:var(--la); color:#fff; border:0; box-shadow:0 6px 16px rgba(46,125,50,.28); }
+  .tc-nut .goi-lai { background:#fff; color:var(--xanh); border:2px solid var(--xanh); }
+  .tc-hen { margin-top:12px; border:1px dashed var(--xanh); border-radius:12px; padding:12px; background:#f7fbff; }
+  .o-tim { background:linear-gradient(135deg,#ffffff 0%,#eef6ff 100%); }
+  .o-tim .goi-y { display:flex; flex-wrap:wrap; gap:6px; margin-top:10px; }
+  .o-tim .goi-y span { font-size:13px; background:#fff; border:1px solid var(--vien); border-radius:999px; padding:4px 10px; color:var(--xam); }
+  /* nội bộ: nhóm tab */
+  .nhom-nb { display:grid; grid-template-columns:repeat(4, minmax(0,1fr)); gap:8px; margin-bottom:10px; }
+  .nhom-nb button { border:1px solid var(--vien); background:#fff; border-radius:12px; padding:10px 6px; font-size:14px; font-weight:700; color:var(--chu); cursor:pointer; position:relative; box-shadow:var(--bong); }
+  .nhom-nb button .bieu { display:block; font-size:22px; margin-bottom:2px; }
+  .nhom-nb button.on { background:var(--xanh); color:#fff; border-color:var(--xanh); }
+  .nhom-nb .huy-hieu { position:absolute; top:6px; right:8px; }
+  #tabNB button.an-nhom { display:none !important; }
+
   /* nút gọi nổi */
   #nutGoi { position:fixed; right:16px; bottom:22px; z-index:35; width:58px; height:58px; border-radius:50%; border:0; background:#2e7d32; color:#fff;
             box-shadow:0 6px 18px rgba(46,125,50,.45); cursor:pointer; display:flex; align-items:center; justify-content:center; }
@@ -277,6 +326,24 @@
   .o-nhap-nut input { flex:1; min-width:0; }
   .o-nhap-nut button { flex:0 0 auto; }
   .cam-ket { font-size:13px; color:var(--xam); text-align:center; margin-top:8px; }
+  .o-hanh-vi.xanh label.chon { border:2px solid var(--xanh); background:var(--xanh2); color:var(--xanh); }
+  .o-hanh-vi.ba { grid-template-columns:repeat(3, minmax(0,1fr)); }
+  .hai-o { display:grid; grid-template-columns:1fr 1fr; gap:8px; }
+  .khung-goi-gap { display:flex; gap:10px; align-items:center; flex-wrap:wrap; background:#fff4e5; border:1px solid #ffcc80; border-radius:12px; padding:10px 12px; margin:8px 0 4px; font-size:14.5px; }
+  .khung-goi-gap a.goi { margin:0; padding:7px 10px; flex:0 0 auto; }
+  .khung-goi-gap a.goi .ic { width:20px; height:20px; }
+  .tuy-chon { font-weight:400; font-size:13px; color:var(--xam); }
+  /* dòng chữ chạy cảnh báo lừa đảo */
+  .lua-dao { display:flex; align-items:stretch; background:#fff; border:1px solid #f5b5ae; border-radius:12px; overflow:hidden; margin-bottom:14px; box-shadow:var(--bong); }
+  .lua-dao .ld-nhan { flex:0 0 auto; background:var(--do); color:#fff; font-weight:800; font-size:13px; padding:9px 12px; display:flex; align-items:center; gap:6px; letter-spacing:.2px; }
+  .lua-dao .ld-chay { flex:1; min-width:0; overflow:hidden; position:relative; display:flex; align-items:center; }
+  .lua-dao .ld-noi { display:inline-flex; white-space:nowrap; animation:chayChu var(--tg, 40s) linear infinite; will-change:transform; color:#8e1b1b; font-weight:600; font-size:15px; }
+  .lua-dao .ld-noi span { padding:0 28px 0 14px; }
+  .lua-dao .ld-noi span::before { content:"⚠️ "; }
+  .lua-dao:hover .ld-noi, .lua-dao.dung .ld-noi { animation-play-state:paused; }
+  @keyframes chayChu { from { transform:translateX(0); } to { transform:translateX(-50%); } }
+  @media (prefers-reduced-motion:reduce) { .lua-dao .ld-noi { white-space:normal; display:block; padding:8px 0; } .lua-dao .ld-noi .lap { display:none; } }
+
   /* thanh toán */
   .tt-phuongthuc { display:grid; grid-template-columns:repeat(3, minmax(0,1fr)); gap:10px; margin:12px 0; }
   .tt-phuongthuc div { border:1px dashed #b8c4d6; border-radius:12px; padding:14px 8px; text-align:center; color:var(--xam); font-size:14px; background:#fafcff; position:relative; }
@@ -353,6 +420,16 @@
     .tt-phuongthuc { grid-template-columns:1fr 1fr 1fr; gap:6px; }
     .tt-phuongthuc div { font-size:12.5px; padding:12px 4px; }
     .cn-doi { grid-template-columns:96px 1fr; }
+    .tc-tien { font-size:28px; }
+    .tc-dong-ho .o b { font-size:16px; }
+    .tc-nut button { font-size:14px; padding:11px 6px; }
+    .nhom-nb { grid-template-columns:repeat(2, minmax(0,1fr)); }
+    .hai-o { grid-template-columns:1fr; }
+    .o-hanh-vi { grid-template-columns:repeat(2, minmax(0,1fr)); }
+    .o-hanh-vi.ba { grid-template-columns:repeat(3, minmax(0,1fr)); }
+    .o-hanh-vi label { min-height:80px; font-size:13px; }
+    .lua-dao .ld-nhan { font-size:12px; padding:8px 9px; }
+    .lua-dao .ld-nhan b { display:none; }
   }
 </style>
 </head>
@@ -371,14 +448,16 @@
   </div>
   <nav class="menu-tren">
     <button data-nhom="traCuu" class="on"><i class="ic" data-ic="search"></i> Tra cứu</button>
-    <button data-nhom="dichVu"><i class="ic" data-ic="wrench"></i> Dịch vụ</button>
-    <button data-nhom="thanhToan"><i class="ic" data-ic="card"></i> Thanh toán</button>
-    <button data-nhom="tinTuc"><i class="ic" data-ic="bell"></i> Tin tức <span class="huy-hieu demTB"></span></button>
+    <button data-nhom="baoHong"><i class="ic" data-ic="wrench"></i> Báo hỏng</button>
+    <button data-nhom="dichVu"><i class="ic" data-ic="grid"></i> Dịch vụ <span class="mui">▾</span></button>
+    <button data-nhom="viPham"><i class="ic" data-ic="alert"></i> Báo vi phạm</button>
+    <button data-nhom="tinTuc"><i class="ic" data-ic="bell"></i> Tin tức <span class="huy-hieu demTB"></span> <span class="mui">▾</span></button>
     <button data-nhom="taiKhoan"><i class="ic" data-ic="user"></i> Tài khoản</button>
   </nav>
 </header>
 
 <main class="tren-nen">
+  <div class="lua-dao an" id="luaDao" role="marquee" aria-label="Cảnh báo lừa đảo"><span class="ld-nhan">🛡️<b> CẢNH GIÁC</b> LỪA ĐẢO</span><div class="ld-chay"><div class="ld-noi" id="ldNoi"></div></div></div>
   <div id="giaMau" class="canhbao an"></div>
   <div id="thongBao" class="thongbao an"></div>
   <div id="loiChung" class="canhbao an"></div>
@@ -388,12 +467,13 @@
   <section id="traCuu">
     <div class="luoi2">
       <div>
-        <div class="the">
+        <div class="the o-tim">
           <h2><i class="ic" data-ic="search"></i> Tra cứu chỉ số & tiền nước</h2>
           <form class="hang" id="fTraCuu" autocomplete="off">
             <input class="to" id="maKH" placeholder="Mã KH, 4 số cuối hoặc tên chủ hộ, VD: 6143" aria-label="Mã khách hàng" maxlength="40">
             <button class="nut" id="nutTra" type="submit">Xem</button>
           </form>
+          <div class="goi-y"><span>🔢 Mã đầy đủ: 01.36010116.143</span><span>✂️ Hoặc 4 số cuối: 6143</span><span>👤 Hoặc họ tên chủ hộ</span></div>
           <div class="loi" id="loiTra"></div>
           <div id="chonMa" class="chon-ma an"></div>
           <div style="margin-top:10px"><a href="#" id="moMau" style="color:var(--xanh)">📄 Mã khách hàng ở đâu? Xem mẫu hóa đơn</a></div>
@@ -408,8 +488,8 @@
       <div>
         <div class="o-tat">
           <button data-tab="suaChua"><i class="ic lon-ic" data-ic="wrench"></i>Báo hỏng, vỡ ống, mất nước</button>
-          <button data-tab="yeuCau"><i class="ic lon-ic" data-ic="flask"></i>Kiểm tra áp lực, chất lượng nước</button>
-          <button data-tab="lienHeTab"><i class="ic lon-ic" data-ic="edit"></i>Đổi thông tin, liên hệ</button>
+          <button data-tab="yeuCau"><i class="ic lon-ic" data-ic="flask"></i>Yêu cầu kiểm tra chất lượng nước</button>
+          <button data-tab="thanhToan"><i class="ic lon-ic" data-ic="card"></i>Thanh toán tiền nước</button>
           <button data-tab="baoViPham"><i class="ic lon-ic" data-ic="alert"></i>Báo dùng nước trái quy định</button>
         </div>
         <div class="the"><h3><i class="ic" data-ic="clock"></i> Giờ bơm nước</h3><div class="dsGioBom"></div></div>
@@ -425,25 +505,24 @@
   <section id="yeuCau" class="an">
     <div class="luoi2">
       <div class="the">
-        <h2><i class="ic" data-ic="flask"></i> Yêu cầu kiểm tra nước</h2>
-        <p class="nho" style="margin-top:0">Nhân viên trạm sẽ kiểm tra <b>áp lực nước</b>, <b>chất lượng nước</b> và báo <b>giờ bơm</b> cho khu của anh/chị,
-          chụp ảnh đồng hồ áp lực và kết quả đo gửi qua <b>Zalo</b>.</p>
+        <h2><i class="ic" data-ic="flask"></i> Yêu cầu kiểm tra chất lượng nước</h2>
+        <p class="nho" style="margin-top:0">Nhân viên đến đo <b>chất lượng nước</b> (clo dư, độ đục, pH…), <b>áp lực nước</b> và báo <b>giờ bơm</b>, chụp ảnh kết quả gửi qua <b>Zalo</b>. Điền đủ 4 bước bên dưới.</p>
         <div id="gioNhan" class="thongbao" style="margin-bottom:6px"></div>
-        <p class="nho">Các ô có dấu <span class="bb">*</span> bắt buộc. Họ tên và số điện thoại phải khớp hồ sơ khách hàng của trạm thì yêu cầu mới được nhận.</p>
         <form id="fYC" autocomplete="off">
-          <label class="nhan-o" for="ycMa">Mã khách hàng <span class="bb">*</span></label>
-          <input id="ycMa" class="day" placeholder="Mã đầy đủ hoặc 4 số cuối, VD: 6143" inputmode="decimal" maxlength="40">
-          <label class="nhan-o" for="ycTen">Họ tên chủ hộ (như trên hóa đơn) <span class="bb">*</span></label>
-          <input id="ycTen" class="day" placeholder="VD: Nguyễn Văn An" maxlength="80">
-          <label class="nhan-o">Cần kiểm tra <span class="bb">*</span></label>
-          <div id="ycNoiDung"></div>
-          <label class="nhan-o" for="ycZalo">Số điện thoại / Zalo nhận ảnh kết quả <span class="bb">*</span></label>
-          <input id="ycZalo" class="day" placeholder="VD: 0912345678" inputmode="tel" maxlength="16">
-          <label class="nhan-o" for="ycGhiChu">Ghi chú (không bắt buộc)</label>
-          <textarea id="ycGhiChu" maxlength="300" placeholder="VD: nước yếu từ chiều qua, nước có mùi…"></textarea>
+          <div class="buoc"><i>1</i> Hộ nào? <span class="tuy-chon">(khớp hóa đơn)</span></div>
+          <div class="hai-o">
+            <input id="ycMa" class="day" placeholder="Mã KH hoặc 4 số cuối" inputmode="decimal" maxlength="40" aria-label="Mã khách hàng">
+            <input id="ycTen" class="day" placeholder="Họ tên chủ hộ" maxlength="80" aria-label="Họ tên chủ hộ">
+          </div>
+          <div class="buoc"><i>2</i> Cần kiểm tra gì?</div>
+          <div class="o-hanh-vi xanh ba" id="ycNoiDung" role="group" aria-label="Nội dung kiểm tra"></div>
+          <div class="buoc"><i>3</i> Số Zalo nhận ảnh kết quả</div>
+          <input id="ycZalo" class="day" placeholder="Số điện thoại có Zalo" inputmode="tel" maxlength="16" aria-label="Số Zalo">
+          <div class="buoc"><i>4</i> Ghi chú <span class="tuy-chon">(không bắt buộc)</span></div>
+          <textarea id="ycGhiChu" maxlength="300" rows="2" placeholder="VD: nước yếu từ chiều qua, nước có mùi…"></textarea>
           <label class="o-chon" style="margin-top:12px"><input type="checkbox" id="ycDongY">
-            <span>Tôi đồng ý cho trạm dùng số Zalo này để liên hệ và gửi ảnh kết quả kiểm tra. <span class="bb">*</span></span></label>
-          <button class="nut day" id="nutYC" type="submit" style="margin-top:6px">Gửi yêu cầu</button>
+            <span>Đồng ý cho trạm dùng số Zalo này để liên hệ và gửi ảnh kết quả.</span></label>
+          <button class="nut day" id="nutYC" type="submit" style="margin-top:6px">🧪 Gửi yêu cầu kiểm tra</button>
           <div class="loi" id="loiYC"></div>
         </form>
         <div id="kqYC"></div>
@@ -460,23 +539,24 @@
     <div class="luoi2">
       <div class="the">
         <h2><i class="ic" data-ic="wrench"></i> Báo hỏng / Yêu cầu sửa chữa</h2>
-        <p class="nho" style="margin-top:0">Vỡ ống, rò rỉ, mất nước, đồng hồ hỏng, nước đục… Chỉ cần số điện thoại và vị trí, không cần mã khách hàng. Ô có dấu <span class="bb">*</span> bắt buộc.</p>
+        <div class="khung-goi-gap">🚨 Vỡ ống lớn, nước phun mạnh? <b>Gọi ngay:</b> <span id="scGoiGap" class="hang" style="gap:6px"></span></div>
         <form id="fSC" autocomplete="off">
-          <label class="nhan-o" for="scSdt">Số điện thoại người báo <span class="bb">*</span></label>
-          <input id="scSdt" class="day" placeholder="VD: 0912345678" inputmode="tel" maxlength="16">
-          <label class="nhan-o" for="scLoai">Loại sự cố <span class="bb">*</span></label>
-          <select id="scLoai" class="day"></select>
-          <label class="nhan-o" for="scNoiDung">Mô tả sự cố <span class="bb">*</span></label>
-          <textarea id="scNoiDung" maxlength="500" placeholder="VD: ống D63 vỡ trước cổng nhà ông Ba, nước phun mạnh từ 7h sáng…"></textarea>
-          <label class="nhan-o">Vị trí chỗ hỏng <span class="bb">*</span> <span class="nho">(ghim GPS hoặc ghi địa chỉ)</span></label>
-          <div class="hang">
-            <button class="nut phu" id="nutGhim" type="button">📍 Ghim vị trí hiện tại</button>
-            <span class="nho" id="scViTriKQ"></span>
+          <div class="buoc"><i>1</i> Hỏng gì?</div>
+          <div class="o-hanh-vi xanh" id="scLoaiO" role="radiogroup" aria-label="Loại sự cố"></div>
+          <div class="buoc"><i>2</i> Ở đâu?</div>
+          <div class="o-nhap-nut">
+            <input id="scDiaChi" class="day" placeholder="Xóm, xã, gần nhà ai…" maxlength="200" aria-label="Địa chỉ chỗ hỏng">
+            <button class="nut phu" id="nutGhim" type="button" title="Ghim vị trí GPS">📍 Ghim</button>
           </div>
+          <div class="nho" id="scViTriKQ" style="margin-top:4px"></div>
           <input type="hidden" id="scLat"><input type="hidden" id="scLng">
-          <input id="scLink" class="day" placeholder="Hoặc dán link Google Maps (maps.app.goo.gl/…)" maxlength="500" style="margin-top:8px">
-          <input id="scDiaChi" class="day" placeholder="Địa chỉ mô tả: xóm, xã, gần nhà ai…" maxlength="200" style="margin-top:8px">
-          <button class="nut day" id="nutSC" type="submit" style="margin-top:12px">Gửi báo hỏng</button>
+          <a href="#" class="nho" id="scMoLink" style="color:var(--xanh)">+ Dán link Google Maps</a>
+          <input id="scLink" class="day an" placeholder="Link Google Maps (maps.app.goo.gl/…)" maxlength="500" style="margin-top:6px">
+          <div class="buoc"><i>3</i> Số điện thoại để thợ gọi lại</div>
+          <input id="scSdt" class="day" placeholder="Số điện thoại" inputmode="tel" maxlength="16" aria-label="Số điện thoại">
+          <div class="buoc"><i>4</i> Mô tả thêm <span class="tuy-chon">(không bắt buộc)</span></div>
+          <textarea id="scNoiDung" maxlength="500" rows="2" placeholder="VD: ống vỡ trước cổng, nước phun mạnh từ 7h sáng…"></textarea>
+          <button class="nut day" id="nutSC" type="submit" style="margin-top:12px">🔧 Gửi báo hỏng</button>
           <div class="loi" id="loiSC"></div>
         </form>
         <div id="kqSC"></div>
@@ -495,22 +575,19 @@
         <h2><i class="ic" data-ic="edit"></i> Yêu cầu đổi thông tin / Liên hệ làm việc</h2>
         <div class="thongbao" style="display:flex;gap:10px;align-items:center;flex-wrap:wrap">👤 Đã có tài khoản khách hàng? Đăng nhập để tự cập nhật họ tên, số điện thoại, địa chỉ – trạm duyệt và báo lại.
           <button class="nut phu nho-nut" type="button" data-tab="noiBo">Đăng nhập</button></div>
-        <p class="nho" style="margin-top:0">Dùng khi cần đổi tên chủ hộ, số điện thoại, địa chỉ, kiểm định đồng hồ, tạm ngừng nước, lắp mới, thắc mắc hóa đơn hoặc hẹn làm việc với trạm.
-          Các ô có dấu <span class="bb">*</span> bắt buộc; họ tên và số điện thoại phải khớp hồ sơ khách hàng.</p>
         <form id="fLH" autocomplete="off">
-          <label class="nhan-o" for="lhMa">Mã khách hàng <span class="bb">*</span></label>
-          <input id="lhMa" class="day" placeholder="Mã đầy đủ hoặc 4 số cuối, VD: 6143" inputmode="decimal" maxlength="40">
-          <label class="nhan-o" for="lhTen">Họ tên chủ hộ (như trên hóa đơn) <span class="bb">*</span></label>
-          <input id="lhTen" class="day" placeholder="VD: Nguyễn Văn An" maxlength="80">
-          <label class="nhan-o" for="lhSdt">Số điện thoại / Zalo <span class="bb">*</span></label>
-          <input id="lhSdt" class="day" placeholder="VD: 0912345678" inputmode="tel" maxlength="16">
-          <label class="nhan-o" for="lhLoai">Loại yêu cầu <span class="bb">*</span></label>
-          <select id="lhLoai" class="day"></select>
-          <label class="nhan-o" for="lhNoiDung">Nội dung cần thay đổi / cần làm việc <span class="bb">*</span></label>
-          <textarea id="lhNoiDung" maxlength="500" placeholder="VD: Đổi tên chủ hộ từ … sang …; số điện thoại mới là …; hẹn làm việc sáng thứ 3…"></textarea>
-          <label class="o-chon" style="margin-top:12px"><input type="checkbox" id="lhDongY">
-            <span>Tôi cam kết thông tin khai đúng sự thật và đồng ý cho trạm liên hệ qua số điện thoại này. <span class="bb">*</span></span></label>
-          <button class="nut day" id="nutLH" type="submit" style="margin-top:6px">Gửi yêu cầu</button>
+          <div class="buoc"><i>1</i> Anh/chị cần làm gì?</div>
+          <div class="o-hanh-vi xanh" id="lhLoaiO" role="radiogroup" aria-label="Loại yêu cầu"></div>
+          <div class="buoc"><i>2</i> Hộ nào? <span class="tuy-chon">(khớp hóa đơn)</span></div>
+          <div class="hai-o">
+            <input id="lhMa" class="day" placeholder="Mã KH hoặc 4 số cuối" inputmode="decimal" maxlength="40" aria-label="Mã khách hàng">
+            <input id="lhTen" class="day" placeholder="Họ tên chủ hộ" maxlength="80" aria-label="Họ tên chủ hộ">
+          </div>
+          <input id="lhSdt" class="day" placeholder="Số điện thoại / Zalo để trạm gọi lại" inputmode="tel" maxlength="16" aria-label="Số điện thoại" style="margin-top:8px">
+          <div class="buoc"><i>3</i> Nội dung <span class="tuy-chon">(không bắt buộc)</span></div>
+          <textarea id="lhNoiDung" maxlength="500" rows="2" placeholder="VD: đổi tên chủ hộ sang con trai; số mới là…; hẹn sáng thứ 3…"></textarea>
+          <button class="nut day" id="nutLH" type="submit" style="margin-top:12px">📨 Gửi yêu cầu</button>
+          <div class="cam-ket">Bấm gửi là anh/chị cam kết thông tin đúng sự thật và đồng ý cho trạm gọi lại.</div>
           <div class="loi" id="loiLH"></div>
         </form>
         <div id="kqLH"></div>
@@ -643,7 +720,17 @@
         <input id="khMk" type="password" class="day" autocomplete="current-password" maxlength="60" placeholder="Mật khẩu">
         <button class="nut day" id="nutKH" type="submit" style="margin-top:12px">Đăng nhập</button>
         <div class="loi" id="loiKH"></div>
-        <p class="nho">Tên đăng nhập là <b>mã khách hàng</b> in trên hóa đơn. Lần đầu dùng mật khẩu mặc định <b>111111</b>, sau đó đổi mật khẩu riêng để xem hồ sơ và cập nhật thông tin. Quên mật khẩu: gọi trạm để đặt lại.</p>
+        <p class="nho">Tên đăng nhập là <b>mã khách hàng</b> in trên hóa đơn. Lần đầu dùng mật khẩu mặc định <b>111111</b>, sau đó đổi mật khẩu riêng để xem hồ sơ và cập nhật thông tin.</p>
+        <a href="#" id="moQuenMK" style="color:var(--xanh);font-weight:700">🔑 Quên mật khẩu? Yêu cầu đặt lại</a>
+      </form>
+      <form id="fQuenMK" class="an tc-hen" autocomplete="off">
+        <b>Yêu cầu đặt lại mật khẩu</b>
+        <p class="nho" style="margin:4px 0 0">Khai đúng họ tên chủ hộ, mã khách hàng và số điện thoại. Trạm gọi lại xác minh rồi đặt lại mật khẩu về mặc định.</p>
+        <label class="nhan-o" for="qmTen">Họ tên chủ hộ</label><input id="qmTen" class="day" maxlength="80" placeholder="Như trên hóa đơn">
+        <label class="nhan-o" for="qmMa">Mã khách hàng</label><input id="qmMa" class="day" maxlength="30" inputmode="decimal" placeholder="Mã đầy đủ in trên hóa đơn">
+        <label class="nhan-o" for="qmSdt">Số điện thoại</label><input id="qmSdt" class="day" maxlength="16" inputmode="tel" placeholder="Số điện thoại / Zalo">
+        <div class="hang" style="margin-top:10px"><button class="nut" id="nutQuenMK" type="submit">Gửi yêu cầu</button><button class="nut phu" id="dongQuenMK" type="button">Đóng</button></div>
+        <div class="loi" id="loiQuenMK"></div><div id="kqQuenMK"></div>
       </form>
       <form id="fPin" autocomplete="on" class="an">
         <label class="nhan-o" for="dnTen">Tên đăng nhập</label>
@@ -725,21 +812,30 @@
         </form>
       </div>
       <div id="canhPin" class="canhbao an">Tài khoản đang dùng mật khẩu mặc định 123456 – bấm "Đổi mật khẩu" ngay.</div>
+      <div class="nhom-nb" id="nhomNB">
+        <button type="button" data-nb="sanLuong" class="on"><span class="bieu">📊</span>Sản lượng</button>
+        <button type="button" data-nb="phieu"><span class="bieu">📥</span>Phiếu khách gửi<span class="huy-hieu" id="demNhomPhieu"></span></button>
+        <button type="button" data-nb="duyet"><span class="bieu">✅</span>Duyệt &amp; tài khoản<span class="huy-hieu" id="demNhomDuyet"></span></button>
+        <button type="button" data-nb="quanLy" class="chi-adm"><span class="bieu">🛠️</span>Quản lý chung</button>
+      </div>
       <div class="tabcon" id="tabNB">
-        <button data-sub="baoCao" class="on">📊 Số liệu tháng</button>
-        <button data-sub="baoCaoNam">💰 Doanh thu & sản lượng năm</button>
-        <button data-sub="soSanh">📈 So sánh theo tháng</button>
-        <button data-sub="nghiNgo">🔎 Nghi ngờ vi phạm</button>
-        <button data-sub="suaChuaNB">🔧 Báo hỏng <span class="huy-hieu" id="demSC"></span></button>
-        <button data-sub="yeuCauNB">🧪 Yêu cầu kiểm tra <span class="huy-hieu" id="demYC"></span></button>
-        <button data-sub="lienHeNB">📝 Liên hệ / đổi TT <span class="huy-hieu" id="demLH"></span></button>
-        <button data-sub="baoCaoNB">🚨 Báo cáo vi phạm <span class="huy-hieu" id="demBC"></span></button>
-        <button data-sub="duyetCN">✅ Duyệt thông tin KH <span class="huy-hieu" id="demCN"></span></button>
-        <button data-sub="qtKH" class="chi-adm">🛠️ Khách hàng</button>
-        <button data-sub="qtChiSo" class="chi-adm">🛠️ Chỉ số</button>
-        <button data-sub="qtTaiKhoan" class="chi-adm">🛠️ Tài khoản</button>
-        <button data-sub="qtCauHinh" class="chi-adm">🛠️ Cấu hình</button>
-        <button data-sub="qtNhatKy" class="chi-adm">🛠️ Nhật ký</button>
+        <button data-nb="sanLuong" data-sub="baoCao" class="on">📊 Số liệu tháng</button>
+        <button data-nb="sanLuong" data-sub="baoCaoNam">💰 Doanh thu & sản lượng năm</button>
+        <button data-nb="sanLuong" data-sub="soSanh">📈 So sánh theo tháng</button>
+        <button data-nb="sanLuong" data-sub="nghiNgo">🔎 Nghi ngờ vi phạm</button>
+        <button data-nb="phieu" data-sub="suaChuaNB">🔧 Báo hỏng <span class="huy-hieu" id="demSC"></span></button>
+        <button data-nb="phieu" data-sub="henThuNB">💵 Hẹn thu tiền <span class="huy-hieu" id="demHT"></span></button>
+        <button data-nb="phieu" data-sub="yeuCauNB">🧪 Kiểm tra chất lượng nước <span class="huy-hieu" id="demYC"></span></button>
+        <button data-nb="phieu" data-sub="lienHeNB">📝 Liên hệ / đổi TT <span class="huy-hieu" id="demLH"></span></button>
+        <button data-nb="phieu" data-sub="baoCaoNB">🚨 Báo cáo vi phạm <span class="huy-hieu" id="demBC"></span></button>
+        <button data-nb="duyet" data-sub="datLaiNB">🔑 Cấp / đặt lại mật khẩu KH <span class="huy-hieu" id="demDL"></span></button>
+        <button data-nb="duyet" data-sub="duyetCN">✅ Duyệt thông tin KH <span class="huy-hieu" id="demCN"></span></button>
+        <button data-nb="quanLy" data-sub="qtKH" class="chi-adm">👤 Khách hàng</button>
+        <button data-nb="quanLy" data-sub="qtChiSo" class="chi-adm">🔢 Chỉ số</button>
+        <button data-nb="duyet" data-sub="qtTaiKhoan" class="chi-adm">👥 Tài khoản nhân viên</button>
+        <button data-nb="quanLy" data-sub="qtCauHinh" class="chi-adm">⚙️ Cấu hình</button>
+        <button data-nb="quanLy" data-sub="qtTruyCap" class="chi-adm">📈 Truy cập</button>
+        <button data-nb="quanLy" data-sub="qtNhatKy" class="chi-adm">📜 Nhật ký</button>
       </div>
       <div id="canhBao" class="thongbao an">Chưa cấu hình báo đẩy: điền <b>email_adm</b> (Gmail của quản lý – điện thoại sẽ báo ngay) hoặc <b>webhook_adm</b> trong sheet CauHinh. <button class="nut phu nho-nut" id="nutThuBao" type="button">Thử báo đẩy</button> <span class="nho" id="kqThuBao"></span></div>
 
@@ -851,6 +947,28 @@
         <div id="dsBC"></div>
       </div>
 
+      <div id="sub_henThuNB" class="an">
+        <div class="the">
+          <div class="hang"><h3 style="margin:0;flex:1">💵 Khách hẹn nộp tiền – cần gọi lại</h3>
+            <select id="htLoc"><option value="mo">Chưa xong</option><option value="">Tất cả</option></select>
+            <button class="nut phu nho-nut" id="htTaiLai" type="button">Tải lại</button></div>
+          <div class="nho">Khách bấm "Yêu cầu nhân viên liên hệ để nộp tiền" ở trang tra cứu. Gọi lại, thu tiền xong đặt "Đã thu tiền".</div>
+          <div class="loi" id="loiHT"></div>
+        </div>
+        <div id="dsHT"></div>
+      </div>
+
+      <div id="sub_datLaiNB" class="an">
+        <div class="the">
+          <div class="hang"><h3 style="margin:0;flex:1">🔑 Khách xin đặt lại mật khẩu</h3>
+            <select id="dlLoc"><option value="cho">Chờ xử lý</option><option value="">Tất cả</option></select>
+            <button class="nut phu nho-nut" id="dlTaiLai" type="button">Tải lại</button></div>
+          <div class="nho">Gọi số khách khai để xác minh. Đồng ý → mật khẩu về mặc định 111111, báo khách đăng nhập và đổi ngay. Chỉ adm được xử lý.</div>
+          <div class="loi" id="loiDL"></div>
+        </div>
+        <div id="dsDL"></div>
+      </div>
+
       <div id="sub_duyetCN" class="an">
         <div class="the">
           <div class="hang"><h3 style="margin:0;flex:1">Khách hàng xin cập nhật thông tin</h3>
@@ -945,6 +1063,17 @@
         </div>
       </div>
 
+      <div id="sub_qtTruyCap" class="an">
+        <div class="the">
+          <div class="hang"><h3 style="margin:0;flex:1">📈 Thống kê truy cập</h3>
+            <select id="tcSoNgay"><option value="1">Hôm nay</option><option value="7" selected>7 ngày</option><option value="30">30 ngày</option><option value="60">60 ngày</option></select>
+            <button class="nut phu nho-nut" id="tcTaiLai" type="button">Tải lại</button></div>
+          <div class="nho">Mỗi lượt mở web là 1 lượt. "Khách lẻ" = người chưa đăng nhập (đánh số theo máy, không lấy thông tin cá nhân). Bấm vào 1 người để xem họ đã làm gì.</div>
+          <div class="loi" id="loiTC"></div>
+        </div>
+        <div id="tcKQ"></div>
+      </div>
+
       <div id="sub_qtNhatKy" class="an">
         <div class="the">
           <div class="hang"><h3 style="margin:0;flex:1">🛠️ Nhật ký thao tác</h3><button class="nut phu nho-nut" id="nutNKTai" type="button">Tải lại</button></div>
@@ -958,16 +1087,18 @@
 
 <footer class="chan">
   <div>© <span id="namNay"></span> <span id="tenChan">Trạm Nước sạch và Vệ sinh môi trường Khu vực II</span></div>
-  <div class="tk">Designer: <span id="thietKe">Nguyễn Văn Phong</span></div>
+  <div class="tk sang-chu">Designer: <span id="thietKe">Nguyễn Văn Phong</span></div>
 </footer>
 
 <nav class="menu-duoi">
   <button data-nhom="traCuu" class="on"><i class="ic lon-ic" data-ic="search"></i>Tra cứu</button>
-  <button data-nhom="dichVu"><i class="ic lon-ic" data-ic="wrench"></i>Dịch vụ</button>
-  <button data-nhom="thanhToan"><i class="ic lon-ic" data-ic="card"></i>Thanh toán</button>
+  <button data-nhom="baoHong"><i class="ic lon-ic" data-ic="wrench"></i>Báo hỏng</button>
+  <button data-nhom="dichVu"><i class="ic lon-ic" data-ic="grid"></i>Dịch vụ</button>
+  <button data-nhom="viPham"><i class="ic lon-ic" data-ic="alert"></i>Vi phạm</button>
   <button data-nhom="tinTuc"><i class="ic lon-ic" data-ic="bell"></i>Tin tức<span class="huy-hieu demTB"></span></button>
   <button data-nhom="taiKhoan"><i class="ic lon-ic" data-ic="user"></i>Tài khoản</button>
 </nav>
+<div id="menuBay" role="menu" aria-label="Mục con"></div>
 <button id="nutGoi" type="button" aria-label="Gọi điện cho trạm" title="Gọi điện cho trạm"><i class="ic" data-ic="phone"></i></button>
 <div id="bangGoi" role="dialog" aria-label="Chọn số để gọi">
   <div class="bg-dau"><span>📞 Bấm để gọi ngay</span><button class="bg-dong" id="dongGoi" type="button" aria-label="Đóng">×</button></div>
@@ -997,6 +1128,32 @@
       .catch(() => { throw 'Không kết nối được máy chủ. Kiểm tra mạng (3G/4G/Wi-Fi) rồi thử lại.'; })
       .then(r => { if (!r || !r.ok) throw (r && r.err) || 'Máy chủ đang bận, thử lại sau ít phút.'; return r.kq; });
   }
+  // ---------- ghi truy cập (gom thao tác, gửi ~20 giây/lần hoặc khi rời trang) ----------
+  const maNN = n => { let t = ''; const a = 'abcdefghijklmnopqrstuvwxyz0123456789'; const r = (window.crypto && crypto.getRandomValues) ? crypto.getRandomValues(new Uint8Array(n)) : Array.from({ length: n }, () => Math.random() * 256); for (let i = 0; i < n; i++) t += a[r[i] % 36]; return t; };
+  const TC_KID = (() => { try { let k = localStorage.getItem('tnkv2_may'); if (!k || !/^[a-z0-9]{6,24}$/.test(k)) { k = maNN(12); localStorage.setItem('tnkv2_may', k); } return k; } catch (e) { return maNN(12); } })();
+  const TC_SID = maNN(12);
+  const TC_TB = (window.matchMedia('(max-width: 899px)').matches ? 'Điện thoại' : 'Máy tính') + ' · ' + (/iPhone|iPad/.test(navigator.userAgent) ? 'iOS' : /Android/.test(navigator.userAgent) ? 'Android' : /Windows/.test(navigator.userAgent) ? 'Windows' : /Mac/.test(navigator.userAgent) ? 'Mac' : 'khác');
+  let TC_HANG = [], TC_HEN = 0;
+  const tcToken = () => { try { return TK || TKKH || ''; } catch (e) { return ''; } };
+  function ghiTC(h, c) {
+    try {
+      TC_HANG.push({ g: new Date().toTimeString().slice(0, 8), h: String(h).slice(0, 60), c: String(c || '').slice(0, 80) });
+      if (TC_HANG.length >= 30) guiTC(); else if (!TC_HEN) TC_HEN = setTimeout(guiTC, 20000);
+    } catch (e) {}
+  }
+  function guiTC(roiTrang) {
+    clearTimeout(TC_HEN); TC_HEN = 0;
+    if (!TC_HANG.length) return;
+    const ds = TC_HANG.splice(0, 40), thamSo = [tcToken(), TC_SID, TC_KID, TC_TB, ds];
+    try {
+      if (TRONG_GOOGLE) { google.script.run.withFailureHandler(() => {}).ghiTruyCap(...thamSo); return; }
+      const body = JSON.stringify({ rpc: 'ghiTruyCap', a: thamSo });
+      if (roiTrang && navigator.sendBeacon) { navigator.sendBeacon(API_URL, new Blob([body], { type: 'text/plain;charset=utf-8' })); return; }
+      fetch(API_URL, { method: 'POST', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: body, keepalive: true }).catch(() => {});
+    } catch (e) {}
+  }
+  document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'hidden') guiTC(true); });
+  window.addEventListener('pagehide', () => guiTC(true));
   const lk = (u, chu) => anToan(u) ? `<a href="${esc(anToan(u))}" target="_blank" rel="noopener" style="color:var(--xanh);font-weight:700">${chu}</a>` : '';
   $('namNay').textContent = new Date().getFullYear();
 
@@ -1019,6 +1176,7 @@
     pin: '<path d="M12 21s-7-6.5-7-11.5a7 7 0 0 1 14 0C19 14.5 12 21 12 21Z"/><circle cx="12" cy="9.5" r="2.5"/>',
     chart: '<path d="M4 20V10M10 20V4M16 20v-8M22 20H2"/>',
     check: '<path d="m5 12 5 5L20 7"/>',
+    grid: '<rect x="3.5" y="3.5" width="7" height="7" rx="1.5"/><rect x="13.5" y="3.5" width="7" height="7" rx="1.5"/><rect x="3.5" y="13.5" width="7" height="7" rx="1.5"/><rect x="13.5" y="13.5" width="7" height="7" rx="1.5"/>',
     card: '<rect x="2.5" y="5" width="19" height="14" rx="2"/><path d="M2.5 10h19M6 15h4"/>'
   };
   const icSvg = n => '<svg viewBox="0 0 24 24" aria-hidden="true">' + (ICON[n] || '') + '</svg>';
@@ -1093,8 +1251,9 @@
   // ---------- chuyển mục: 5 nhóm trên 1 thanh, nhóm nhiều mục có hàng nút con ----------
   const NHOM = {
     traCuu: [['traCuu', 'search', 'Tra cứu']],
-    dichVu: [['suaChua', 'wrench', 'Báo hỏng'], ['yeuCau', 'flask', 'Kiểm tra nước'], ['lienHeTab', 'edit', 'Đổi thông tin'], ['baoViPham', 'alert', 'Báo vi phạm']],
-    thanhToan: [['thanhToan', 'card', 'Thanh toán']],
+    baoHong: [['suaChua', 'wrench', 'Báo hỏng']],
+    dichVu: [['yeuCau', 'flask', 'Kiểm tra chất lượng nước'], ['lienHeTab', 'edit', 'Đổi thông tin'], ['thanhToan', 'card', 'Thanh toán']],
+    viPham: [['baoViPham', 'alert', 'Báo vi phạm']],
     tinTuc: [['thongBaoTab', 'bell', 'Thông báo'], ['tuyenTruyen', 'wave', 'Tuyên truyền'], ['vanBan', 'doc', 'Văn bản'], ['bangGia', 'drop', 'Bảng giá']],
     taiKhoan: [['noiBo', 'user', 'Tài khoản']]
   };
@@ -1103,19 +1262,47 @@
   function moTab(t) {
     if (!NHOM_CUA[t]) t = 'traCuu';
     const g = NHOM_CUA[t]; CUOI[g] = t;
+    const nhanTab = (NHOM[g].find(x => x[0] === t) || [, , t])[2];
+    if (moTab.truoc !== t) { ghiTC('Xem', nhanTab); moTab.truoc = t; }
     TABS.forEach(x => $(x).classList.toggle('an', x !== t));
     $$('[data-nhom]').forEach(b => b.classList.toggle('on', b.dataset.nhom === g));
     const ds = NHOM[g], tn = $('thanhNhom');
+    tn.style.gridTemplateColumns = 'repeat(' + ds.length + ', minmax(0,1fr))';
     if (ds.length > 1) {
       tn.innerHTML = ds.map(x => `<button type="button" role="tab" data-tab="${x[0]}" aria-selected="${x[0] === t}" class="${x[0] === t ? 'on' : ''}">${ic(x[1])}${esc(x[2])}${x[0] === 'thongBaoTab' ? '<span class="huy-hieu demTB">' + esc(DEM_TB || '') + '</span>' : ''}</button>`).join('');
       tn.classList.remove('an');
       $$('#thanhNhom [data-tab]').forEach(b => b.onclick = () => moTab(b.dataset.tab));
     } else tn.classList.add('an');
-    $('bangGoi').classList.remove('mo');
+    $('bangGoi').classList.remove('mo'); $('menuBay').classList.remove('mo');
     window.scrollTo(0, 0);
   }
+  // menu bay: rê chuột (máy tính) hoặc chạm (điện thoại) vào nhóm nhiều mục → hiện luôn các mục con
+  let hgBay = 0, tBay = 0;
+  function moBay(b) {
+    const g = b.dataset.nhom, ds = NHOM[g]; if (!ds || ds.length < 2) { $('menuBay').classList.remove('mo'); return; }
+    const mb = $('menuBay'), dangMo = document.querySelector('section:not(.an)');
+    mb.innerHTML = ds.map(x => `<button type="button" role="menuitem" data-bay="${x[0]}" class="${dangMo && dangMo.id === x[0] ? 'on' : ''}">${ic(x[1])}${esc(x[2])}${x[0] === 'thongBaoTab' && DEM_TB ? ' <span class="huy-hieu">' + DEM_TB + '</span>' : ''}</button>`).join('');
+    mb.classList.add('mo'); tBay = Date.now();
+    const r = b.getBoundingClientRect(), w = mb.offsetWidth, h = mb.offsetHeight;
+    const trai = Math.max(8, Math.min(window.innerWidth - w - 8, r.left + r.width / 2 - w / 2));
+    mb.style.left = trai + 'px';
+    mb.style.top = (b.closest('.menu-duoi') ? r.top - h - 8 : r.bottom + 6) + 'px';
+    $$('#menuBay [data-bay]').forEach(x => x.onclick = e => { e.stopPropagation(); moTab(x.dataset.bay); });
+  }
+  const coChuot = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+  $$('[data-nhom]').forEach(b => {
+    if (coChuot) {
+      b.addEventListener('mouseenter', () => { clearTimeout(hgBay); moBay(b); });
+      b.addEventListener('mouseleave', () => { hgBay = setTimeout(() => $('menuBay').classList.remove('mo'), 280); });
+    }
+  });
+  $('menuBay').addEventListener('mouseenter', () => clearTimeout(hgBay));
+  $('menuBay').addEventListener('mouseleave', () => { hgBay = setTimeout(() => $('menuBay').classList.remove('mo'), 280); });
+  document.addEventListener('click', e => { if (!e.target.closest('#menuBay') && !e.target.closest('[data-nhom]')) $('menuBay').classList.remove('mo'); });
+  window.addEventListener('scroll', () => { if (!coChuot && Date.now() - tBay > 600) $('menuBay').classList.remove('mo'); }, { passive: true });
   let DEM_TB = 0;
-  $$('[data-nhom]').forEach(b => b.addEventListener('click', () => moTab(CUOI[b.dataset.nhom] || NHOM[b.dataset.nhom][0][0])));
+  ghiTC('Mở web', (document.referrer ? 'từ ' + String(document.referrer).replace(/^https?:\/+/, '').split('/')[0] : 'gõ trực tiếp') + (TRONG_GOOGLE ? ' · link Google' : ''));
+  $$('[data-nhom]').forEach(b => b.addEventListener('click', () => { moTab(CUOI[b.dataset.nhom] || NHOM[b.dataset.nhom][0][0]); if (NHOM[b.dataset.nhom].length > 1) moBay(b); }));
   $$('[data-tab]').forEach(b => b.addEventListener('click', () => moTab(b.dataset.tab)));
   // nút gọi nổi
   $('nutGoi').onclick = e => { e.stopPropagation(); $('bangGoi').classList.toggle('mo'); };
@@ -1256,11 +1443,12 @@
     $$('.dsGioBom').forEach(x => x.innerHTML = bomHTML);
 
     // liên hệ, báo cáo, tuyên truyền
-    $('lhLoai').innerHTML = '<option value="">-- Chọn loại yêu cầu --</option>' + c.loaiLH.map(x => `<option>${esc(x)}</option>`).join('');
+    const oThe = (id, ten, ds, bieu, gon, kieu) => { document.querySelector(id).innerHTML = ds.map((x, i) => `<label title="${esc(x)}"><input type="${kieu || 'radio'}" name="${ten}" value="${esc(x)}"><span class="bieu">${bieu[i] || '📌'}</span>${esc(gon && gon.length === ds.length ? gon[i] : x)}</label>`).join(''); $$(id + ' input').forEach(r => r.onchange = () => danhDauChon(id)); };
+    oThe('#lhLoaiO', 'lhLoai', c.loaiLH, ['✍️', '📱', '🏠', '⏱️', '⏸️', '🆕', '🧾', '🤝'], ['Đổi tên chủ hộ, sang tên', 'Đổi số điện thoại, Zalo', 'Đổi địa chỉ, xóm', 'Kiểm định, thay đồng hồ', 'Tạm ngừng / dùng lại nước', 'Lắp đặt mới', 'Thắc mắc hóa đơn, chỉ số', 'Hẹn làm việc khác']);
     const BIEU_BC = ['🔌', '🧷', '💸', '🏭', '⛏️', '☣️', '❓'], GON_BC = ['Đấu nối trái phép, không qua đồng hồ', 'Phá niêm phong, tác động đồng hồ', 'Bán lại, cấp nước cho hộ khác', 'Dùng sai mục đích', 'Phá hoại đường ống', 'Gây ô nhiễm nguồn nước', 'Vi phạm khác'];
     $('bcLoaiO').innerHTML = c.loaiBC.map((x, i) => `<label title="${esc(x)}"><input type="radio" name="bcLoai" value="${esc(x)}"><span class="bieu">${BIEU_BC[i] || '⚠️'}</span>${esc(GON_BC[i] && c.loaiBC.length === GON_BC.length ? GON_BC[i] : x)}</label>`).join('');
     $$('#bcLoaiO input').forEach(r => r.onchange = () => danhDauChon('#bcLoaiO'));
-    $('scLoai').innerHTML = '<option value="">-- Chọn loại sự cố --</option>' + c.loaiSC.map(x => `<option>${esc(x)}</option>`).join('');
+    oThe('#scLoaiO', 'scLoai', c.loaiSC, ['💥', '🚱', '⏲️', '🟤', '🔩', '❓'], ['Vỡ, rò rỉ đường ống', 'Mất nước, nước yếu', 'Đồng hồ hỏng, kẹt, vỡ kính', 'Nước đục, có mùi, màu lạ', 'Van, hố van, nắp hố hỏng', 'Sự cố khác']);
     $('dsTuyenTruyen').innerHTML = c.tuyenTruyen.length ? c.tuyenTruyen.map(t => { const b = bieuTT(t.tieude + ' ' + t.noidung); return `<div class="tt-the"><div class="bieu" style="background:${b[1]}">${b[0]}</div><div style="min-width:0">
         <h3>${esc(t.tieude)}</h3><div class="tt-nd">${esc(t.noidung)}</div>
         ${t.noidung.length > 260 ? '<button class="tt-them" type="button">Đọc tiếp ▾</button>' : ''}${anToan(t.link) ? '<div style="margin-top:6px">' + lk(t.link, '🔗 Nguồn / xem thêm') + '</div>' : ''}</div></div>`; }).join('')
@@ -1271,8 +1459,19 @@
     $('dsGoi').innerHTML = (dsSo.concat(canBo).map(nutGoiHTML).join('')) || '<span class="nho">Trạm đang cập nhật số điện thoại.</span>';
     $('dsCanBo').innerHTML = canBo.length ? canBo.map(nutGoiHTML).join('') : `<p class="nho" style="margin-top:0">Gọi trạm để được nối với cán bộ phụ trách xóm của anh/chị:</p>` + (dsSo.map(nutGoiHTML).join('') || '<span class="nho">Đang cập nhật.</span>');
     $('dsCanBo').querySelectorAll('a.goi').forEach(a => a.classList.add('goi-tt'));
+    $('scGoiGap').innerHTML = dsSo.map(x => `<a class="goi" href="tel:${esc(x.tel)}">${ic('phone')}<div><b>${esc(x.nhan.replace(/^Sửa chữa · /, ''))}</b><span>${esc(x.so)}</span></div></a>`).join('') || '<span class="nho">gọi trạm</span>';
+    // dòng chữ chạy cảnh báo lừa đảo
+    const ld = (c.canhBaoLuaDao || []).filter(Boolean);
+    if (ld.length) {
+      const mot = ld.map(t => `<span>${esc(t)}</span>`).join('');
+      $('ldNoi').innerHTML = mot + `<span class="lap" aria-hidden="true"></span>` + ld.map(t => `<span class="lap" aria-hidden="true">${esc(t)}</span>`).join('');
+      $('ldNoi').style.setProperty('--tg', Math.max(25, Math.round(ld.join(' ').length * 0.16)) + 's');
+      $('luaDao').classList.remove('an');
+      $('luaDao').onclick = () => $('luaDao').classList.toggle('dung');
+    }
     // yêu cầu
-    $('ycNoiDung').innerHTML = c.noiDungYC.map((n, i) => `<label class="o-chon"><input type="checkbox" class="ycND" value="${esc(n)}" ${i < 2 ? 'checked' : ''}><span>${esc(n)}</span></label>`).join('');
+    $('ycNoiDung').innerHTML = c.noiDungYC.map((n, i) => `<label class="${i < 2 ? 'chon' : ''}"><input type="checkbox" class="ycND" value="${esc(n)}" ${i < 2 ? 'checked' : ''}><span class="bieu">${['💪', '🧪', '⏰'][i] || '📌'}</span>${esc(n)}</label>`).join('');
+    $$('#ycNoiDung input').forEach(r => r.onchange = () => danhDauChon('#ycNoiDung'));
     $('gioNhan2').textContent = `${c.gioNhanTu} – ${c.gioNhanDen}`;
     $('gioNhan').innerHTML = c.dangNhan ? `🟢 Đang nhận yêu cầu (${esc(c.gioNhanTu)} – ${esc(c.gioNhanDen)} hằng ngày).`
       : `🔴 Ngoài giờ nhận yêu cầu. Trạm nhận từ <b>${esc(c.gioNhanTu)}</b> đến <b>${esc(c.gioNhanDen)}</b> hằng ngày.`;
@@ -1343,6 +1542,8 @@
     goi('traCuu', ma).then(hienTraCuu).catch(e => $('loiTra').textContent = e)
       .finally(() => { $('nutTra').disabled = false; $('nutTra').textContent = 'Xem'; });
   };
+  const chuDau = t => { const w = String(t || '').trim().split(/\s+/).filter(x => /^\p{L}/u.test(x)); return w.length ? w[w.length - 1].charAt(0).toUpperCase() : '?'; };
+  let TC = null;
   function hienTraCuu(r) {
     if (r.nhieu) {
       const tong = r.tong || r.ds.length;
@@ -1353,39 +1554,66 @@
       $$('#chonMa button').forEach(b => b.onclick = () => { $('maKH').value = b.dataset.ma; $('fTraCuu').requestSubmit ? $('fTraCuu').requestSubmit() : $('fTraCuu').onsubmit(new Event('submit')); });
       return;
     }
-    const dau = `<div class="nho">${esc(r.ma)} · ${esc(r.xom)}${r.khu ? ', ' + esc(r.khu) : ''} · ${esc(r.nhom)}</div>
-      <div style="font-size:18px;font-weight:700;margin:3px 0 12px">${esc(r.ten)}</div>`;
+    TC = r; ghiTC('Tra cứu', r.ma);
+    const vat = CHUNG ? CHUNG.vat : 5, bvmt = CHUNG ? CHUNG.bvmt : 10;
+    const dau = `<div class="tc-dau"><div class="tc-av" aria-hidden="true">${esc(chuDau(r.ten))}</div><div style="min-width:0">
+        <div class="tc-ten">${esc(r.ten)}</div>
+        <div class="nho">Mã KH <b>${esc(r.ma)}</b> · ${esc(r.xom)}${r.khu ? ', ' + esc(r.khu) : ''}</div>
+        <div><span class="nhan xanh" style="margin-top:4px">${esc(r.nhom)}</span></div></div></div>`;
     const bom = r.gioBom ? `<div class="o" style="margin-top:12px"><span class="nho">Giờ bơm khu ${esc(r.khu)}</span><div>${hienBom(r.gioBom)}</div></div>` : '';
     if (!r.ky.length) { $('kqTra').innerHTML = `<div class="the">${dau}<p>Chưa có số liệu chốt số.</p>${bom}</div>`; return; }
     const k = r.ky[0], t = k.tien;
     let html = `<div class="the">${dau}
-      <div class="hang" style="justify-content:space-between">
-        <div><div class="nho">Tháng ${esc(k.thang)}${kyCua(k.thang)}</div><div class="lon">${t ? tien(t.tong) : '–'}</div></div>
-      </div>
-      <div class="luoi" style="margin-top:12px">
-        <div class="o"><span class="nho">Chỉ số cũ → mới</span><b>${so(k.cu)} → ${so(k.moi)}</b></div>
-        <div class="o"><span class="nho">Nước đã dùng</span><b>${so(k.m3)} m³</b></div>
+      <div class="tc-the-tien"><div class="nho">💧 Tiền nước tháng ${esc(k.thang)}${kyCua(k.thang)}</div>
+        <div class="tc-tien">${t ? tien(t.tong) : '–'}</div>
+        <div class="nho">${t ? 'Đã gồm thuế GTGT ' + vat + '%' + (t.bvmt ? ' và phí BVMT nước thải ' + bvmt + '%' : '') : 'Chỉ số đang được kiểm tra'}</div></div>
+      <div class="tc-dong-ho" aria-label="Chỉ số đồng hồ">
+        <div class="o"><span class="nho">Chỉ số cũ</span><b>${so(k.cu)}</b></div><span class="mui-ten">→</span>
+        <div class="o"><span class="nho">Chỉ số mới</span><b>${so(k.moi)}</b></div><span class="mui-ten">=</span>
+        <div class="o m3"><span class="nho">Đã dùng</span><b>${so(k.m3)} m³</b></div>
       </div>`;
     if (t) {
-      html += `<table style="margin-top:12px">` +
-        (t.chiTiet.length ? t.chiTiet.map(c => `<tr><td>Tiền nước: ${so(c.m3)} m³ × ${so(c.gia)}</td><td class="so">${tien(c.tien)}</td></tr>`).join('') : `<tr><td>Tiền nước: 0 m³</td><td class="so">${tien(0)}</td></tr>`) +
-        `<tr><td>Thuế GTGT</td><td class="so">${tien(t.vat)}</td></tr>
-         ${t.bvmt ? `<tr><td>Phí bảo vệ môi trường</td><td class="so">${tien(t.bvmt)}</td></tr>` : ''}
-         <tr><td><b>Tổng</b></td><td class="so"><b>${tien(t.tong)}</b></td></tr></table>`;
+      html += `<div class="tc-ct">` +
+        (t.chiTiet.length ? t.chiTiet.map(c => `<div><span>Tiền nước: ${so(c.m3)} m³ × ${so(c.gia)} đ</span><b>${tien(c.tien)}</b></div>`).join('') : `<div><span>Tiền nước: 0 m³</span><b>${tien(0)}</b></div>`) +
+        `<div><span>Thuế GTGT <span class="pt">${vat}%</span></span><b>${tien(t.vat)}</b></div>` +
+        (t.bvmt ? `<div><span>Phí BVMT nước thải <span class="pt">${bvmt}%</span></span><b>${tien(t.bvmt)}</b></div>` : '') +
+        `<div><span>Tổng phải nộp</span><span>${tien(t.tong)}</span></div></div>`;
     } else if (k.m3 !== null && k.m3 < 0) {
       html += `<div class="canhbao" style="margin-top:12px">Chỉ số tháng này đang được trạm kiểm tra lại.</div>`;
     }
-    html += bom + `</div>`;
-    const nam = r.ky.slice(0, 5).reverse();            // 5 tháng gần nhất, cũ → mới
+    html += `<div class="tc-nut">
+        <button type="button" class="nop" id="tcNop">💳 Nộp qua tài khoản</button>
+        <button type="button" class="goi-lai" id="tcHen">📞 Nhân viên liên hệ để nộp tiền</button></div>
+      <form class="tc-hen an" id="fHen" autocomplete="off">
+        <b>Yêu cầu nhân viên gọi lại thu tiền</b>
+        <label class="nhan-o" for="henSdt">Số điện thoại để gọi lại</label>
+        <input id="henSdt" class="day" inputmode="tel" maxlength="16" placeholder="Số điện thoại / Zalo">
+        <label class="nhan-o" for="henGhiChu">Ghi chú <span class="nho">(không bắt buộc)</span></label>
+        <input id="henGhiChu" class="day" maxlength="200" placeholder="VD: gọi sau 17h, nhà ở cuối ngõ…">
+        <button class="nut day" id="nutHen" type="submit" style="margin-top:10px">Gửi yêu cầu</button>
+        <div class="loi" id="loiHen"></div>
+      </form><div id="kqHen"></div>` + bom + `</div>`;
+    const nam = r.ky.slice(0, 6).reverse();
     if (nam.length >= 2) html += `<div class="the"><h3>${ic('chart')} Nước đã dùng ${nam.length} tháng gần nhất</h3>${bieuDo(nam.map(k => ({ nhan: 'T' + Number(k.thang.slice(0, 2)), gt: k.m3 === null ? 0 : Math.max(0, k.m3), chu: so(k.m3) + ' m³', phu: k.tien ? tien(k.tien.tong) : '' })), 'm³')}
       <div class="nho">Trung bình ${so(Math.round(nam.reduce((a, k) => a + Math.max(0, k.m3 || 0), 0) / nam.length))} m³/tháng.</div></div>`;
     if (r.ky.length > 1) {
       html += `<div class="the"><h3>Các tháng trước</h3><div class="cuon"><table>
-        <tr><th>Tháng</th><th class="so">Cũ</th><th class="so">Mới</th><th class="so">m³</th><th class="so">Tiền</th></tr>` +
-        r.ky.slice(1).map(k => `<tr><td>${esc(k.thang)}</td><td class="so">${so(k.cu)}</td><td class="so">${so(k.moi)}</td><td class="so">${so(k.m3)}</td><td class="so">${k.tien ? tien(k.tien.tong) : '–'}</td></tr>`).join('') +
+        <tr><th>Tháng</th><th class="so">Cũ → mới</th><th class="so">m³</th><th class="so">Tiền</th></tr>` +
+        r.ky.slice(1).map(k => `<tr><td>${esc(k.thang)}</td><td class="so">${so(k.cu)} → ${so(k.moi)}</td><td class="so">${so(k.m3)}</td><td class="so">${k.tien ? tien(k.tien.tong) : '–'}</td></tr>`).join('') +
         `</table></div></div>`;
     }
     $('kqTra').innerHTML = html;
+    $('tcNop').onclick = () => moTab('thanhToan');
+    $('tcHen').onclick = () => { $('fHen').classList.toggle('an'); if (!$('fHen').classList.contains('an')) $('henSdt').focus(); };
+    $('fHen').onsubmit = e => {
+      e.preventDefault(); $('loiHen').textContent = '';
+      if (!sdtOK($('henSdt').value)) { $('loiHen').textContent = 'Số điện thoại chưa đúng (10 số).'; return; }
+      $('nutHen').disabled = true; $('nutHen').textContent = 'Đang gửi…';
+      goi('guiHenThu', { ma: TC.ma, sdt: $('henSdt').value.trim(), ghichu: $('henGhiChu').value }).then(x => { ghiTC('Hẹn nhân viên thu tiền', TC.ma);
+        $('fHen').classList.add('an');
+        $('kqHen').innerHTML = `<div class="thanhcong"><b>✅ Đã gửi – phiếu số ${esc(x.phieu)}</b><br>Lúc ${esc(x.thoiGian)}. Nhân viên trạm sẽ gọi lại số anh/chị vừa ghi để thu tiền.${x.daBao ? ' Đã báo cho quản lý trạm.' : ''}</div>`;
+      }).catch(e => $('loiHen').textContent = e).finally(() => { $('nutHen').disabled = false; $('nutHen').textContent = 'Gửi yêu cầu'; });
+    };
     $('ycMa').value = r.ma; $('lhMa').value = r.ma; $('bcMa').value = r.ma;
   }
 
@@ -1405,8 +1633,8 @@
       $('kqYC').innerHTML = `<div class="thanhcong"><b>✅ Đã gửi yêu cầu – phiếu số ${esc(r.phieu)}</b><br>
         Lúc ${esc(r.thoiGian)} · ${esc(r.noidung.join(', '))}<br>Nhân viên trạm sẽ kiểm tra và gửi ảnh kết quả qua Zalo.${r.daBao ? ' Đã báo cho quản lý trạm.' : ''}
         ${r.gioBom ? '<div style="margin-top:6px">Giờ bơm khu ' + esc(r.khu) + ': ' + hienBom(r.gioBom) + '</div>' : ''}</div>`;
-      $('ycGhiChu').value = '';
-    }).catch(e => $('loiYC').textContent = e).finally(() => { $('nutYC').disabled = false; $('nutYC').textContent = 'Gửi yêu cầu'; });
+      $('ycGhiChu').value = ''; ghiTC('Gửi kiểm tra chất lượng nước', r.noidung.join(', '));
+    }).catch(e => $('loiYC').textContent = e).finally(() => { $('nutYC').disabled = false; $('nutYC').textContent = '🧪 Gửi yêu cầu kiểm tra'; });
   };
 
   // ---------- báo hỏng / sửa chữa ----------
@@ -1420,41 +1648,43 @@
     }, e => { $(kq).textContent = 'Không lấy được vị trí (' + (e.code === 1 ? 'chưa cho phép định vị' : 'tín hiệu yếu') + ') – dán link bản đồ hoặc ghi địa chỉ.'; }, { enableHighAccuracy: true, timeout: 15000, maximumAge: 0 });
   }
   $('nutGhim').onclick = () => ghimViTri('scViTriKQ', 'scLat', 'scLng');
+  $('scMoLink').onclick = e => { e.preventDefault(); $('scLink').classList.remove('an'); $('scMoLink').classList.add('an'); $('scLink').focus(); };
   $('bcGhim').onclick = () => ghimViTri('bcViTriKQ', 'bcLat', 'bcLng');
   $('bcCoTen').onchange = () => $('bcKhungKH').classList.toggle('an', !$('bcCoTen').checked);
   $('bcMoLink').onclick = e => { e.preventDefault(); $('bcLink').classList.remove('an'); $('bcMoLink').classList.add('an'); $('bcLink').focus(); };
   $('fSC').onsubmit = e => {
     e.preventDefault();
     $('loiSC').textContent = ''; $('kqSC').innerHTML = '';
-    const d = { sdt: $('scSdt').value.trim(), loai: $('scLoai').value, noidung: $('scNoiDung').value, link: $('scLink').value.trim(), lat: $('scLat').value, lng: $('scLng').value, diachi: $('scDiaChi').value.trim() };
-    if (!sdtOK(d.sdt)) { $('loiSC').textContent = 'Số điện thoại chưa đúng (10 số, VD: 0912345678).'; return; }
-    if (!d.loai) { $('loiSC').textContent = 'Chọn loại sự cố.'; return; }
-    if (d.noidung.trim().length < 5) { $('loiSC').textContent = 'Mô tả ngắn gọn sự cố.'; return; }
-    if (!d.lat && !d.link && d.diachi.length < 5) { $('loiSC').textContent = 'Bấm Ghim vị trí, dán link bản đồ hoặc ghi địa chỉ chỗ hỏng.'; return; }
+    const chonSC = document.querySelector('#scLoaiO input:checked');
+    const d = { sdt: $('scSdt').value.trim(), loai: chonSC ? chonSC.value : '', noidung: $('scNoiDung').value, link: $('scLink').value.trim(), lat: $('scLat').value, lng: $('scLng').value, diachi: $('scDiaChi').value.trim() };
+    if (!d.loai) { $('loiSC').textContent = 'Bấm chọn 1 ô ở bước 1 (hỏng gì).'; return; }
+    if (!d.lat && !d.link && d.diachi.length < 5) { $('loiSC').textContent = 'Ghi chỗ hỏng (xóm, gần nhà ai…) hoặc bấm 📍 Ghim.'; return; }
+    if (!sdtOK(d.sdt)) { $('loiSC').textContent = 'Số điện thoại chưa đúng (10 số).'; return; }
     $('nutSC').disabled = true; $('nutSC').textContent = 'Đang gửi…';
     goi('guiSuaChua', d).then(r => {
       $('kqSC').innerHTML = `<div class="thanhcong"><b>✅ Đã nhận báo hỏng – phiếu số ${esc(r.phieu)}</b><br>Lúc ${esc(r.thoiGian)} · ${esc(r.loai)}${r.vitri ? ' · ' + lk(r.vitri, '📍 vị trí đã ghim') : ''}
         <div style="margin-top:8px;font-size:17px">🙏 ${esc(r.camOn)}</div>${r.daBao ? '<div class="nho" style="margin-top:4px">Đã báo cho quản lý trạm.</div>' : ''}</div>`;
       $('scNoiDung').value = ''; $('scLink').value = ''; $('scDiaChi').value = ''; $('scLat').value = ''; $('scLng').value = ''; $('scViTriKQ').textContent = '';
-    }).catch(e => $('loiSC').textContent = e).finally(() => { $('nutSC').disabled = false; $('nutSC').textContent = 'Gửi báo hỏng'; });
+      $$('#scLoaiO input').forEach(x => x.checked = false); danhDauChon('#scLoaiO'); ghiTC('Gửi báo hỏng', r.loai);
+    }).catch(e => $('loiSC').textContent = e).finally(() => { $('nutSC').disabled = false; $('nutSC').textContent = '🔧 Gửi báo hỏng'; });
   };
 
   // ---------- đổi thông tin / liên hệ ----------
   $('fLH').onsubmit = e => {
     e.preventDefault();
     $('loiLH').textContent = ''; $('kqLH').innerHTML = '';
-    const d = { ma: $('lhMa').value.trim(), hoTen: $('lhTen').value.trim(), sdt: $('lhSdt').value.trim(), loai: $('lhLoai').value, noidung: $('lhNoiDung').value, dongY: $('lhDongY').checked };
+    const chonLH = document.querySelector('#lhLoaiO input:checked');
+    const d = { ma: $('lhMa').value.trim(), hoTen: $('lhTen').value.trim(), sdt: $('lhSdt').value.trim(), loai: chonLH ? chonLH.value : '', noidung: $('lhNoiDung').value, dongY: true };
+    if (!d.loai) { $('loiLH').textContent = 'Bấm chọn 1 ô ở bước 1 (cần làm gì).'; return; }
     if (d.ma.replace(/[^0-9a-z]/gi, '').length < 4) { $('loiLH').textContent = 'Nhập mã khách hàng (đầy đủ hoặc 4 số cuối).'; return; }
     if (d.hoTen.length < 2) { $('loiLH').textContent = 'Nhập họ tên chủ hộ như trên hóa đơn.'; return; }
     if (!sdtOK(d.sdt)) { $('loiLH').textContent = 'Số điện thoại chưa đúng (10 số, VD: 0912345678).'; return; }
-    if (!d.loai) { $('loiLH').textContent = 'Chọn loại yêu cầu.'; return; }
-    if (d.noidung.trim().length < 5) { $('loiLH').textContent = 'Ghi rõ nội dung cần thay đổi hoặc cần làm việc.'; return; }
-    if (!d.dongY) { $('loiLH').textContent = 'Tích ô cam kết thông tin đúng sự thật.'; return; }
+
     $('nutLH').disabled = true; $('nutLH').textContent = 'Đang gửi…';
     goi('guiLienHe', d).then(r => {
       $('kqLH').innerHTML = `<div class="thanhcong"><b>✅ Đã gửi – phiếu số ${esc(r.phieu)}</b><br>Lúc ${esc(r.thoiGian)} · ${esc(r.loai)}<br>Trạm sẽ liên hệ lại qua số điện thoại anh/chị đã ghi.${r.daBao ? ' Đã báo cho quản lý trạm.' : ''}</div>`;
-      $('lhNoiDung').value = '';
-    }).catch(e => $('loiLH').textContent = e).finally(() => { $('nutLH').disabled = false; $('nutLH').textContent = 'Gửi yêu cầu'; });
+      $('lhNoiDung').value = ''; ghiTC('Gửi đổi thông tin', r.loai);
+    }).catch(e => $('loiLH').textContent = e).finally(() => { $('nutLH').disabled = false; $('nutLH').textContent = '📨 Gửi yêu cầu'; });
   };
 
   // ---------- báo cáo vi phạm ----------
@@ -1474,7 +1704,7 @@
     if (coTen && d.ma.replace(/[^0-9a-z]/gi, '').length < 4) { $('loiBC').textContent = 'Nhập mã khách hàng của anh/chị, hoặc bỏ tích để báo ẩn danh.'; return; }
     if (coTen && d.hoTen.length < 2) { $('loiBC').textContent = 'Nhập họ tên chủ hộ như trên hóa đơn.'; return; }
     $('nutBC').disabled = true; $('nutBC').textContent = 'Đang gửi…';
-    goi('guiBaoCao', d).then(r => {
+    goi('guiBaoCao', d).then(r => { ghiTC('Gửi báo vi phạm', r.anDanh ? 'ẩn danh' : 'có tên');
       $('kqBC').innerHTML = `<div class="thanhcong"><b>✅ Đã nhận báo cáo${r.anDanh ? ' ẩn danh' : ''} – phiếu số ${esc(r.phieu)}</b><br>Lúc ${esc(r.thoiGian)} · ${esc(r.loai)}${r.vitri ? ' · ' + lk(r.vitri, '📍 vị trí đã ghim') : ''}<br>Cảm ơn anh/chị. Trạm sẽ xác minh và giữ kín thông tin người báo.${r.daBao ? ' Đã báo cho quản lý trạm.' : ''}</div>`;
       $('bcNoiDung').value = ''; $('bcDiaDiem').value = ''; $('bcLink').value = ''; $('bcLat').value = ''; $('bcLng').value = ''; $('bcViTriKQ').textContent = '';
       $$('#bcLoaiO input').forEach(x => x.checked = false); danhDauChon('#bcLoaiO');
@@ -1547,8 +1777,20 @@
     if (ma.replace(/[^0-9]/g, '').length < 6) { $('loiKH').textContent = 'Nhập mã khách hàng đầy đủ in trên hóa đơn.'; return; }
     if (!mk) { $('loiKH').textContent = 'Nhập mật khẩu.'; return; }
     $('nutKH').disabled = true; $('nutKH').textContent = 'Đang đăng nhập…';
-    goi('khDangNhap', ma, mk).then(r => { TKKH = r.token; luuKH(TKKH); $('khMk').value = ''; vaoKH(r); if (r.macDinh) $('khMkCu').value = ''; })
+    goi('khDangNhap', ma, mk).then(r => { guiTC(); TKKH = r.token; luuKH(TKKH); ghiTC('Đăng nhập khách hàng', r.macDinh ? 'mật khẩu mặc định' : ''); $('khMk').value = ''; vaoKH(r); if (r.macDinh) $('khMkCu').value = ''; })
       .catch(e => $('loiKH').textContent = e).finally(() => { $('nutKH').disabled = false; $('nutKH').textContent = 'Đăng nhập'; });
+  };
+  $('moQuenMK').onclick = e => { e.preventDefault(); $('fQuenMK').classList.remove('an'); $('qmMa').value = $('khMa').value; $('qmTen').focus(); };
+  $('dongQuenMK').onclick = () => $('fQuenMK').classList.add('an');
+  $('fQuenMK').onsubmit = e => {
+    e.preventDefault(); $('loiQuenMK').textContent = ''; $('kqQuenMK').innerHTML = '';
+    const d = { hoTen: $('qmTen').value.trim(), ma: $('qmMa').value.trim(), sdt: $('qmSdt').value.trim() };
+    if (d.hoTen.length < 2) { $('loiQuenMK').textContent = 'Nhập họ tên chủ hộ.'; return; }
+    if (d.ma.replace(/[^0-9]/g, '').length < 6) { $('loiQuenMK').textContent = 'Nhập mã khách hàng đầy đủ.'; return; }
+    if (!sdtOK(d.sdt)) { $('loiQuenMK').textContent = 'Số điện thoại chưa đúng (10 số).'; return; }
+    $('nutQuenMK').disabled = true; $('nutQuenMK').textContent = 'Đang gửi…';
+    goi('khXinDatLaiMK', d).then(r => { ghiTC('Xin đặt lại mật khẩu', d.ma); $('kqQuenMK').innerHTML = `<div class="thanhcong">✅ Đã gửi yêu cầu số ${esc(r.phieu)}. Trạm sẽ gọi lại số ${esc(d.sdt)} để xác minh, sau đó anh/chị đăng nhập bằng mật khẩu mặc định 111111 và đổi mật khẩu mới.</div>`; $('qmTen').value = $('qmSdt').value = ''; })
+      .catch(e => $('loiQuenMK').textContent = e).finally(() => { $('nutQuenMK').disabled = false; $('nutQuenMK').textContent = 'Gửi yêu cầu'; });
   };
   $('khNutThoat').onclick = () => { const t = TKKH; thoatKH(); if (t) goi('khDangXuat', t).catch(() => {}); };
   $('khNutMK').onclick = () => { $('khKhungMK').classList.toggle('an'); $('khKqMK').textContent = ''; };
@@ -1573,7 +1815,7 @@
     if (!d.ten && !d.sdt && !d.xom && !d.diachi) { $('loiCN').textContent = 'Anh/chị chưa thay đổi thông tin nào.'; return; }
     if (d.ten && d.lydo.length < 5) { $('loiCN').textContent = 'Đổi tên chủ hộ cần ghi lý do.'; return; }
     $('khNutCN').disabled = true; $('khNutCN').textContent = 'Đang gửi…';
-    goiKH('khGuiCapNhat', d).then(() => goiKH('khTongQuan')).then(r => { $('khKhungCN').classList.add('an'); vaoKH(r); $('khTB').insertAdjacentHTML('afterbegin', '<div class="thanhcong" style="margin:0 0 16px">✅ Đã gửi trạm duyệt. Khi trạm duyệt xong, thông báo sẽ hiện ở trang này.</div>'); })
+    goiKH('khGuiCapNhat', d).then(() => { ghiTC('Gửi cập nhật thông tin', Object.keys(d).filter(k => k !== 'lydo').join(', ')); return goiKH('khTongQuan'); }).then(r => { $('khKhungCN').classList.add('an'); vaoKH(r); $('khTB').insertAdjacentHTML('afterbegin', '<div class="thanhcong" style="margin:0 0 16px">✅ Đã gửi trạm duyệt. Khi trạm duyệt xong, thông báo sẽ hiện ở trang này.</div>'); })
       .catch(e => $('loiCN').textContent = e).finally(() => { $('khNutCN').disabled = false; $('khNutCN').textContent = 'Gửi trạm duyệt'; });
   };
   { let t = ''; try { t = sessionStorage.getItem(KHO_KH) || ''; } catch (e) {} if (t) { TKKH = t; goi('khTongQuan', t).then(vaoKH).catch(() => { TKKH = ''; luuKH(''); }); } }
@@ -1592,7 +1834,7 @@
     $('chuDangNhap').textContent = r.ten; $('nutDangNhap').classList.add('on'); $('nutDangNhap').title = 'Nội bộ – ' + r.ten;
     $('khungPin').classList.add('an'); $('khungNoiBo').classList.remove('an'); $('khungDoiMK').classList.add('an');
     $('canhPin').classList.toggle('an', !r.mkMacDinh);
-    $('demYC').textContent = r.ycMoi || ''; $('demLH').textContent = r.lhMoi || ''; $('demBC').textContent = r.bcMoi || ''; $('demSC').textContent = r.scMoi || ''; $('demCN').textContent = r.cnMoi || '';
+    $('demYC').textContent = r.ycMoi || ''; $('demLH').textContent = r.lhMoi || ''; $('demBC').textContent = r.bcMoi || ''; $('demSC').textContent = r.scMoi || ''; $('demCN').textContent = r.cnMoi || ''; $('demDL').textContent = r.dlMoi || ''; $('demHT').textContent = r.htMoi || ''; demNhom();
     $('canhBao').classList.toggle('an', !!r.coBao);
     $('chonThang').innerHTML = r.thangs.map(t => `<option>${esc(t)}</option>`).join('');
     if (r.thangs.length) { if (!BC) taiBaoCao(); } else $('loiNB').textContent = 'Chưa có số liệu chỉ số.';
@@ -1608,7 +1850,7 @@
     e.preventDefault();
     $('loiPin').textContent = ''; $('nutPin').disabled = true; $('nutPin').textContent = 'Đang đăng nhập…';
     if (!$('dnTen').value.trim()) { $('loiPin').textContent = 'Nhập tên đăng nhập.'; $('nutPin').disabled = false; $('nutPin').textContent = 'Đăng nhập'; return; }
-    goi('dangNhap', $('dnSdt').value.trim(), $('pin').value, $('dnTen').value.trim()).then(r => { if (TKKH) { goi('khDangXuat', TKKH).catch(() => {}); thoatKH(); } TK = r.token; luuPhien(TK); $('pin').value = ''; vaoNoiBo(r); })
+    goi('dangNhap', $('dnSdt').value.trim(), $('pin').value, $('dnTen').value.trim()).then(r => { guiTC(); if (TKKH) { goi('khDangXuat', TKKH).catch(() => {}); thoatKH(); } TK = r.token; luuPhien(TK); ghiTC('Đăng nhập nội bộ', r.vaitro); $('pin').value = ''; vaoNoiBo(r); })
       .catch(e => $('loiPin').textContent = e).finally(() => { $('nutPin').disabled = false; $('nutPin').textContent = 'Đăng nhập'; });
   };
   $('nutDangXuat').onclick = () => { const t = TK; thoatNoiBo(); if (t) goi('dangXuat', t).catch(() => {}); };
@@ -1627,7 +1869,7 @@
   { const t = docPhien(); if (t) { TK = t; goi('kiemTraPhien', t).then(vaoNoiBo).catch(() => { TK = ''; luuPhien(''); }); } }
   $$('#tabNB button').forEach(b => b.onclick = () => {
     moSub('tabNB', 'sub', b.dataset.sub);
-    ['baoCao', 'baoCaoNam', 'soSanh', 'nghiNgo', 'suaChuaNB', 'yeuCauNB', 'lienHeNB', 'baoCaoNB', 'duyetCN', 'qtKH', 'qtChiSo', 'qtTaiKhoan', 'qtCauHinh', 'qtNhatKy'].forEach(t => $('sub_' + t).classList.toggle('an', t !== b.dataset.sub));
+    ['baoCao', 'baoCaoNam', 'soSanh', 'nghiNgo', 'suaChuaNB', 'henThuNB', 'yeuCauNB', 'lienHeNB', 'baoCaoNB', 'datLaiNB', 'duyetCN', 'qtTruyCap', 'qtKH', 'qtChiSo', 'qtTaiKhoan', 'qtCauHinh', 'qtNhatKy'].forEach(t => $('sub_' + t).classList.toggle('an', t !== b.dataset.sub));
     if (b.dataset.sub === 'qtTaiKhoan') taiTK();
     if (b.dataset.sub === 'qtCauHinh') taiCH();
     if (b.dataset.sub === 'qtNhatKy') taiNK();
@@ -1639,7 +1881,109 @@
     if (b.dataset.sub === 'lienHeNB') taiLH();
     if (b.dataset.sub === 'baoCaoNB') taiBC();
     if (b.dataset.sub === 'duyetCN') taiCN();
+    if (b.dataset.sub === 'henThuNB') taiHT();
+    if (b.dataset.sub === 'datLaiNB') taiDL();
+    if (b.dataset.sub === 'qtTruyCap') taiTC();
+    CUOI_NB[b.dataset.nb] = b.dataset.sub; ghiTC('Nội bộ', b.textContent.replace(/\d+\s*$/, '').trim());
   });
+  // ---------- nhóm tab nội bộ: Sản lượng · Phiếu khách gửi · Duyệt & tài khoản · Quản lý chung ----------
+  const CUOI_NB = {};
+  function chonNhomNB(g, moLuon) {
+    $$('#nhomNB button').forEach(b => b.classList.toggle('on', b.dataset.nb === g));
+    $$('#tabNB button').forEach(b => b.classList.toggle('an-nhom', b.dataset.nb !== g));
+    if (moLuon) { const ds = $$('#tabNB button').filter(b => b.dataset.nb === g && getComputedStyle(b).display !== 'none'); const b = ds.find(x => x.dataset.sub === CUOI_NB[g]) || ds[0]; if (b) b.click(); }
+  }
+  $$('#nhomNB button').forEach(b => b.onclick = () => chonNhomNB(b.dataset.nb, true));
+  function demNhom() {
+    const n = ids => ids.reduce((a, id) => a + (Number($(id).textContent) || 0), 0);
+    $('demNhomPhieu').textContent = n(['demSC', 'demHT', 'demYC', 'demLH', 'demBC']) || '';
+    $('demNhomDuyet').textContent = n(['demDL', 'demCN']) || '';
+  }
+  chonNhomNB('sanLuong', false);
+  // ---------- hẹn thu tiền (nội bộ) ----------
+  const TT_HT = ['Mới', 'Đã liên hệ', 'Đã thu tiền', 'Không liên lạc được', 'Hủy'];
+  let HT = [];
+  function taiHT() {
+    $('loiHT').textContent = ''; $('dsHT').innerHTML = '<div class="the nho">Đang tải…</div>';
+    goiNB('dsHenThu').then(r => { HT = r; hienHT(); }).catch(e => { $('loiHT').textContent = e; $('dsHT').innerHTML = ''; });
+  }
+  function hienHT() {
+    const loc = $('htLoc').value, ds = HT.filter(y => !loc || ['Mới', 'Đã liên hệ'].indexOf(y.tt) >= 0);
+    $('demHT').textContent = HT.filter(y => y.tt === 'Mới').length || ''; demNhom();
+    $('dsHT').innerHTML = ds.length ? ds.map(y => khungPhieu(y, 'capNhatHenThu', TT_HT, `<div>${hoTen(y.ten, y.ma)} · ${esc(y.xom)}, ${esc(y.khu)}</div>
+      <div>📞 <a class="tel" href="tel:${esc(y.sdt)}" style="color:var(--xanh);font-weight:700">${esc(y.sdt)}</a>${y.thang ? ' · Tháng ' + esc(y.thang) + (y.tien ? ': <b>' + tien(y.tien) + '</b>' : '') : ''}</div>
+      ${y.ghichukh ? `<div class="nho">Khách ghi: ${esc(y.ghichukh)}</div>` : ''}`, ['Mới', 'Đã liên hệ'])).join('') : '<div class="the">Không có yêu cầu nào.</div>';
+    ganLuu('dsHT', HT);
+  }
+  $('htLoc').onchange = hienHT; $('htTaiLai').onclick = taiHT;
+  // ---------- khách xin đặt lại mật khẩu (nội bộ) ----------
+  let DL = [];
+  function taiDL() {
+    $('loiDL').textContent = ''; $('dsDL').innerHTML = '<div class="the nho">Đang tải…</div>';
+    goiNB('admDsDatLaiMK').then(r => { DL = r; hienDL(); }).catch(e => { $('loiDL').textContent = e; $('dsDL').innerHTML = ''; });
+  }
+  function hienDL() {
+    const loc = $('dlLoc').value, ds = DL.filter(x => !loc || x.tt === 'Chờ xử lý'), adm = ND && ND.vaitro === 'adm';
+    $('demDL').textContent = DL.filter(x => x.tt === 'Chờ xử lý').length || ''; demNhom();
+    $('dsDL').innerHTML = ds.length ? ds.map(x => `<div class="cn-the ${x.tt === 'Chờ xử lý' ? 'cho' : ''}">
+        <div class="hang" style="justify-content:space-between"><div>${hoTen(x.ten, x.ma)} <span class="nho">${esc(x.ma)}</span></div><span class="nhan ${x.tt === 'Đã đặt lại' ? 'la' : x.tt === 'Từ chối' ? 'do' : 'vang'}">${esc(x.tt)}</span></div>
+        <div>📞 <a class="tel" href="tel:${esc(x.sdt)}" style="color:var(--xanh);font-weight:700">${esc(x.sdt)}</a> · <span class="${/KHÁC/.test(x.khop) ? 'nhan do' : 'nho'}">${esc(x.khop)}</span></div>
+        <div class="nho">Gửi lúc ${esc(x.tg)}${x.nguoi ? ' · ' + esc(x.nguoi) + ' xử lý ' + esc(x.tgx) : ''}${x.ghichu ? ' · ' + esc(x.ghichu) : ''}</div>
+        ${x.tt === 'Chờ xử lý' && adm ? `<div class="hang" style="margin-top:8px"><input class="dlGhiChu" data-dong="${x.dong}" placeholder="Ghi chú / lý do từ chối" maxlength="300" style="flex:1;min-width:160px">
+          <button class="nut nho-nut dlXuLy" data-dong="${x.dong}" data-y="1" type="button">🔑 Đặt lại về 111111</button><button class="nut phu nho-nut dlXuLy" data-dong="${x.dong}" data-y="0" type="button">❌ Từ chối</button></div>` : ''}
+      </div>`).join('') : '<div class="the nho">Không có yêu cầu nào.</div>';
+    $$('#dsDL .dlXuLy').forEach(b => b.onclick = () => {
+      const gc = document.querySelector('.dlGhiChu[data-dong="' + b.dataset.dong + '"]').value; b.disabled = true;
+      goiNB('admXuLyDatLaiMK', Number(b.dataset.dong), b.dataset.y === '1', gc).then(taiDL).catch(e => { $('loiDL').textContent = e; b.disabled = false; });
+    });
+  }
+  $('dlLoc').onchange = hienDL; $('dlTaiLai').onclick = taiDL;
+  // ---------- thống kê truy cập (adm) ----------
+  let TCD = null, TC_LOC = '', TC_CHON = '';
+  const MAU_LOAI = { 'Khách lẻ': 'xanh', 'Khách hàng': 'la', 'Nhân viên': 'vang', 'Quản trị': 'do' };
+  function taiTC() {
+    $('loiTC').textContent = ''; $('tcKQ').innerHTML = '<div class="the dang-tai">Đang tải</div>';
+    goiNB('admTruyCap', Number($('tcSoNgay').value)).then(r => { TCD = r; TC_CHON = ''; hienTC(); }).catch(e => { $('loiTC').textContent = e; $('tcKQ').innerHTML = ''; });
+  }
+  function hienTC() {
+    const r = TCD, t = r.tong;
+    const nguoi = {};
+    r.luot.forEach(l => { const n = nguoi[l.khoa] = nguoi[l.khoa] || { khoa: l.khoa, nguoi: l.nguoi, loai: l.loai, luot: 0, so: 0, cuoi: '', tb: l.tb }; n.luot++; n.so += l.so; if (l.cuoi > n.cuoi) n.cuoi = l.cuoi; });
+    const dsN = Object.values(nguoi).filter(n => !TC_LOC || n.loai === TC_LOC || (TC_LOC === 'Nội bộ' && (n.loai === 'Nhân viên' || n.loai === 'Quản trị'))).sort((a, b) => a.cuoi < b.cuoi ? 1 : -1);
+    const o = (nhan, gt, phu, loc) => `<button type="button" class="o tcO ${TC_LOC === loc ? 'chon-o' : ''}" data-loc="${esc(loc)}" style="text-align:left;border:0;cursor:pointer;${TC_LOC === loc ? 'outline:2px solid var(--xanh)' : ''}"><span class="nho">${nhan}</span><b style="font-size:22px">${so(gt)}</b>${phu ? '<span class="nho">' + phu + '</span>' : ''}</button>`;
+    let h = `<div class="the"><div class="luoi">
+        ${o('Lượt truy cập', t.luot, 'hôm nay ' + so(t.homNay) + ' lượt', '')}
+        ${o('Khách lẻ', t.khachLe, 'người dùng chưa đăng nhập', 'Khách lẻ')}
+        ${o('Khách hàng đăng nhập', t.khachHang, '', 'Khách hàng')}
+        ${o('Tài khoản nội bộ', t.noiBo, '', 'Nội bộ')}
+      </div>
+      <div class="nho" style="margin-top:8px">${so(t.nguoi)} người · ${so(t.thaoTac)} thao tác trong ${r.soNgay} ngày · hôm nay ${so(t.nguoiHomNay)} người.</div></div>`;
+    if (r.theoNgay.length > 1) h += `<div class="the"><h3>${ic('chart')} Lượt truy cập theo ngày</h3>${bieuDo(r.theoNgay.slice(-14).map(x => ({ nhan: x.ngay.slice(8, 10) + '/' + x.ngay.slice(5, 7), gt: x.luot, chu: so(x.luot), phu: so(x.nguoi) + ' người' })), 'lượt')}</div>`;
+    if (r.hanhDong.length) { const mx = r.hanhDong[0].so || 1; h += `<div class="the"><h3>Mọi người hay làm gì</h3><div class="ngang">${r.hanhDong.map(x => `<div class="h"><span>${esc(x.ten)}</span><div><div class="t" style="width:${Math.max(3, Math.round(x.so / mx * 100))}%"></div></div><span class="g">${so(x.so)}</span></div>`).join('')}</div></div>`; }
+    h += `<div class="the"><div class="hang" style="justify-content:space-between"><h3 style="margin:0">${TC_LOC ? esc(TC_LOC) : 'Tất cả người truy cập'} <span class="nho">(${dsN.length})</span></h3>
+        <input id="tcTim" placeholder="Tìm tên, mã…" style="min-width:150px" value="${esc(TC_TIM)}"></div>
+      <div id="tcDsN" style="margin-top:10px"></div></div>`;
+    $('tcKQ').innerHTML = h;
+    $$('#tcKQ .tcO').forEach(b => b.onclick = () => { TC_LOC = b.dataset.loc; TC_CHON = ''; hienTC(); });
+    $('tcTim').oninput = () => { TC_TIM = $('tcTim').value; veDsN(dsN); };
+    veDsN(dsN);
+  }
+  let TC_TIM = '';
+  function veDsN(dsN) {
+    const q = khongDauJS(TC_TIM);
+    const ds = dsN.filter(n => !q || khongDauJS(n.nguoi).indexOf(q) >= 0).slice(0, 300);
+    $('tcDsN').innerHTML = ds.length ? ds.map(n => `<div class="cn-the tcNguoi" data-khoa="${esc(n.khoa)}" style="cursor:pointer" role="button" tabindex="0">
+        <div class="hang" style="justify-content:space-between"><div><b>${esc(n.nguoi)}</b> <span class="nhan ${MAU_LOAI[n.loai] || 'xanh'}">${esc(n.loai)}</span></div><span class="nho">${so(n.luot)} lượt · ${so(n.so)} thao tác</span></div>
+        <div class="nho">Lần cuối ${esc(n.cuoi)} · ${esc(n.tb)} ${TC_CHON === n.khoa ? '▴' : '▾ bấm xem chi tiết'}</div>
+        ${TC_CHON === n.khoa ? chiTietTC(n.khoa) : ''}</div>`).join('') : '<div class="nho">Chưa có lượt truy cập.</div>';
+    $$('#tcDsN .tcNguoi').forEach(x => { const f = e => { if (e.target.closest('.tc-ct-luot')) return; TC_CHON = TC_CHON === x.dataset.khoa ? '' : x.dataset.khoa; veDsN(dsN); }; x.onclick = f; x.onkeydown = e => { if (e.key === 'Enter') f(e); }; });
+  }
+  function chiTietTC(khoa) {
+    return '<div class="tc-ct-luot" style="margin-top:10px;cursor:default">' + TCD.luot.filter(l => l.khoa === khoa).slice(0, 40).map(l => `<div style="border-left:3px solid var(--nuoc);padding:4px 10px;margin:8px 0">
+      <div class="nho"><b>${esc(l.bd.slice(8, 10) + '/' + l.bd.slice(5, 7))}</b> ${esc(l.bd.slice(11, 16))} → ${esc(l.cuoi.slice(11, 16))} · ${esc(l.tb)}</div>
+      <ol style="margin:4px 0 0;padding-left:20px;font-size:14px;line-height:1.6">${l.tt.map(x => `<li><span class="nho">${esc(x.slice(0, 5))}</span> ${esc(x.slice(9))}</li>`).join('')}</ol></div>`).join('') + '</div>';
+  }
+  $('tcSoNgay').onchange = taiTC; $('tcTaiLai').onclick = taiTC;
   // ---------- duyệt cập nhật thông tin khách hàng ----------
   let DS_CN = [];
   function taiCN() {
@@ -1648,7 +1992,7 @@
   }
   function hienCN() {
     const loc = $('cnLoc').value, ds = DS_CN.filter(x => !loc || x.tt === 'Chờ duyệt'), adm = ND && ND.vaitro === 'adm';
-    $('demCN').textContent = DS_CN.filter(x => x.tt === 'Chờ duyệt').length || '';
+    $('demCN').textContent = DS_CN.filter(x => x.tt === 'Chờ duyệt').length || ''; demNhom();
     $('dsCN').innerHTML = ds.length ? ds.map(x => `<div class="cn-the ${x.tt === 'Chờ duyệt' ? 'cho' : ''}">
         <div class="hang" style="justify-content:space-between"><div>${hoTen(x.ten, x.ma)} <span class="nho">${esc(x.ma)}</span></div><span class="nhan ${x.tt === 'Đã duyệt' ? 'la' : x.tt === 'Từ chối' ? 'do' : 'vang'}">${esc(x.tt)}</span></div>
         <div class="nho">Gửi lúc ${esc(x.tg)}${x.nguoi ? ' · ' + esc(x.nguoi) + ' xử lý ' + esc(x.tgd) : ''}</div>
@@ -1915,7 +2259,9 @@
       goiNB(o.dataset.ham, dong, tt, nv, gc).then(() => {
         const y = ds.find(x => x.dong === dong); Object.assign(y, { tt: tt, nv: nv, ghichu: gc });
         o.querySelector('.pKQ').textContent = 'Đã lưu ✓';
-        $('demLH').textContent = LH.filter(y => y.tt === 'Mới').length || ''; $('demBC').textContent = BCDS.filter(y => y.tt === 'Mới').length || ''; $('demSC').textContent = SCDS.filter(y => y.tt === 'Mới').length || '';
+        const bd = { capNhatLienHe: 'demLH', capNhatBaoCao: 'demBC', capNhatSuaChua: 'demSC', capNhatHenThu: 'demHT' }[o.dataset.ham];
+        if (bd) $(bd).textContent = ds.filter(y => y.tt === 'Mới').length || '';
+        demNhom();
       }).catch(e => o.querySelector('.pKQ').textContent = e).finally(() => b.disabled = false);
     });
   }
