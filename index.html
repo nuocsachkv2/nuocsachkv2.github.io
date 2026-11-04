@@ -3,13 +3,27 @@
 <head>
 <base target="_top">
 <meta charset="utf-8">
+<script>
+  // Bảo mật khi chạy ở tên miền riêng (github.io): chặn trang lạ nhúng web vào khung, chỉ cho kết nối tới máy chủ Google của trạm
+  (function () {
+    if (!/github\.io$/i.test(location.hostname)) return;
+    try { if (window.top !== window.self) { window.top.location = window.self.location.href; } } catch (e) { document.documentElement.style.display = 'none'; }
+    var S = '/' + '/', g = 'https:' + S;
+    var m = document.createElement('meta'); m.httpEquiv = 'Content-Security-Policy';
+    m.content = "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https:; font-src 'self' data:; "
+      + "connect-src 'self' " + g + 'script.google.com ' + g + "script.googleusercontent.com; frame-src 'none'; object-src 'none'; base-uri 'none'; form-action 'self'; upgrade-insecure-requests";
+    document.head.appendChild(m);
+  })();
+</script>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Trạm Nước sạch và VSMT Khu vực II – Tra cứu tiền nước</title>
 <meta name="description" content="Tra cứu chỉ số, tiền nước hằng tháng; báo hỏng, yêu cầu kiểm tra nước, báo vi phạm – Trạm Nước sạch và Vệ sinh môi trường Khu vực II.">
 <meta property="og:title" content="Tra cứu tiền nước – Trạm Nước sạch và VSMT Khu vực II">
 <meta property="og:description" content="Gõ mã khách hàng hoặc họ tên chủ hộ để xem chỉ số, tiền nước; báo hỏng, kiểm tra nước, báo vi phạm.">
 <meta name="theme-color" content="#0b5394">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http:%2F%2Fwww.w3.org%2F2000%2Fsvg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='%23e3f2fd'/%3E%3Cpath d='M32 9C24 21 17 29 17 38a15 15 0 0 0 30 0C47 29 40 21 32 9Z' fill='%231e88e5'/%3E%3C/svg%3E">
+<link rel="icon" type="image/png" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAMAAABg3Am1AAAAwFBMVEX%2F%2F%2F%2F+%2F%2F%2F%2F%2F%2F7%2F%2F%2F3+%2F%2F7+%2Fv79%2F%2F79%2Fv79%2Fv38%2Fv3%2F%2F%2Fr8%2Ff38%2FPz7%2Ffz7+%2Fv7+%2FX9+sP99on99Ff%2F9CD98CD%2F9w3%2F8w387hj97gv4+%2Frw+PXj8u3Y7dzM6NDw6yvA5M+31+Cu3MGv1YaU0a2NyLp6xYpqv45ytbx1vTZltkhStXtGsGE9p3IqpF4en1IQm0sPmEYImUQFl0QDlkUzi6kXe6sKdaoAk0EAjzYGdaQGca0Eca0DcK0BbawBaq4AZ6sUAr7DAAAEPUlEQVR42o2WaXuqOhCAB5SLaF1AWxZZpCnRUgKyqNTj8v%2F%2F1Z0AKtie514+oMZ5M3smAAAvk8kL%2FOfzkPpNug+S8BtTyY+eZBVlUH9TBv0nYoTES3f%2FgVJ9mBPLrDZS2n9KXHrSXun1ACyfhCyyI0qJb4nQH3Q2nHSAHsgOZSWlZewwFiWU2D4q7QIPi8SeMFOjQxZbyyS2HUJpSHxGbRBarrQcEEFQ9fl7HjsA%2FsEGeQyOF7AkCqSukrs5U011dTewQZHAW9arlhcyFlpd32%2FyrqGphtrj241hVaw%2FbC5mYwR8B+Qf8jNVW+jaTKiTMB6vr+dj8WHCeOD7YWjJ3ZSIvalmqAt9Bj2xWhAEWJ%2F252uxQm0+iykoHQLjYyxcTYXhbUUWrOK435%2FPazCRiEjHcTRI03RDFYatKoDVeY%2FIdQ0jiWey5YYocoPcxZQnukUUSBwrwmMs6CttBcZCU1Xotcu1VsGJFSaGMe8RW9F6ny%2FeNKlxuHkEwSxOnDjvLNkMqTeWmn8U8Jiq69pDgQI+AWUE62ut4gOAUHKTx7gFZaAZM6ECxphnGSImSSOptul4LkxwiG+DdKvyKEveeQ7uOyyT1MZwWsf6Oa9AoDFpnJDAipMsUmeCiFsvqW8BePnB72NnsO8KwEAtQ0ab1hiAnSTJgQwVrFfZZGVMRP9w8IGwMt%2FXQAEjsqUjEBqfsyT+%2FLRFqabzMvSy3KHlIfs+1SYVI%2FDj0IT+Dcg3c0OrnMYApVlJIxaUebbeceAPBrby2rzHMMs%2FdX0xFXtNkMuMkLiMvdWVy9eAn0RWHabKpMSd30pJgYlPo4g7X5y5%2FB%2F0YQAkQZOExultkm90HQM7lKBuehriq1Fw4k4jQGsXqrCmOUNgMRNg2BNFyRwHVB6vjrX8iYfVol%2F3Cu9DdEhyFwldnTaFSulUDS%2F7P1z+dMLEWRRbYvwojST%2F4oDhqrMptvc0+Jwb7v505PJo0dgkxLFAuIXJydJtvnl90%2FU3Q1+4rjvfbPDH7twAKzAjFtrwT2OSNECb0jx0EVmgGsN43WxeEbgcawWmvAwT31KERzWXSZp+7z7dV65G12ugqAD0AKPjeBbcj4G+ZLJDisRlF27cO%2FBWAUfeDX6Ax2FrYGDuDmmWpd+ny2W%2FQ9k7cDxzeTvaBnLn8MM4llskEiznyx2ILsfrHht6ScPQ6fe7U8eMyjTLsyz5vrh34Hot7OawfD6PsXNYTaSJ+1YDr2GxEvn+URz8PI0HNZHl+eEGGCquOzS0KVmaP4%2F7AVhhia7naQuwCGOMmr%2FP4QGvSOyy7QPwWMwYwUNSgt9mkIRm0aRMb3kw1OU2wokF%2FY54eyiiZ0vypdelYaBJeBZBd5Z0pyhU2ZnibHnfaJo6w62Fp9EzeR7s8rh9ZVCeJxWXfr464HQf9mRZxPePwIwmf7uc%2FO1C83yx+R%2FXn38Bu3ahb6eFgDoAAAAASUVORK5CYII=">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta name="format-detection" content="telephone=no">
 <style>
   :root {
     --xanh:#0b5394; --xanh-dam:#083d6e; --xanh2:#e8f1fb; --nuoc:#1e88e5; --la:#2e7d32; --la2:#e8f5e9;
@@ -484,6 +498,185 @@
     .lua-dao .ld-nhan { font-size:12px; padding:8px 9px; }
     .lua-dao .ld-nhan b { display:none; }
   }
+
+  /* ======== v14: logo, giao diện, bảo mật ======== */
+  .logo { padding:3px; box-shadow:0 0 0 3px rgba(255,255,255,.28), 0 6px 16px rgba(0,0,0,.22); }
+  .logo img { width:100%; height:100%; object-fit:cover; border-radius:50%; display:block; }
+  header.dau { background:linear-gradient(120deg, #06325c 0%, var(--xanh) 52%, #1565c0 100%); }
+  header.dau::before { content:""; position:absolute; inset:0; pointer-events:none;
+    background:radial-gradient(600px 120px at 85% -20%, rgba(255,255,255,.16), transparent 70%), radial-gradient(400px 120px at 10% 120%, rgba(41,182,246,.25), transparent 70%); }
+  .dau-trong, nav.menu-tren { position:relative; }
+  .ten-web .t1 { text-shadow:0 1px 2px rgba(0,0,0,.25); }
+  /* nút "chưa biết mã" */
+  .mo-mau { margin-top:12px; width:100%; display:flex; align-items:center; gap:12px; text-align:left; cursor:pointer; background:#fff; border:1px dashed #9cc3ea;
+            border-radius:14px; padding:11px 14px; color:var(--chu); font:inherit; transition:border-color .2s, background .2s, box-shadow .2s; }
+  .mo-mau:hover { border-color:var(--nuoc); border-style:solid; background:#f5faff; box-shadow:0 6px 16px rgba(11,83,148,.10); }
+  .mo-mau .mm-bieu { flex:0 0 auto; width:42px; height:42px; border-radius:12px; background:linear-gradient(135deg,#e3f2fd,#bbdefb); color:var(--xanh); display:flex; align-items:center; justify-content:center; }
+  .mo-mau .mm-bieu .ic { width:24px; height:24px; }
+  .mo-mau .mm-chu { flex:1; min-width:0; display:flex; flex-direction:column; gap:1px; }
+  .mo-mau .mm-chu b { color:var(--xanh-dam); font-size:15.5px; }
+  .mo-mau .mm-chu small { color:var(--xam); font-size:13.5px; }
+  .mo-mau .mm-mui { flex:0 0 auto; width:30px; height:30px; border-radius:50%; background:var(--xanh2); color:var(--xanh); display:flex; align-items:center; justify-content:center; font-size:18px; font-weight:800; transition:transform .25s; }
+  .mo-mau[aria-expanded="true"] { border-style:solid; border-color:var(--nuoc); background:#f5faff; border-radius:14px 14px 0 0; }
+  .mo-mau[aria-expanded="true"] .mm-mui { transform:rotate(90deg); }
+  #khungMau { border:1px solid var(--nuoc); border-top:0; border-radius:0 0 14px 14px; background:#fff; padding:12px 14px 14px; animation:noiLen .25s ease both; }
+  #khungMau img { display:block; width:100%; max-width:640px; margin:0 auto; border-radius:10px; border:1px solid var(--vien); min-height:60px; background:#f3f6fa; }
+  .mm-meo { display:grid; grid-template-columns:repeat(3, minmax(0,1fr)); gap:8px; margin-top:12px; }
+  .mm-meo div { background:var(--xanh2); border-radius:12px; padding:10px; font-size:13.5px; line-height:1.4; color:#244266; }
+  .mm-meo div b { display:block; color:var(--xanh-dam); font-size:14px; margin-bottom:2px; }
+  .mm-cong { font-size:13px; color:var(--xam); margin:10px 0 0; text-align:center; }
+  /* hướng dẫn 3 bước (ẩn khi đã có kết quả) */
+  .huong-dan { display:grid; grid-template-columns:repeat(3, minmax(0,1fr)); gap:10px; margin-bottom:16px; }
+  #kqTra:not(:empty) + .huong-dan { display:none; }
+  .hd-buoc { background:rgba(255,255,255,.95); border:1px solid var(--vien); border-radius:14px; padding:14px; box-shadow:var(--bong); display:flex; gap:10px; align-items:flex-start; }
+  .hd-buoc .so-b { flex:0 0 auto; width:34px; height:34px; border-radius:10px; background:linear-gradient(135deg,#42a5f5,var(--xanh)); color:#fff; font-weight:800; display:flex; align-items:center; justify-content:center; }
+  .hd-buoc b { display:block; color:var(--xanh-dam); font-size:15px; }
+  .hd-buoc span { font-size:13.5px; color:var(--xam); line-height:1.4; }
+  .an-toan { display:flex; align-items:center; gap:12px; background:linear-gradient(120deg,#e8f5e9,#f4fbf5); border:1px solid #b7dfbb; border-radius:14px; padding:12px 14px; margin-bottom:16px; color:#1b5e20; font-size:14px; line-height:1.45; }
+  .an-toan .ic { width:28px; height:28px; flex:0 0 auto; color:#2e7d32; }
+  /* cơ cấu tổ chức: số + nút Gọi + Zalo */
+  .cc-the { align-items:flex-start; }
+  .cc-the .so-cc { font-size:15px; font-weight:800; color:var(--chu); letter-spacing:.3px; margin:0 0 8px; display:flex; align-items:center; gap:6px; }
+  .cc-the .so-cc .ic { width:16px; height:16px; color:var(--la); }
+  .cc-the .nut-cc { gap:8px; }
+  .cc-the .nut-cc a { display:inline-flex; align-items:center; gap:6px; padding:8px 14px; font-size:14px; border-radius:10px; min-height:38px; }
+  .cc-the .nut-cc a .ic { width:17px; height:17px; }
+  .cc-the .nut-cc a.goi-cc { background:var(--la); color:#fff; box-shadow:0 4px 10px rgba(46,125,50,.25); }
+  .cc-the .nut-cc a.goi-cc:hover { filter:brightness(1.08); }
+  .cc-the .nut-cc a.zalo:hover { filter:brightness(1.1); }
+  .cc-the .khong-so { font-size:13px; color:var(--xam); font-style:italic; }
+  /* báo hỏng: lưới số gọi gấp (2 trạm + 2 trạm phó) */
+  .khung-goi-gap { display:block; padding:12px; }
+  .khung-goi-gap .kg-dau { font-weight:700; color:#8a4b00; margin-bottom:8px; }
+  .kg-luoi { display:grid; grid-template-columns:repeat(2, minmax(0,1fr)); gap:8px; }
+  .kg-luoi a.goi { margin:0; padding:9px 10px; background:#fff; border-color:#ffd59e; min-width:0; }
+  .kg-luoi a.goi div { min-width:0; }
+  .kg-luoi a.goi b { font-size:13.5px; line-height:1.25; }
+  .kg-luoi a.goi span { font-size:15.5px; white-space:nowrap; }
+  .kg-luoi a.goi.kg-tram .ic { color:var(--xanh); }
+  .kg-luoi a.goi.kg-tram span { color:var(--xanh); }
+  /* ô link bản đồ: 1 ô có biểu tượng */
+  .o-link { position:relative; margin-top:8px; }
+  .o-link .ic { position:absolute; left:12px; top:50%; transform:translateY(-50%); width:20px; height:20px; color:var(--nuoc); pointer-events:none; }
+  .o-link input { padding-left:40px; }
+  /* bắt buộc đổi mật khẩu mặc định */
+  #khungNoiBo.bat-doi > :not(.nd-thanh):not(#khungDoiMK):not(#canhPin) { display:none !important; }
+  #khungNoiBo.bat-doi #nutHuyMK, #khungNoiBo.bat-doi #nutDoiMK { display:none; }
+  #khungNoiBo.bat-doi #khungDoiMK { max-width:520px; border-top:4px solid var(--do); }
+  #khungNoiBo.bat-doi { display:flex; flex-direction:column; }
+  #khungNoiBo.bat-doi > .nd-thanh { order:0; } #khungNoiBo.bat-doi > #canhPin { order:1; } #khungNoiBo.bat-doi > #khungDoiMK { order:2; width:100%; }
+  #canhPin { display:flex; gap:10px; align-items:flex-start; }
+  .dong-mk { font-size:12.5px; color:var(--xam); margin-top:6px; }
+  .o-mk { position:relative; }
+  .o-mk input { padding-right:46px; }
+  .o-mk .hien-mk { position:absolute; right:6px; top:50%; transform:translateY(-50%); border:0; background:none; cursor:pointer; font-size:18px; padding:6px; color:var(--xam); }
+  /* chân trang */
+  footer.chan .bm { flex-basis:100%; display:flex; align-items:center; gap:8px; color:#2e5b3a; font-size:12.5px; }
+  footer.chan .bm .ic { width:16px; height:16px; color:#2e7d32; }
+  #thongBaoTuDong { position:fixed; left:50%; bottom:24px; transform:translateX(-50%); z-index:70; background:#1d2939; color:#fff; padding:11px 16px; border-radius:12px; font-size:14px; box-shadow:0 10px 30px rgba(0,0,0,.25); max-width:calc(100vw - 32px); display:none; }
+  #thongBaoTuDong.mo { display:block; animation:noiLen .25s ease both; }
+
+  /* ---------- máy tính màn lớn: phóng to vừa màn hình ---------- */
+  @media (min-width:1700px) { html { zoom:1.12; } }
+  @media (min-width:2000px) { html { zoom:1.25; } }
+  @media (min-width:2500px) { html { zoom:1.4; } }
+  @media (min-width:900px) {
+    .logo { width:64px; height:64px; }
+    .dau-trong { padding:12px 16px; }
+    .o-tim { padding:22px 22px 20px; }
+    .o-tim h2 { font-size:22px; }
+    .cc-luoi { grid-template-columns:repeat(auto-fill, minmax(300px,1fr)); }
+  }
+  /* ---------- điện thoại ---------- */
+  @media (max-width:899px) {
+    .huong-dan { grid-template-columns:1fr; gap:8px; }
+    .hd-buoc { padding:11px 12px; }
+    .mm-meo { grid-template-columns:1fr; }
+  }
+  @media (max-width:600px) {
+    .ten-web .t1 { font-size:15px; line-height:1.22; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden; }
+    .ten-web .t2 { font-size:11.5px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+    .nut-khoa { width:42px; height:42px; padding:0 !important; justify-content:center; border-radius:50%; }
+    .nut-khoa .chu-khoa { display:none; }
+    .nut-khoa .ic { width:20px; height:20px; }
+    .nut-khoa.on { box-shadow:0 0 0 3px #66bb6a; }
+    .logo { width:46px; height:46px; padding:2px; }
+    .mo-mau { padding:10px 12px; gap:10px; }
+    .mo-mau .mm-bieu { width:38px; height:38px; }
+    .mo-mau .mm-chu b { font-size:15px; }
+    .mo-mau .mm-chu small { font-size:12.5px; }
+    .cc-the { padding:12px; }
+    .cc-the .nut-cc a { flex:1; justify-content:center; }
+    .kg-luoi a.goi { padding:8px 9px; }
+    .kg-luoi a.goi .ic { display:none; }
+    .kg-luoi a.goi b { font-size:12.5px; }
+    .kg-luoi a.goi span { font-size:14.5px; }
+    #thongBaoTuDong { bottom:calc(84px + env(safe-area-inset-bottom)); }
+  }
+  @media (max-width:360px) { .kg-luoi { grid-template-columns:1fr; } }
+
+  /* nghi ngờ vi phạm v14: thẻ tổng hợp + biểu đồ cột */
+  #nnTong { display:grid; grid-template-columns:repeat(6, minmax(0,1fr)); gap:10px; margin:12px 0 6px; }
+  #nnTong button { display:flex; flex-direction:column; align-items:flex-start; gap:2px; padding:12px 12px 10px; border-radius:14px; border:1px solid var(--vien); background:#fff; text-align:left; min-width:0; box-shadow:var(--bong); }
+  #nnTong button.on { border:2px solid var(--m); background:color-mix(in srgb, var(--m) 8%, #fff); padding:11px 11px 9px; }
+  #nnTong .nn-o-ten { display:flex; align-items:center; gap:6px; font-size:13px; font-weight:700; color:var(--xam); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; max-width:100%; }
+  #nnTong button b { font-size:26px; line-height:1.1; color:var(--m); }
+  #nnTong small { font-size:12px; color:var(--xam); }
+  #nnTong .nn-o-thanh { width:100%; height:6px; border-radius:3px; background:#eef2f7; overflow:hidden; margin-top:6px; }
+  #nnTong .nn-o-thanh i { display:block; height:100%; background:var(--m); border-radius:3px; transform-origin:left; animation:mocNgang .6s cubic-bezier(.2,.7,.2,1) both; }
+  .nn-khu { margin:12px 0 4px; border:1px solid var(--vien); border-radius:14px; padding:10px 12px; background:#fbfcfe; display:grid; gap:4px; }
+  .nn-khu-dau { font-weight:700; color:var(--xanh-dam); font-size:14px; margin-bottom:4px; }
+  .nn-khu-h { display:grid; grid-template-columns:minmax(90px, 200px) 1fr 56px; align-items:center; gap:10px; border:0; background:none; padding:5px 6px; border-radius:8px; cursor:pointer; font:inherit; font-size:13.5px; text-align:left; color:var(--chu); }
+  .nn-khu-h:hover, .nn-khu-h.on { background:var(--xanh2); }
+  .nn-khu-h .k { white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+  .nn-khu-h .t { height:12px; border-radius:6px; background:#eef2f7; overflow:hidden; }
+  .nn-khu-h .t i { display:block; height:100%; border-radius:6px; background:linear-gradient(90deg,#ff8a65,#c62828); transform-origin:left; animation:mocNgang .6s cubic-bezier(.2,.7,.2,1) both; }
+  .nn-khu-h.on .t i { background:linear-gradient(90deg,#42a5f5,var(--xanh)); }
+  .nn-khu-h b { text-align:right; }
+  .nn-the { padding:14px 16px; display:flex; flex-direction:column; gap:6px; border-radius:14px; }
+  .nn-the .chips { margin:2px 0; }
+  .nn-the .spark.nn-bd { width:100%; height:auto; display:block; background:linear-gradient(180deg,#fbfdff,#fff); border:1px solid #edf1f6; border-radius:12px; padding:4px 2px 0; }
+  .nn-so { display:grid; grid-template-columns:repeat(3, minmax(0,1fr)); gap:8px; }
+  .nn-so div { background:#f5f8fc; border-radius:10px; padding:6px 10px; }
+  .nn-so span { display:block; font-size:11.5px; color:var(--xam); }
+  .nn-so b { font-size:15px; color:var(--xanh-dam); }
+  .nn-ly { list-style:none; margin:2px 0 0; padding:0; display:grid; gap:3px; }
+  .nn-ly li { font-size:13.5px; color:#344054; padding-left:16px; position:relative; line-height:1.4; }
+  .nn-ly li::before { content:""; position:absolute; left:2px; top:.5em; width:8px; height:8px; border-radius:50%; background:var(--m); }
+  @media (max-width:1199px) { #nnTong { grid-template-columns:repeat(3, minmax(0,1fr)); } }
+  @media (max-width:600px) {
+    #nnTong { grid-template-columns:repeat(2, minmax(0,1fr)); gap:8px; }
+    #nnTong button { padding:10px; } #nnTong button.on { padding:9px; }
+    #nnTong button b { font-size:22px; }
+    .nn-khu-h { grid-template-columns:96px 1fr 44px; gap:8px; font-size:13px; }
+    .nn-the { padding:12px; }
+    .nn-so div { padding:5px 8px; } .nn-so b { font-size:14px; }
+  }
+
+  /* khách báo nộp tiền (nội bộ) */
+  .nt-tom { display:grid; grid-template-columns:repeat(2, minmax(0,1fr)); gap:10px; margin-top:12px; max-width:520px; }
+  .nt-tom div { border:1px solid var(--vien); border-radius:12px; padding:10px 12px; background:#fff; }
+  .nt-tom span { display:block; font-size:12.5px; color:var(--xam); }
+  .nt-tom b { font-size:20px; } .nt-tom b.do { color:var(--do); } .nt-tom b.la { color:var(--la); }
+  .nt-tom small { display:block; font-weight:700; color:var(--xanh-dam); }
+  .nt-luoi { display:grid; grid-template-columns:repeat(auto-fill, minmax(360px,1fr)); gap:12px; }
+  .nt-the { background:#fff; border:1px solid var(--vien); border-left:6px solid #fb8c00; border-radius:14px; padding:12px 14px; box-shadow:var(--bong); display:flex; flex-direction:column; gap:8px; }
+  .nt-the.xong { border-left-color:var(--la); background:#fbfefb; }
+  .nt-dau { display:flex; justify-content:space-between; gap:10px; align-items:flex-start; }
+  .nt-ten { font-size:16px; color:var(--xanh-dam); }
+  .nt-tien { text-align:right; font-weight:800; font-size:18px; color:var(--do); white-space:nowrap; }
+  .nt-the.xong .nt-tien { color:var(--la); }
+  .nt-tien span { display:block; font-size:12px; font-weight:600; color:var(--xam); }
+  .nt-ct { display:flex; flex-wrap:wrap; gap:4px 14px; font-size:13.5px; color:#344054; }
+  .nt-tich { display:flex; align-items:center; gap:10px; cursor:pointer; border:2px dashed #ffcc80; border-radius:12px; padding:9px 12px; background:#fff8ef; }
+  .nt-the.xong .nt-tich { border:2px solid #a5d6a7; background:var(--la2); }
+  .nt-tich input { position:absolute; opacity:0; pointer-events:none; }
+  .nt-hop { flex:0 0 auto; width:26px; height:26px; border-radius:8px; border:2px solid #fb8c00; background:#fff; display:flex; align-items:center; justify-content:center; transition:background .2s; }
+  .nt-tich input:checked + .nt-hop { background:var(--la); border-color:var(--la); }
+  .nt-tich input:checked + .nt-hop::after { content:"✓"; color:#fff; font-weight:900; font-size:17px; }
+  .nt-tich input:focus-visible + .nt-hop { outline:3px solid rgba(30,136,229,.35); }
+  .nt-chu b { display:block; font-size:15px; } .nt-chu small { font-size:12.5px; color:var(--xam); }
+  @media (max-width:600px) { .nt-luoi { grid-template-columns:1fr; } .nt-tien { font-size:16px; } }
 </style>
 </head>
 <body>
@@ -492,7 +685,7 @@
 
 <header class="dau">
   <div class="dau-trong">
-    <div class="logo" id="logo" aria-label="Logo"></div>
+    <div class="logo" id="logo"><img alt="Logo Nước sạch – Vệ sinh môi trường nông thôn" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAJAAAACQCAMAAADQmBKKAAABgFBMVEX%2F%2F%2F%2F+%2F%2F%2F%2F%2F%2F7+%2F%2F79%2F%2F7%2F%2F%2Fv%2F%2Fv%2F+%2Fv%2F+%2Fv79%2Fv%2F9%2Fv79%2Ff7+%2Fvz9%2Fv39%2Ff39+9n99Gb+8xz+8CH98B%2F+8Br%2F9Q7%2F8w%2F+8Bf%2F8Q%2F97x%2F+7xf+7xb%2F7xT+7xX+7xT97xT%2F7xP+7xP+7xL97xP%2F7xD+7xH+7xD+7w797xD97hf97gz8%2Fv38%2Ff37%2Ffz7%2FPz6+%2Fv4+%2Fv3+fj79Hv77xf87hP77hX77RTx+PXu9fLq7%2FLc7+XV55LA48+z3sWp1saZ0JeFyYp6w6B4wm1uuKZuuEZauH9MsnNKpY87q2cxp2AmoVcbnlESnE4Smk0OmksPmUgLmkkKmUgJmUgKmkUJmEcJl0UHmEYGl0UFl0UFl0MHlUIElUIDlkMBlUQAkz0mg6gMeKcKgYEJdK8JdK0Kc64Ic64HfIsHcq4Gcq8Gcq4HcqwGca0AkkEAkTkAjjUBg08Fca8Fca0FcasEca4Eca0Dca4EcawFcK0DcK0DcKwCcKwCcKsBcK0Db60AbqwAaauJv1X0AAAb0klEQVR42s2ci18S29rH18AGRu6btKKOubVtqVwHTXDOMHymnGlgQNBAAwwqaXdCZ97s7VRawr%2F+PmsuOMCA2t7vPmdpSaT45bee23rWmkFoaCQyeFAkIkn8T+2v0YfqY%2F3h4N%2FGQ3Lou6a9Dkll0vDLEmji8MN3UCT6WwdJpTOU3%2Fr%2FqAxlluHy7aDrKESOizX5oVlDrBRlgZOwfHbk1f4yXchRLRLj8sQtzIIc0cks3vW0sFbarKz6RHxUDirzp9+0tQDkdZUeJqLS6D8+0pS1PqTJL80mPOa+5MRvRuQUj5g89ZcaJTLov2KAGV8+IIf9dszJp4UBkkB2MhZ1uxEipoll6RGk2bL1CaN+8h0Rdl8k4nOrLwuxzYmQD9ndyE78rEQaCZkxLOTyDY2LMCITCSiD+EpG7c5klknTFAI6+IzGB69o%2Fjly4isb35shNSzyhrGPjMWc+CdpJpvjeF7gMygjiWyZyYoCg2jssv4Y+ZMSkRlyZGaHk8CYPdj9eJIyTI7nxfJB86TVbEk0oiWJK7NSoVCg83yW3XJOjVSTHpLwXhLpmyQJeywOv2qL5fOlA4XjT4p4VAoYqJwvcC2OL7EtnlcYMkv7%2FbFoNDLlZS2eTyfw5%2FWHOwqyZvlCrVndKVaYbLO0A2MXFGJK5YM8AOXznMzlpTTdEJIRYPffzMJBnowxJ+QI+LjDeuELnRPLzQrWpSYmM%2FlqEYAqRQwk1PJCLVfmeVk8EFBO4ZCdyWWczqSbdI7WCBPCB4k97NpB0WZDMZorNGvqNJVKTRahXFMFKjEo2+BK+Xwh1+LFF5LMIUFmEOKVAg8WEXffIDiitMnpMS5p5f925PUSHgddaO6oOMWdYl2g%2FJ60WMdEZQaxEpMX+ZIIXAKYUKacT9uZssgrWYYGbZ0TagRzRNCM6HoK2RyumUAwRPGaPMUSEDHIF0NMeUcDgiBE07RY4FiFExs0%2FI3wtAk1tixkMvGk+9oKJSyqhhH%2Fd9m8yJEK3V9L0ZKq0E6p1GBRjHQnENcCiXYZFEceeHucwFAMwwv5ViuX3GJzXAvk4vg8+IKPsErJY1GFmlbH6cPp9YE8C7OhW+EA11T1KTY5hAO1200JYEa1LIr5XL4oorY03Vm+UNpiFZaXuVKDb3B0jkZu4npllfZhkfkGTzhcVCq8GgrdCm0EM%2FkXMFuVGqe%2FY7eTzh8UQa6I%2FiMEiviwV9FZZ07hy3nxpFgusCVFYnAOvu4yZlpM9HpcVCK4EQrfugVEAbZRLB5ILPKTCBPZ4oiRak0NiCTt6is73bEYxNAM35D4slCSOVHmigIZQ1G77U%2FXKDZXNBUKBELhEAZaDQWERk1k0KWNRlFWMhQyh1AfBEWGFvOcAq7GcwrHCWkU%2F4nCmDQ9sDm9BBWc3wh5UwsYKBxeSzE1SKXxS7FtUUQzW1HIEtGo3UWatHaDlYGFK3wtz8r5XKPI0D5y2MlHH141nA6w5oeh0FJqJvhAm7TZAEONyGGoZUOkJx412a7NBzJlOb6Vyze4AnhbIeOL3ESdkaoI7IcIhOZDoXB4FSZtFr6GFkMBlIiOGF00QrEsw9Bbms963K7B%2F0KoQjmpoPB5uSjIXALXcJMTxxXykA5fIHQvhMdqiEqtwNeVYGAm7hv7Vl+U7R93Ou32s2csDdNp05jVV4m5OUGEQkWsybwT5bIoQV4tDGm5rHQ4Z4KPgSKskniCC7cWUokZrx2hkXnHcYP91Om8u+j1vnbazxjIX0QUaenCRzACk5VzoiJkIHZLWX%2Fcep15pQl5ZwKqd+FxK%2FQwEAiHU64Zr9fKc+1R9KzXUUe31++2n9HabKmVNxh+mskpUDTllDzfYFCMuIGPkZf+HgiFAqmNkDZmwfcDhM1GWJd8rpmZZ723nbdvO%2FDn7Vm%2F84zxItKtfwOEn2wBEnBO4gSFSXrA%2FVzkVQli5BfZwJ5XV2GiHoA8eNrWUsQMqOOcVJT6KdDoLWaC0XnXO25D%2FREl1XURcsadGZRVuCyYd06kwbJvGiFt%2FkRwIRR6mApg3wKeh8GAwzHtVfxoq32u4bxVufrHMHHeuOEhhJ1rgSHxfKsJqdhvuyKbDVu2C8oNdbJgorB33QptgnvZLqOhVW%2FEjej2sUbTUf%2Fq9DsshaL6D8ScjFSWBUGGuptPJqYsrq30gQB0P6SlUz+OjJAyCMdVqsYQ2+0MNMIiHffbNEybZtskYni+0KwURFwr+cgbxEcAUpOX6u8p8C4QasYx4pjDAR9%2F8SXRs76OYsjU67CDUB5BVEHiSnItl81l1CfH6qIJEdELGSMcVh0es6Qeh1Weq5ePnmS7Z9IIE33pPUsaqSYWZbOiUmA5RRHSV6euQYS0ez0pHJhvqf6+EPQGUzBfpLU%2FDtlRDNE4FL0dyPT23dFR%2F1lGmzYSwFhFYEVF5GTWF7WuvixCtNcVWE7FwG60sZEKUL7rtRxtScSOSNTtdvrtLc20ERHJ8FwRPL+gMChx3dRhIynIqIHAbDisWtFqyEHYXKNx3trd3K50++yS5p063mIij5Z3k7lCOcfJDY5ldGu%2F2rhtBEzXanBGzaZg2Qsp2%2FWjWBSxF287I0hAlNGIon5GlMCMeFFpQB1+rZf0esDDboF3OXCmD4eWgzM3AHLFEu1eZ0Si90CUVPWIoRwPC0qxJfP5fNJ3rWzm9QSXwJ5x7loF18ce7x3rj5AT%2FT9hY94D0BGm0Xi63fdA9AzyL1RsngzN5MuKmOPlPLiP5QuOThh4PJSroUWYtEc4Ds14b5Jz%2FP54u98ZEujd+%2Ffv3vVZFCegWeFCNC9xnKTk2WzG0oAuUwepJXmIzLdwsfowRYXugUB2O2mdlklLr4si5usQDgj0%2FsO7rx2wYpzifYiClAZMBQUXa1fVQnZCX2DgSaMCq1BNO26WlgmSaveGLAiPbqfXzrh8di3DyCLPNSSOpa5eYHsjkFRhdYGJVoK%2FwHLe4xyp66wabOYv8Au1OTPxvD%2F+AGaEEl6tUMnm5UYhJ8gsil4JhMCUMQ5e88wHAimP7zqy2M1z5txqfxkFev%2Fh%2FXGHsam%2FP4FomecbsiIyfvcVWRXFchmcNNSBS3uXlxyWhbRwLdKLV8kDj4mqOVb3sfcG0AeI2EkPXk277ZRYlltCNn5V7Cd9aEviHGA9OtFaylj7To2ndipNjAbH0RmDgT3No6V9tsZDPYloekhby4qmKdGBDR0o%2FCRwjVKTgJ%2FiTWtr5ILa8WwY6IMG1NZyPOFOw3KIZgVZjLnt4xl14M32mIuvHfAzQd2u74UowjbeNhrRKxpN5xs0vO3Bsx48Z0ZMxPqoAn04ft%2FHTSW8h4D4Bl9SlAJHecgpIvkQXahAbwVWqaqbQdawX23QcZC1xZvbPzBnvXGBPhxDAUl5cZqOEdmWLPEQGRNR19QZy1aLxd3CVmoFCxReTBFeJzFadozEMpKkxMM9Ca8kjKehuu586ugxccBzenp63NMcnURpKa%2F1tjzTCrUI4g6hHdXkURB7mprGrhQogpja7k4rZ+pAkB6IjR2TyxtA7%2FrPtEKGRByHO23QNx6bMSN1wFt1UuI+dAxLtWwgPHsrPB9yuOxTm9j4gRvxrZ3KiZjAy0Kz4w8saMBzenzegdae+uucSdibKMjKeGcJGUDYhKQdaM0Xa%2Fk0DkYrwUsfIyfVi7CDk29WKvsl2vTKURysxwXCEmkAdpQWFUWRBI52EVPEh34d7vJCS9MBy8S1lLb0GXIuu30Yz4eYanV3t9JijfYYqSbY7++6Jos+1caXbr8d8eLFLOnjRQ4PZqqTcWpjHlQqM4H18EoKWSVWO2zakSZHyLUqu3uVFmcqAN12sOru8fHxiECnp70ObcMSuSMUV2iASIWMfVJyciG3oAFBm15MplbuBMaBSG3vmIxoPU+8ggYT2gMgwemzG8QxRLUv3r4+Oh7wGECnOBSpZsa2YMJyHKyrYxMymR+soaru7gBRK+eADgzhHelyECSX57ksrS6ynCRes%2FuEVgWATkRK8wAyjjvozJs3peLrj91jM86Xz5%2FBzzBABLohJdhvk5QyTUQmmhBdrOzoowIZZH08cYCZyc1Wo8CzEEWiADADnvkKAx0WNAeGV08wXL7WqLeKna%2Fd4QnDQO2YujfLiKIsl2GvLxK1TwmLBg8ORjOpAGEbSfJ2ArZbSpWDVqvA0fhH3M50%2FtXu3t7uYWELgKIxlGTFhtw6OHj54g9DoNOBQJ8%2F9GBJNINfkWZFUYBNCG5iTYQza3FABLtPDsrSEyHqgJD1lsSlEZiSBqQpFHWirNhq7e%2Fu7e%2FXi29HLRqAPp99wpEI0ibsXTUbpUI+NxEorm2kGEDVAk34zBtWqlDuKCW0dnYrwHTQggZ6zKtN2e5JPg1d%2FQzfbO3u7h8cHNRfGBZ0+uES5%2FOXj32cPUgSeqFyWcoLAhdxT04crwZAlUqpydt8VrGB2alWKrsQenZOyjkUd2pG3RKg+UHn5druPoyD%2Ffqbj8fdIQ9TgT5%2F6GvpzA57k7zUKuW5qM86dTijiG%2FqTvYKNqF29l7BjxJji4woBJ6dXXWUaxB97Jxc2atWWjwBux6tCoaBz2bp6OuxBQ8APVOBwM+k2o7I81zaabcEIgivcKips7MNzZjw9vbTDDl+GMsWjfGyRgRKAVG2uQuxGiK1xoP1qbak1xfD+nzVeL4dA5BLA1IUudWSVWewLPxQQtSA9rZ%2FvQPj1183gt7x2sAe96QFTSOYqb1mlio0d%2FfqRTqTb+0aPEW28%2F3dmEFjIKwQoU0Zl8Pt%2F0x8QkVBIEoH2gnfCc%2FOhtfX74V0xzfvyoJdoy0RiKp7MCpNKQNztivziJcrByrP7kmNYfrdoZD4RcU5+wZAbXXjDCFDfBc5GaiuWdD2rwAE49bjlGVnMYYyglypYKDqjsxRhVa1ydCN%2Faoq0K4sZaH8sBbo20cA0sNwPi%2FiUDRhyoAaYt4O9uc9SeOZhQLE6%2FU6xzrcrqST4k4Od2DOqrt1KcOUVYHUCaseyHkaxdoq0OmwPiCQqpC+4i6VW0qjVaKRe8JaD09ZBRO93L6jI80GXJYzHJ1BbKG1X1H9KwclO52RDqv71eq+3ITttAi0rN9bCjQAwjbE5cscl0tPXNkkdaAyzJmGE14L6kXscHx0OmNx6GKUWocQjaDA54uIqYORH8otMYuc0NjDAp2O4+Ap07wMdthlWVZkpbQ1adHn8gtNFahSlcJ31gcSWfI7YTWG8DkHuaWItFCiOaUlt0oCG0ORKJlo999a6vNNdfsZLQcVwYAgDmUmlWgexJ9oQCCRDnTrcdAL%2FTPSYpMP+aBCzMB+oViWqs28VBB4lsaJ3OlGzIXZw%2FSkofJ80wIjCTUHJ5cgdfA50jOxPYirddWIXm3PGgotQVHkclr0YEnSFVHToi8HxiSL6gkJN6wDI3FdIAt9vn37oqcO0gmpowIlIz81uWpAFfCzOzrQQijgmbwWwuUsrhnrsMry+bQ0CQvHvprmLYHO+gwmsLtdfLnRkkBV0iqX4cgXx0lKAyq%2F3B4Y0Vow5vROPsBJkkki14IMktDSHgnW3rnoHJuLIN3jv307P%2F8CRTXuB7vJJF8olGvlMjtx7xw24A80Hjxnup9hIugyeqeudzkAMkr1uD+tTtjpsD66QOefe+009jJYcokCXnXwjDM2EYguVXWiaunSz1bXUtAlIp1j6pBGxwwDqStpJ5xeSD7rH41GRA3nHBQ6hbWrR1vvlmRFKRf4LWdkYsMqU6gbc%2Fbqcs5mZ6ET63dcoZC2tE%2FYKFizHn84PrU0IAykTZHPCXExxwsSBGpywiYK+AdkcSi94LP8qqCb9T1Vo2CCULcTzWtqchSIIB3QGep3rPX59u3i%2FPzs+wWjOVkcjvHQPKxcI1N7DUbpBVH3cs7u3QPLhhziwK2UcbvWgWJerytJt%2FtHgwCtG7RJn%2FMv0LPyqocv6RqfKysNOYsi05bSzYrOY5ozKI3AskOpJOHwjq5CsFAakC3hnkn%2FM7z+vNfVab7q8%2FVloM%2F5+f%2FisEiomaxRaja4XC03BcitWrVOVN1ZB6I7xphdAJFAa4dX6zqaYreuUJRKhdZ+nwu%2Fvji28i+sz%2Fn5dxwWbYiAPX02n4eDKuMmZI5ysOgzSzS7em8ABKb0+EkwQHngdJzDNtiNgUe2mA2A+ADgPL73ZHWO73et7FkFwjOGnd6PnNkteA2WzyLf1L0lMKLqLnzAePFy+%2Fa6gXPn3r07s%2FfXNoOpQHJGI3E4AA3Xfr9AVoK4tba2em9+fn3uqaqQbtDGfJ1r4zPMmJq5aLbBJhm87os7pwJlG1qtjIvTl4Xw%2FPqlRnje7jxeCwNTgHIT8D5nZmYIB%2FTWg9uvXgH8%2FXkYT+7CnHWt9Tn%2FjnsfuF9FCwJs4Eu%2F0FlqfAPf6J%2FhapnIFA7VyhQPmLT19VWsjQnp3vzaGmzsBYMpPILBUGhzbU0FejK%2FMD%2F%2FYOH3cLv3yXCvsyF9vn+BqJhQl9G4zaCUc0IBoWm9fCeeswHQ7gvwtCfrd4bG%2FVUIA%2FOP1wZjeX79jg4EPA8WfgOgrqU+EIS6tBqEfHAqReSEFqR6Jk1Mb2DCnOHSHT7g88Wbp7d%2F04juw+d9UEsbq4Mgfm919cltFWhzYeEBAC2tA5CFPt81C5rR3JnJwwYVw4lcmZ5q1biufmVIBAVy+TUfvr2ui3T%2FnmncN8bqgg70BPOAQpsDoGF9zs80C1LzGJ%2FjYVuRyWwxlHXL01jARow5q6qjLn1sh+f+oZq2IY76qbLMAw62Yx3ogQq0uPRcAzIy6oUh0ScQKK4VTLyiFAu7Mj6%2Fe8WOqx8asYc6DYzaizcXnafhuQfrq1bq3Nccawho464O9M0UoDHPGWxNR9XiMOKmWegzyEr+GmfkoGyUKwOgar30+mOv%2FXR97sGT1Qk8w0APNm4%2F73fH5+v8%2FKJvdBNxyEAUWFDu6v07FHPRpQMDB5ai9Tdvj35cPAeV7q6CTKsjMHhsGkAPYcIWN+eE%2FqdBPWaM773PetdDPXIZi29BS9AT981cfXIRV8iXEu3vv3jz8ejox4%2F20%2FDtuaUnT1bHgcwKYSDIHQN9DCTgaafdOEjDmgTF4zMC70u6naTzaiCoLUGi%2FcE4KP%2Fx8ahz9KP3+jlmuvsbCLU6vzrAWVgYuP0iHptzT%2FvdMX3+jQ8SubVtdDYLB0DhfHHkmkfjIHlrq%2FR9vRUGZtTtHB1d9H+0gWn99tzc0vyT9QHRg4FCo0ADot5Zr6vVZbiWbspcMskk%2FM5pR75MJ1KiJC01q2aiHSB634WDNz8ueq%2Fb%2FNNw+Mnc3G%2FqnOHYYyi0OAD6NKLPtwuoOhI29eDnFt6wF2jkj1737CCce8zJe6Y5O9CIYLw76l70+hdv28+B6u59NVcMgDZGgEz64CooqWbRBCQNgW8pZZaKua59+aCPEls1Q58D3FGt%2FPGvYzy6xwB1dPrjR%2F8iPLc+rzn6pgloaUkH0sLhd6zPWQ9vJ9ic6lUhDByKhaxRU9hrno3RWltMuV5TUfRRf%2FGm87Fr7BNgpV6H7+qBRwU60YCWBkAmf+99goWGX++EN2BLSoLj1fzYgnWaRkmw670D86g3YOPi07HRV+3+MAE9GQHaBqBLni9wdhAu7HDCmiQSSRdwOsXn0DKTBSJNFZHe3rDD0f9W9ZIGPl7WK1gkrRH+odtrh+9qM%2Fbw4YYGtPlwCY+Nue3ed50GpusM+3tCdSjYlHHmFW6LgS4VF7vBtSeac4KnmRR6+fKgWS++%2FtdH2AX7lwq0rgMtLm4YCulA4YsB0Oc+PhEX97vU08Np6CzAdLFSbesaOWM0pWUbWJh6vf5yMOrVN4D09dPpKQb6bQHUwYZsAKk8MGXhL9%2FPVJwvvX6bRfpRT7gqSlBkjoFTzIKUIXw3BPKDf8pVVRoTULO+++b1x49fv3R7zxcWF7RIOAIECnUx0NnpOcgDUrj0cj0N+w55OMbEKxCl3dc%2F5Gm0Z3Dar17CHMIn%2FlOvFf84+vi1%2F%2Fzuhs6zuGkCWlnegCq%2Fd%2Fbv0+%2F9PhwXtkWNTX5GKnFSgavJePvvhhcxqlzxOMXLe0MC4fGy2ayX3vxx8dwIhMMKLatAF3DIu9dmfSihNcd%2FibnpkigyjJwvlJWrTudp7arRY%2FDapMvV+jAPHofN+ov%2F2b6t2s%2FS4kMz0DIGWn%2Fdx+e74SxI3O%2F2erxuXCYyUNVD9IEQzcYj6OdG1AX9ejxrh%2FXhcXhYPxmkCrAaA2gZj6W76+02C7uNHpys4KgJ4YVlIY3g%2FGtLgYPCOYFD7p8DciadQLT3sj7Gc1gfJNOlSyCVZ%2Fnh43Uayq54wqM1+OgMlZWUAhPPshwHPp%2Fh2J8CUq07ion2TZOFYfDACm0uLup+dXv75BJoZWU+gBv92rLKnuMgexU4fIIajsLhi%2Fb+1Eh4k7x8uD+kzuFAoaUBkEmhpcdL6tl0vKgCu2SFQj7fyrE0E6cFKYevSSOvdUHXZTN2yLrBa7lGa%2F9wZDQx0NLSmEIrjx4tP3qs7WnhljW07WoFWaiVtzg4HuxOIjv6syMKMVuS9wfaTAdafgREa%2Fi0PG5Zp2lRypfZssQrAlwdSEaQD%2F3pmwx4YnDIT5CbByMabd7VAuHK0rIGNLexgnE0IK%2FacSnwgiwoApiyoOThcHDE%2Fhfc7EFd+Sa5hnxg1uhVbV0DgtC8bCi0ovI8WoIucizN0rAtX8rJIjh6vpbl8yz0kX7WuUg0HCd9HjgYoZyASM0B0ObdFS0yD4B0nkeL0Gi30Uqeq8FFHHDBVAsuecPBOW77E7KMRm0%2FHKgtwrwNgMowZSuaWxlTZgL6xRuDqSqJcI0C9KWUhpAh7ddd9JDoWpdKJ+D4PxwWPXypAZ1I678vLU8EInAtD8dDeO2SVzatb%2FteZ1Aog8YT2dgkwh0QIB%2FxDZi4Jo6L0ubvukAryyt3h4AeABBki5oEpwwkuSYkb3YrE%2FXS5Gt9J74jAwNdHZCpflIYAAHS7TEgh90ugj48A%2FuFM8nITaqNSZcmkxaXM8Si6q6mrLSa+YUVLA4kikePVkanLEjAqa6cwgo8rqUjnhsZcAZlbqAnPnuWYfmiUri7AQWjGggfjSkEQDBnPBP1wo0dbhh74PL2dMLk7Yi0PK+vJxd4w7GkGvOe3sINz8dLkGDNRr28CJQYCOFOR%2FT6y2XzDQDwLRIul0FX3xkGn4dDCLenQ1ozdmVOjUOb%2F1h+jJ+4H0q5IeQQPrf9JyIzyENOnrPxC880dl80MuOa8WGoYCi8srYty9sq23oI2upej%2FfnQ2D6Z+5DQoIAXocDSnWYEWjlB%2F4JA9ro8MhBEATy%2FvwNi1QW8ifvHAP7Lo7La2IIjILvFPCnLs%2FWZkuXiJyUy0yXeJIWWLAL44%2F5YCfGtEv0p27VYrqrzX94GDezuep2PyQiSfJvvd3PX3DDqL+Eh5pyy6irIxP6%2F7xllKVG5H9OH+O2Y4gk%2FyZrsbBnyuLGbBM8+28YlOUd9Yxb1%2F19g5x267r%2Fwpv7Gbc%2FTP9NSlnf%2FvD%2FAKzXV90gy68SAAAAAElFTkSuQmCC"></div>
     <div class="ten-web">
       <div class="t1" id="tenDonVi">Trạm Nước sạch và Vệ sinh môi trường Khu vực II</div>
       <div class="t2" id="chuQuan"></div>
@@ -529,14 +722,28 @@
           <div class="goi-y"><span>🔢 Mã đầy đủ: 01.36010116.143</span><span>✂️ Hoặc 4 số cuối: 6143</span><span>👤 Hoặc họ tên chủ hộ</span></div>
           <div class="loi" id="loiTra"></div>
           <div id="chonMa" class="chon-ma an"></div>
-          <div style="margin-top:10px"><a href="#" id="moMau" style="color:var(--xanh)">📄 Xem mẫu hóa đơn để tìm mã khách hàng</a></div>
-          <div id="khungMau" class="an" style="margin-top:10px">
-            <img id="anhMau" alt="Mẫu giấy biên nhận tiền nước" style="width:100%;max-width:560px;border-radius:8px;border:1px solid var(--vien);min-height:40px">
-            <p class="nho">Mã khách hàng gồm 13 số, in ở dòng "Mã khách hàng" trên giấy biên nhận. Gõ có hoặc không có dấu chấm đều được; không nhớ mã thì gõ họ tên chủ hộ rồi chọn đúng nhà theo thôn/xóm.
-            Tiền nước = Khối lượng tiêu thụ × Đơn giá; cộng thuế GTGT và phí nước thải.</p>
+          <button type="button" class="mo-mau" id="moMau" aria-expanded="false" aria-controls="khungMau">
+            <span class="mm-bieu"><i class="ic" data-ic="receipt"></i></span>
+            <span class="mm-chu"><b>Chưa biết mã khách hàng?</b><small>Bấm xem mẫu hóa đơn – mã in ở dòng “Mã khách hàng”</small></span>
+            <span class="mm-mui" aria-hidden="true">›</span>
+          </button>
+          <div id="khungMau" class="an">
+            <img id="anhMau" alt="Mẫu giấy biên nhận tiền nước">
+            <div class="mm-meo">
+              <div><b>🔢 Mã đầy đủ</b>13 số, VD 01.36010116.143 – có hoặc không có dấu chấm đều được</div>
+              <div><b>✂️ Gõ tắt</b>Chỉ cần 4 số cuối, VD 6143</div>
+              <div><b>👤 Quên mã</b>Gõ họ tên chủ hộ rồi chọn đúng nhà theo thôn/xóm</div>
+            </div>
+            <p class="mm-cong">Tiền nước = Số m³ × Đơn giá, cộng thuế GTGT và phí nước thải.</p>
           </div>
         </div>
         <div id="kqTra"></div>
+        <div class="huong-dan" aria-label="Hướng dẫn">
+          <div class="hd-buoc"><div class="so-b">1</div><div><b>Tìm mã trên hóa đơn</b><span>Dòng “Mã khách hàng” trên giấy biên nhận</span></div></div>
+          <div class="hd-buoc"><div class="so-b">2</div><div><b>Gõ mã hoặc tên</b><span>Mã đầy đủ, 4 số cuối hoặc họ tên chủ hộ</span></div></div>
+          <div class="hd-buoc"><div class="so-b">3</div><div><b>Xem tiền, nộp an toàn</b><span>Chỉ nộp cho đúng cán bộ của trạm</span></div></div>
+        </div>
+        <div class="an-toan"><i class="ic" data-ic="shield"></i><div><b>Trạm không bao giờ</b> gọi điện xin mật khẩu, mã OTP hay yêu cầu chuyển tiền vào tài khoản lạ. Nghi ngờ lừa đảo, quý khách gọi ngay cho trạm.</div></div>
       </div>
       <div>
         <div class="the o-tat-khung"><h3><i class="ic" data-ic="grid"></i> Phím tắt nhanh</h3>
@@ -593,7 +800,7 @@
     <div class="luoi2">
       <div class="the">
         <h2><i class="ic" data-ic="wrench"></i> Báo hỏng / Yêu cầu sửa chữa</h2>
-        <div class="khung-goi-gap">🚨 Trường hợp vỡ ống lớn, nước phun mạnh, quý khách vui lòng <b>gọi ngay trạm phó:</b> <span id="scGoiGap" class="hang" style="gap:6px"></span></div>
+        <div class="khung-goi-gap"><div class="kg-dau">🚨 Vỡ ống lớn, nước phun mạnh – quý khách vui lòng gọi ngay:</div><div class="kg-luoi" id="scGoiGap"></div></div>
         <form id="fSC" autocomplete="off">
           <div class="buoc"><i>1</i> Quý khách vui lòng chọn loại sự cố</div>
           <div class="o-hanh-vi xanh" id="scLoaiO" role="radiogroup" aria-label="Loại sự cố"></div>
@@ -604,8 +811,7 @@
           </div>
           <div class="nho" id="scViTriKQ" style="margin-top:4px"></div>
           <input type="hidden" id="scLat"><input type="hidden" id="scLng">
-          <a href="#" class="nho" id="scMoLink" style="color:var(--xanh)">+ Dán link Google Maps</a>
-          <input id="scLink" class="day an" placeholder="Link Google Maps (maps.app.goo.gl/…)" maxlength="500" style="margin-top:6px">
+          <div class="o-link"><i class="ic" data-ic="pin"></i><input id="scLink" class="day" placeholder="Dán link Google Maps (nếu có)" maxlength="500" inputmode="url" aria-label="Link Google Maps"></div>
           <div class="buoc"><i>3</i> Số điện thoại để thợ của trạm liên hệ</div>
           <input id="scSdt" class="day" placeholder="Số điện thoại" inputmode="tel" maxlength="16" aria-label="Số điện thoại">
           <div class="buoc"><i>4</i> Mô tả thêm về sự cố <span class="tuy-chon">(không bắt buộc)</span></div>
@@ -669,8 +875,7 @@
           </div>
           <div class="nho" id="bcViTriKQ" style="margin-top:4px"></div>
           <input type="hidden" id="bcLat"><input type="hidden" id="bcLng">
-          <a href="#" class="nho" id="bcMoLink" style="color:var(--xanh)">+ Dán link Google Maps</a>
-          <input id="bcLink" class="day an" placeholder="Link Google Maps (maps.app.goo.gl/…)" maxlength="500" style="margin-top:6px">
+          <div class="o-link"><i class="ic" data-ic="pin"></i><input id="bcLink" class="day" placeholder="Dán link Google Maps (nếu có)" maxlength="500" inputmode="url" aria-label="Link Google Maps"></div>
           <div class="buoc"><i>3</i> Mô tả ngắn sự việc</div>
           <textarea id="bcNoiDung" maxlength="800" rows="3" placeholder="Sự việc, thời gian phát hiện… VD: tối 3/11 thấy ống nhựa nối thẳng từ ống chính vào bể"></textarea>
           <div class="buoc"><i>4</i> Số điện thoại để trạm liên hệ xác minh và trả thưởng</div>
@@ -866,13 +1071,14 @@
       <div class="the an" id="khungDoiMK" style="max-width:480px">
         <h3>Đổi mật khẩu</h3>
         <form id="fDoiMK" autocomplete="off">
-          <label class="nhan-o" for="mkCu">Mật khẩu hiện tại</label><input id="mkCu" type="password" class="day" maxlength="60">
-          <label class="nhan-o" for="mkMoi">Mật khẩu mới (ít nhất 6 ký tự)</label><input id="mkMoi" type="password" class="day" maxlength="60">
-          <label class="nhan-o" for="mkMoi2">Nhập lại mật khẩu mới</label><input id="mkMoi2" type="password" class="day" maxlength="60">
+          <label class="nhan-o" for="mkCu">Mật khẩu hiện tại</label><input id="mkCu" type="password" class="day" maxlength="60" autocomplete="current-password">
+          <label class="nhan-o" for="mkMoi">Mật khẩu mới (ít nhất 6 ký tự)</label><input id="mkMoi" type="password" class="day" maxlength="60" autocomplete="new-password">
+          <div class="dong-mk">Nên kết hợp chữ, số và ký tự như @ # ! (ít nhất 8 ký tự càng tốt). Không dùng 123456, 111111, số điện thoại.</div>
+          <label class="nhan-o" for="mkMoi2">Nhập lại mật khẩu mới</label><input id="mkMoi2" type="password" class="day" maxlength="60" autocomplete="new-password">
           <div class="hang" style="margin-top:10px"><button class="nut" id="nutLuuMK" type="submit">Lưu</button><button class="nut phu" id="nutHuyMK" type="button">Đóng</button><span class="nho" id="kqDoiMK"></span></div>
         </form>
       </div>
-      <div id="canhPin" class="canhbao an">Tài khoản đang dùng mật khẩu mặc định 123456 – bấm "Đổi mật khẩu" ngay.</div>
+      <div id="canhPin" class="canhbao an"><span>🔒</span><span>Vì an toàn, tài khoản đang dùng <b>mật khẩu mặc định</b>. Anh/chị cần đổi sang mật khẩu riêng trước khi xem số liệu và quản lý.</span></div>
       <div class="nhom-nb" id="nhomNB">
         <button type="button" data-nb="sanLuong" class="on"><span class="bieu">📊</span>Sản lượng</button>
         <button type="button" data-nb="phieu"><span class="bieu">📥</span>Phiếu khách gửi<span class="huy-hieu" id="demNhomPhieu"></span></button>
@@ -885,6 +1091,7 @@
         <button data-nb="sanLuong" data-sub="soSanh">📈 So sánh theo tháng</button>
         <button data-nb="sanLuong" data-sub="nghiNgo">🔎 Nghi ngờ vi phạm</button>
         <button data-nb="phieu" data-sub="suaChuaNB">🔧 Báo hỏng <span class="huy-hieu" id="demSC"></span></button>
+        <button data-nb="phieu" data-sub="nopTienNB">💳 Khách báo nộp tiền <span class="huy-hieu" id="demNT"></span></button>
         <button data-nb="phieu" data-sub="henThuNB">💵 Hẹn thu tiền <span class="huy-hieu" id="demHT"></span></button>
         <button data-nb="phieu" data-sub="yeuCauNB">🧪 Kiểm tra chất lượng nước <span class="huy-hieu" id="demYC"></span></button>
         <button data-nb="phieu" data-sub="lienHeNB">📝 Liên hệ / đổi TT <span class="huy-hieu" id="demLH"></span></button>
@@ -955,6 +1162,7 @@
           <h3><i class="ic" data-ic="alert"></i> Nghi ngờ vi phạm – cần kiểm tra thực tế</h3>
           <p class="nho" style="margin-top:0">Tự lọc từ số liệu chốt số các tháng. Bấm vào từng ô dấu hiệu để lọc; mỗi thẻ là 1 hộ, biểu đồ nhỏ là m³ từng tháng (tháng bất thường tô đỏ). Ngưỡng sửa trong Cấu hình: nguong_thang_0, nguong_tang_lan, nguong_m3_lon.</p>
           <div class="nn-tong" id="nnTong"></div>
+          <div id="nnKhuBD"></div>
           <div class="hang" style="margin-top:8px">
             <select id="nnKhu"><option value="">Tất cả khu</option></select>
             <input id="nnTim" placeholder="Tìm tên, mã…" style="flex:1;min-width:150px">
@@ -1008,6 +1216,17 @@
         <div id="dsBC"></div>
       </div>
 
+      <div id="sub_nopTienNB" class="an">
+        <div class="the">
+          <div class="hang"><h3 style="margin:0;flex:1">💳 Khách báo nộp tiền – đánh dấu đã nộp hay chưa</h3>
+            <select id="ntLoc"><option value="chua">Chưa nộp</option><option value="">Tất cả</option><option value="roi">Đã nộp</option></select>
+            <button class="nut phu nho-nut" id="ntTaiLai" type="button">Tải lại</button></div>
+          <div class="nho">Khách tra cứu → bấm "Nộp tiền" → bấm <b>Gọi</b>, <b>Zalo</b> hoặc <b>Sao chép</b> thì hiện ở đây. Nhận được tiền thì tích <b>Đã nộp tiền</b>.</div>
+          <div class="nt-tom" id="ntTom"></div>
+          <div class="loi" id="loiNT"></div>
+        </div>
+        <div class="nt-luoi" id="dsNT"></div>
+      </div>
       <div id="sub_henThuNB" class="an">
         <div class="the">
           <div class="hang"><h3 style="margin:0;flex:1">💵 Khách hẹn nộp tiền – cần gọi lại</h3>
@@ -1149,7 +1368,9 @@
 <footer class="chan">
   <div>© <span id="namNay"></span> <span id="tenChan">Trạm Nước sạch và Vệ sinh môi trường Khu vực II</span></div>
   <div class="tk">Designer: <span id="thietKe">Nguyễn Văn Phong</span></div>
+  <div class="bm"><i class="ic" data-ic="shield"></i>Kết nối mã hóa HTTPS · Mật khẩu lưu dạng mã hóa · Tự đăng xuất sau 30 phút không thao tác</div>
 </footer>
+<div id="thongBaoTuDong" role="status" aria-live="polite"></div>
 
 <nav class="menu-duoi">
   <button data-nhom="traCuu" class="on"><i class="ic lon-ic" data-ic="search"></i>Tra cứu</button>
@@ -1226,6 +1447,8 @@
 
   // ---------- bộ icon nét (SVG) ----------
   const ICON = {
+    receipt: '<path d="M6 2h12v20l-3-2-3 2-3-2-3 2V2Z"/><path d="M9 7h6M9 11h6M9 15h4"/>',
+    shield: '<path d="M12 2 4 5v6c0 5 3.4 9.4 8 11 4.6-1.6 8-6 8-11V5l-8-3Z"/><path d="m9 12 2 2 4-4"/>',
     search: '<circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/>',
     flask: '<path d="M9 3h6M10 3v6L4.5 18a2 2 0 0 0 1.7 3h11.6a2 2 0 0 0 1.7-3L14 9V3"/><path d="M7 15h10"/>',
     wrench: '<path d="M14.7 6.3a4 4 0 0 0 5 5L13 18a2.1 2.1 0 0 1-3-3l6.7-6.7Z"/><path d="M14.7 6.3 18 3l3 3-3.3 3.3"/><path d="m5 19 2 2"/>',
@@ -1309,7 +1532,7 @@
       + '<path d="M0 120 C180 60 300 160 480 110 S800 40 980 100 S1300 170 1440 90 V220 H0 Z" fill="url(#s1)"/>'
       + '<path d="M0 160 C200 110 340 200 560 150 S900 90 1100 150 S1340 200 1440 140 V220 H0 Z" fill="url(#s1)"/>'
       + '<path d="M0 195 C240 160 420 215 640 185 S1000 150 1200 190 S1380 210 1440 180 V220 H0 Z" fill="#1e88e5" fill-opacity=".12"/></svg>';
-    $('logo').innerHTML = '<svg viewBox="0 0 64 64" width="80%" height="80%" aria-hidden="true"><circle cx="32" cy="32" r="30" fill="#e3f2fd"/>'
+    if (!$('logo').querySelector('img')) $('logo').innerHTML = '<svg viewBox="0 0 64 64" width="80%" height="80%" aria-hidden="true"><circle cx="32" cy="32" r="30" fill="#e3f2fd"/>'
       + '<path d="M32 9 C24 21 17 29 17 38 a15 15 0 0 0 30 0 C47 29 40 21 32 9Z" fill="#1e88e5"/>'
       + '<path d="M22 41 q5 -4 10 0 t10 0" stroke="#fff" stroke-width="2.6" fill="none" stroke-linecap="round"/>'
       + '<path d="M24 47 q4 -3 8 0 t8 0" stroke="#bbdefb" stroke-width="2.2" fill="none" stroke-linecap="round"/>'
@@ -1346,15 +1569,19 @@
   }
   // menu bay: rê chuột (máy tính) hoặc chạm (điện thoại) vào nhóm nhiều mục → hiện luôn các mục con
   let hgBay = 0, tBay = 0;
+  // Chrome mới tính getBoundingClientRect theo điểm ảnh đã phóng to; Chrome cũ thì không → đo thực tế để quy đổi
+  const HE_SO_ZOOM = () => { const z = parseFloat(getComputedStyle(document.documentElement).zoom) || 1; if (z === 1) return 1;
+    const d = document.createElement('div'); d.style.cssText = 'position:fixed;left:0;top:0;width:100px;height:1px;visibility:hidden'; document.body.appendChild(d); const w = d.getBoundingClientRect().width; d.remove(); return w > 101 ? z : 1; };
   function moBay(b) {
     const g = b.dataset.nhom, ds = NHOM[g]; if (!ds || ds.length < 2) { $('menuBay').classList.remove('mo'); return; }
     const mb = $('menuBay'), dangMo = document.querySelector('section:not(.an)');
     mb.innerHTML = ds.map(x => `<button type="button" role="menuitem" data-bay="${x[0]}" class="${dangMo && dangMo.id === x[0] ? 'on' : ''}">${ic(x[1])}${esc(x[2])}${x[0] === 'thongBaoTab' && DEM_TB ? ' <span class="huy-hieu">' + DEM_TB + '</span>' : ''}</button>`).join('');
     mb.classList.add('mo'); tBay = Date.now();
-    const r = b.getBoundingClientRect(), w = mb.offsetWidth, h = mb.offsetHeight;
-    const trai = Math.max(8, Math.min(window.innerWidth - w - 8, r.left + r.width / 2 - w / 2));
+    const Z = HE_SO_ZOOM(), r = b.getBoundingClientRect(), w = mb.offsetWidth, h = mb.offsetHeight;
+    const rong = window.innerWidth / Z, l = r.left / Z, rw = r.width / Z;
+    const trai = Math.max(8, Math.min(rong - w - 8, l + rw / 2 - w / 2));
     mb.style.left = trai + 'px';
-    mb.style.top = (b.closest('.menu-duoi') ? r.top - h - 8 : r.bottom + 6) + 'px';
+    mb.style.top = (b.closest('.menu-duoi') ? r.top / Z - h - 8 : r.bottom / Z + 6) + 'px';
     $$('#menuBay [data-bay]').forEach(x => x.onclick = e => { e.stopPropagation(); moTab(x.dataset.bay); });
   }
   const coChuot = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
@@ -1479,7 +1706,7 @@
     $('thietKe').textContent = c.thietKe;
     if (c.thongBao) { $('thongBao').textContent = '📢 ' + c.thongBao; $('thongBao').classList.remove('an'); }
     if (c.canhBaoGia) { $('giaMau').textContent = '⚠️ ' + c.canhBaoGia; $('giaMau').classList.remove('an'); }
-    if (c.coLogo) goi('layAnh', 'logo').then(b64 => { if (b64) $('logo').innerHTML = `<img alt="Logo" src="data:image/png;base64,${b64}">`; });
+    if (c.coLogo) goi('layAnh', 'logo').then(b64 => { if (b64 && b64.length > 200) { const im = new Image(); im.alt = 'Logo'; im.onload = () => { const cu = $('logo').querySelector('img'); if (cu) cu.src = im.src; else $('logo').replaceChildren(im); }; im.src = 'data:image/png;base64,' + b64; } }).catch(() => {});
     // ảnh nền (sheet Anh, khóa "nen") – tải xong mới hiện, trước đó dùng trống đồng vẽ sẵn
     if (c.coNen) goi('layAnh', 'nen').then(b64 => { if (!b64) return; const im = new Image(); im.onload = () => { $('nen').style.backgroundImage = 'url(' + im.src + ')'; $('nen').classList.add('anh'); document.body.classList.add('co-nen'); }; im.src = 'data:image/jpeg;base64,' + b64; }).catch(() => {});
 
@@ -1531,7 +1758,8 @@
     $('dsCanBo').innerHTML = `<div class="bn-canh" style="margin-top:0">⚠️ Chỉ nộp tiền khi đã nhận <b>hóa đơn / giấy biên nhận ghi đủ thông tin và số tiền</b>, và chỉ nộp cho đúng cán bộ dưới đây.</div>`
       + (thu.length ? thu.map(x => nutGoiHTML({ nhan: x.ten + ' · ' + x.chucVu, so: dinhSdt(x.sdt), tel: x.sdt })).join('') : (canBo.concat(dsSo).map(nutGoiHTML).join('') || '<span class="nho">Đang cập nhật.</span>'));
     $('dsCanBo').querySelectorAll('a.goi').forEach(a => a.classList.add('goi-tt'));
-    $('scGoiGap').innerHTML = (phoTram.length ? phoTram.map(x => ({ nhan: x.ten, so: x.so, tel: x.tel })) : dsSo).map(x => `<a class="goi" href="tel:${esc(x.tel)}">${ic('phone')}<div><b>${esc(x.nhan.replace(/^Sửa chữa · /, ''))}</b><span>${esc(x.so)}</span></div></a>`).join('') || '<span class="nho">gọi trạm</span>';
+    const soTram = dsSo.map(x => ({ nhan: 'Trạm ' + x.nhan.replace(/^(Sửa chữa|Trạm)\s*·?\s*/i, '').replace(/^Trạm\s+/i, ''), so: x.so, tel: x.tel, tram: true }));
+    $('scGoiGap').innerHTML = soTram.concat(phoTram.map(x => ({ nhan: 'Đ/c ' + x.ten.split(' ').slice(-1)[0] + ' – Trạm phó', so: x.so, tel: x.tel }))).map(x => `<a class="goi ${x.tram ? 'kg-tram' : ''}" href="tel:${esc(x.tel)}">${ic('phone')}<div><b>${esc(x.nhan.replace(/^Trạm $/, 'Trạm'))}</b><span>${esc(x.so)}</span></div></a>`).join('') || '<span class="nho">Trạm đang cập nhật số điện thoại.</span>';
     // dòng chữ chạy cảnh báo lừa đảo
     const ld = (c.canhBaoLuaDao || []).filter(Boolean);
     if (ld.length) {
@@ -1565,7 +1793,7 @@
   $('thuNhom').onchange = $('thuM3').oninput;
   let daTaiAnh = false;
   $('moMau').onclick = e => {
-    e.preventDefault(); $('khungMau').classList.toggle('an');
+    e.preventDefault(); const mo = $('khungMau').classList.toggle('an') === false; $('moMau').setAttribute('aria-expanded', String(mo));
     if (!daTaiAnh) { daTaiAnh = true; goi('layAnh', 'mau_hoa_don').then(b64 => { if (b64) $('anhMau').src = 'data:image/jpeg;base64,' + b64; }).catch(() => { daTaiAnh = false; }); }
   };
   // Biểu đồ cột đơn giản bằng HTML/CSS (không cần thư viện)
@@ -1658,8 +1886,11 @@
     $('nenNop').classList.add('mo'); document.body.style.overflow = 'hidden';
     ghiTC(ho ? 'Mở nộp tiền hộ' : 'Mở nộp tiền', TC.ma);
     $('bnDongY').onchange = () => { const on = $('bnDongY').checked; $('bnDs').classList.toggle('khoa', !on); $('bnThem').classList.toggle('khoa', !on); };
-    $$('#bnDs a').forEach(a => a.onclick = () => ghiTC((a.classList.contains('zalo') ? 'Nộp tiền – nhắn Zalo ' : 'Nộp tiền – gọi ') + a.dataset.ten, TC.ma));
+    const maNop = TC.ma;
+    const baoNop = (cach, canBo) => goi('ghiNopTien', { ma: maNop, cach: cach, canBo: canBo || '', ho: !!ho }).catch(() => {});
+    $$('#bnDs a').forEach(a => a.onclick = () => { const zl = a.classList.contains('zalo'); ghiTC((zl ? 'Nộp tiền – nhắn Zalo ' : 'Nộp tiền – gọi ') + a.dataset.ten, maNop); baoNop(zl ? 'Zalo' : 'Gọi', a.dataset.ten); });
     $('bnChep').onclick = () => {
+      baoNop('Sao chép', '');
       const xong = () => { $('bnChepKQ').textContent = '✓ Đã sao chép. Mở Zalo cán bộ rồi dán vào ô tin nhắn.'; };
       try { navigator.clipboard.writeText(noiDung).then(xong, () => { window.prompt('Sao chép nội dung:', noiDung); }); } catch (e) { window.prompt('Sao chép nội dung:', noiDung); }
     };
@@ -1683,7 +1914,7 @@
   function veCoCau(ds) {
     const the = x => `<div class="cc-the ${/Trạm trưởng/i.test(x.chucVu) ? 'dau' : ''}"><div class="av">${esc(chuDau(x.ten))}</div><div class="tt">
         <div class="ten">${esc(x.ten)}</div><div class="cv">${esc(x.chucVu)}</div>
-        ${x.sdt ? `<div class="nut-cc"><a class="goi2" href="tel:${esc(x.sdt)}">${esc(dinhSdt(x.sdt))}</a><a class="zalo" href="${URL_ZALO}${esc(x.sdt)}" target="_blank" rel="noopener">Zalo</a></div>` : ''}</div></div>`;
+        ${x.sdt ? `<div class="so-cc">${ic('phone')}${esc(dinhSdt(x.sdt))}</div><div class="nut-cc"><a class="goi-cc" href="tel:${esc(x.sdt)}" aria-label="Gọi ${esc(x.ten)}">${ic('phone')}Gọi</a><a class="zalo" href="${URL_ZALO}${esc(x.sdt)}" target="_blank" rel="noopener" aria-label="Nhắn Zalo ${esc(x.ten)}">Zalo</a></div>` : ''}</div></div>`;
     const nhom = [['Lãnh đạo trạm', x => /Trạm trưởng|Trạm phó/i.test(x.chucVu)], ['Quản lý địa bàn', x => /Quản lý địa bàn/i.test(x.chucVu)], ['Bộ phận khác', x => !/Trạm trưởng|Trạm phó|Quản lý địa bàn/i.test(x.chucVu)]];
     $('dsCoCau').innerHTML = ds.length ? nhom.map(([ten, f]) => { const d = ds.filter(f); return d.length ? `<div class="cc-nhom">${esc(ten)}</div><div class="cc-luoi">${d.map(the).join('')}</div>` : ''; }).join('') : '<div class="the">Đang cập nhật.</div>';
   }
@@ -1772,10 +2003,8 @@
     }, e => { $(kq).textContent = 'Không lấy được vị trí (' + (e.code === 1 ? 'chưa cho phép định vị' : 'tín hiệu yếu') + ') – dán link bản đồ hoặc ghi địa chỉ.'; }, { enableHighAccuracy: true, timeout: 15000, maximumAge: 0 });
   }
   $('nutGhim').onclick = () => ghimViTri('scViTriKQ', 'scLat', 'scLng');
-  $('scMoLink').onclick = e => { e.preventDefault(); $('scLink').classList.remove('an'); $('scMoLink').classList.add('an'); $('scLink').focus(); };
   $('bcGhim').onclick = () => ghimViTri('bcViTriKQ', 'bcLat', 'bcLng');
   $('bcCoTen').onchange = () => $('bcKhungKH').classList.toggle('an', !$('bcCoTen').checked);
-  $('bcMoLink').onclick = e => { e.preventDefault(); $('bcLink').classList.remove('an'); $('bcMoLink').classList.add('an'); $('bcLink').focus(); };
   $('fSC').onsubmit = e => {
     e.preventDefault();
     $('loiSC').textContent = ''; $('kqSC').innerHTML = '';
@@ -1958,13 +2187,16 @@
     $('chuDangNhap').textContent = r.ten; $('nutDangNhap').classList.add('on'); $('nutDangNhap').title = 'Nội bộ – ' + r.ten;
     $('khungPin').classList.add('an'); $('khungNoiBo').classList.remove('an'); $('khungDoiMK').classList.add('an');
     $('canhPin').classList.toggle('an', !r.mkMacDinh);
-    $('demYC').textContent = r.ycMoi || ''; $('demLH').textContent = r.lhMoi || ''; $('demBC').textContent = r.bcMoi || ''; $('demSC').textContent = r.scMoi || ''; $('demCN').textContent = r.cnMoi || ''; $('demDL').textContent = r.dlMoi || ''; $('demHT').textContent = r.htMoi || ''; demNhom();
+    $('khungNoiBo').classList.toggle('bat-doi', !!r.mkMacDinh);
+    if (r.mkMacDinh) { $('khungDoiMK').classList.remove('an'); $('kqDoiMK').textContent = ''; setTimeout(() => $('mkCu').focus(), 60); return; }
+    $('demYC').textContent = r.ycMoi || ''; $('demLH').textContent = r.lhMoi || ''; $('demBC').textContent = r.bcMoi || ''; $('demSC').textContent = r.scMoi || ''; $('demCN').textContent = r.cnMoi || ''; $('demDL').textContent = r.dlMoi || ''; $('demHT').textContent = r.htMoi || ''; $('demNT').textContent = r.ntMoi || ''; demNhom();
     $('canhBao').classList.toggle('an', !!r.coBao);
     $('chonThang').innerHTML = r.thangs.map(t => `<option>${esc(t)}</option>`).join('');
     if (r.thangs.length) { if (!BC) taiBaoCao(); } else $('loiNB').textContent = 'Chưa có số liệu chỉ số.';
   }
   function thoatNoiBo(loi) {
-    TK = ''; ND = null; BC = null; SS = null; BCN = null; luuPhien('');
+    TK = ''; ND = null; BC = null; SS = null; BCN = null; luuPhien(''); $('khungNoiBo').classList.remove('bat-doi');
+    ['mkCu', 'mkMoi', 'mkMoi2'].forEach(id => { $(id).value = ''; });
     document.body.classList.remove('la-adm');
     $('chuDangNhap').textContent = 'Đăng nhập'; $('nutDangNhap').classList.remove('on'); $('nutDangNhap').title = 'Đăng nhập nội bộ';
     $('khungNoiBo').classList.add('an'); $('khungPin').classList.remove('an'); $('pin').value = ''; $('dnLoaiNB').checked = true; chonLoaiDN();
@@ -1986,14 +2218,28 @@
     if (moi.length < 6) { $('kqDoiMK').textContent = 'Mật khẩu mới ít nhất 6 ký tự.'; return; }
     if (moi !== moi2) { $('kqDoiMK').textContent = 'Hai lần nhập mật khẩu mới không khớp.'; return; }
     $('nutLuuMK').disabled = true;
-    goiNB('doiMatKhau', cu, moi).then(() => { $('kqDoiMK').textContent = 'Đã đổi mật khẩu ✓'; $('mkCu').value = $('mkMoi').value = $('mkMoi2').value = ''; $('canhPin').classList.add('an'); })
+    goiNB('doiMatKhau', cu, moi).then(() => { const batDoi = $('khungNoiBo').classList.contains('bat-doi'); $('kqDoiMK').textContent = 'Đã đổi mật khẩu ✓'; $('mkCu').value = $('mkMoi').value = $('mkMoi2').value = ''; $('canhPin').classList.add('an');
+        if (batDoi) { $('khungNoiBo').classList.remove('bat-doi'); goiNB('kiemTraPhien').then(vaoNoiBo); baoNhanh('✅ Đã đổi mật khẩu. Từ lần sau đăng nhập bằng mật khẩu mới.'); } })
       .catch(e => $('kqDoiMK').textContent = e).finally(() => $('nutLuuMK').disabled = false);
   };
+  // ---------- bảo mật: tự đăng xuất sau 30 phút không thao tác ----------
+  function baoNhanh(t, ms) { const b = $('thongBaoTuDong'); b.textContent = t; b.classList.add('mo'); clearTimeout(baoNhanh.h); baoNhanh.h = setTimeout(() => b.classList.remove('mo'), ms || 5000); }
+  const NGHI_TOI_DA = 30 * 60 * 1000; let lanCuoi = Date.now();
+  ['pointerdown', 'keydown', 'touchstart', 'wheel'].forEach(ev => document.addEventListener(ev, () => { lanCuoi = Date.now(); }, { passive: true, capture: true }));
+  function kiemNghi() {
+    if (Date.now() - lanCuoi < NGHI_TOI_DA || (!TK && !TKKH)) return;
+    const t = TK, k = TKKH;
+    if (t) { thoatNoiBo('Đã tự đăng xuất sau 30 phút không thao tác để bảo vệ tài khoản. Anh/chị đăng nhập lại.'); goi('dangXuat', t).catch(() => {}); }
+    if (k) { goi('khDangXuat', k).catch(() => {}); thoatKH(); }
+    baoNhanh('🔒 Đã tự đăng xuất sau 30 phút không thao tác để bảo vệ tài khoản.', 8000);
+  }
+  setInterval(kiemNghi, 30000);
+  document.addEventListener('visibilitychange', () => { if (!document.hidden) kiemNghi(); });
   // tải lại trang vẫn giữ đăng nhập (trong phiên trình duyệt)
   { const t = docPhien(); if (t) { TK = t; goi('kiemTraPhien', t).then(vaoNoiBo).catch(() => { TK = ''; luuPhien(''); }); } }
   $$('#tabNB button').forEach(b => b.onclick = () => {
     moSub('tabNB', 'sub', b.dataset.sub);
-    ['baoCao', 'baoCaoNam', 'soSanh', 'nghiNgo', 'suaChuaNB', 'henThuNB', 'yeuCauNB', 'lienHeNB', 'baoCaoNB', 'datLaiNB', 'duyetCN', 'qtTruyCap', 'qtKH', 'qtChiSo', 'qtTaiKhoan', 'qtCauHinh', 'qtNhatKy'].forEach(t => $('sub_' + t).classList.toggle('an', t !== b.dataset.sub));
+    ['baoCao', 'baoCaoNam', 'soSanh', 'nghiNgo', 'suaChuaNB', 'nopTienNB', 'henThuNB', 'yeuCauNB', 'lienHeNB', 'baoCaoNB', 'datLaiNB', 'duyetCN', 'qtTruyCap', 'qtKH', 'qtChiSo', 'qtTaiKhoan', 'qtCauHinh', 'qtNhatKy'].forEach(t => $('sub_' + t).classList.toggle('an', t !== b.dataset.sub));
     if (b.dataset.sub === 'qtTaiKhoan') taiTK();
     if (b.dataset.sub === 'qtCauHinh') taiCH();
     if (b.dataset.sub === 'qtNhatKy') taiNK();
@@ -2006,6 +2252,7 @@
     if (b.dataset.sub === 'baoCaoNB') taiBC();
     if (b.dataset.sub === 'duyetCN') taiCN();
     if (b.dataset.sub === 'henThuNB') taiHT();
+    if (b.dataset.sub === 'nopTienNB') taiNT();
     if (b.dataset.sub === 'datLaiNB') taiDL();
     if (b.dataset.sub === 'qtTruyCap') taiTC();
     CUOI_NB[b.dataset.nb] = b.dataset.sub; ghiTC('Nội bộ', b.textContent.replace(/\d+\s*$/, '').trim());
@@ -2020,10 +2267,38 @@
   $$('#nhomNB button').forEach(b => b.onclick = () => chonNhomNB(b.dataset.nb, true));
   function demNhom() {
     const n = ids => ids.reduce((a, id) => a + (Number($(id).textContent) || 0), 0);
-    $('demNhomPhieu').textContent = n(['demSC', 'demHT', 'demYC', 'demLH', 'demBC']) || '';
+    $('demNhomPhieu').textContent = n(['demSC', 'demNT', 'demHT', 'demYC', 'demLH', 'demBC']) || '';
     $('demNhomDuyet').textContent = n(['demDL', 'demCN']) || '';
   }
   chonNhomNB('sanLuong', false);
+  // ---------- khách báo nộp tiền (nội bộ): tích đã nộp / chưa ----------
+  let NT = [];
+  function taiNT() {
+    $('loiNT').textContent = ''; $('dsNT').innerHTML = '<div class="the nho">Đang tải…</div>';
+    goiNB('dsNopTien').then(r => { NT = r; hienNT(); }).catch(e => { $('loiNT').textContent = e; $('dsNT').innerHTML = ''; });
+  }
+  function hienNT() {
+    const loc = $('ntLoc').value, chua = NT.filter(x => !x.daNop);
+    const ds = NT.filter(x => !loc || (loc === 'chua' ? !x.daNop : x.daNop));
+    $('demNT').textContent = chua.length || ''; demNhom();
+    const tongChua = chua.reduce((a, x) => a + (x.tien || 0), 0), roi = NT.filter(x => x.daNop);
+    $('ntTom').innerHTML = `<div><span>Chưa nộp</span><b class="do">${so(chua.length)} hộ</b><small>${tien(tongChua)}</small></div><div><span>Đã nộp</span><b class="la">${so(roi.length)} hộ</b><small>${tien(roi.reduce((a, x) => a + (x.tien || 0), 0))}</small></div>`;
+    const bieu = { 'Gọi': '📞', 'Zalo': '💬', 'Sao chép': '📋' };
+    $('dsNT').innerHTML = ds.length ? ds.map(x => `<div class="nt-the ${x.daNop ? 'xong' : ''}" data-dong="${x.dong}">
+        <div class="nt-dau"><div><b class="nt-ten">${hoTen(x.ten, x.ma)}</b>${x.ho ? ' <span class="nhan vang">Nộp hộ</span>' : ''}<div class="nho">${esc(x.xom)}${x.khu ? ', ' + esc(x.khu) : ''}</div></div>
+          <div class="nt-tien">${x.tien ? tien(x.tien) : '–'}<span>Tháng ${esc(x.thang || '–')}</span></div></div>
+        <div class="nt-ct"><span>🕒 ${esc(x.tg)}</span><span>${String(x.cach || '').split(', ').filter(Boolean).map(c => (bieu[c] || '') + ' ' + esc(c)).join(' · ')}</span>${x.canbo ? `<span>👤 Khách chọn: <b>${esc(x.canbo)}</b></span>` : ''}</div>
+        <label class="nt-tich"><input type="checkbox" class="ntChon" ${x.daNop ? 'checked' : ''}><span class="nt-hop"></span><span class="nt-chu">${x.daNop ? `<b>Đã nộp tiền</b><small>${esc(x.nv)} xác nhận lúc ${esc(x.tgxn)}</small>` : '<b>Chưa nộp</b><small>Tích khi đã nhận đủ tiền</small>'}</span></label>
+      </div>`).join('') : '<div class="the">Không có hộ nào theo bộ lọc.</div>';
+    $$('#dsNT .ntChon').forEach(o => o.onchange = () => {
+      const the = o.closest('.nt-the'), dong = Number(the.dataset.dong), x = NT.find(y => y.dong === dong);
+      if (o.checked && !confirm('Xác nhận hộ ' + x.ten + ' đã nộp ' + (x.tien ? tien(x.tien) : '') + ' tháng ' + x.thang + '?')) { o.checked = false; return; }
+      o.disabled = true;
+      goiNB('xacNhanNopTien', dong, o.checked).then(r => { x.daNop = r.daNop; x.nv = r.nv; x.tgxn = r.tgxn; ghiTC(r.daNop ? 'Xác nhận đã nộp tiền' : 'Bỏ xác nhận nộp tiền', x.ma); hienNT(); })
+        .catch(e => { o.checked = !o.checked; o.disabled = false; $('loiNT').textContent = e; });
+    });
+  }
+  $('ntLoc').onchange = hienNT; $('ntTaiLai').onclick = taiNT;
   // ---------- hẹn thu tiền (nội bộ) ----------
   const TT_HT = ['Mới', 'Đã liên hệ', 'Đã thu tiền', 'Không liên lạc được', 'Hủy'];
   let HT = [];
@@ -2254,35 +2529,60 @@
   let nnHien = 40, nnLoc = '';
   // biểu đồ nhỏ m³ từng tháng của 1 hộ, tháng bất thường tô đỏ
   function spark(m, thangs, x) {
-    const W = 300, H = 62, n = m.length, vals = m.map(v => v === null ? null : Math.max(0, v));
-    const max = Math.max(1, ...vals.filter(v => v !== null));
-    const co = vals.filter(v => v !== null);
+    // biểu đồ cột m³ từng tháng: máy tính khung rộng, điện thoại khung hẹp – giữ đúng tỉ lệ chữ (không kéo giãn)
+    const mayTinh = window.innerWidth >= 900, W = mayTinh ? 470 : 330, H = mayTinh ? 150 : 132;
+    const L = 30, R = 8, T = 34, B = 22, n = m.length, vals = m.map(v => v === null || v === undefined ? null : Number(v));
+    const duong = vals.filter(v => v !== null).map(v => Math.max(0, v));
+    const max = Math.max(1, ...duong), co = duong.filter(v => v > 0);
     const tb = co.length ? co.reduce((a, v) => a + v, 0) / co.length : 0;
-    const px = i => 10 + i * (W - 20) / Math.max(1, n - 1), py = v => H - 16 - (v / max) * (H - 26);
-    const diem = vals.map((v, i) => v === null ? null : [px(i), py(v)]).filter(Boolean);
-    const duong = diem.map((d, i) => (i ? 'L' : 'M') + d[0].toFixed(1) + ' ' + d[1].toFixed(1)).join(' ');
-    const vung = diem.length ? duong + ' L' + diem[diem.length - 1][0].toFixed(1) + ' ' + (H - 16) + ' L' + diem[0][0].toFixed(1) + ' ' + (H - 16) + ' Z' : '';
-    const lon = x.nn.some(n => n.loai === 'lon'), t0 = (SS && SS.nguongThang0) || 3, lan = (SS && SS.nguongLan) || 3;
-    let chuoi0 = 0; const batThuong = vals.map(() => false);
-    for (let i = n - 1; i >= 0; i--) { if (vals[i] === null) continue; if (vals[i] === 0) chuoi0++; else break; }
-    vals.forEach((v, i) => { if (v === null) return; if (m[i] < 0) batThuong[i] = true; if (chuoi0 >= t0 && i >= n - chuoi0 && v === 0) batThuong[i] = true; if (tb > 0 && v >= lan * tb && v - tb >= 5) batThuong[i] = true; if (lon && i === n - 1 && v > ((SS && SS.nguongLon) || 60)) batThuong[i] = true; });
-    return `<svg class="spark" viewBox="0 0 ${W} ${H}" preserveAspectRatio="none" aria-hidden="true">
-      <path d="${vung}" fill="#1e88e5" fill-opacity=".10"/><path d="${duong}" fill="none" stroke="#1e88e5" stroke-width="2" stroke-linejoin="round"/>
-      ${tb ? `<line x1="10" x2="${W - 10}" y1="${py(tb).toFixed(1)}" y2="${py(tb).toFixed(1)}" stroke="#90a4ae" stroke-dasharray="3 3"/>` : ''}
-      ${vals.map((v, i) => v === null ? '' : `<circle cx="${px(i).toFixed(1)}" cy="${py(v).toFixed(1)}" r="${batThuong[i] ? 4.5 : 2.5}" fill="${batThuong[i] ? '#e53935' : '#1e88e5'}"><title>${esc(thangs[i])}: ${v} m³</title></circle>`).join('')}
-      ${thangs.map((t, i) => (n <= 6 || i % 2 === (n - 1) % 2) ? `<text x="${px(i).toFixed(1)}" y="${H - 3}" font-size="9" text-anchor="middle" fill="#5b6475">T${Number(t.slice(0, 2))}</text>` : '').join('')}</svg>`;
+    const tran = (() => { const b = [1, 2, 5, 10, 20, 25, 50, 100, 200, 250, 500, 1000, 2000, 5000]; const st = b.find(v => v * 4 >= max) || Math.ceil(max / 4); return { st: st, top: st * Math.ceil(max / st) }; })();
+    const cao = H - T - B, py = v => T + cao - (Math.max(0, v) / tran.top) * cao, slot = (W - L - R) / Math.max(1, n), bw = Math.min(30, slot * 0.62);
+    const lon = x.nn.some(k => k.loai === 'lon'), t0 = (SS && SS.nguongThang0) || 3, lan = (SS && SS.nguongLan) || 3, nguongLon = (SS && SS.nguongLon) || 60;
+    let chuoi0 = 0; for (let i = n - 1; i >= 0; i--) { if (vals[i] === null) continue; if (vals[i] === 0) chuoi0++; else break; }
+    const bat = vals.map((v, i) => v !== null && (v < 0 || (chuoi0 >= t0 && i >= n - chuoi0 && v === 0) || (tb > 0 && v >= lan * tb && v - tb >= 5) || (lon && i === n - 1 && v > nguongLon)));
+    const cuoi = (() => { for (let i = n - 1; i >= 0; i--) if (vals[i] !== null) return i; return -1; })();
+    const id = 'g' + Math.random().toString(36).slice(2, 8);
+    let o = `<svg class="spark nn-bd" viewBox="0 0 ${W} ${H}" preserveAspectRatio="xMidYMid meet" role="img" aria-label="m³ từng tháng">
+      <defs><linearGradient id="${id}x" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#42a5f5"/><stop offset="1" stop-color="#0b5394"/></linearGradient>
+      <linearGradient id="${id}d" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ff7043"/><stop offset="1" stop-color="#c62828"/></linearGradient></defs>`;
+    for (let k = 0; k <= tran.top; k += tran.st) { const y = py(k).toFixed(1); o += `<line x1="${L}" x2="${W - R}" y1="${y}" y2="${y}" stroke="${k ? '#e8edf3' : '#c9d3df'}"/><text x="${L - 5}" y="${(+y + 3.5).toFixed(1)}" font-size="10" text-anchor="end" fill="#8a94a6">${so(k)}</text>`; }
+    vals.forEach((v, i) => {
+      const cx = L + slot * i + slot / 2;
+      if (v === null) { o += `<text x="${cx.toFixed(1)}" y="${(T + cao - 3).toFixed(1)}" font-size="11" text-anchor="middle" fill="#c0c8d4">–</text>`; return; }
+      const y = py(v), h = Math.max(v > 0 ? 2 : 0, T + cao - y), dk = bat[i];
+      if (v <= 0) o += `<rect x="${(cx - bw / 2).toFixed(1)}" y="${(T + cao - 3).toFixed(1)}" width="${bw.toFixed(1)}" height="3" rx="1.5" fill="${dk ? '#e53935' : '#b0bec5'}"><title>${esc(thangs[i])}: ${v} m³</title></rect>`;
+      else o += `<rect x="${(cx - bw / 2).toFixed(1)}" y="${(T + cao - h).toFixed(1)}" width="${bw.toFixed(1)}" height="${h.toFixed(1)}" rx="${Math.min(4, bw / 3).toFixed(1)}" fill="url(#${id}${dk ? 'd' : 'x'})" opacity="${dk ? 1 : .85}"><title>${esc(thangs[i])}: ${v} m³</title></rect>`;
+      if (dk || i === cuoi) o += `<text x="${cx.toFixed(1)}" y="${(Math.min(T + cao - 6, y) - 5).toFixed(1)}" font-size="${mayTinh ? 11.5 : 11}" font-weight="800" text-anchor="middle" fill="${dk ? '#c62828' : '#083d6e'}">${so(v)}</text>`;
+      const hienNhan = mayTinh || n <= 7 || (n - 1 - i) % 2 === 0;
+      if (hienNhan) o += `<text x="${cx.toFixed(1)}" y="${H - 6}" font-size="10.5" text-anchor="middle" fill="${dk ? '#c62828' : '#5b6475'}" font-weight="${dk ? 800 : 500}">T${Number(String(thangs[i]).slice(0, 2))}</text>`;
+    });
+    if (tb) { const y = py(tb).toFixed(1); o += `<line x1="${L}" x2="${W - R}" y1="${y}" y2="${y}" stroke="#f59e0b" stroke-width="1.5" stroke-dasharray="5 4"/>`; }
+    // chú thích ở mép trên (không đè lên cột)
+    o += `<line x1="${L}" x2="${L + 18}" y1="11" y2="11" stroke="#f59e0b" stroke-width="2" stroke-dasharray="5 3"/><text x="${L + 23}" y="14.5" font-size="10.5" font-weight="700" fill="#9a5b00">TB ${so(Math.round(tb))} m³</text>`
+      + (bat.some(Boolean) ? `<rect x="${L + 102}" y="5" width="11" height="11" rx="3" fill="url(#${id}d)"/><text x="${L + 118}" y="14.5" font-size="10.5" font-weight="700" fill="#c62828">Tháng bất thường</text>` : '');
+    return o + '</svg>';
   }
+  // biểu đồ ngang: số hộ cần kiểm tra theo khu (bấm để lọc)
+  function bdKhuNN(ds) {
+    const dem = {}; ds.forEach(x => { const k = x[2] || 'Chưa rõ khu'; dem[k] = (dem[k] || 0) + 1; });
+    const ks = Object.keys(dem).sort((a, b) => dem[b] - dem[a]); if (!ks.length) return '';
+    const max = Math.max(...ks.map(k => dem[k])), khu = $('nnKhu').value;
+    return `<div class="nn-khu"><div class="nn-khu-dau">Số hộ cần kiểm tra theo khu <span class="nho">· bấm để lọc</span></div>` + ks.map(k => `<button type="button" class="nn-khu-h ${khu === k ? 'on' : ''}" data-khu="${esc(k)}"><span class="k">${esc(k)}</span><span class="t"><i style="width:${Math.max(3, dem[k] / max * 100).toFixed(1)}%"></i></span><b>${so(dem[k])}</b></button>`).join('') + '</div>';
+  }
+  const tbNN = m => { const co = m.filter(v => v !== null && v > 0); return co.length ? co.reduce((a, v) => a + v, 0) / co.length : 0; };
   function hienNghiNgo() {
     if (!SS) return;
     const tatCa = SS.ds.filter(x => x.nn.length);
     const dem = {}; Object.keys(NN_LOAI).forEach(k => { dem[k] = tatCa.filter(x => x.nn.some(n => n.loai === k)).length; });
-    $('nnTong').innerHTML = `<button type="button" data-loai="" class="${nnLoc ? '' : 'on'}"><span class="cham" style="background:var(--xanh)"></span><span>Tất cả<br><b>${so(tatCa.length)}</b> hộ</span></button>` +
-      Object.keys(NN_LOAI).map(k => `<button type="button" data-loai="${k}" class="${nnLoc === k ? 'on' : ''}"><span class="cham" style="background:${NN_LOAI[k][2]}"></span><span>${NN_LOAI[k][0]}<br><b>${so(dem[k])}</b> hộ</span></button>`).join('');
+    const tongNN = Math.max(1, tatCa.length), oTong = (loai, ten, mau, n, phu) => `<button type="button" data-loai="${loai}" class="${nnLoc === loai ? 'on' : ''}" style="--m:${mau}"><span class="nn-o-ten"><span class="cham" style="background:${mau}"></span>${ten}</span><b>${so(n)}</b><small>${phu}</small><span class="nn-o-thanh"><i style="width:${Math.max(n ? 4 : 0, n / tongNN * 100).toFixed(1)}%"></i></span></button>`;
+    $('nnTong').innerHTML = oTong('', 'Tất cả', '#0b5394', tatCa.length, 'hộ cần kiểm tra') + Object.keys(NN_LOAI).map(k => oTong(k, NN_LOAI[k][0], NN_LOAI[k][2], dem[k], Math.round(dem[k] / tongNN * 100) + '% số hộ')).join('');
     $$('#nnTong button').forEach(b => b.onclick = () => { nnLoc = b.dataset.loai; nnHien = 40; hienNghiNgo(); });
     const khu = $('nnKhu').value, q = $('nnTim').value.normalize('NFC').trim().toLowerCase();
     const diem = x => x.nn.reduce((a, n) => a + (n.loai === '0' ? 3 : n.loai === 'am' ? 3 : n.loai === 'tang' ? 2 : 1), 0);
     const ds = tatCa.filter(x => (!khu || x[2] === khu) && (!nnLoc || x.nn.some(n => n.loai === nnLoc)) && (!q || (x[0] + ' ' + x[1]).toLowerCase().includes(q)))
       .sort((a, b) => diem(b) - diem(a) || b.nn.length - a.nn.length);
+    $('nnKhuBD').innerHTML = bdKhuNN(tatCa.filter(x => (!nnLoc || x.nn.some(n => n.loai === nnLoc)) && (!q || (x[0] + ' ' + x[1]).toLowerCase().includes(q))));
+    $$('#nnKhuBD [data-khu]').forEach(b => b.onclick = () => { const k = b.dataset.khu === 'Chưa rõ khu' ? '' : b.dataset.khu; $('nnKhu').value = $('nnKhu').value === k ? '' : k; nnHien = 40; hienNghiNgo(); });
     $('nnTom').innerHTML = SS.thangs.length < 3 ? `Mới có ${SS.thangs.length} tháng số liệu – cần ít nhất 3 tháng để lọc tin cậy.` : `${so(ds.length)} hộ theo bộ lọc · đang hiện ${so(Math.min(nnHien, ds.length))}. Viền đỏ = dấu hiệu nặng, viền vàng = dấu hiệu nhẹ.`;
     $('nnDS').innerHTML = ds.length ? ds.slice(0, nnHien).map(x => {
       const cuoi = [...x[5]].reverse().find(v => v !== null);
@@ -2290,12 +2590,14 @@
         <div class="dau"><div><div class="ten">${esc(x[1])} <span class="ma-ngan" title="${esc(x[0])}">${esc(maNgan(x[0]))}</span></div><div class="nho">${esc(x[3])}${x[2] ? ', ' + esc(x[2]) : ''} · ${esc(x[4] || '')}</div></div><span class="diem">${x.nn.length} dấu hiệu</span></div>
         <div class="chips">${x.nn.map(n => `<span class="${NN_LOAI[n.loai] ? NN_LOAI[n.loai][1] : ''}" title="${esc(n.nd)}">${NN_LOAI[n.loai] ? NN_LOAI[n.loai][0] : n.loai}</span>`).join('')}</div>
         ${spark(x[5], SS.thangs, x)}
-        <div class="gt"><span>${x.nn.map(n => esc(n.nd)).join(' · ')}</span><span>Tháng gần nhất: <b>${cuoi === undefined ? '–' : so(cuoi)} m³</b></span></div>
+        <div class="nn-so"><div><span>Trung bình</span><b>${so(Math.round(tbNN(x[5])))} m³</b></div><div><span>Cao nhất</span><b>${so(Math.max(0, ...x[5].filter(v => v !== null)))} m³</b></div><div><span>Gần nhất</span><b>${cuoi === undefined ? '–' : so(cuoi)} m³</b></div></div>
+        <ul class="nn-ly">${x.nn.map(n => `<li style="--m:${NN_LOAI[n.loai] ? NN_LOAI[n.loai][2] : '#5b6475'}">${esc(n.nd)}</li>`).join('')}</ul>
       </div>`; }).join('') : '<div class="the">Không có hộ nào theo bộ lọc.</div>';
     $('nnThem').classList.toggle('an', ds.length <= nnHien);
   }
   $('nnKhu').onchange = () => { nnHien = 40; hienNghiNgo(); }; $('nnTim').oninput = () => { nnHien = 40; hienNghiNgo(); };
   $('nnThem').onclick = () => { nnHien += 60; hienNghiNgo(); };
+  { let laMay = window.innerWidth >= 900, hg = 0; window.addEventListener('resize', () => { clearTimeout(hg); hg = setTimeout(() => { const m = window.innerWidth >= 900; if (m !== laMay) { laMay = m; if (SS && !$('sub_nghiNgo').classList.contains('an')) hienNghiNgo(); } }, 200); }); }
   function capNhatXom() {
     const khu = $('ssKhu').value;
     const xoms = [...new Set(SS.ds.filter(x => !khu || x[2] === khu).map(x => x[3]).filter(Boolean))].sort((a, b) => a.localeCompare(b, 'vi', { numeric: true }));
