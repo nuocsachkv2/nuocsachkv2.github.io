@@ -12,7 +12,7 @@
     if (biNhung) { document.documentElement.style.display = 'none'; try { window.top.location = window.self.location.href; } catch (e) {} }
     var S = '/' + '/', g = 'https:' + S;
     // chỉ cho chạy đúng đoạn mã của trạm (mã băm SHA-256 tính lúc đóng gói) → mã độc chèn vào trang không chạy được
-    var BAM = 'O21I5S2rOAqsbEppwxZ4ANrE64q8auUFiesygw515UY=', B = BAM.split('_').join(String.fromCharCode(47));
+    var BAM = 'uxWxlRiUW2NlnlwxDypB_51Znga5sw8wMigYcthe9wg=', B = BAM.split('_').join(String.fromCharCode(47));
     var m = document.createElement('meta'); m.httpEquiv = 'Content-Security-Policy';
     m.content = "default-src 'self'; script-src 'self' 'sha256-" + B + "'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https:; font-src 'self' data:; "
       + "connect-src 'self' " + g + 'script.google.com ' + g + "script.googleusercontent.com; frame-src 'none'; object-src 'none'; base-uri 'none'; form-action 'self'; upgrade-insecure-requests";
@@ -724,6 +724,31 @@
   #fXT { background:#fff; border-radius:18px; padding:22px 20px 18px; width:min(420px, 100%); box-shadow:0 24px 60px rgba(16,24,40,.35); text-align:center; }
   #fXT .xt-bieu { width:56px; height:56px; border-radius:16px; margin:0 auto 10px; background:#fdecea; color:#c62828; display:flex; align-items:center; justify-content:center; font-size:28px; }
   #fXT h3 { margin:0 0 6px; } #fXT p { margin:0 0 12px; }
+
+  /* v16: chọn hộ → khung chờ; khách báo nộp tiền 2 mục */
+  .cho-cham { display:inline-flex; gap:8px; align-items:center; height:40px; }
+  .cho-cham i { width:12px; height:12px; border-radius:50%; background:#fff; opacity:.4; animation:nhayCham 1s ease-in-out infinite; }
+  .cho-cham i:nth-child(2) { animation-delay:.15s; } .cho-cham i:nth-child(3) { animation-delay:.3s; }
+  @keyframes nhayCham { 0%,100% { opacity:.3; transform:translateY(0); } 50% { opacity:1; transform:translateY(-5px); } }
+  .tc-cho .tc-the-tien { min-height:110px; }
+  .nt-muc { display:grid; grid-template-columns:repeat(2, minmax(0,1fr)); gap:10px; margin-top:12px; max-width:640px; }
+  .nt-muc button { display:grid; grid-template-columns:auto 1fr; grid-template-rows:auto auto auto; column-gap:12px; align-items:center; text-align:left; cursor:pointer; font:inherit;
+                   border:2px solid var(--vien); border-radius:14px; padding:12px 14px; background:#fff; color:var(--chu); transition:border-color .2s, background .2s, box-shadow .2s; }
+  .nt-muc button .ic { grid-row:1 / 4; width:44px; height:44px; border-radius:13px; font-size:22px; display:flex; align-items:center; justify-content:center; }
+  .nt-muc button.chua .ic { background:#fff3e0; color:#e65100; } .nt-muc button.roi .ic { background:var(--la2); color:var(--la); }
+  .nt-muc button span { font-size:13px; font-weight:700; color:var(--xam); }
+  .nt-muc button b { font-size:22px; line-height:1.15; } .nt-muc button.chua b { color:#e65100; } .nt-muc button.roi b { color:var(--la); }
+  .nt-muc button small { font-weight:700; color:var(--xanh-dam); }
+  .nt-muc button.on.chua { border-color:#fb8c00; background:#fff8ef; box-shadow:0 6px 16px rgba(251,140,0,.15); }
+  .nt-muc button.on.roi { border-color:var(--la); background:#f4fbf5; box-shadow:0 6px 16px rgba(46,125,50,.15); }
+  @media (max-width:420px) { .nt-muc button { padding:10px; column-gap:8px; } .nt-muc button .ic { width:36px; height:36px; } .nt-muc button b { font-size:19px; } }
+  .hang-nut { display:flex; flex-wrap:wrap; gap:8px; align-items:center; }
+  .tg-buoc { padding-left:20px; margin:6px 0 12px; line-height:1.6; } .tg-buoc code { background:#eef3f8; padding:1px 5px; border-radius:5px; }
+  .ds-tg { display:grid; gap:8px; margin-top:10px; }
+  .tg-nguoi { display:flex; align-items:center; gap:10px; border:1px solid var(--vien); border-radius:12px; padding:8px 12px; }
+  .tg-nguoi > .ic { width:34px; height:34px; border-radius:10px; background:#e3f2fd; color:#1565c0; display:flex; align-items:center; justify-content:center; flex:none; }
+  .tg-nguoi > div { flex:1; min-width:0; } .tg-nguoi b { overflow-wrap:anywhere; }
+  .nhan-xanh { color:var(--la); font-weight:700; font-size:13px; white-space:nowrap; display:inline-flex; gap:4px; align-items:center; }
 </style>
 </head>
 <body>
@@ -1152,7 +1177,7 @@
         <button data-nb="quanLy" data-sub="qtTruyCap" class="chi-adm"><i class=ic data-ic=trend></i> Truy cập</button>
         <button data-nb="quanLy" data-sub="qtNhatKy" class="chi-adm"><i class=ic data-ic=history></i> Nhật ký</button>
       </div>
-      <div id="canhBao" class="thongbao an">Chưa cấu hình báo đẩy: điền <b>email_adm</b> (Gmail của quản lý – điện thoại sẽ báo ngay) hoặc <b>webhook_adm</b> trong sheet CauHinh. <button class="nut phu nho-nut" id="nutThuBao" type="button">Thử báo đẩy</button> <span class="nho" id="kqThuBao"></span></div>
+      <div id="canhBao" class="thongbao an">Chưa cấu hình báo đẩy: điền <b>email_adm</b> (Gmail của quản lý), <b>Telegram</b> (Quản trị › Cấu hình) hoặc <b>webhook_adm</b>. <button class="nut phu nho-nut" id="nutThuBao" type="button">Thử báo đẩy</button> <span class="nho" id="kqThuBao"></span></div>
 
       <div id="sub_baoCao">
         <div class="the">
@@ -1266,10 +1291,9 @@
       <div id="sub_nopTienNB" class="an">
         <div class="the">
           <div class="hang"><h3 style="margin:0;flex:1"><i class=ic data-ic=card></i> Khách báo nộp tiền – đánh dấu đã nộp hay chưa</h3>
-            <select id="ntLoc"><option value="chua">Chưa nộp</option><option value="">Tất cả</option><option value="roi">Đã nộp</option></select>
             <button class="nut phu nho-nut" id="ntTaiLai" type="button">Tải lại</button></div>
           <div class="nho">Khách tra cứu → bấm "Nộp tiền" → bấm <b>Gọi</b>, <b>Zalo</b> hoặc <b>Sao chép</b> thì hiện ở đây. Nhận được tiền thì tích <b>Đã nộp tiền</b>.</div>
-          <div class="nt-tom" id="ntTom"></div>
+          <div class="nt-muc" id="ntTom" role="tablist" aria-label="Chưa nộp / Đã nộp"></div>
           <div class="loi" id="loiNT"></div>
         </div>
         <div class="nt-luoi" id="dsNT"></div>
@@ -1387,6 +1411,23 @@
           <p class="nho">Sửa xong bấm Lưu ở từng dòng. Có hiệu lực ngay, không cần triển khai lại.</p>
           <div class="loi" id="loiCH"></div>
           <div class="cuon"><table class="sua" id="tblCH"></table></div>
+        </div>
+        <div class="the">
+          <h3><i class=ic data-ic=bell></i> Báo đẩy qua Telegram (tin về điện thoại ngay)</h3>
+          <ol class="nho tg-buoc">
+            <li>Mở Telegram, tìm <b>@BotFather</b> → gửi <b>/newbot</b> → đặt tên (vd: Trạm nước KVII) và tên bot kết thúc bằng <b>bot</b>.</li>
+            <li>BotFather gửi lại <b>token</b> dạng <code>123456789:AAH…</code> → dán vào dòng <b>telegram_token</b> ở bảng trên → Lưu.</li>
+            <li>Quản lý và các cán bộ cần nhận tin: tìm tên bot vừa tạo → bấm <b>Start</b> (Bắt đầu).</li>
+            <li>Bấm <b>Lấy người nhận</b> bên dưới → bấm <b>Thêm</b> cạnh tên từng người → bấm <b>Thử báo đẩy</b>.</li>
+          </ol>
+          <div class="hang-nut"><button class="nut phu nho-nut" id="nutTGLay" type="button"><i class=ic data-ic=users></i> Lấy người nhận</button>
+            <button class="nut nho-nut" id="nutTGThu" type="button"><i class=ic data-ic=bell></i> Thử báo đẩy</button> <span class="nho" id="kqTG"></span></div>
+          <div id="dsTG" class="ds-tg"></div>
+        </div>
+        <div class="the">
+          <h3><i class=ic data-ic=zap></i> Dữ liệu tra cứu</h3>
+          <p class="nho">Web lưu sẵn danh sách khách và chỉ số để khách tra cứu nhanh. Sửa trên web thì tự cập nhật ngay. Nếu sửa <b>trực tiếp trong Google Sheet</b>, bấm nút dưới để khách thấy số mới liền (không bấm thì tự cập nhật sau tối đa 2 giờ).</p>
+          <button class="nut phu nho-nut" id="nutLamMoiTC" type="button"><i class=ic data-ic=repeat></i> Làm mới dữ liệu tra cứu</button> <span class="nho" id="kqLamMoiTC"></span>
         </div>
       </div>
 
@@ -1805,7 +1846,25 @@
     return ['<i class=ic data-ic=megaphone></i>', '#e8f1fb'];
   }
 
+  const KHO_TTC = 'tnkv2_ttc1';
+  const phanTinh = c => { const o = Object.assign({}, c); delete o.bayGio; delete o.gioBom; delete o.dangNhan; return JSON.stringify(o); };
+  let ttcDaVe = '';
+  function veDong(c) {
+    CHUNG = c;
+    const bomHTML2 = c.gioBom && c.gioBom.length ? c.gioBom.map(b => `<div class="bom"><b>${esc(b.khu)}</b><div style="text-align:right">${hienBom(b)}</div></div>`).join('') : '<span class="nho">Trạm đang cập nhật lịch bơm.</span>';
+    $$('.dsGioBom').forEach(x => { x.innerHTML = bomHTML2; });
+    $('gioNhan').innerHTML = c.dangNhan ? `<i class=ic data-ic=checkCircle></i> Đang nhận yêu cầu (${esc(c.gioNhanTu)} – ${esc(c.gioNhanDen)} hằng ngày).`
+      : `<i class=ic data-ic=xCircle></i> Ngoài giờ nhận yêu cầu. Trạm nhận từ <b>${esc(c.gioNhanTu)}</b> đến <b>${esc(c.gioNhanDen)}</b> hằng ngày.`;
+  }
+  try { const s0 = localStorage.getItem(KHO_TTC); if (s0) { const c0 = JSON.parse(s0); veChung(c0); ttcDaVe = phanTinh(c0); } } catch (e) {}
   goi('layThongTinChung').then(c => {
+    try { localStorage.setItem(KHO_TTC, JSON.stringify(c)); } catch (e) {}
+    if (phanTinh(c) !== ttcDaVe) veChung(c); else veDong(c);
+    ttcDaVe = phanTinh(c);
+  }).catch(e => { if (!ttcDaVe) { $('loiChung').textContent = 'Không tải được dữ liệu: ' + e; $('loiChung').classList.remove('an'); } });
+  // dựng sẵn bộ đệm máy chủ (20 phút/lần mỗi máy) → lúc khách gõ tra cứu là ra ngay
+  setTimeout(() => { let t = 0; try { t = Number(localStorage.getItem('tnkv2_nong') || 0); } catch (e) {} if (Date.now() - t > 20 * 60000) { try { localStorage.setItem('tnkv2_nong', String(Date.now())); } catch (e) {} goi('lamNongBoDem').catch(() => {}); } }, 1200);
+  function veChung(c) {
     CHUNG = c;
     $('tenDonVi').textContent = c.donVi; $('tenChan').textContent = c.donVi; document.title = c.donVi;
     $('chuQuan').textContent = c.chuQuan;
@@ -1819,7 +1878,7 @@
     $('thietKe').textContent = c.thietKe;
     if (c.thongBao) { $('thongBao').innerHTML = ic('megaphone') + ' ' + esc(c.thongBao); $('thongBao').classList.remove('an'); }
     if (c.canhBaoGia) { $('giaMau').innerHTML = ic('alert') + ' ' + esc(c.canhBaoGia); $('giaMau').classList.remove('an'); }
-    if (c.coLogo) goi('layAnh', 'logo').then(b64 => { if (b64 && b64.length > 200) { const im = new Image(); im.alt = 'Logo'; im.onload = () => { const cu = $('logo').querySelector('img'); if (cu) cu.src = im.src; else $('logo').replaceChildren(im); }; im.src = 'data:image/png;base64,' + b64; } }).catch(() => {});
+    if (c.coLogo && !$('logo').querySelector('img')) goi('layAnh', 'logo').then(b64 => { if (b64 && b64.length > 200) { const im = new Image(); im.alt = 'Logo'; im.onload = () => { const cu = $('logo').querySelector('img'); if (cu) cu.src = im.src; else $('logo').replaceChildren(im); }; im.src = 'data:image/png;base64,' + b64; } }).catch(() => {});
     // ảnh nền (sheet Anh, khóa "nen") – tải xong mới hiện, trước đó dùng trống đồng vẽ sẵn
     if (c.coNen) goi('layAnh', 'nen').then(b64 => { if (!b64) return; const im = new Image(); im.onload = () => { $('nen').style.backgroundImage = 'url(' + im.src + ')'; $('nen').classList.add('anh'); document.body.classList.add('co-nen'); }; im.src = 'data:image/jpeg;base64,' + b64; }).catch(() => {});
 
@@ -1895,7 +1954,7 @@
         <div class="nho">Vào trang ${lk(c.linkHoaDon, esc(anToan(c.linkHoaDon).replace(/^https?:\/+/i, '')))} – đăng nhập bằng mã khách hàng, mật khẩu mặc định in trên giấy biên nhận.</div>`;
       $('hoaDonDT').classList.remove('an');
     }
-  }).catch(e => { $('loiChung').textContent = 'Không tải được dữ liệu: ' + e; $('loiChung').classList.remove('an'); });
+  }
 
   $('thuM3').oninput = () => {
     const raw = $('thuM3').value, v = Number(raw);
@@ -1945,15 +2004,29 @@
   }
 
   // ---------- tra cứu ----------
+  // bấm chọn 1 hộ trong danh sách trùng tên / trùng 4 số cuối → hiện ngay khung tên + đang lấy số nước, không phải gõ lại mã
+  function chonHo(b) {
+    const ten = b.querySelector('.cm-ten') ? b.querySelector('.cm-ten').textContent : '', xom = b.querySelector('.cm-xom') ? b.querySelector('.cm-xom').textContent : '';
+    $('maKH').value = b.dataset.ma; $('loiTra').textContent = '';
+    $('chonMa').classList.add('an');
+    $('kqTra').innerHTML = `<div class="the tc-cho"><div class="tc-dau"><div class="tc-av" aria-hidden="true">${esc(chuDau(ten))}</div><div style="min-width:0"><div class="tc-ten">${esc(ten)}</div><div class="nho">Mã KH <b>${esc(b.dataset.ma)}</b> · ${esc(xom)}</div></div></div>
+      <div class="tc-the-tien"><div class="nho">Đang lấy số nước…</div><div class="tc-tien"><span class="cho-cham"><i></i><i></i><i></i></span></div></div></div>`;
+    $('kqTra').scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+    traCuuMa(b.dataset.ma, true);
+  }
+  function traCuuMa(ma, giuKhung) {
+    if (!giuKhung) { $('kqTra').innerHTML = ''; }
+    $('nutTra').disabled = true; $('nutTra').textContent = 'Đang tìm…';
+    goi('traCuu', ma).then(r => { if (giuKhung) $('kqTra').innerHTML = ''; hienTraCuu(r); }).catch(e => { $('loiTra').textContent = e; if (giuKhung) $('kqTra').innerHTML = ''; })
+      .finally(() => { $('nutTra').disabled = false; $('nutTra').textContent = 'Xem'; });
+  }
   $('fTraCuu').onsubmit = e => {
     e.preventDefault();
     const ma = $('maKH').value.trim();
     $('loiTra').textContent = ''; $('kqTra').innerHTML = ''; $('chonMa').innerHTML = ''; $('chonMa').classList.add('an');
     const laTen = /[^0-9.\s-]/.test(ma);
     if (laTen ? ma.replace(/[^\p{L}\p{N}]/gu, '').length < 3 : ma.replace(/[^0-9]/g, '').length < 4) { $('loiTra').textContent = laTen ? 'Gõ họ tên chủ hộ dài hơn (ít nhất 3 chữ cái).' : 'Nhập mã khách hàng in trên hóa đơn, ít nhất 4 số cuối của mã, hoặc họ tên chủ hộ.'; return; }
-    $('nutTra').disabled = true; $('nutTra').textContent = 'Đang tìm…';
-    goi('traCuu', ma).then(hienTraCuu).catch(e => $('loiTra').textContent = e)
-      .finally(() => { $('nutTra').disabled = false; $('nutTra').textContent = 'Xem'; });
+    traCuuMa(ma, false);
   };
   const chuDau = t => { const w = String(t || '').trim().split(/\s+/).filter(x => /^\p{L}/u.test(x)); return w.length ? w[w.length - 1].charAt(0).toUpperCase() : '?'; };
   // ---------- nộp tiền / nộp tiền hộ: chọn cán bộ, kết nối Zalo – có cảnh báo hóa đơn ----------
@@ -2039,7 +2112,8 @@
         <div class="cm-dau"><span>Chủ hộ</span><span>Mã (4 số cuối)</span><span>Thôn / xóm</span></div>` +
         r.ds.map(x => `<button type="button" data-ma="${esc(x.ma)}"><span class="cm-ten">${esc(x.ten)}</span><span class="cm-ma">${esc(maNgan(x.ma))}</span><span class="cm-xom">${esc(x.xom)}${x.khu ? '<br>' + esc(x.khu) : ''}</span></button>`).join('');
       $('chonMa').classList.remove('an');
-      $$('#chonMa button').forEach(b => b.onclick = () => { $('maKH').value = b.dataset.ma; $('fTraCuu').requestSubmit ? $('fTraCuu').requestSubmit() : $('fTraCuu').onsubmit(new Event('submit')); });
+      $$('#chonMa button').forEach(b => b.onclick = () => chonHo(b));
+      $('chonMa').scrollIntoView({ block: 'nearest', behavior: 'smooth' });
       return;
     }
     TC = r; ghiTC('Tra cứu', r.ma);
@@ -2402,24 +2476,26 @@
   }
   chonNhomNB('sanLuong', false);
   // ---------- khách báo nộp tiền (nội bộ): tích đã nộp / chưa ----------
-  let NT = [];
+  let NT = [], ntMuc = 'chua';
   function taiNT() {
     $('loiNT').textContent = ''; $('dsNT').innerHTML = '<div class="the nho">Đang tải…</div>';
     goiNB('dsNopTien').then(r => { NT = r; hienNT(); }).catch(e => { $('loiNT').textContent = e; $('dsNT').innerHTML = ''; });
   }
   function hienNT() {
-    const loc = $('ntLoc').value, chua = NT.filter(x => !x.daNop);
-    const ds = NT.filter(x => !loc || (loc === 'chua' ? !x.daNop : x.daNop));
+    const chua = NT.filter(x => !x.daNop), roi = NT.filter(x => x.daNop);
+    const ds = ntMuc === 'roi' ? roi : chua;
     $('demNT').textContent = chua.length || ''; demNhom();
-    const tongChua = chua.reduce((a, x) => a + (x.tien || 0), 0), roi = NT.filter(x => x.daNop);
-    $('ntTom').innerHTML = `<div><span>Chưa nộp</span><b class="do">${so(chua.length)} hộ</b><small>${tien(tongChua)}</small></div><div><span>Đã nộp</span><b class="la">${so(roi.length)} hộ</b><small>${tien(roi.reduce((a, x) => a + (x.tien || 0), 0))}</small></div>`;
+    const tongTien = a => a.reduce((t, x) => t + (x.tien || 0), 0);
+    $('ntTom').innerHTML = `<button type="button" role="tab" data-muc="chua" class="chua ${ntMuc === 'chua' ? 'on' : ''}" aria-selected="${ntMuc === 'chua'}"><i class=ic data-ic=hourglass></i><span>Chưa nộp</span><b>${so(chua.length)} hộ</b><small>${tien(tongTien(chua))}</small></button>`
+      + `<button type="button" role="tab" data-muc="roi" class="roi ${ntMuc === 'roi' ? 'on' : ''}" aria-selected="${ntMuc === 'roi'}"><i class=ic data-ic=checkCircle></i><span>Đã nộp</span><b>${so(roi.length)} hộ</b><small>${tien(tongTien(roi))}</small></button>`;
+    $$('#ntTom [data-muc]').forEach(b => b.onclick = () => { ntMuc = b.dataset.muc; hienNT(); });
     const bieu = { 'Gọi': '<i class=ic data-ic=phone></i>', 'Zalo': '<i class=ic data-ic=message></i>', 'Sao chép': '<i class=ic data-ic=copy></i>' };
     $('dsNT').innerHTML = ds.length ? ds.map(x => `<div class="nt-the ${x.daNop ? 'xong' : ''}" data-dong="${x.dong}">
         <div class="nt-dau"><div><b class="nt-ten">${hoTen(x.ten, x.ma)}</b>${x.ho ? ' <span class="nhan vang">Nộp hộ</span>' : ''}<div class="nho">${esc(x.xom)}${x.khu ? ', ' + esc(x.khu) : ''}</div></div>
           <div class="nt-tien">${x.tien ? tien(x.tien) : '–'}<span>Tháng ${esc(x.thang || '–')}</span></div></div>
         <div class="nt-ct"><span><i class=ic data-ic=clock></i> ${esc(x.tg)}</span><span>${String(x.cach || '').split(', ').filter(Boolean).map(c => (bieu[c] || '') + ' ' + esc(c)).join(' · ')}</span>${x.canbo ? `<span><i class=ic data-ic=user></i> Khách chọn: <b>${esc(x.canbo)}</b></span>` : ''}</div>
         <label class="nt-tich"><input type="checkbox" class="ntChon" ${x.daNop ? 'checked' : ''}><span class="nt-hop"></span><span class="nt-chu">${x.daNop ? `<b>Đã nộp tiền</b><small>${esc(x.nv)} xác nhận lúc ${esc(x.tgxn)}</small>` : '<b>Chưa nộp</b><small>Tích khi đã nhận đủ tiền</small>'}</span></label>
-      </div>`).join('') : '<div class="the">Không có hộ nào theo bộ lọc.</div>';
+      </div>`).join('') : `<div class="the">${ntMuc === 'roi' ? 'Chưa có hộ nào được tích đã nộp.' : 'Không còn hộ nào chưa nộp.'}</div>`;
     $$('#dsNT .ntChon').forEach(o => o.onchange = () => {
       const the = o.closest('.nt-the'), dong = Number(the.dataset.dong), x = NT.find(y => y.dong === dong);
       if (o.checked && !confirm('Xác nhận hộ ' + x.ten + ' đã nộp ' + (x.tien ? tien(x.tien) : '') + ' tháng ' + x.thang + '?')) { o.checked = false; return; }
@@ -2428,7 +2504,7 @@
         .catch(e => { o.checked = !o.checked; o.disabled = false; $('loiNT').textContent = e; });
     });
   }
-  $('ntLoc').onchange = hienNT; $('ntTaiLai').onclick = taiNT;
+  $('ntTaiLai').onclick = taiNT;
   // ---------- hẹn thu tiền (nội bộ) ----------
   const TT_HT = ['Mới', 'Đã liên hệ', 'Đã thu tiền', 'Không liên lạc được', 'Hủy'];
   let HT = [];
@@ -2537,7 +2613,19 @@
     });
   }
   $('cnLoc').onchange = hienCN; $('cnTaiLai').onclick = taiCN;
-  $('nutThuBao').onclick = () => { $('kqThuBao').textContent = 'Đang thử…'; goiNB('thuBaoAdm').then(r => $('kqThuBao').textContent = 'Đã gửi' + (r.email ? ' email' : '') + (r.webhook ? ' webhook' : '') + ' ✓').catch(e => $('kqThuBao').textContent = e); };
+  const kqBao = r => 'Đã gửi' + (r.email ? ' email' : '') + (r.webhook ? ' webhook' : '') + (r.telegram ? ' Telegram' : '') + ' ✓' + (r.loi ? ' (lưu ý: ' + r.loi + ')' : '');
+  $('nutThuBao').onclick = () => { $('kqThuBao').textContent = 'Đang thử…'; goiNB('thuBaoAdm').then(r => $('kqThuBao').textContent = kqBao(r)).catch(e => $('kqThuBao').textContent = e); };
+  $('nutTGThu').onclick = () => { $('kqTG').textContent = 'Đang thử…'; goiNB('thuBaoAdm').then(r => $('kqTG').textContent = kqBao(r)).catch(e => $('kqTG').textContent = e); };
+  $('nutTGLay').onclick = () => {
+    $('kqTG').textContent = 'Đang đọc tin nhắn gửi bot…'; $('dsTG').innerHTML = '';
+    goiNB('admLayChatTelegram').then(ds => {
+      $('kqTG').textContent = ds.length ? '' : 'Chưa thấy ai bấm Start với bot. Mọi người bấm Start rồi bấm lại nút này.';
+      $('dsTG').innerHTML = ds.map(x => `<div class="tg-nguoi"><i class=ic data-ic=${x.loai === 'Nhóm' ? 'users' : 'user'}></i><div><b>${esc(x.ten || 'Không tên')}</b><div class="nho">${esc(x.loai)} · ${esc(x.id)}</div></div>`
+        + (x.daCo ? '<span class="nhan-xanh"><i class=ic data-ic=check></i> Đang nhận</span>' : `<button class="nut nho-nut tg-them" type="button" data-id="${esc(x.id)}">Thêm</button>`) + '</div>').join('');
+      $$('#dsTG .tg-them').forEach(b => b.onclick = () => { b.disabled = true; goiNB('admThemChatTelegram', b.dataset.id).then(r => { b.outerHTML = '<span class="nhan-xanh"><i class=ic data-ic=check></i> Đang nhận</span>'; $('kqTG').textContent = 'Đã thêm – hiện có ' + r.so + ' người nhận.'; }).catch(e => { b.disabled = false; $('kqTG').textContent = e; }); });
+    }).catch(e => $('kqTG').textContent = e);
+  };
+  $('nutLamMoiTC').onclick = () => { $('kqLamMoiTC').textContent = 'Đang làm mới…'; goiNB('lamMoiDuLieuTraCuu').then(() => $('kqLamMoiTC').textContent = 'Xong ✓ – khách tra cứu sẽ thấy số mới nhất.').catch(e => $('kqLamMoiTC').textContent = e); };
   $$('#tabBC button').forEach(b => b.onclick = () => {
     moSub('tabBC', 'sub2', b.dataset.sub2);
     ['kiemTra', 'tatCa'].forEach(t => $('sub2_' + t).classList.toggle('an', t !== b.dataset.sub2));
