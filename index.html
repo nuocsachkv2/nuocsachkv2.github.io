@@ -12,7 +12,7 @@
     if (biNhung) { document.documentElement.style.display = 'none'; try { window.top.location = window.self.location.href; } catch (e) {} }
     var S = '/' + '/', g = 'https:' + S;
     // chỉ cho chạy đúng đoạn mã của trạm (mã băm SHA-256 tính lúc đóng gói) → mã độc chèn vào trang không chạy được
-    var BAM = 'DiPmSPS6dKZQxaV0XWk_bzEeWhdgLAqKxepPULR1ae0=', B = BAM.split('_').join(String.fromCharCode(47));
+    var BAM = 'rAPMe+xWyvAAvXyzTASqaijs0ThXwCARNr3aVtfc41k=', B = BAM.split('_').join(String.fromCharCode(47));
     var m = document.createElement('meta'); m.httpEquiv = 'Content-Security-Policy';
     m.content = "default-src 'self'; script-src 'self' 'sha256-" + B + "'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https:; font-src 'self' data:; "
       + "connect-src 'self' " + g + 'script.google.com ' + g + "script.googleusercontent.com; frame-src 'none'; object-src 'none'; base-uri 'none'; form-action 'self'; upgrade-insecure-requests";
@@ -797,7 +797,10 @@
   @media (max-width:420px) { .tt-luoi { grid-template-columns:repeat(2, minmax(0,1fr)); } .tt-o b { font-size:16px; } .tt-loc { grid-template-columns:1fr 1fr; } }
 
   /* v18: phân quyền + xóa phiếu + nút nộp tiền */
-  .nut.nut-xoa { background:#fff !important; color:#c62828 !important; border:1.5px solid #ef9a9a !important; box-shadow:none !important; margin-left:auto; gap:5px; }
+  .nut.nut-xoa { background:#fff !important; color:#c62828 !important; border:1.5px solid #ef9a9a !important; box-shadow:none !important; margin-left:auto;
+                 align-items:center; justify-content:center; gap:6px; line-height:1; min-height:40px; padding:0 14px !important; white-space:nowrap; vertical-align:middle; }
+  body.la-adm .nut.nut-xoa.chi-adm { display:inline-flex !important; }
+  .nut.nut-xoa .ic { vertical-align:0; width:1.1em; height:1.1em; flex:none; }
   .nut.nut-xoa:hover { background:#fdecea !important; }
   .nt-chon { display:grid; grid-template-columns:1fr 1fr; gap:8px; }
   .nt-nut { font:inherit; font-weight:800; font-size:15px; min-height:46px; border-radius:12px; border:2px solid var(--vien); background:#fff; color:var(--xam); cursor:pointer; display:flex; align-items:center; justify-content:center; gap:6px; }
@@ -808,6 +811,7 @@
   .nt-xn { margin-top:-2px; }
   /* tên nhóm giá dài (VD hộ HD2) không được tràn ngang trên điện thoại */
   #kqTra .nhan, #khungKH .nhan, .tc-the .nhan { white-space:normal; overflow-wrap:anywhere; max-width:100%; display:inline-block; line-height:1.35; text-align:left; }
+  .bn-meo { margin:8px 2px 0; }
 </style>
 </head>
 <body>
@@ -1583,6 +1587,8 @@
   const anToan = u => /^https?:\/+/i.test(String(u || '').trim()) ? String(u).trim() : '';
   // Apps Script xóa mọi '//' kể cả trong chuỗi mẫu → ghép link bằng hằng số
   const SL = '/' + '/', URL_ZALO = 'https:' + SL + 'zalo.me/', URL_MAP = 'https:' + SL + 'www.google.com/maps?q=';
+  const linkZalo = z => esc(/^https:/.test(z) ? z : URL_ZALO + z);
+  const zaloCB = x => (x.zalo === undefined ? x.sdt : x.zalo);   // dữ liệu cũ chưa có cột Zalo → dùng SĐT
   // Chạy trong Google (link script.google.com) thì dùng google.script.run; đặt ở tên miền riêng / Cloudflare thì gọi máy chủ qua mạng.
   const API_URL = 'https:' + SL + 'script.google.com/macros/s/AKfycbzLhGtXtZTenoMZT0-AJGUs6tnvxbV8VdE7HUVbbhB0KmCDGsG_q61OPde9x3TNesPdfw/exec';
   const TRONG_GOOGLE = !!(window.google && google.script && google.script.run);
@@ -2136,7 +2142,8 @@
       <label class="bn-dongy"><input type="checkbox" id="bnDongY"><span>Tôi đã đọc và hiểu các lưu ý trên</span></label>
       <div class="nho" style="margin:12px 2px 0">Quý khách vui lòng chọn cán bộ để nhắn Zalo hoặc gọi điện:</div>
       <div class="bn-ds khoa" id="bnDs">${ds.length ? ds.map(x => `<div class="bn-cb"><div class="av">${esc(chuDau(x.ten))}</div><div class="tt"><b>${esc(x.ten)}</b><span class="nho">${esc(x.chucVu)} · ${esc(dinhSdt(x.sdt))}</span></div>
-          <a class="zalo" href="${URL_ZALO}${esc(x.sdt)}" target="_blank" rel="noopener" data-ten="${esc(x.ten)}">Zalo</a><a class="goi2" href="tel:${esc(x.sdt)}" data-ten="${esc(x.ten)}">Gọi</a></div>`).join('') : '<div class="nho">Trạm đang cập nhật danh sách cán bộ.</div>'}</div>
+          ${zaloCB(x) ? `<a class="zalo" href="${linkZalo(zaloCB(x))}" target="_blank" rel="noopener" data-ten="${esc(x.ten)}">Zalo</a>` : ''}<a class="goi2" href="tel:${esc(x.sdt)}" data-ten="${esc(x.ten)}">Gọi</a></div>`).join('') : '<div class="nho">Trạm đang cập nhật danh sách cán bộ.</div>'}</div>
+      <div class="nho bn-meo">Zalo báo lỗi hoặc không mở được? Bấm <b>Gọi</b> để liên hệ trực tiếp cán bộ.</div>
       <div class="bn-ds khoa" id="bnThem" style="margin-top:10px">
         <button class="nut phu day" type="button" id="bnChep">Sao chép nội dung để dán vào Zalo</button>
         <div class="nho" id="bnChepKQ" style="text-align:center"></div>
@@ -2181,7 +2188,7 @@
   function veCoCau(ds) {
     const the = x => `<div class="cc-the ${/Trạm trưởng/i.test(x.chucVu) ? 'dau' : ''}"><div class="av">${esc(chuDau(x.ten))}</div><div class="tt">
         <div class="ten">${esc(x.ten)}</div><div class="cv">${esc(x.chucVu)}</div>
-        ${x.sdt ? `<div class="so-cc">${ic('phone')}${esc(dinhSdt(x.sdt))}</div><div class="nut-cc"><a class="goi-cc" href="tel:${esc(x.sdt)}" aria-label="Gọi ${esc(x.ten)}">${ic('phone')}Gọi</a><a class="zalo" href="${URL_ZALO}${esc(x.sdt)}" target="_blank" rel="noopener" aria-label="Nhắn Zalo ${esc(x.ten)}">Zalo</a></div>` : ''}</div></div>`;
+        ${x.sdt ? `<div class="so-cc">${ic('phone')}${esc(dinhSdt(x.sdt))}</div><div class="nut-cc"><a class="goi-cc" href="tel:${esc(x.sdt)}" aria-label="Gọi ${esc(x.ten)}">${ic('phone')}Gọi</a>${zaloCB(x) ? `<a class="zalo" href="${linkZalo(zaloCB(x))}" target="_blank" rel="noopener" aria-label="Nhắn Zalo ${esc(x.ten)}">Zalo</a>` : ''}</div>` : ''}</div></div>`;
     const nhom = [['Lãnh đạo trạm', x => /Trạm trưởng|Trạm phó/i.test(x.chucVu)], ['Quản lý địa bàn', x => /Quản lý địa bàn/i.test(x.chucVu)], ['Bộ phận khác', x => !/Trạm trưởng|Trạm phó|Quản lý địa bàn/i.test(x.chucVu)]];
     $('dsCoCau').innerHTML = ds.length ? nhom.map(([ten, f]) => { const d = ds.filter(f); return d.length ? `<div class="cc-nhom">${esc(ten)}</div><div class="cc-luoi">${d.map(the).join('')}</div>` : ''; }).join('') : '<div class="the">Đang cập nhật.</div>';
   }
@@ -2440,6 +2447,7 @@
   $('khNutHuyCN').onclick = () => $('khKhungCN').classList.add('an');
   $('fKHCN').onsubmit = e => {
     e.preventDefault(); $('loiCN').textContent = '';
+    if (!KH || !TKKH) { $('loiCN').textContent = 'Phiên đăng nhập đã hết. Anh/chị đăng nhập lại.'; return; }
     const d = {};
     if ($('cnTen').value.trim() && $('cnTen').value.trim() !== KH.ten) d.ten = $('cnTen').value.trim();
     if ($('cnSdt').value.trim()) { if (!sdtOK($('cnSdt').value)) { $('loiCN').textContent = 'Số điện thoại mới chưa đúng (10 số).'; return; } d.sdt = $('cnSdt').value.trim(); }
