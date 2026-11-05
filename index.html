@@ -12,7 +12,7 @@
     if (biNhung) { document.documentElement.style.display = 'none'; try { window.top.location = window.self.location.href; } catch (e) {} }
     var S = '/' + '/', g = 'https:' + S;
     // chỉ cho chạy đúng đoạn mã của trạm (mã băm SHA-256 tính lúc đóng gói) → mã độc chèn vào trang không chạy được
-    var BAM = 'EDOU8cTWhDrwlxyHKH+3z3N+0mSfTxZboURSQmJlrDU=', B = BAM.split('_').join(String.fromCharCode(47));
+    var BAM = 'IqPSQzrMoN50xujtOy_jqUls0ZL9YOB8q4U_u8qUG_I=', B = BAM.split('_').join(String.fromCharCode(47));
     var m = document.createElement('meta'); m.httpEquiv = 'Content-Security-Policy';
     m.content = "default-src 'self'; script-src 'self' 'sha256-" + B + "'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https:; font-src 'self' data:; "
       + "connect-src 'self' " + g + 'script.google.com ' + g + "script.googleusercontent.com; frame-src https:' + S + 'www.youtube-nocookie.com https:' + S + 'drive.google.com; object-src 'none'; base-uri 'none'; form-action 'self'; upgrade-insecure-requests";
@@ -1133,6 +1133,120 @@
     body.dang-in .hg-co { height:auto !important; }
     body.dang-in .hg-giay { transform:none !important; box-shadow:none; -webkit-print-color-adjust:exact; print-color-adjust:exact; }
   }
+
+  /* ===== v27 ===== */
+  /* 2 nút nổi cùng kiểu: viên thuốc có icon + chữ, cùng cỡ, xếp chồng góc phải */
+  #nutGoi, #nutGopY { width:auto; min-width:122px; height:46px; border-radius:999px; padding:0 16px 0 12px; gap:8px; justify-content:flex-start; font-weight:800; font-size:14.5px; color:#fff; border:0; display:flex; align-items:center; cursor:pointer; }
+  #nutGoi { right:16px; bottom:22px; background:linear-gradient(135deg,#43a047,#1b5e20); box-shadow:0 6px 18px rgba(46,125,50,.4); }
+  #nutGopY { right:16px; bottom:80px; background:linear-gradient(135deg,#ffa726,#ef6c00); box-shadow:0 6px 18px rgba(239,108,0,.35); }
+  #nutGoi .ic, #nutGopY .ic { width:22px; height:22px; flex:none; }
+  #nutGoi .tron-ic, #nutGopY .tron-ic { width:30px; height:30px; border-radius:50%; background:rgba(255,255,255,.22); display:inline-flex; align-items:center; justify-content:center; flex:none; }
+  #nutGoi::after { border-radius:999px; border-color:#66bb6a; }
+  #nutGopY::after { content:none; display:none; }
+  #bangGoi { bottom:80px; }
+  @media (max-width:899px) {
+    #nutGoi, #nutGopY { min-width:112px; height:42px; font-size:13.5px; padding:0 14px 0 8px; right:12px; }
+    #nutGoi { bottom:calc(74px + env(safe-area-inset-bottom)); }
+    #nutGopY { bottom:calc(124px + env(safe-area-inset-bottom)); }
+    #nutGoi .tron-ic, #nutGopY .tron-ic { width:28px; height:28px; }
+    #nutGoi .ic, #nutGopY .ic { width:19px; height:19px; }
+    #bangGoi { bottom:calc(124px + env(safe-area-inset-bottom)); }
+  }
+  /* Thông báo: dòng chữ chạy nhỏ, ngay dưới cảnh báo lừa đảo */
+  #luaDao { margin-bottom:8px; }
+  .tb-chay { border-color:#cfe0f3; margin-bottom:14px; }
+  .tb-chay .ld-nhan { background:var(--xanh); font-size:12px; padding:6px 10px; }
+  .tb-chay .ld-noi { color:var(--xanh-dam); font-size:13.5px; font-weight:600; }
+  .tb-chay .ld-noi span { cursor:pointer; }
+  .tb-chay .ld-noi span .ic { color:var(--nuoc); }
+  .tb-chay .ld-noi .moi { background:#e53935; color:#fff; font-size:10.5px; font-weight:800; padding:1px 6px; border-radius:6px; margin-right:6px; }
+  @media (max-width:899px) { .tb-chay .ld-nhan { font-size:11px; padding:6px 8px; } .tb-chay .ld-noi { font-size:13px; } }
+  /* giấy biên nhận: bỏ mép chấm, chữ to hơn */
+  .hg-giay { padding:20px 30px 16px 30px !important; font-size:16px !important; }
+  .hg-giay::before, .hg-giay::after { content:none !important; display:none !important; }
+  .hg-demo { position:absolute; left:50%; top:46%; transform:translate(-50%,-50%) rotate(-18deg); border:5px double #d32f2f; color:#d32f2f; font-family:Arial, sans-serif; font-weight:900; font-size:2.6em; letter-spacing:3px; padding:.12em .55em; border-radius:12px; opacity:.55; white-space:nowrap; pointer-events:none; }
+  .hg-demo-ghi { background:#fdecea; border:1.5px solid #e57373; color:#b71c1c; border-radius:10px; padding:10px 12px; font-size:14px; line-height:1.45; margin:8px 0 0; display:flex; gap:8px; align-items:flex-start; font-family:inherit; }
+  .hg-demo-ghi .ic { width:20px; height:20px; flex:none; color:#d32f2f; margin-top:1px; }
+  .hg-demo-ghi b { display:block; font-size:15px; letter-spacing:.3px; }
+  .hg-ky-ten .hg-ten-nv { display:block; margin-top:1.4em; font-family:"Segoe Script", "Brush Script MT", cursive; font-size:1.05em; color:#1a3d8f; }
+  .hg-dauTT small { font-size:.42em !important; letter-spacing:0; line-height:1.3; }
+  .tc-nop .xem-hd { background:#fff; color:var(--xanh); border:1.5px solid var(--xanh); }
+  .hd-chu-y { font-size:13px; color:var(--xam); margin-top:8px; }
+  .tt-xn { color:var(--la); font-size:12px; font-weight:700; }
+
+  /* Vị trí trạm */
+  .vt-dau { display:flex; gap:14px; align-items:center; margin-bottom:14px; }
+  .vt-dau h2 { margin:0 0 2px; }
+  .vt-dau p { margin:0; }
+  .vt-dau-ic { width:52px; height:52px; border-radius:16px; background:linear-gradient(135deg,#e53935,#b71c1c); color:#fff; display:flex; align-items:center; justify-content:center; flex:none; box-shadow:0 6px 16px rgba(183,28,28,.3); }
+  .vt-dau-ic .ic { width:28px; height:28px; }
+  .vt-luoi { display:grid; grid-template-columns:repeat(auto-fit, minmax(300px,1fr)); gap:16px; }
+  .vt-the { background:#fff; border:1px solid var(--vien); border-radius:18px; overflow:hidden; box-shadow:0 4px 14px rgba(16,24,40,.08); display:flex; flex-direction:column; }
+  .vt-bando { position:relative; height:150px; overflow:hidden;
+    background:
+      linear-gradient(90deg, transparent 47%, #fff 47%, #fff 53%, transparent 53%) 0 0 / 120px 100%,
+      linear-gradient(0deg, transparent 46%, #fff 46%, #fff 54%, transparent 54%) 0 0 / 100% 90px,
+      linear-gradient(35deg, transparent 48%, rgba(255,255,255,.85) 48%, rgba(255,255,255,.85) 51%, transparent 51%),
+      linear-gradient(135deg, #e3f2e1, #d6ecd2 45%, #e6efe0); }
+  .vt-song { position:absolute; left:-10%; right:-10%; top:58%; height:34px; background:linear-gradient(180deg,#9fd3f5,#6bb8ea); border-radius:50%; transform:rotate(-8deg); opacity:.9; }
+  .vt-ghim { position:absolute; left:50%; top:44%; transform:translate(-50%,-80%); width:52px; height:52px; border-radius:50% 50% 50% 0; background:#e53935; rotate:-45deg; display:flex; align-items:center; justify-content:center; box-shadow:0 6px 14px rgba(0,0,0,.25); }
+  .vt-ghim .ic { rotate:45deg; color:#fff; width:24px; height:24px; }
+  .vt-ghim::after { content:''; position:absolute; width:16px; height:16px; left:50%; bottom:-34px; translate:-50% 0; }
+  .vt-bando::after { content:''; position:absolute; left:50%; top:44%; width:22px; height:8px; border-radius:50%; background:rgba(0,0,0,.18); transform:translate(-50%, 6px); }
+  .vt-so { position:absolute; left:12px; top:12px; background:var(--xanh); color:#fff; font-weight:800; font-size:13px; padding:5px 11px; border-radius:999px; box-shadow:0 2px 6px rgba(11,83,148,.3); }
+  .vt-noi { padding:14px 16px 16px; display:flex; flex-direction:column; gap:8px; flex:1; }
+  .vt-noi h3 { margin:0; font-size:17.5px; color:var(--xanh-dam); }
+  .vt-db { margin:0; display:flex; gap:8px; align-items:flex-start; font-size:14.5px; color:#344054; }
+  .vt-db .ic { color:var(--nuoc); flex:none; margin-top:2px; }
+  .vt-nut { display:flex; gap:8px; flex-wrap:wrap; margin-top:auto; padding-top:6px; }
+  .vt-nut a { display:inline-flex; align-items:center; gap:6px; text-decoration:none; flex:1; justify-content:center; min-width:130px; }
+
+  .hg-giay > .hg-demo, .hg-giay > .hg-dauTT { position:absolute !important; }
+  .hg-giay > .hg-dauTT { right:4%; top:auto; bottom:13%; transform:rotate(-12deg); font-size:1.15em; }
+  .vt-bando::after { content:none; }
+  .vt-nut a.nut { background:var(--xanh); color:#fff; border:1.5px solid var(--xanh); border-radius:12px; padding:10px 14px; font-weight:700; font-size:14.5px; }
+  .vt-nut a.nut.phu { background:#fff; color:var(--xanh); }
+  .vt-nut a.nut:hover { filter:brightness(1.08); }
+  #nutGoi, #nutGopY { width:128px; min-width:0; }
+  @media (max-width:899px) { #nutGoi, #nutGopY { width:116px; } .tc-nop .xem-hd { flex-basis:100%; } }
+
+  .hg-xt { margin-top:.9em; border:1.5px solid #26304a; border-radius:6px; padding:.35em .6em; display:flex; flex-direction:column; gap:.1em; font-family:Arial, sans-serif; font-size:.74em; }
+  .hg-xt .hg-ma { font-family:"Courier New", monospace; font-size:1.35em; letter-spacing:1.5px; color:#b71c1c; }
+  .xt-kq { border-radius:14px; padding:14px 16px; margin-top:10px; }
+  .xt-kq.ok { background:#eef8ef; border:1.5px solid #81c784; }
+  .xt-kq.loi { background:#fdecea; border:1.5px solid #e57373; }
+  .xt-kq h4 { margin:0 0 8px; display:flex; gap:8px; align-items:center; font-size:16px; }
+  .xt-kq.ok h4 { color:var(--la); } .xt-kq.loi h4 { color:var(--do); }
+  .xt-luoi { display:grid; grid-template-columns:repeat(auto-fit, minmax(170px,1fr)); gap:8px; }
+  .xt-luoi div { background:#fff; border:1px solid var(--vien); border-radius:10px; padding:8px 10px; }
+  .xt-luoi span { display:block; font-size:12.5px; color:var(--xam); }
+  #kthdMa { font-family:"Courier New", monospace; font-size:18px; letter-spacing:2px; text-transform:uppercase; }
+
+  /* dòng chữ chạy bấm được */
+  #luaDao, #thongBao { cursor:pointer; }
+  #luaDao .ld-noi span, #thongBao .ld-noi span { cursor:pointer; }
+  /* Tin tức › Cảnh báo */
+  .cb-dau { display:flex; gap:14px; align-items:center; margin-bottom:14px; }
+  .cb-dau h2 { margin:0 0 2px; color:#b71c1c; }
+  .cb-dau p { margin:0; }
+  .cb-dau-ic { width:54px; height:54px; border-radius:16px; background:linear-gradient(135deg,#ef5350,#b71c1c); color:#fff; display:flex; align-items:center; justify-content:center; flex:none; box-shadow:0 6px 16px rgba(183,28,28,.3); }
+  .cb-dau-ic .ic { width:28px; height:28px; }
+  .cb-ds { display:grid; grid-template-columns:repeat(auto-fit, minmax(300px,1fr)); gap:12px; }
+  .cb-the { position:relative; display:flex; gap:12px; align-items:flex-start; background:#fff; border:1px solid #f5c6c2; border-left:5px solid #e53935; border-radius:14px; padding:14px 14px 14px 12px; box-shadow:var(--bong); }
+  .cb-the h3 { margin:0 0 6px; font-size:16px; color:#8e1b1b; line-height:1.35; }
+  .cb-the p { margin:0; font-size:14.5px; color:#344054; line-height:1.5; }
+  .cb-ic { width:40px; height:40px; border-radius:12px; background:#fdecea; color:#d32f2f; display:flex; align-items:center; justify-content:center; flex:none; }
+  .cb-ic .ic { width:22px; height:22px; }
+  .cb-so { position:absolute; top:-9px; left:-9px; width:24px; height:24px; border-radius:50%; background:#e53935; color:#fff; font-weight:800; font-size:13px; display:flex; align-items:center; justify-content:center; box-shadow:0 2px 6px rgba(229,57,53,.4); }
+  .cb-goi { margin-top:16px; display:flex; gap:12px; align-items:center; justify-content:space-between; flex-wrap:wrap; background:linear-gradient(135deg,#e8f5e9,#f1f8e9); border:1px solid #a5d6a7; border-radius:14px; padding:14px 16px; }
+  .cb-goi b { display:block; font-size:16px; color:var(--la); }
+  .cb-goi span { font-size:14px; color:#344054; }
+  .cb-goi-nut { display:flex; gap:8px; flex-wrap:wrap; }
+  .cb-goi-nut a.nut { background:var(--la); color:#fff; border-radius:12px; padding:10px 14px; text-decoration:none; font-weight:700; display:inline-flex; gap:6px; align-items:center; }
+  .tb-ghim { background:linear-gradient(135deg,#fff8e1,#fffdf5); border:1px solid #ffe082; border-radius:14px; padding:12px 14px; margin-bottom:14px; }
+  .tb-ghim-dau { display:flex; gap:8px; align-items:center; color:#8a5a00; font-size:16px; margin-bottom:6px; }
+  .tb-ghim ul { margin:0; padding-left:22px; font-size:15px; line-height:1.55; }
+  @media (max-width:899px) { .tb-chay .ld-nhan b { display:inline !important; } }
 </style>
 </head>
 <body>
@@ -1161,7 +1275,7 @@
 <main class="tren-nen">
   <div class="lua-dao an" id="luaDao" role="marquee" aria-label="Cảnh báo lừa đảo"><span class="ld-nhan"><i class=ic data-ic=shield></i><b> CẢNH GIÁC</b> LỪA ĐẢO</span><div class="ld-chay"><div class="ld-noi" id="ldNoi"></div></div></div>
   <div id="giaMau" class="canhbao an"></div>
-  <div id="thongBao" class="thongbao an"></div>
+  <div class="lua-dao tb-chay an" id="thongBao" role="marquee" aria-label="Thông báo"><span class="ld-nhan"><i class=ic data-ic=megaphone></i><b> THÔNG</b> BÁO</span><div class="ld-chay"><div class="ld-noi" id="tbNoi"></div></div></div>
   <div id="loiChung" class="canhbao an"></div>
   <div id="thanhNhom" class="an" role="tablist" aria-label="Mục con"></div>
 
@@ -1212,8 +1326,6 @@
         <div class="the"><h3><i class="ic" data-ic="clock"></i> Giờ bơm nước</h3><div class="dsGioBom"></div></div>
         <div class="the" id="tbMoi"><h3><i class="ic" data-ic="bell"></i> Thông báo mới</h3><div id="dsTbMoi"></div></div>
         <div class="the an" id="lienHe"><h3><i class="ic" data-ic="phone"></i> Liên hệ</h3><div id="dsLienHe"></div></div>
-        <div class="the an" id="viTriTram"><h3><i class="ic" data-ic="pin"></i> Vị trí trạm</h3><div id="dsTram"></div></div>
-        <div id="hoaDonDT" class="the an"></div>
       </div>
     </div>
   </section>
@@ -1400,7 +1512,15 @@
   </section>
 
   <!-- ========== THÔNG BÁO ========== -->
-  <section id="thongBaoTab" class="an"><h2><i class="ic" data-ic="bell"></i> Thông báo</h2><div id="dsThongBao"></div></section>
+  <section id="thongBaoTab" class="an"><h2><i class="ic" data-ic="bell"></i> Thông báo</h2><div id="tbGhim"></div><div id="dsThongBao"></div></section>
+
+  <!-- ========== CẢNH BÁO LỪA ĐẢO ========== -->
+  <section id="canhBaoTab" class="an">
+    <div class="cb-dau"><span class="cb-dau-ic"><i class="ic" data-ic="shieldAlert"></i></span>
+      <div><h2>Cảnh giác lừa đảo</h2><p class="nho">Kẻ gian thường giả danh nhân viên nhà nước, điện nước để lấy tiền, mật khẩu. Bà con đọc kỹ {so} điều dưới đây và nhắc người thân cùng biết.</p></div></div>
+    <div class="cb-ds" id="dsCanhBao"></div>
+    <div class="cb-goi"><div><b>Nghi ngờ bị lừa?</b><span>Gọi ngay số của trạm để hỏi lại – trạm luôn sẵn sàng hỗ trợ.</span></div><div class="cb-goi-nut" id="cbGoi"></div></div>
+  </section>
 
   <!-- ========== VĂN BẢN ========== -->
   <section id="vanBan" class="an">
@@ -1417,9 +1537,9 @@
     <div class="hd-video">
       <div class="hd-vthe"><div id="hdVidNop"></div>
         <div class="hd-chu"><b>Nộp tiền nước</b><ol class="hd-buoc-ds">
-          <li><b>Tra cứu</b> mã khách hàng → xem số tiền tháng này.</li>
+          <li><b>Tra cứu</b> mã khách hàng → xem số tiền tháng này (bấm <b>Xem hóa đơn</b> để xem hóa đơn demo).</li>
           <li>Bấm <b>Nộp tiền</b> (hoặc <b>Nộp tiền hộ</b>) → đọc lưu ý → chọn đúng cán bộ quản lý địa bàn → <b>Gọi</b> / <b>Zalo</b>.</li>
-          <li>Chỉ đưa tiền khi nhận <b>giấy biên nhận</b> ghi đúng tên, mã khách hàng, tháng, số tiền (đối chiếu với <b>Xem hóa đơn giấy</b> trên web).</li>
+          <li>Chỉ đưa tiền khi nhận <b>giấy biên nhận</b> ghi đúng tên, mã khách hàng, tháng, số tiền (đối chiếu với <b>Xem hóa đơn</b> trên web). Cán bộ xác nhận xong, hóa đơn chính thức hiện trong tài khoản của anh/chị.</li>
           <li>Trạm không thu qua chuyển khoản lạ, không xin mật khẩu, mã OTP.</li></ol></div></div>
       <div class="hd-vthe"><div id="hdVidVat"></div>
         <div class="hd-chu"><b>Yêu cầu lấy hóa đơn VAT (hóa đơn đỏ)</b><ol class="hd-buoc-ds">
@@ -1429,9 +1549,9 @@
           <li>Trạm duyệt xong, hóa đơn đỏ hiện ngay trong tài khoản → bấm <b>Xem / tải hóa đơn đỏ</b>.</li></ol></div></div>
       <div class="hd-vthe"><div id="hdVidThuong"></div>
         <div class="hd-chu"><b>Lấy hóa đơn thông thường (giấy biên nhận)</b><ol class="hd-buoc-ds">
-          <li><b>Tra cứu</b> mã khách hàng hoặc họ tên → bấm <b>Xem hóa đơn giấy</b> (tháng trước: bấm <b>Hóa đơn</b> ở bảng các tháng).</li>
-          <li>Web hiện giấy biên nhận đúng mẫu của trạm: chỉ số, số m³, đơn giá, thuế, phí, tổng tiền → bấm <b>In / Lưu PDF</b>.</li>
-          <li>Đã nộp tiền: đăng nhập tài khoản → <b>Hóa đơn đã thanh toán</b> → bấm tháng để xem giấy có dấu <b>Đã thanh toán</b>.</li></ol></div></div>
+          <li><b>Tra cứu</b> mã khách hàng hoặc họ tên → bấm <b>Xem hóa đơn</b> (cạnh nút Nộp tiền): đây là <b>hóa đơn DEMO</b> để xem trước chỉ số, số m³, đơn giá, thuế, phí, tổng tiền – không dùng làm chứng từ.</li>
+          <li>Nộp tiền cho cán bộ trạm. Cán bộ <b>xác nhận đã thu</b> trên web (ghi tên người xác nhận).</li>
+          <li>Đăng nhập tài khoản khách hàng (đã đổi mật khẩu mặc định) → <b>Hóa đơn đã thanh toán</b> → bấm tháng để xem <b>hóa đơn chính thức</b> có dấu <b>Đã thanh toán</b>, tên cán bộ và <b>mã xác thực</b> (trạm dùng mã này kiểm tra hóa đơn thật – giả) → <b>In / Lưu PDF</b>.</li></ol></div></div>
     </div>
     <div class="hd-ds">
       <details open><summary><span class="bieu"><i class="ic" data-ic="search"></i></span>Tra cứu chỉ số, tiền nước</summary><ol>
@@ -1472,6 +1592,15 @@
   </section>
 
   <!-- ========== TẢI ỨNG DỤNG ========== -->
+  <!-- ========== VỊ TRÍ TRẠM ========== -->
+  <section id="viTriTab" class="an">
+    <div class="vt-dau">
+      <span class="vt-dau-ic"><i class="ic" data-ic="pin"></i></span>
+      <div><h2>Vị trí trạm</h2><p class="nho">Các nhà máy nước do trạm quản lý. Bấm <b>Chỉ đường</b> để Google Maps dẫn đường, hoặc <b>Gọi trạm</b> để hỏi trực tiếp.</p></div>
+    </div>
+    <div class="vt-luoi" id="dsViTri"><div class="the nho">Đang tải vị trí trạm…</div></div>
+  </section>
+
   <section id="taiApp" class="an">
     <div class="ta-dau">
       <div class="ta-icon"><img id="taLogo" alt="Biểu tượng ứng dụng Nước sạch KV II" width="72" height="72"></div>
@@ -1658,41 +1787,39 @@
       </div>
       <div id="canhPin" class="canhbao an"><span><i class=ic data-ic=lock></i></span><span>Vì an toàn, tài khoản đang dùng <b>mật khẩu mặc định</b>. Anh/chị cần đổi sang mật khẩu riêng trước khi xem số liệu và quản lý.</span></div>
       <div class="nhom-nb" id="nhomNB">
-        <button type="button" data-nb="sanLuong" class="on"><span class="bieu"><i class=ic data-ic=chart></i></span>Sản lượng</button>
+        <button type="button" data-nb="sanLuong" class="on"><span class="bieu"><i class=ic data-ic=chart></i></span>Số liệu</button>
+        <button type="button" data-nb="thuTien"><span class="bieu"><i class=ic data-ic=coins></i></span>Thu tiền<span class="huy-hieu" id="demNhomThu"></span></button>
         <button type="button" data-nb="phieu"><span class="bieu"><i class=ic data-ic=inbox></i></span>Phiếu khách gửi<span class="huy-hieu" id="demNhomPhieu"></span></button>
-        <button type="button" data-nb="tram"><span class="bieu"><i class=ic data-ic=building></i></span>Quản lý trạm</button>
-        <button type="button" data-nb="duyet" class="chi-ql"><span class="bieu"><i class=ic data-ic=checkCircle></i></span>Duyệt &amp; tài khoản<span class="huy-hieu" id="demNhomDuyet"></span></button>
-        <button type="button" data-nb="quanLy" class="chi-ql"><span class="bieu"><i class=ic data-ic=sliders></i></span>Quản lý chung</button>
-        <button type="button" data-nb="huongDanNB"><span class="bieu"><i class=ic data-ic=book></i></span>Hướng dẫn</button>
+        <button type="button" data-nb="duyet" class="chi-ql"><span class="bieu"><i class=ic data-ic=users></i></span>Khách hàng<span class="huy-hieu" id="demNhomDuyet"></span></button>
+        <button type="button" data-nb="quanLy" class="chi-ql"><span class="bieu"><i class=ic data-ic=sliders></i></span>Quản trị</button>
+        <button type="button" data-nb="huongDanNB"><span class="bieu"><i class=ic data-ic=book></i></span>Lịch &amp; hướng dẫn</button>
       </div>
       <div class="tabcon" id="tabNB">
         <button data-nb="sanLuong" data-sub="baoCao" class="on"><i class=ic data-ic=chart></i> Số liệu tháng</button>
-        <button data-nb="sanLuong" data-sub="baoCaoNam"><i class=ic data-ic=coins></i> Doanh thu & sản lượng năm</button>
+        <button data-nb="sanLuong" data-sub="baoCaoNam"><i class=ic data-ic=coins></i> Doanh thu &amp; sản lượng năm</button>
         <button data-nb="sanLuong" data-sub="soSanh"><i class=ic data-ic=trend></i> So sánh theo tháng</button>
-        <button data-nb="sanLuong" data-sub="nghiNgo"><i class=ic data-ic=users></i> Dữ liệu khách hàng</button>
+        <button data-nb="sanLuong" data-sub="nghiNgo"><i class=ic data-ic=searchCheck></i> Hộ nộp / chưa nộp, nghi ngờ</button>
+        <button data-nb="sanLuong" data-sub="trienKhai" class="chi-ql"><i class=ic data-ic=gauge></i> Hiệu quả triển khai</button>
+        <button data-nb="thuTien" data-sub="thuTienNB"><i class=ic data-ic=checkCircle></i> Xác nhận thu tiền</button>
+        <button data-nb="thuTien" data-sub="nopTienNB"><i class=ic data-ic=card></i> Khách báo nộp tiền <span class="huy-hieu" id="demNT"></span></button>
+        <button data-nb="thuTien" data-sub="henThuNB"><i class=ic data-ic=banknote></i> Hẹn thu tiền <span class="huy-hieu" id="demHT"></span></button>
+        <button data-nb="thuTien" data-sub="kiemTraHD" class="chi-ql"><i class=ic data-ic=shield></i> Kiểm tra hóa đơn</button>
+        <button data-nb="thuTien" data-sub="hoaDonDoNB" class="chi-ql"><i class=ic data-ic=receipt></i> Yêu cầu hóa đơn đỏ <span class="huy-hieu" id="demHDD"></span></button>
         <button data-nb="phieu" data-sub="suaChuaNB"><i class=ic data-ic=wrench></i> Báo hỏng <span class="huy-hieu" id="demSC"></span></button>
-        <button data-nb="phieu" data-sub="nopTienNB"><i class=ic data-ic=card></i> Khách báo nộp tiền <span class="huy-hieu" id="demNT"></span></button>
-        <button data-nb="phieu" data-sub="thuTienNB"><i class=ic data-ic=coins></i> Thu tiền theo tháng</button>
-        <button data-nb="phieu" data-sub="henThuNB"><i class=ic data-ic=banknote></i> Hẹn thu tiền <span class="huy-hieu" id="demHT"></span></button>
         <button data-nb="phieu" data-sub="yeuCauNB"><i class=ic data-ic=flask></i> Kiểm tra chất lượng nước <span class="huy-hieu" id="demYC"></span></button>
         <button data-nb="phieu" data-sub="lienHeNB"><i class=ic data-ic=edit></i> Liên hệ / đổi TT <span class="huy-hieu" id="demLH"></span></button>
         <button data-nb="phieu" data-sub="baoCaoNB"><i class=ic data-ic=siren></i> Báo cáo vi phạm <span class="huy-hieu" id="demBC"></span></button>
         <button data-nb="phieu" data-sub="gopYNB"><i class=ic data-ic=message></i> Góp ý, báo lỗi web <span class="huy-hieu" id="demGY"></span></button>
-        <button data-nb="duyet" data-sub="datLaiNB" class="chi-ql"><i class=ic data-ic=key></i> Cấp / đặt lại mật khẩu KH <span class="huy-hieu" id="demDL"></span></button>
+        <button data-nb="duyet" data-sub="qtKH" class="chi-ql"><i class=ic data-ic=user></i> Hồ sơ khách hàng</button>
+        <button data-nb="duyet" data-sub="qtChiSo" class="chi-ql"><i class=ic data-ic=hash></i> Chỉ số đồng hồ</button>
         <button data-nb="duyet" data-sub="duyetCN" class="chi-ql"><i class=ic data-ic=checkCircle></i> Duyệt thông tin KH <span class="huy-hieu" id="demCN"></span></button>
-        <button data-nb="duyet" data-sub="hoaDonDoNB" class="chi-ql"><i class=ic data-ic=receipt></i> Yêu cầu hóa đơn đỏ <span class="huy-hieu" id="demHDD"></span></button>
-        <button data-nb="tram" data-sub="tramNhanVien" class="chi-ql"><i class=ic data-ic=users></i> Quản lý nhân viên</button>
-        <button data-nb="tram" data-sub="tramLichTruc"><i class=ic data-ic=calendar></i> Lịch trực</button>
-        <button data-nb="tram" data-sub="tramLichChot"><i class=ic data-ic=clock></i> Lịch chốt số</button>
-        <button data-nb="tram" data-sub="tramNVChot"><i class=ic data-ic=users></i> Nhân viên chốt số</button>
-        <button data-nb="tram" data-sub="tramTGChot"><i class=ic data-ic=hourglass></i> Thời gian chốt số</button>
-        <button data-nb="quanLy" data-sub="trienKhai" class="chi-ql"><i class=ic data-ic=gauge></i> Hiệu quả triển khai</button>
-        <button data-nb="quanLy" data-sub="qtKH" class="chi-ql"><i class=ic data-ic=user></i> Khách hàng</button>
-        <button data-nb="quanLy" data-sub="qtChiSo" class="chi-ql"><i class=ic data-ic=hash></i> Chỉ số</button>
-        <button data-nb="duyet" data-sub="qtTaiKhoan" class="chi-ql"><i class=ic data-ic=users></i> Tài khoản nhân viên</button>
+        <button data-nb="duyet" data-sub="datLaiNB" class="chi-ql"><i class=ic data-ic=key></i> Cấp / đặt lại mật khẩu <span class="huy-hieu" id="demDL"></span></button>
+        <button data-nb="quanLy" data-sub="tramNhanVien" class="chi-ql"><i class=ic data-ic=users></i> Nhân viên &amp; điểm</button>
+        <button data-nb="quanLy" data-sub="qtTaiKhoan" class="chi-ql"><i class=ic data-ic=key></i> Tài khoản đăng nhập</button>
         <button data-nb="quanLy" data-sub="qtCauHinh" class="chi-ql"><i class=ic data-ic=gear></i> Cấu hình</button>
         <button data-nb="quanLy" data-sub="qtTruyCap" class="chi-ql"><i class=ic data-ic=trend></i> Truy cập</button>
         <button data-nb="quanLy" data-sub="qtNhatKy" class="chi-ql"><i class=ic data-ic=history></i> Nhật ký</button>
+        <button data-nb="huongDanNB" data-sub="lichLamViec"><i class=ic data-ic=calendar></i> Lịch làm việc</button>
         <button data-nb="huongDanNB" data-sub="hdNhanVien"><i class=ic data-ic=user></i> Nhân viên làm gì</button>
         <button data-nb="huongDanNB" data-sub="hdQuanLy" class="chi-ql"><i class=ic data-ic=sliders></i> Hướng dẫn quản lý</button>
       </div>
@@ -1751,7 +1878,7 @@
 
       <div id="sub_nghiNgo" class="an">
         <div class="the">
-          <div class="hang"><h3 style="margin:0;flex:1"><i class=ic data-ic=users></i> Dữ liệu khách hàng</h3>
+          <div class="hang"><h3 style="margin:0;flex:1"><i class=ic data-ic=searchCheck></i> Hộ nộp / chưa nộp, nghi ngờ vi phạm</h3>
             <button class="nut phu nho-nut" id="dlkTaiLai" type="button">Tải lại</button></div>
           <div class="nt-muc dl-muc" id="dlMuc" role="tablist" aria-label="Dữ liệu khách hàng">
             <button type="button" role="tab" data-dl="roi" class="roi"><i class=ic data-ic=checkCircle></i><span>Hộ đã nộp tiền</span><b id="dlSoRoi">…</b><small id="dlTienRoi"></small></button>
@@ -1861,7 +1988,7 @@
       </div>
       <div id="sub_thuTienNB" class="an">
         <div class="the">
-          <div class="hang"><h3 style="margin:0;flex:1"><i class=ic data-ic=coins></i> Thu tiền theo tháng – đánh dấu hộ đã nộp</h3>
+          <div class="hang"><h3 style="margin:0;flex:1"><i class=ic data-ic=coins></i> Xác nhận thu tiền – đánh dấu hộ đã nộp</h3>
             <button class="nut phu nho-nut" id="ttTaiLai" type="button">Tải lại</button></div>
           <div class="nho">Bấm nút trạng thái của từng hộ để đổi <b class="chu-xanh">Đã thu</b> ↔ <b class="chu-do">Chưa thu</b>. Khách đăng nhập tài khoản sẽ thấy tháng đó màu xanh hoặc đỏ. Tích "Đã nộp" ở mục Khách báo nộp tiền hoặc hẹn thu "Đã thu tiền" cũng tự chuyển xanh.</div>
           <div class="tt-loc">
@@ -1890,6 +2017,14 @@
         <div id="dsHT"></div>
       </div>
 
+      <div id="sub_kiemTraHD" class="an">
+        <div class="the">
+          <h3 style="margin-top:0"><i class=ic data-ic=shield></i> Kiểm tra hóa đơn – mã xác thực</h3>
+          <div class="nho">Mỗi hóa đơn chính thức (khách xem trong tài khoản sau khi cán bộ xác nhận thu tiền) có <b>mã xác thực 12 ký tự</b> in ở cuối giấy. Mã khác nhau theo từng hộ, từng tháng và đổi theo thời gian. Nhập mã để biết hóa đơn có do web phát hành không, ai xác nhận thu, lúc nào, và số liệu còn khớp không.</div>
+          <form id="fKTHD" class="hang" style="margin-top:10px" autocomplete="off"><input id="kthdMa" maxlength="20" placeholder="VD: AB12-CD34-EF56" aria-label="Mã xác thực" style="flex:1;min-width:200px"><button class="nut" id="kthdNut" type="submit">Kiểm tra</button></form>
+          <div class="loi" id="loiKTHD"></div><div id="kqKTHD"></div>
+        </div>
+      </div>
       <div id="sub_hoaDonDoNB" class="an">
         <div class="the">
           <div class="hang"><h3 style="margin:0;flex:1"><i class=ic data-ic=receipt></i> Yêu cầu hóa đơn đỏ (hóa đơn VAT)</h3>
@@ -1917,16 +2052,16 @@
               <li>Gọi lại người báo, đi kiểm tra → đổi trạng thái <b>Đang sửa</b>.</li>
               <li>Sửa xong → <b>Đã sửa xong</b>, ghi chú việc đã làm. Không gọi được → <b>Không liên lạc được</b>.</li></ol></div>
             <div class="hdnb-o"><h4><span class="bieu"><i class=ic data-ic=card></i></span>Khách báo nộp tiền</h4><ol>
-              <li><b>Phiếu khách gửi › Khách báo nộp tiền</b>: danh sách hộ báo đã liên hệ nộp tiền, số tiền, tháng, cán bộ khách chọn.</li>
+              <li><b>Thu tiền › Khách báo nộp tiền</b>: danh sách hộ báo đã liên hệ nộp tiền, số tiền, tháng, cán bộ khách chọn.</li>
               <li>Chỉ bấm <b>Đã nộp</b> khi đã <b>thực nhận đủ tiền</b> của hộ đó.</li>
               <li>Chưa nhận tiền: giữ <b>Chưa nộp</b>, gọi lại khách theo số trong phiếu.</li></ol></div>
             <div class="hdnb-o"><h4><span class="bieu"><i class=ic data-ic=coins></i></span>Thu tiền theo tháng</h4><ol>
-              <li><b>Phiếu khách gửi › Thu tiền theo tháng</b> → chọn <b>Kỳ</b>, <b>Khu</b>, <b>Xóm</b> (hoặc gõ tên, mã hộ).</li>
-              <li>Thu xong hộ nào → bấm nút trạng thái hộ đó sang <b>Đã thu</b>. Khách đăng nhập sẽ thấy tháng đó màu xanh và có giấy biên nhận “Đã thanh toán”.</li>
+              <li><b>Thu tiền › Xác nhận thu tiền</b> → chọn <b>Kỳ</b>, <b>Khu</b>, <b>Xóm</b> (hoặc gõ tên, mã hộ).</li>
+              <li>Thu xong hộ nào → bấm nút trạng thái hộ đó sang <b>Đã thu</b>. Web <b>ghi tên mình và giờ xác nhận</b>; khách đăng nhập thấy tháng đó màu xanh và có hóa đơn chính thức “Đã thanh toán” ghi tên mình ở ô Nhân viên thu tiền.</li>
               <li>Bấm nhầm → bấm lại để trả về <b>Chưa thu</b>. Không đánh dấu khi chưa cầm tiền.</li></ol></div>
             <div class="hdnb-o"><h4><span class="bieu"><i class=ic data-ic=banknote></i></span>Hẹn thu tiền</h4><ol>
-              <li><b>Phiếu khách gửi › Hẹn thu tiền</b>: khách hẹn ngày, số liên hệ.</li>
-              <li>Gọi xác nhận → <b>Đã liên hệ</b>; thu xong → <b>Đã thu tiền</b> (và đánh dấu Đã thu ở mục Thu tiền theo tháng).</li></ol></div>
+              <li><b>Thu tiền › Hẹn thu tiền</b>: khách hẹn ngày, số liên hệ.</li>
+              <li>Gọi xác nhận → <b>Đã liên hệ</b>; thu xong → <b>Đã thu tiền</b> (và đánh dấu Đã thu ở mục Xác nhận thu tiền).</li></ol></div>
             <div class="hdnb-o"><h4><span class="bieu"><i class=ic data-ic=flask></i></span>Kiểm tra chất lượng nước</h4><ol>
               <li><b>Phiếu khách gửi › Kiểm tra chất lượng nước</b>: xem nội dung khách cần kiểm tra và số Zalo.</li>
               <li>Kiểm tra, chụp ảnh kết quả → gửi qua Zalo cho khách → trạng thái <b>Đã gửi ảnh</b>.</li></ol></div>
@@ -1934,11 +2069,11 @@
               <li><b>Liên hệ / đổi TT</b>: gọi lại khách, xử lý → <b>Đã xong</b>.</li>
               <li><b>Báo cáo vi phạm</b>: đi xác minh → <b>Đã xử lý</b> hoặc <b>Không đúng sự thật</b>. Tuyệt đối giữ bí mật người báo.</li>
               <li><b>Góp ý, báo lỗi web</b>: đọc, chuyển quản lý nếu cần → <b>Đã xem</b> / <b>Đã xử lý</b>.</li></ul></div>
-            <div class="hdnb-o"><h4><span class="bieu"><i class=ic data-ic=chart></i></span>Sản lượng, số liệu</h4><ul>
+            <div class="hdnb-o"><h4><span class="bieu"><i class=ic data-ic=chart></i></span>Số liệu</h4><ul>
               <li><b>Số liệu tháng › Kiểm tra số liệu</b>: hộ có chỉ số bất thường (chỉ số mới nhỏ hơn cũ, tăng/giảm mạnh) → đi kiểm tra lại đồng hồ, báo quản lý sửa.</li>
-              <li><b>Dữ liệu khách hàng</b>: xem hộ đã nộp / chưa nộp từng kỳ để đi thu.</li></ul></div>
-            <div class="hdnb-o"><h4><span class="bieu"><i class=ic data-ic=building></i></span>Quản lý trạm</h4><ul>
-              <li>Xem <b>Lịch trực</b>, <b>Lịch chốt số</b>, <b>Nhân viên chốt số</b>, <b>Thời gian chốt số</b> để làm đúng lịch được giao.</li></ul></div>
+              <li><b>Hộ nộp / chưa nộp, nghi ngờ</b>: xem hộ đã nộp / chưa nộp từng kỳ để đi thu.</li></ul></div>
+            <div class="hdnb-o"><h4><span class="bieu"><i class=ic data-ic=calendar></i></span>Lịch làm việc</h4><ul>
+              <li><b>Lịch &amp; hướng dẫn › Lịch làm việc</b>: lịch trực, lịch chốt số, phân công, thời gian chốt số – làm đúng lịch được giao.</li></ul></div>
             <div class="hdnb-o"><h4><span class="bieu"><i class=ic data-ic=shield></i></span>Quy tắc an toàn</h4><ul>
               <li>Không cho người khác mượn tài khoản, không đọc mật khẩu qua điện thoại.</li>
               <li>Không chụp, gửi số điện thoại, thông tin khách ra ngoài.</li>
@@ -1952,25 +2087,29 @@
           <div class="hd-video" style="margin-bottom:12px"><div class="hd-vthe" id="hdnbVidQL"></div></div>
           <div class="hdnb-ds">
             <div class="hdnb-o"><h4><span class="bieu"><i class=ic data-ic=gauge></i></span>Theo dõi hằng ngày</h4><ol>
-              <li><b>Quản lý chung › Hiệu quả triển khai</b>: điểm làm việc của từng cán bộ (đăng nhập, xử lý phiếu, xác nhận nộp tiền, đánh dấu thu).</li>
+              <li><b>Số liệu › Hiệu quả triển khai</b>: điểm làm việc của từng cán bộ (đăng nhập, xử lý phiếu, xác nhận nộp tiền, đánh dấu thu).</li>
               <li><b>Sản lượng</b>: số liệu tháng, doanh thu &amp; sản lượng năm, so sánh theo tháng.</li>
               <li>Phiếu mới quá 1 ngày chưa xử lý → nhắc cán bộ địa bàn.</li></ol></div>
             <div class="hdnb-o"><h4><span class="bieu"><i class=ic data-ic=receipt></i></span>Duyệt hóa đơn đỏ (VAT)</h4><ol>
-              <li><b>Duyệt &amp; tài khoản › Yêu cầu hóa đơn đỏ</b>: khách đã thanh toán gửi yêu cầu (cá nhân hoặc đơn vị có mã số thuế).</li>
+              <li><b>Thu tiền › Yêu cầu hóa đơn đỏ</b>: khách đã thanh toán gửi yêu cầu (cá nhân hoặc đơn vị có mã số thuế).</li>
               <li>Mở trang VNPT → tìm hóa đơn đúng <b>mã KH</b>, <b>tháng</b>, <b>số tiền</b> → sao chép link → dán vào ô Link → <b>Duyệt</b>.</li>
               <li>Đơn vị cần ghi mã số thuế trên hóa đơn: làm theo quy định trên VNPT trước, rồi dán link hóa đơn đúng. Sai thông tin → <b>Từ chối</b>, ghi lý do.</li></ol></div>
+            <div class="hdnb-o"><h4><span class="bieu"><i class=ic data-ic=shield></i></span>Kiểm tra hóa đơn thật – giả</h4><ol>
+              <li>Hóa đơn chính thức có <b>mã xác thực 12 ký tự</b> (khung cuối giấy), tên cán bộ xác nhận thu và giờ phát hành.</li>
+              <li><b>Thu tiền › Kiểm tra hóa đơn</b> → nhập mã → web cho biết hóa đơn có do web phát hành không, ai xác nhận thu, lúc nào.</li>
+              <li>Báo đỏ “không hợp lệ” hoặc “số liệu đã thay đổi” → hóa đơn giả hoặc đã bị sửa / hủy xác nhận: kiểm tra lại với cán bộ.</li></ol></div>
             <div class="hdnb-o"><h4><span class="bieu"><i class=ic data-ic=key></i></span>Tài khoản khách hàng</h4><ol>
               <li><b>Cấp / đặt lại mật khẩu KH</b>: gọi đúng số điện thoại khách khai, hỏi lại họ tên, xóm → đúng mới đặt lại (mật khẩu về 111111).</li>
               <li><b>Duyệt thông tin KH</b>: khách xin đổi tên, số điện thoại, địa chỉ → đối chiếu giấy tờ → Duyệt / Từ chối (ghi lý do).</li></ol></div>
             <div class="hdnb-o"><h4><span class="bieu"><i class=ic data-ic=users></i></span>Nhân viên, tài khoản</h4><ul>
-              <li><b>Duyệt &amp; tài khoản › Tài khoản nhân viên</b> (quản trị): thêm, khóa, đặt lại mật khẩu, phân vai trò (Quản trị, Lãnh đạo quản lý, Nhân viên).</li>
-              <li><b>Quản lý trạm › Quản lý nhân viên</b>: danh sách cán bộ trạm, địa bàn phụ trách.</li>
+              <li><b>Quản trị › Tài khoản đăng nhập</b> (quản trị): thêm, khóa, đặt lại mật khẩu, phân vai trò (Quản trị, Lãnh đạo quản lý, Nhân viên).</li>
+              <li><b>Quản trị › Nhân viên &amp; điểm</b>: danh sách cán bộ trạm, địa bàn phụ trách.</li>
               <li>Người nghỉ việc: khóa tài khoản ngay.</li></ul></div>
             <div class="hdnb-o"><h4><span class="bieu"><i class=ic data-ic=hash></i></span>Khách hàng, chỉ số</h4><ul>
-              <li><b>Quản lý chung › Khách hàng / Chỉ số</b>: tìm hộ, xem và sửa chỉ số (quản trị). Mọi lần sửa đều ghi Nhật ký.</li>
+              <li><b>Khách hàng › Hồ sơ khách hàng / Chỉ số đồng hồ</b>: tìm hộ, xem và sửa chỉ số (quản trị). Mọi lần sửa đều ghi Nhật ký.</li>
               <li>Sửa chỉ số chỉ khi đã kiểm tra lại đồng hồ hoặc đối chiếu hóa đơn VNPT.</li></ul></div>
             <div class="hdnb-o"><h4><span class="bieu"><i class=ic data-ic=gear></i></span>Cấu hình web</h4><ul>
-              <li><b>Quản lý chung › Cấu hình</b> (quản trị sửa, lãnh đạo chỉ xem): thông báo đầu trang, giờ nhận yêu cầu, số liên hệ cán bộ từng khu, Telegram/email nhận báo.</li>
+              <li><b>Quản trị › Cấu hình</b> (quản trị sửa, lãnh đạo chỉ xem): thông báo đầu trang, giờ nhận yêu cầu, số liên hệ cán bộ từng khu, Telegram/email nhận báo.</li>
               <li>Video hướng dẫn: dán link YouTube hoặc Google Drive vào các ô <b>video_nop_tien</b>, <b>video_hd_vat</b>, <b>video_hd_thuong</b> (khách xem), <b>video_nhan_vien</b>, <b>video_quan_ly</b> (nội bộ).</li></ul></div>
             <div class="hdnb-o"><h4><span class="bieu"><i class=ic data-ic=history></i></span>Kiểm soát, an toàn</h4><ul>
               <li><b>Truy cập</b>: ai vào web, thao tác gì. <b>Nhật ký</b>: mọi thay đổi dữ liệu, đăng nhập sai.</li>
@@ -2055,7 +2194,7 @@
       <div id="sub_qtTaiKhoan" class="an">
         <div class="the">
           <div class="hang"><h3 style="margin:0;flex:1"><i class=ic data-ic=sliders></i> Tài khoản đăng nhập</h3><button class="nut phu nho-nut an-ld" id="nutTKThem" type="button">+ Thêm tài khoản</button></div>
-          <p class="nho"><b>adm – Quản trị</b>: toàn quyền (sửa dữ liệu, cấu hình, tài khoản, xóa phiếu). <b>ld – Lãnh đạo quản lý</b>: xem mọi mục như quản trị, xử lý phiếu và duyệt, nhưng không có Cấu hình, không sửa dữ liệu khách/chỉ số/tài khoản, không xóa phiếu. <b>nv – Nhân viên</b>: Sản lượng và Phiếu khách gửi. Khóa tài khoản = bỏ tích "Hoạt động".</p>
+          <p class="nho"><b>adm – Quản trị</b>: toàn quyền (sửa dữ liệu, cấu hình, tài khoản, xóa phiếu). <b>ld – Lãnh đạo quản lý</b>: xem mọi mục như quản trị, xử lý phiếu và duyệt, nhưng không có Cấu hình, không sửa dữ liệu khách/chỉ số/tài khoản, không xóa phiếu. <b>nv – Nhân viên</b>: Số liệu, Thu tiền, Phiếu khách gửi, Lịch &amp; hướng dẫn. Khóa tài khoản = bỏ tích "Hoạt động".</p>
           <div class="loi" id="loiTK"></div>
           <div class="cuon"><table id="tblTK"></table></div>
         </div>
@@ -2115,7 +2254,8 @@
         <div id="nvnKQ"></div>
       </div>
 
-      <div id="sub_tramLichTruc" class="an">
+      <div id="sub_lichLamViec" class="an"><div class="the nho" style="margin-bottom:10px">Lịch trực, lịch chốt số, phân công và thời gian chốt số của trạm – đang hoàn thiện.</div>
+      <div>
         <div class="the sap-co">
           <div class="sc-bieu"><i class=ic data-ic=calendar></i></div>
           <div class="sc-noi">
@@ -2127,7 +2267,7 @@
         </div>
       </div>
 
-      <div id="sub_tramLichChot" class="an">
+      <div>
         <div class="the sap-co">
           <div class="sc-bieu"><i class=ic data-ic=clock></i></div>
           <div class="sc-noi">
@@ -2139,7 +2279,7 @@
         </div>
       </div>
 
-      <div id="sub_tramNVChot" class="an">
+      <div>
         <div class="the sap-co">
           <div class="sc-bieu"><i class=ic data-ic=users></i></div>
           <div class="sc-noi">
@@ -2151,7 +2291,7 @@
         </div>
       </div>
 
-      <div id="sub_tramTGChot" class="an">
+      <div>
         <div class="the sap-co">
           <div class="sc-bieu"><i class=ic data-ic=hourglass></i></div>
           <div class="sc-noi">
@@ -2161,6 +2301,7 @@
             <ul class="sc-ds"><li><i class=ic data-ic=checkCircle></i><span>Giờ bắt đầu, giờ xong từng xóm</span></li><li><i class=ic data-ic=checkCircle></i><span>So với lịch: đúng hẹn / trễ</span></li><li><i class=ic data-ic=checkCircle></i><span>Thống kê thời gian trung bình mỗi tháng</span></li></ul>
           </div>
         </div>
+      </div>
       </div>
 
       <div id="sub_trienKhai" class="an">
@@ -2232,7 +2373,7 @@
 <div id="nenHG" role="dialog" aria-modal="true" aria-labelledby="hgTieuDe"><div id="khungHG">
   <div class="hg-thanh"><b id="hgTieuDe">Giấy biên nhận</b><button class="nut nho-nut" id="hgIn" type="button"><i class="ic" data-ic="printer"></i>In / Lưu PDF</button><button class="nut phu nho-nut" id="hgDong" type="button" aria-label="Đóng">Đóng</button></div>
   <div id="hgND"></div><div id="hgHD"></div></div></div>
-<button id="nutGopY" type="button" aria-label="Góp ý, báo lỗi web" title="Đóng góp ý kiến, báo lỗi web"><i class="ic" data-ic="gopY"></i><span>Góp ý</span></button>
+<button id="nutGopY" type="button" aria-label="Góp ý, báo lỗi web" title="Đóng góp ý kiến, báo lỗi web"><span class="tron-ic"><i class="ic" data-ic="gopY"></i></span><span>Góp ý</span></button>
 <div id="nenGY" role="dialog" aria-modal="true" aria-labelledby="gyTieuDe">
   <form id="fGY" autocomplete="off">
     <div class="gy-dau"><i class="ic" data-ic="message" style="color:var(--xanh);width:26px;height:26px"></i><h3 id="gyTieuDe">Góp ý, báo lỗi web</h3><button class="gy-dong" id="gyDong" type="button" aria-label="Đóng">×</button></div>
@@ -2252,7 +2393,7 @@
     <div class="loi" id="gyLoi"></div><div id="gyKQ"></div>
   </form>
 </div>
-<button id="nutGoi" type="button" aria-label="Gọi điện cho trạm" title="Gọi điện cho trạm"><i class="ic" data-ic="phone"></i></button>
+<button id="nutGoi" type="button" aria-label="Gọi điện cho trạm" title="Gọi điện cho trạm"><span class="tron-ic"><i class="ic" data-ic="phoneCall"></i></span><span>Gọi trạm</span></button>
 <div id="bangGoi" role="dialog" aria-label="Chọn số để gọi">
   <div class="bg-dau"><span><i class=ic data-ic=phone></i> Bấm để gọi ngay</span><button class="bg-dong" id="dongGoi" type="button" aria-label="Đóng">×</button></div>
   <div id="dsGoi"><span class="nho">Đang tải số điện thoại…</span></div>
@@ -2364,6 +2505,7 @@
     heart: '<path d="M19 14c1.5-1.5 3-3.2 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.8 0-3 .5-4.5 2-1.5-1.5-2.7-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4 3 5.5l7 7Z"/>',
     hourglass: '<path d="M5 22h14M5 2h14M17 22v-4.2a2 2 0 0 0-.6-1.4L12 12l-4.4 4.4a2 2 0 0 0-.6 1.4V22M7 2v4.2a2 2 0 0 0 .6 1.4L12 12l4.4-4.4a2 2 0 0 0 .6-1.4V2"/>',
     message: '<path d="M21 12a8.5 8.5 0 0 1-12.4 7.6L3 21l1.4-5.4A8.5 8.5 0 1 1 21 12Z"/>',
+    phoneCall: '<path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/><path d="M15 3.5a6 6 0 0 1 5.5 5.5M15 7a2.5 2.5 0 0 1 2 2"/>',
     gopY: '<path d="M20.5 11a8.5 8 0 0 1-12 7.3L3.5 20l1.3-4.4A8.5 8 0 1 1 20.5 11Z"/><path d="m8.6 14.6.5-2.3 4.6-4.6a1.3 1.3 0 0 1 1.9 1.8l-4.7 4.6Z"/>',
     printer: '<path d="M7 9V3h10v6"/><rect x="3" y="9" width="18" height="8" rx="2"/><path d="M7 14h10v7H7z"/>',
     logout: '<path d="M15 4h3a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2h-3"/><path d="M10 17l-5-5 5-5M5 12h11"/>',
@@ -2473,12 +2615,44 @@
   const NHOM = {
     traCuu: [['traCuu', 'search', 'Tra cứu']],
     baoHong: [['suaChua', 'wrench', 'Báo hỏng']],
-    dichVu: [['yeuCau', 'flask', 'Kiểm tra chất lượng nước'], ['lienHeTab', 'edit', 'Đổi thông tin'], ['thanhToan', 'card', 'Thanh toán'], ['bangGia', 'drop', 'Giá nước'], ['taiApp', 'download', 'Tải ứng dụng']],
+    dichVu: [['yeuCau', 'flask', 'Kiểm tra chất lượng nước'], ['lienHeTab', 'edit', 'Đổi thông tin'], ['thanhToan', 'card', 'Thanh toán'], ['bangGia', 'drop', 'Giá nước'], ['viTriTab', 'pin', 'Vị trí trạm'], ['taiApp', 'download', 'Tải ứng dụng']],
     viPham: [['baoViPham', 'alert', 'Báo vi phạm']],
-    tinTuc: [['thongBaoTab', 'bell', 'Thông báo'], ['tuyenTruyen', 'wave', 'Tuyên truyền'], ['vanBan', 'doc', 'Văn bản'], ['coCau', 'users', 'Cơ cấu tổ chức']],
+    tinTuc: [['thongBaoTab', 'bell', 'Thông báo'], ['canhBaoTab', 'shieldAlert', 'Cảnh báo'], ['tuyenTruyen', 'wave', 'Tuyên truyền'], ['vanBan', 'doc', 'Văn bản'], ['coCau', 'users', 'Cơ cấu tổ chức']],
     huongDan: [['huongDan', 'book', 'Hướng dẫn sử dụng']],
     taiKhoan: [['noiBo', 'user', 'Tài khoản']]   // không còn nút trên thanh menu – mở bằng nút Đăng nhập ở đầu trang
   };
+
+
+  // ---------- Tin tức › Cảnh báo lừa đảo: giải thích từng ý của dòng chữ chạy ----------
+  function veCanhBao(c) {
+    const ds = (c.canhBao && c.canhBao.length ? c.canhBao : (c.canhBaoLuaDao || []).map(t => ({ ngan: t, ct: '' })));
+    const bieu = ['lock', 'banknote', 'link', 'phone', 'alert', 'shield'];
+    $('canhBaoTab').querySelector('.cb-dau p').innerHTML = `Kẻ gian thường giả danh nhân viên điện, nước để lấy tiền, mật khẩu. Bà con đọc kỹ <b>${ds.length} điều</b> dưới đây và nhắc người thân cùng biết.`;
+    $('dsCanhBao').innerHTML = ds.map((x, i) => `<article class="cb-the"><span class="cb-so">${i + 1}</span><span class="cb-ic">${ic(bieu[i % bieu.length])}</span>
+      <div><h3>${esc(x.ngan)}</h3>${x.ct && x.ct !== x.ngan ? `<p>${esc(x.ct)}</p>` : ''}</div></article>`).join('') || '<div class="the nho">Đang cập nhật.</div>';
+    const so = [];
+    String(c.hotline || '').split(/[·;|\n]/).forEach(p => { const m = p.match(/([^:\d]*?)\s*(\+?\d[\d .]{7,}\d)/); if (m) so.push({ ten: m[1].replace(/sửa chữa\s*:?/i, '').trim(), so: m[2].trim(), tel: m[2].replace(/[^\d+]/g, '') }); });
+    $('cbGoi').innerHTML = so.map(x => `<a class="nut" href="tel:${esc(x.tel)}">${ic('phone')} ${esc(x.ten ? x.ten + ' · ' : '')}${esc(x.so)}</a>`).join('') || '';
+  }
+  // ---------- Dịch vụ › Vị trí trạm: thẻ bản đồ cho từng nhà máy nước ----------
+  function veViTri(c) {
+    const ds = (c.tram || []).filter(t => t.ten);
+    if (!ds.length) { $('dsViTri').innerHTML = '<div class="the nho">Trạm đang cập nhật vị trí.</div>'; return; }
+    const so = [];   // số điện thoại theo tên trạm trong ô hotline (VD "Nam Thắng 0228 3929463")
+    String(c.hotline || '').split(/[·;|\n]/).forEach(p => { const m = p.match(/([^:\d]*?)\s*(\+?\d[\d .]{7,}\d)/); if (m) so.push({ ten: khongDauJS(m[1].replace(/sửa chữa\s*:?/i, '')).trim(), so: m[2].trim(), tel: m[2].replace(/[^\d+]/g, '') }); });
+    $('dsViTri').innerHTML = ds.map((t, i) => {
+      const [nhan, ...du] = String(t.ten).split(/\s+[–-]\s+/), ten = du.length ? du.join(' – ') : t.ten, kd = khongDauJS(t.ten);
+      const dt = so.find(x => x.ten && kd.indexOf(x.ten) >= 0) || (so.length === 1 ? so[0] : null);
+      return `<article class="vt-the">
+        <div class="vt-bando" aria-hidden="true"><span class="vt-song"></span><span class="vt-ghim">${ic('pin')}</span><span class="vt-so">${esc(du.length ? nhan : 'Trạm ' + (i + 1))}</span></div>
+        <div class="vt-noi">
+          <h3>${esc(ten)}</h3>
+          ${t.diaBan ? `<p class="vt-db">${ic('drop')}<span>${esc(t.diaBan)}</span></p>` : ''}
+          ${dt ? `<p class="vt-db">${ic('phone')}<span>Sửa chữa, hỏi đáp: <b>${esc(dt.so)}</b></span></p>` : ''}
+          <div class="vt-nut">${anToan(t.map) ? `<a class="nut" href="${esc(anToan(t.map))}" target="_blank" rel="noopener">${ic('map')} Chỉ đường</a>` : ''}${dt ? `<a class="nut phu" href="tel:${esc(dt.tel)}">${ic('phone')} Gọi trạm</a>` : ''}</div>
+        </div></article>`;
+    }).join('');
+  }
   // ---------- Tải ứng dụng: link file APK, logo, gợi ý đúng loại máy ----------
   (() => {
     const nut = $('taNutApk'); if (!nut) return;
@@ -2736,10 +2910,23 @@
       + (c.maSoThue ? `<div class="nho">Mã số thuế: ${esc(c.maSoThue)}${c.quyetDinh ? ' · ' + esc(c.quyetDinh) : ''}</div>` : '');
     if (lienHeHTML) { $('dsLienHe').innerHTML = lienHeHTML; $('lienHe').classList.remove('an'); }
     const tramHTML = c.tram.map(t => `<div class="tram"><b>${esc(t.ten)}</b>${t.diaBan ? '<div class="nho">' + esc(t.diaBan) + '</div>' : ''}${anToan(t.map) ? '<div>' + lk(t.map, '<i class=ic data-ic=map></i> Xem trên Google Maps') + '</div>' : ''}</div>`).join('');
-    if (tramHTML) { $('dsTram').innerHTML = tramHTML; $('viTriTram').classList.remove('an'); }
+    veViTri(c);
     $$('.dsLienHe2').forEach(x => x.innerHTML = lienHeHTML + (tramHTML ? '<div style="margin-top:8px">' + tramHTML + '</div>' : '') || '<span class="nho">Đang cập nhật.</span>');
     $('thietKe').textContent = c.thietKe;
-    if (c.thongBao) { $('thongBao').innerHTML = ic('megaphone') + ' ' + esc(c.thongBao); $('thongBao').classList.remove('an'); }
+    { const tb = (c.thongBaoChay || (c.thongBao ? [c.thongBao] : [])).map(t => ({ chu: t, moi: false }));   // ý ngắn (Cấu hình) + thông báo mới trong 30 ngày
+      const ngayTB = t => { const m = String(t.ngay || '').match(/(\d{1,2})\/(\d{1,2})\/(\d{4})/); return m ? new Date(+m[3], m[2] - 1, +m[1]).getTime() : 0; };
+      (c.thongBao2 || []).filter(t => Date.now() - ngayTB(t) < 30 * 864e5).slice(0, 3).forEach(t => tb.push({ chu: t.tieude, moi: true }));
+      if (tb.length) {
+        const mot = tb.map(t => `<span>${t.moi ? '<i class="moi">MỚI</i>' : ic('megaphone')}${esc(t.chu)}</span>`).join('');
+        $('tbNoi').innerHTML = mot + mot.replace(/<span>/g, '<span aria-hidden="true">');
+        $('tbNoi').style.setProperty('--tg', Math.max(20, Math.round(tb.map(t => t.chu).join(' ').length * 0.17)) + 's');
+        $('thongBao').classList.remove('an'); $('thongBao').title = 'Bấm để xem chi tiết thông báo';
+        $('thongBao').onclick = () => moTab('thongBaoTab');
+      } else $('thongBao').classList.add('an');
+    }
+    // mục Tin tức › Cảnh báo + thẻ ghim lịch làm việc ở mục Thông báo
+    veCanhBao(c);
+    $('tbGhim').innerHTML = c.thongBao ? `<div class="tb-ghim"><div class="tb-ghim-dau">${ic('pin')}<b>Lịch làm việc với bà con</b></div><ul>${String(c.thongBao).split(/(?<=[.!?])\s+/).filter(Boolean).map(x => '<li>' + esc(x) + '</li>').join('')}</ul></div>` : '';
     if (c.canhBaoGia) { $('giaMau').innerHTML = ic('alert') + ' ' + esc(c.canhBaoGia); $('giaMau').classList.remove('an'); }
     if (c.coLogo && !$('logo').querySelector('img') && !TRONG_GOOGLE && location.protocol === 'https:') { const im = new Image(); im.alt = 'Logo'; im.onload = () => { if (!$('logo').querySelector('img')) $('logo').replaceChildren(im); }; im.onerror = () => goi('layAnh', 'logo').then(b64 => { if (b64 && b64.length > 200) { const i2 = new Image(); i2.alt = 'Logo'; i2.src = 'data:image/png;base64,' + b64; $('logo').replaceChildren(i2); } }).catch(() => {}); im.src = 'anh/logo.png'; }
     else if (c.coLogo && !$('logo').querySelector('img')) goi('layAnh', 'logo').then(b64 => { if (b64 && b64.length > 200) { const im = new Image(); im.alt = 'Logo'; im.onload = () => { const cu = $('logo').querySelector('img'); if (cu) cu.src = im.src; else $('logo').replaceChildren(im); }; im.src = 'data:image/png;base64,' + b64; } }).catch(() => {});
@@ -2799,7 +2986,8 @@
       $('ldNoi').innerHTML = mot.replace(/<span>/g, '<span>' + ic('alert')) + `<span class="lap" aria-hidden="true"></span>` + ld.map(t => `<span class="lap" aria-hidden="true">${ic('alert')}${esc(t)}</span>`).join('');
       $('ldNoi').style.setProperty('--tg', Math.max(25, Math.round(ld.join(' ').length * 0.16)) + 's');
       $('luaDao').classList.remove('an');
-      $('luaDao').onclick = () => $('luaDao').classList.toggle('dung');
+      $('luaDao').onclick = () => moTab('canhBaoTab');   // bấm dòng chữ → mở mục Cảnh báo (giải thích chi tiết)
+      $('luaDao').title = 'Bấm để xem chi tiết cảnh báo';
     }
     // yêu cầu
     $('ycNoiDung').innerHTML = c.noiDungYC.map((n, i) => `<label class="${i < 2 ? 'chon' : ''}"><input type="checkbox" class="ycND" value="${esc(n)}" ${i < 2 ? 'checked' : ''}><span class="bieu">${['<i class=ic data-ic=gauge></i>', '<i class=ic data-ic=flask></i>', '<i class=ic data-ic=clock></i>'][i] || '<i class=ic data-ic=tag></i>'}</span>${esc(n)}</label>`).join('');
@@ -2808,12 +2996,6 @@
     $('gioNhan').innerHTML = c.dangNhan ? `<i class=ic data-ic=checkCircle></i> Đang nhận yêu cầu (${esc(c.gioNhanTu)} – ${esc(c.gioNhanDen)} hằng ngày).`
       : `<i class=ic data-ic=xCircle></i> Ngoài giờ nhận yêu cầu. Trạm nhận từ <b>${esc(c.gioNhanTu)}</b> đến <b>${esc(c.gioNhanDen)}</b> hằng ngày.`;
 
-    // hóa đơn điện tử
-    if (anToan(c.linkHoaDon)) {
-      $('hoaDonDT').innerHTML = `<h3><i class=ic data-ic=receipt></i> Hóa đơn điện tử</h3>
-        <div class="nho">Vào trang ${lk(c.linkHoaDon, esc(anToan(c.linkHoaDon).replace(/^https?:\/+/i, '')))} – đăng nhập bằng mã khách hàng, mật khẩu mặc định in trên giấy biên nhận.</div>`;
-      $('hoaDonDT').classList.remove('an');
-    }
   }
 
   $('thuM3').oninput = () => {
@@ -2857,8 +3039,7 @@
   }
 
   function kyCua(thang) {
-    if (!CHUNG || !CHUNG.kyTuNgay) return '';
-    const [m] = thang.split('/').map(Number), d = CHUNG.kyTuNgay, p = n => ('0' + n).slice(-2);
+    const [m] = String(thang || '').split('/').map(Number), d = 26, p = n => ('0' + n).slice(-2);   // đúng kỳ in trên giấy biên nhận của trạm: 26 tháng trước – 25 tháng này
     if (!(m >= 1 && m <= 12) || !(d >= 2 && d <= 28)) return '';
     return ` (kỳ ${p(d)}/${p(m === 1 ? 12 : m - 1)} – ${p(d - 1)}/${p(m)})`;
   }
@@ -3010,7 +3191,7 @@
       <div class="tc-the-tien"><div class="nho"><i class=ic data-ic=drop></i> Tiền nước tháng ${esc(k.thang)}${kyCua(k.thang)}</div>
         <div class="tc-tien-hang"><div><div class="tc-tien">${t ? tien(t.tong) : '–'}</div>
         <div class="nho">${t ? 'Đã gồm thuế GTGT ' + vat + '%' + (t.bvmt ? ' và phí BVMT nước thải ' + bvmt + '%' : '') : 'Chỉ số đang được kiểm tra'}</div></div>
-        ${t ? `<div class="tc-nop"><button type="button" class="chinh" id="tcNop">Nộp tiền</button><button type="button" class="phu2" id="tcNopHo">Nộp tiền hộ</button></div>` : ''}</div></div>
+        ${t ? `<div class="tc-nop"><button type="button" class="chinh" id="tcNop">Nộp tiền</button><button type="button" class="phu2" id="tcNopHo">Nộp tiền hộ</button><button type="button" class="phu2 xem-hd" id="tcBN">${ic('receipt')} Xem hóa đơn</button></div>` : ''}</div></div>
       <div class="tc-dong-ho" aria-label="Chỉ số đồng hồ">
         <div class="o"><span class="nho">Chỉ số cũ</span><b>${so(k.cu)}</b></div><span class="mui-ten">→</span>
         <div class="o"><span class="nho">Chỉ số mới</span><b>${so(k.moi)}</b></div><span class="mui-ten">=</span>
@@ -3021,8 +3202,7 @@
         (t.chiTiet.length ? t.chiTiet.map(c => `<div><span>Tiền nước: ${so(c.m3)} m³ × ${so(c.gia)} đ</span><b>${tien(c.tien)}</b></div>`).join('') : `<div><span>Tiền nước: 0 m³</span><b>${tien(0)}</b></div>`) +
         `<div><span>Thuế GTGT <span class="pt">${vat}%</span></span><b>${tien(t.vat)}</b></div>` +
         (t.bvmt ? `<div><span>Phí BVMT nước thải <span class="pt">${bvmt}%</span></span><b>${tien(t.bvmt)}</b></div>` : '') +
-        `<div><span>Tổng phải nộp</span><span>${tien(t.tong)}</span></div></div>`
-        + `<div class="tc-bn"><button type="button" class="nut phu" id="tcBN">${ic('receipt')} Xem hóa đơn giấy tháng ${esc(k.thang)}</button></div>`;
+        `<div><span>Tổng phải nộp</span><span>${tien(t.tong)}</span></div></div>`;
     } else if (k.m3 !== null && k.m3 < 0) {
       html += `<div class="canhbao" style="margin-top:12px">Chỉ số tháng này đang được trạm kiểm tra lại.</div>`;
     }
@@ -3375,7 +3555,7 @@
   { const t = docPhien(); if (t) { TK = t; goi('kiemTraPhien', t).then(vaoNoiBo).catch(() => { TK = ''; luuPhien(''); }); } }
   $$('#tabNB button').forEach(b => b.onclick = () => {
     moSub('tabNB', 'sub', b.dataset.sub);
-    ['baoCao', 'baoCaoNam', 'soSanh', 'nghiNgo', 'suaChuaNB', 'nopTienNB', 'thuTienNB', 'henThuNB', 'yeuCauNB', 'lienHeNB', 'baoCaoNB', 'gopYNB', 'datLaiNB', 'duyetCN', 'hoaDonDoNB', 'hdNhanVien', 'hdQuanLy', 'tramNhanVien', 'tramLichTruc', 'tramLichChot', 'tramNVChot', 'tramTGChot', 'trienKhai', 'qtTruyCap', 'qtKH', 'qtChiSo', 'qtTaiKhoan', 'qtCauHinh', 'qtNhatKy'].forEach(t => $('sub_' + t).classList.toggle('an', t !== b.dataset.sub));
+    ['baoCao', 'baoCaoNam', 'soSanh', 'nghiNgo', 'suaChuaNB', 'nopTienNB', 'thuTienNB', 'henThuNB', 'yeuCauNB', 'lienHeNB', 'baoCaoNB', 'gopYNB', 'datLaiNB', 'duyetCN', 'hoaDonDoNB', 'kiemTraHD', 'hdNhanVien', 'hdQuanLy', 'tramNhanVien', 'lichLamViec', 'trienKhai', 'qtTruyCap', 'qtKH', 'qtChiSo', 'qtTaiKhoan', 'qtCauHinh', 'qtNhatKy'].forEach(t => $('sub_' + t).classList.toggle('an', t !== b.dataset.sub));
     if (b.dataset.sub === 'qtTaiKhoan') taiTK();
     if (b.dataset.sub === 'qtCauHinh') taiCH();
     if (b.dataset.sub === 'qtNhatKy') taiNK();
@@ -3399,7 +3579,7 @@
     if (b.dataset.sub === 'qtTruyCap') taiTC();
     CUOI_NB[b.dataset.nb] = b.dataset.sub; ghiTC('Nội bộ', b.textContent.replace(/\d+\s*$/, '').trim());
   });
-  // ---------- nhóm tab nội bộ: Sản lượng · Phiếu khách gửi · Duyệt & tài khoản · Quản lý chung ----------
+  // ---------- nhóm tab nội bộ: Số liệu · Thu tiền · Phiếu khách gửi · Khách hàng · Quản trị · Lịch & hướng dẫn ----------
   const CUOI_NB = {};
   function chonNhomNB(g, moLuon) {
     $$('#nhomNB button').forEach(b => b.classList.toggle('on', b.dataset.nb === g));
@@ -3409,8 +3589,9 @@
   $$('#nhomNB button').forEach(b => b.onclick = () => chonNhomNB(b.dataset.nb, true));
   function demNhom() {
     const n = ids => ids.reduce((a, id) => a + (Number($(id).textContent) || 0), 0);
-    $('demNhomPhieu').textContent = n(['demSC', 'demNT', 'demHT', 'demYC', 'demLH', 'demBC', 'demGY']) || '';
-    $('demNhomDuyet').textContent = n(['demDL', 'demCN', 'demHDD']) || '';
+    $('demNhomThu').textContent = n(['demNT', 'demHT', 'demHDD']) || '';
+    $('demNhomPhieu').textContent = n(['demSC', 'demYC', 'demLH', 'demBC', 'demGY']) || '';
+    $('demNhomDuyet').textContent = n(['demDL', 'demCN']) || '';
   }
   chonNhomNB('sanLuong', false);
   // ================= v26: video hướng dẫn, giấy biên nhận, hóa đơn đỏ, nội bộ gọn trên điện thoại =================
@@ -3497,11 +3678,13 @@
       <div class="hg-chan"><div class="hg-huong"><i>Khách hàng tra cứu thông tin và in hóa đơn điện tử theo các bước như sau:</i>
           <div>1. Vào trang Web:</div><div>${esc(BN.web)}</div><div>2. Đăng nhập tài khoản: Bằng số mã khách hàng</div>
           <div>3. Mật khẩu: ${o.coMK ? 'Mặc định ' + esc(BN.mk) : 'Mặc định in trên giấy biên nhận'}</div><i>thay đổi mật khẩu cho lần đăng nhập tiếp theo</i></div>
-        <div class="hg-ky-ten"><b>Nhân viên thu tiền</b><i>(Ký, ghi rõ họ tên)</i></div></div>
+        <div class="hg-ky-ten"><b>Nhân viên thu tiền</b><i>(Ký, ghi rõ họ tên)</i>${o.daTT && o.xn ? `<span class="hg-ten-nv">${esc(o.xn.ten)}</span>` : ''}</div></div>
+      ${o.daTT && o.xn ? `<div class="hg-xt"><span>Mã xác thực hóa đơn: <b class="hg-ma">đang cấp…</b></span><span>Phát hành: <b class="hg-ph">–</b> · Cán bộ xác nhận thu: <b>${esc(o.xn.ten)}</b> (${esc(o.xn.tg)})</span></div>` : ''}
       <div class="hg-in">${BN.in}</div>
-      ${o.daTT ? '<div class="hg-dauTT">ĐÃ THANH TOÁN<small>trungtamnuocsach.vn</small></div>' : ''}
+      ${o.daTT && o.xn ? `<div class="hg-dauTT">ĐÃ THANH TOÁN<small>Xác nhận: ${esc(o.xn.ten)}<br>${esc(o.xn.tg)}</small></div>` : '<div class="hg-demo">HÓA ĐƠN DEMO</div>'}
     </div></div></div>
-    <div class="hg-ghi">${ic('info')}<span>${o.daTT ? 'Trạm đã ghi nhận hộ thanh toán tháng này.' : 'Bản xem trên web, lập từ số liệu chốt số của trạm.'} Chỉ nộp tiền cho cán bộ trạm quản lý địa bàn; số tiền phải khớp giấy này.${t ? '' : ' Chỉ số tháng này đang được trạm kiểm tra.'}</span></div>`;
+    ${o.daTT && o.xn ? `<div class="hg-ghi">${ic('checkCircle')}<span>Hóa đơn chính thức: cán bộ <b>${esc(o.xn.ten)}</b> xác nhận hộ đã thanh toán lúc ${esc(o.xn.tg)}. Cần hóa đơn đỏ (VAT): bấm nút bên dưới.</span></div>`
+      : `<div class="hg-demo-ghi">${ic('alert')}<span><b>HÓA ĐƠN DEMO – CHỈ ĐỂ XEM TRƯỚC SỐ TIỀN</b>Không có giá trị thanh toán, không dùng làm chứng từ. Hãy thanh toán và đăng nhập tài khoản khách hàng để xem hóa đơn chính thức và yêu cầu hóa đơn đỏ.${t ? '' : ' Chỉ số tháng này đang được trạm kiểm tra.'}</span></div>`}`;
   }
   let HG_TRUOC = null;
   function moBienNhan(o, phu) {
@@ -3531,27 +3714,36 @@
 
   // ---------- tài khoản khách: hóa đơn đã thanh toán + hóa đơn đỏ ----------
   const kyDaTT = r => (r.ky || []).filter(k => k.tt === 'da' && k.tien && k.tien.tong > 0);
+  const kyCoHD = r => kyDaTT(r).filter(k => k.xn && k.xn.ten);   // đã thanh toán VÀ có cán bộ trạm xác nhận trên web
   const hddCua = (r, thang) => (r.hdDo || []).find(h => h.thang === thang && h.tt !== 'Từ chối');
   const chipHDD = x => `<span class="nhan ${x.tt === 'Đã duyệt' ? 'la' : x.tt === 'Từ chối' ? 'do' : 'vang'}">${x.tt === 'Đã duyệt' ? 'HĐ đỏ: đã có' : 'HĐ đỏ: ' + esc(x.tt.toLowerCase())}</span>`;
   function veHDKH(r) {
-    const ky = kyDaTT(r);
+    const ky = kyCoHD(r), truoc = kyDaTT(r).filter(k => !(k.xn && k.xn.ten));
     $('khHDThe').classList.toggle('an', !(r.ky || []).some(k => 'tt' in k));
-    $('khHD').innerHTML = ky.length ? `<div class="nho" style="margin-bottom:8px">Bấm vào tháng để xem giấy biên nhận đã thanh toán, in hoặc lưu PDF.</div><div class="hd-luoi">`
+    if (r.macDinh) {
+      $('khHD').innerHTML = `<div class="thongbao" style="margin:0">${ic('lock')} Anh/chị <b>đổi mật khẩu mặc định</b> để xem hóa đơn đã thanh toán và yêu cầu hóa đơn đỏ.</div>`;
+      $('khHDDoND').innerHTML = `<div class="thongbao" style="margin:0">${ic('lock')} Đổi mật khẩu mặc định để yêu cầu hóa đơn đỏ.</div>`;
+      return;
+    }
+    $('khHD').innerHTML = (ky.length ? `<div class="nho" style="margin-bottom:8px">Bấm vào tháng để xem giấy biên nhận đã thanh toán, in hoặc lưu PDF.</div><div class="hd-luoi">`
       + ky.map(k => { const h = hddCua(r, k.thang); return `<button type="button" class="hd-o" data-thang="${esc(k.thang)}"><span class="t">${ic('checkCircle')} Tháng ${esc(k.thang)}</span><b>${tien(k.tien.tong)}</b><span class="nho">${so(k.m3)} m³</span>${h ? chipHDD(h) : ''}</button>`; }).join('') + '</div>'
-      : '<p class="nho">Chưa có tháng nào trạm ghi nhận đã thanh toán. Nộp tiền xong, cán bộ trạm cập nhật thì giấy biên nhận hiện ở đây.</p>';
+      : '<p class="nho">Chưa có hóa đơn đã thanh toán. Nộp tiền cho cán bộ trạm, cán bộ xác nhận trên web thì hóa đơn chính thức hiện ở đây.</p>')
+      + (truoc.length ? `<div class="hd-chu-y">${ic('info')} ${truoc.length > 1 ? 'Tháng ' + esc(truoc[truoc.length - 1].thang) + ' – ' + esc(truoc[0].thang) : 'Tháng ' + esc(truoc[0].thang)}: đã thanh toán trước khi trạm xác nhận trên web nên không có hóa đơn giấy điện tử (cần biên nhận xin liên hệ trạm). Hóa đơn đỏ của các tháng này vẫn yêu cầu được.</div>` : '');
     $$('#khHD .hd-o').forEach(b => b.onclick = () => moBNKH(b.dataset.thang));
     veHDDoKH();
   }
   function moBNKH(thang) {
     const r = KH; if (!r) return;
-    const k = (r.ky || []).find(x => x.thang === thang); if (!k) return;
+    const k = kyCoHD(r).find(x => x.thang === thang); if (!k) return;
     const h = hddCua(r, thang);
     let phu = '';
     if (h) phu = `<div class="hdd-the ${h.tt === 'Đã duyệt' ? 'ok' : 'cho'}" style="margin:0"><b>Hóa đơn đỏ tháng ${esc(thang)}:</b> ${chipHDD(h)}${h.tt === 'Đã duyệt' ? '<div style="margin-top:6px">' + (anToan(h.link) ? lk(h.link, ic('receipt') + ' Xem / tải hóa đơn đỏ') : 'Xem tại ' + lk(BN.web, '2700988149-tt78.vnpt-invoice.com.vn') + ' – đăng nhập bằng mã khách hàng.') + '</div>' : ''}</div>`;
     else if (r.macDinh) phu = `<div class="nho">${ic('lock')} Đổi mật khẩu mặc định để yêu cầu hóa đơn đỏ (VAT).</div>`;
     else phu = `<button class="nut day" type="button" id="hgYCHD">${ic('receipt')} Yêu cầu hóa đơn đỏ (VAT) tháng ${esc(thang)}</button>`;
-    moBienNhan({ thang: k.thang, ten: r.ten, ma: r.ma, diachi: r.diachi || [r.xom, r.khu].filter(Boolean).join(', '), cu: k.cu, moi: k.moi, m3: k.m3, tien: k.tien, nhom: r.nhom, daTT: true, coMK: true }, phu);
+    moBienNhan({ thang: k.thang, ten: r.ten, ma: r.ma, diachi: r.diachi || [r.xom, r.khu].filter(Boolean).join(', '), cu: k.cu, moi: k.moi, m3: k.m3, tien: k.tien, nhom: r.nhom, daTT: true, xn: k.xn, coMK: true }, phu);
     if ($('hgYCHD')) $('hgYCHD').onclick = () => { dongBN(); moFormHDD(thang); };
+    goiKH('khLayMaHD', thang).then(x => { $$('#hgND .hg-ma').forEach(e => { e.textContent = x.ma; }); $$('#hgND .hg-ph').forEach(e => { e.textContent = x.ph; }); coBN(); })
+      .catch(e => { $$('#hgND .hg-ma').forEach(x => { x.textContent = 'chưa cấp được – tải lại'; }); });
   }
   function veHDDoKH() {
     const r = KH; if (!r) return;
@@ -3629,6 +3821,30 @@
     });
   }
   $('hddLoc').onchange = hienHDD; $('hddTaiLai').onclick = taiHDD;
+
+  // ---------- nội bộ: kiểm tra mã xác thực hóa đơn ----------
+  $('fKTHD').onsubmit = e => {
+    e.preventDefault(); $('loiKTHD').textContent = ''; $('kqKTHD').innerHTML = '';
+    const v = $('kthdMa').value.trim();
+    if (v.replace(/[^0-9a-z]/gi, '').length !== 12) { $('loiKTHD').textContent = 'Mã xác thực gồm 12 ký tự (VD: AB12-CD34-EF56).'; return; }
+    $('kthdNut').disabled = true; $('kthdNut').textContent = 'Đang kiểm tra…';
+    goiNB('kiemTraMaHD', v).then(r => {
+      ghiTC('Kiểm tra mã hóa đơn', r.hopLe ? 'hợp lệ' : 'không có');
+      if (!r.hopLe) { $('kqKTHD').innerHTML = `<div class="xt-kq loi"><h4>${ic('xCircle')} KHÔNG HỢP LỆ – mã ${esc(r.ma)}</h4><div>${esc(r.lyDo)}</div></div>`; return; }
+      const cb = r.canhBao || [];
+      $('kqKTHD').innerHTML = `<div class="xt-kq ${cb.length ? 'loi' : 'ok'}"><h4>${ic(cb.length ? 'alert' : 'checkCircle')} ${cb.length ? 'Do web phát hành nhưng SỐ LIỆU ĐÃ THAY ĐỔI' : 'HỢP LỆ – hóa đơn do web phát hành'} · ${esc(r.ma)}</h4>
+        ${cb.length ? '<ul style="margin:0 0 8px;padding-left:20px">' + cb.map(x => '<li>' + esc(x) + '</li>').join('') + '</ul>' : ''}
+        <div class="xt-luoi">
+          <div><span>Phát hành lúc</span><b>${esc(r.ph)}</b></div>
+          <div><span>Cán bộ xác nhận thu</span><b>${esc(r.nv)}</b></div>
+          <div><span>Lúc xác nhận thu</span><b>${esc(r.tgxn)}</b></div>
+          <div><span>Khách hàng</span><b>${esc(r.ten)}</b><span>${esc(r.kh)}</span></div>
+          <div><span>Tháng</span><b>${esc(r.thang)}</b></div>
+          <div><span>Chỉ số</span><b>${so(r.cu)} → ${so(r.moi)} (${so(r.m3)} m³)</b></div>
+          <div><span>Tổng tiền trên hóa đơn</span><b>${tien(r.tong)}</b></div>
+        </div></div>`;
+    }).catch(e => $('loiKTHD').textContent = e).finally(() => { $('kthdNut').disabled = false; $('kthdNut').textContent = 'Kiểm tra'; });
+  };
   // ---------- nội bộ: hướng dẫn nhân viên / quản lý (video + chữ) ----------
   let HDNB = null;
   function taiHDNB() {
@@ -3686,7 +3902,7 @@
       + `<button type="button" role="tab" data-muc="roi" class="roi ${tthMuc === 'roi' ? 'on' : ''}" aria-selected="${tthMuc === 'roi'}"><i class=ic data-ic=checkCircle></i><span>Đã thu</span><b>${so(roi.length)} hộ</b><small>${tien(tong(roi))}</small></button>`;
     $$('#ttTom [data-muc]').forEach(b => b.onclick = () => { tthMuc = b.dataset.muc; tthSo = 60; hienTTH(); });
     $('dsTT').innerHTML = ds.length ? ds.slice(0, tthSo).map(x => `<div class="tt-ho ${x[6]}" data-ma="${esc(x[0])}">
-        <div class="tt-ho-tt"><b>${esc(x[1])}</b><span class="nho">${esc(maNgan(x[0]))} · ${esc([x[3], x[2]].filter(Boolean).join(', '))} · ${so(x[4])} m³</span></div>
+        <div class="tt-ho-tt"><b>${esc(x[1])}</b><span class="nho">${esc(maNgan(x[0]))} · ${esc([x[3], x[2]].filter(Boolean).join(', '))} · ${so(x[4])} m³</span>${x[6] === 'da' && x[7] ? `<span class="tt-xn">${ic('check')} ${esc(x[7])}</span>` : ''}</div>
         <b class="tt-ho-tien">${tien(x[5])}</b>
         <button type="button" class="tt-nut ${x[6]}" title="Bấm để đổi trạng thái" aria-pressed="${x[6] === 'da'}">${x[6] === 'da' ? '<i class=ic data-ic=checkCircle></i> Đã thu' : '<i class=ic data-ic=xCircle></i> Chưa thu'}</button></div>`).join('')
       : `<div class="nho">${tthMuc === 'roi' ? 'Chưa có hộ nào được đánh dấu đã thu trong bộ lọc này.' : 'Không còn hộ nào chưa thu trong bộ lọc này.'}</div>`;
@@ -3695,7 +3911,7 @@
     $$('#dsTT .tt-nut').forEach(b => b.onclick = () => {
       const the = b.closest('.tt-ho'), ma = the.dataset.ma, x = TTH.ds.find(y => y[0] === ma), moi = x[6] !== 'da';
       b.disabled = true;
-      goiNB('danhDauThuTien', TTH.thang, [ma], moi).then(() => { x[6] = moi ? 'da' : 'chua'; the.classList.add('vua-doi'); setTimeout(hienTTH, 350); }).catch(e => { b.disabled = false; $('loiTT').textContent = e; });
+      goiNB('danhDauThuTien', TTH.thang, [ma], moi).then(() => { x[6] = moi ? 'da' : 'chua'; x[7] = moi && ND ? ND.ten + ' · vừa xong' : ''; the.classList.add('vua-doi'); setTimeout(hienTTH, 350); }).catch(e => { b.disabled = false; $('loiTT').textContent = e; });
     });
   }
   $('ttThang').onchange = () => taiTTH($('ttThang').value);
@@ -3745,7 +3961,7 @@
     $('dlSoChua').textContent = so(chua.length) + ' hộ'; $('dlTienChua').textContent = tien(tong(chua));
     const truocMoc = DLK.tu && /^\d\d\/\d{4}$/.test(DLK.tu) && (DLK.thang.slice(3) + DLK.thang.slice(0, 2)) < (DLK.tu.slice(3) + DLK.tu.slice(0, 2));
     $('dlGhiChu').innerHTML = (truocMoc ? `<div class="dl-ghi">${ic('info')} Kỳ ${esc(DLK.thang)} trước mốc theo dõi (${esc(DLK.tu)}): web coi như các hộ đã nộp đủ, trừ hộ được ghi "Nợ". Chọn kỳ từ ${esc(DLK.tu)} trở đi để xem số thực tế.</div>` : '')
-      + `<div style="margin-top:6px">Kỳ <b>${esc(DLK.thang)}</b>: phải thu <b>${so(roi.length + chua.length)}</b> hộ · <b>${tien(tong(roi) + tong(chua))}</b>. Đã thu <b class="chu-xanh">${tien(tong(roi))}</b>, còn <b class="chu-do">${tien(tong(chua))}</b>. Đánh dấu hộ đã nộp ở mục <a href="#" id="dlDiThu">Phiếu khách gửi › Thu tiền theo tháng</a>.</div>`;
+      + `<div style="margin-top:6px">Kỳ <b>${esc(DLK.thang)}</b>: phải thu <b>${so(roi.length + chua.length)}</b> hộ · <b>${tien(tong(roi) + tong(chua))}</b>. Đã thu <b class="chu-xanh">${tien(tong(roi))}</b>, còn <b class="chu-do">${tien(tong(chua))}</b>. Đánh dấu hộ đã nộp ở mục <a href="#" id="dlDiThu">Thu tiền › Xác nhận thu tiền</a>.</div>`;
     if ($('dlDiThu')) $('dlDiThu').onclick = e => { e.preventDefault(); const b = $$('#tabNB [data-sub=thuTienNB]')[0]; chonNhomNB(b.dataset.nb, false); b.click(); };
     // thanh tiến độ theo khu (hoặc theo xóm khi đã chọn khu)
     const nhom = {}, theo = khu ? 3 : 2;
@@ -3772,7 +3988,7 @@
   $('dlThem').onclick = () => { dlSo += 100; hienDLK(); };
   $('dlkTaiLai').onclick = () => { if (dlMuc === 'nn') { SS = null; taiSoSanh(hienNghiNgo); } else taiDLK(DLK ? DLK.thang : ''); };
 
-  // ---------- Quản lý trạm › Quản lý nhân viên (mức năng nổ) ----------
+  // ---------- Quản trị › Nhân viên &amp; điểm (mức năng nổ) ----------
   let NVN = null;
   function taiNVNN() {
     $('loiNVN').textContent = ''; $('nvnKQ').innerHTML = '<div class="the dang-tai">Đang tải</div>';
@@ -3811,7 +4027,7 @@
   }
   $('nvnSoNgay').onchange = taiNVNN; $('nvnTaiLai').onclick = taiNVNN;
 
-  // ---------- Quản lý chung › Hiệu quả triển khai ----------
+  // ---------- Số liệu › Hiệu quả triển khai ----------
   let TKH = null;
   function taiTKhai() {
     $('loiTK2').textContent = ''; $('tkKQ').innerHTML = '<div class="the dang-tai">Đang tải</div>';
@@ -3841,9 +4057,9 @@
     h += `<div class="the"><h3>${ic('inbox')} Phiếu khách gửi – ${r.soNgay} ngày</h3><div class="cuon"><table class="tk-bang"><tr><th>Loại phiếu</th><th class="so">Phiếu mới</th><th class="so">Đã xử lý</th><th class="so">Đang chờ (tất cả)</th><th class="so">Phản hồi TB</th><th class="so">Trong 24 giờ</th></tr>`
       + r.phieu.map(p => `<tr><td>${esc(p.ten)}</td><td class="so">${so(p.tong)}</td><td class="so">${so(p.xong)}</td><td class="so">${p.cho ? '<b class="chu-do">' + so(p.cho) + '</b>' : '0'}</td><td class="so">${p.gioTB == null ? '–' : (p.gioTB < 1 ? Math.round(p.gioTB * 60) + ' phút' : String(p.gioTB).replace('.', ',') + ' giờ')}</td><td class="so">${p.coGio ? pt(p.trong24, p.coGio) + '%' : '–'}</td></tr>`).join('') + '</table></div></div>';
     if (r.hanhDong.length) { const mx = r.hanhDong[0].so || 1; h += `<div class="the"><h3>Bà con dùng web để làm gì</h3><div class="nv-xh">${r.hanhDong.map(x => `<div class="h"><span>${esc(x.ten)}</span><div class="thanh xanh"><i style="width:${Math.max(3, Math.round(x.so / mx * 100))}%"></i></div><span class="g">${so(x.so)}</span></div>`).join('')}</div></div>`; }
-    h += `<div class="the nho">Mức năng nổ của từng cán bộ xem ở <a href="#" id="tkDiNV">Quản lý trạm › Quản lý nhân viên</a>.</div>`;
+    h += `<div class="the nho">Mức năng nổ của từng cán bộ xem ở <a href="#" id="tkDiNV">Quản trị › Nhân viên &amp; điểm</a>.</div>`;
     $('tkKQ').innerHTML = h;
-    $('tkDiNV').onclick = e => { e.preventDefault(); chonNhomNB('tram', false); $$('#tabNB [data-sub=tramNhanVien]')[0].click(); };
+    $('tkDiNV').onclick = e => { e.preventDefault(); chonNhomNB('quanLy', false); $$('#tabNB [data-sub=tramNhanVien]')[0].click(); };
   }
   $('tkSoNgay').onchange = taiTKhai; $('tkTaiLai').onclick = taiTKhai;
   // ---------- khách báo nộp tiền (nội bộ): tích đã nộp / chưa ----------
