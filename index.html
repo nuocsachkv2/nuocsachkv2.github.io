@@ -12,7 +12,7 @@
     if (biNhung) { document.documentElement.style.display = 'none'; try { window.top.location = window.self.location.href; } catch (e) {} }
     var S = '/' + '/', g = 'https:' + S;
     // chỉ cho chạy đúng đoạn mã của trạm (mã băm SHA-256 tính lúc đóng gói) → mã độc chèn vào trang không chạy được
-    var BAM = 'FRwylmNBdoaCQIMXz5oC09jA64zft5V1XimKn4O0wS8=', B = BAM.split('_').join(String.fromCharCode(47));
+    var BAM = 'DiPmSPS6dKZQxaV0XWk_bzEeWhdgLAqKxepPULR1ae0=', B = BAM.split('_').join(String.fromCharCode(47));
     var m = document.createElement('meta'); m.httpEquiv = 'Content-Security-Policy';
     m.content = "default-src 'self'; script-src 'self' 'sha256-" + B + "'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https:; font-src 'self' data:; "
       + "connect-src 'self' " + g + 'script.google.com ' + g + "script.googleusercontent.com; frame-src 'none'; object-src 'none'; base-uri 'none'; form-action 'self'; upgrade-insecure-requests";
@@ -231,7 +231,13 @@
   .nn-the .gt { display:flex; justify-content:space-between; font-size:12px; color:var(--xam); margin-top:2px; }
   .c0 { background:var(--do2); color:var(--do); } .ctang { background:#fff3e0; color:#e65100; } .ctut { background:#e3f2fd; color:#0d47a1; } .cam { background:#fce4ec; color:#880e4f; } .clon { background:#f3e5f5; color:#4a148c; }
   /* quản trị */
-  .chi-adm { display:none !important; }
+  .chi-adm, .chi-ql { display:none !important; }
+  body.la-ql .chi-ql { display:revert !important; }
+  body.la-ql button.chi-ql, body.la-ql .tabcon button.chi-ql { display:flex !important; }
+  body.la-ql .nhom-nb button.chi-ql { display:block !important; }
+  body.la-ql #tabNB button.chi-ql.an-nhom { display:none !important; }
+  body.la-ld .an-ld { display:none !important; }
+  body.la-ld .chi-doc input, body.la-ld .chi-doc select { pointer-events:none; background:#f3f5f7; color:var(--chu); }
   body.la-adm .chi-adm { display:revert !important; }
   body.la-adm button.chi-adm, body.la-adm .tabcon button.chi-adm { display:flex !important; }
   body.la-adm .nhom-nb button.chi-adm { display:block !important; }
@@ -782,6 +788,17 @@
     .tt-ho { grid-template-columns:minmax(0,1fr) auto; } .tt-ho-tt { grid-column:1 / -1; } .tt-nut { justify-self:end; }
   }
   @media (max-width:420px) { .tt-luoi { grid-template-columns:repeat(2, minmax(0,1fr)); } .tt-o b { font-size:16px; } .tt-loc { grid-template-columns:1fr 1fr; } }
+
+  /* v18: phân quyền + xóa phiếu + nút nộp tiền */
+  .nut.nut-xoa { background:#fff !important; color:#c62828 !important; border:1.5px solid #ef9a9a !important; box-shadow:none !important; margin-left:auto; gap:5px; }
+  .nut.nut-xoa:hover { background:#fdecea !important; }
+  .nt-chon { display:grid; grid-template-columns:1fr 1fr; gap:8px; }
+  .nt-nut { font:inherit; font-weight:800; font-size:15px; min-height:46px; border-radius:12px; border:2px solid var(--vien); background:#fff; color:var(--xam); cursor:pointer; display:flex; align-items:center; justify-content:center; gap:6px; }
+  .nt-nut.chua.on { background:#fff3e0; border-color:#fb8c00; color:#e65100; }
+  .nt-nut.roi.on { background:var(--la2); border-color:var(--la); color:var(--la); }
+  .nt-nut:not(.on):hover { border-color:#90a4ae; color:var(--chu); }
+  .nt-nut:disabled { opacity:.6; cursor:wait; }
+  .nt-xn { margin-top:-2px; }
 </style>
 </head>
 <body>
@@ -1188,8 +1205,8 @@
       <div class="nhom-nb" id="nhomNB">
         <button type="button" data-nb="sanLuong" class="on"><span class="bieu"><i class=ic data-ic=chart></i></span>Sản lượng</button>
         <button type="button" data-nb="phieu"><span class="bieu"><i class=ic data-ic=inbox></i></span>Phiếu khách gửi<span class="huy-hieu" id="demNhomPhieu"></span></button>
-        <button type="button" data-nb="duyet"><span class="bieu"><i class=ic data-ic=checkCircle></i></span>Duyệt &amp; tài khoản<span class="huy-hieu" id="demNhomDuyet"></span></button>
-        <button type="button" data-nb="quanLy" class="chi-adm"><span class="bieu"><i class=ic data-ic=sliders></i></span>Quản lý chung</button>
+        <button type="button" data-nb="duyet" class="chi-ql"><span class="bieu"><i class=ic data-ic=checkCircle></i></span>Duyệt &amp; tài khoản<span class="huy-hieu" id="demNhomDuyet"></span></button>
+        <button type="button" data-nb="quanLy" class="chi-ql"><span class="bieu"><i class=ic data-ic=sliders></i></span>Quản lý chung</button>
       </div>
       <div class="tabcon" id="tabNB">
         <button data-nb="sanLuong" data-sub="baoCao" class="on"><i class=ic data-ic=chart></i> Số liệu tháng</button>
@@ -1203,14 +1220,14 @@
         <button data-nb="phieu" data-sub="yeuCauNB"><i class=ic data-ic=flask></i> Kiểm tra chất lượng nước <span class="huy-hieu" id="demYC"></span></button>
         <button data-nb="phieu" data-sub="lienHeNB"><i class=ic data-ic=edit></i> Liên hệ / đổi TT <span class="huy-hieu" id="demLH"></span></button>
         <button data-nb="phieu" data-sub="baoCaoNB"><i class=ic data-ic=siren></i> Báo cáo vi phạm <span class="huy-hieu" id="demBC"></span></button>
-        <button data-nb="duyet" data-sub="datLaiNB"><i class=ic data-ic=key></i> Cấp / đặt lại mật khẩu KH <span class="huy-hieu" id="demDL"></span></button>
-        <button data-nb="duyet" data-sub="duyetCN"><i class=ic data-ic=checkCircle></i> Duyệt thông tin KH <span class="huy-hieu" id="demCN"></span></button>
-        <button data-nb="quanLy" data-sub="qtKH" class="chi-adm"><i class=ic data-ic=user></i> Khách hàng</button>
-        <button data-nb="quanLy" data-sub="qtChiSo" class="chi-adm"><i class=ic data-ic=hash></i> Chỉ số</button>
-        <button data-nb="duyet" data-sub="qtTaiKhoan" class="chi-adm"><i class=ic data-ic=users></i> Tài khoản nhân viên</button>
+        <button data-nb="duyet" data-sub="datLaiNB" class="chi-ql"><i class=ic data-ic=key></i> Cấp / đặt lại mật khẩu KH <span class="huy-hieu" id="demDL"></span></button>
+        <button data-nb="duyet" data-sub="duyetCN" class="chi-ql"><i class=ic data-ic=checkCircle></i> Duyệt thông tin KH <span class="huy-hieu" id="demCN"></span></button>
+        <button data-nb="quanLy" data-sub="qtKH" class="chi-ql"><i class=ic data-ic=user></i> Khách hàng</button>
+        <button data-nb="quanLy" data-sub="qtChiSo" class="chi-ql"><i class=ic data-ic=hash></i> Chỉ số</button>
+        <button data-nb="duyet" data-sub="qtTaiKhoan" class="chi-ql"><i class=ic data-ic=users></i> Tài khoản nhân viên</button>
         <button data-nb="quanLy" data-sub="qtCauHinh" class="chi-adm"><i class=ic data-ic=gear></i> Cấu hình</button>
-        <button data-nb="quanLy" data-sub="qtTruyCap" class="chi-adm"><i class=ic data-ic=trend></i> Truy cập</button>
-        <button data-nb="quanLy" data-sub="qtNhatKy" class="chi-adm"><i class=ic data-ic=history></i> Nhật ký</button>
+        <button data-nb="quanLy" data-sub="qtTruyCap" class="chi-ql"><i class=ic data-ic=trend></i> Truy cập</button>
+        <button data-nb="quanLy" data-sub="qtNhatKy" class="chi-ql"><i class=ic data-ic=history></i> Nhật ký</button>
       </div>
       <div id="canhBao" class="thongbao an">Chưa cấu hình báo đẩy: điền <b>email_adm</b> (Gmail của quản lý), <b>Telegram</b> (Quản trị › Cấu hình) hoặc <b>webhook_adm</b>. <button class="nut phu nho-nut" id="nutThuBao" type="button">Thử báo đẩy</button> <span class="nho" id="kqThuBao"></span></div>
 
@@ -1392,7 +1409,7 @@
           <form class="hang" id="fQtTim" autocomplete="off">
             <input id="qtQ" class="to" placeholder="Gõ tên chủ hộ, mã, 4 số cuối hoặc SĐT" maxlength="60">
             <button class="nut" type="submit" id="nutQtTim">Tìm</button>
-            <button class="nut phu" type="button" id="nutQtThem">+ Thêm hộ mới</button>
+            <button class="nut phu an-ld" type="button" id="nutQtThem">+ Thêm hộ mới</button>
           </form>
           <div class="nho" id="qtTom" style="margin-top:8px"></div>
           <div class="loi" id="loiQtKH"></div>
@@ -1400,7 +1417,7 @@
         </div>
         <div class="the an" id="qtKHForm">
           <h3 id="qtKHTieuDe">Sửa thông tin hộ</h3>
-          <form id="fQtKH" autocomplete="off" class="luoi-form">
+          <form id="fQtKH" autocomplete="off" class="luoi-form chi-doc">
             <div><label for="qtMa">Mã khách hàng</label><input id="qtMa" maxlength="30"></div>
             <div><label for="qtTen">Họ tên chủ hộ</label><input id="qtTen" maxlength="80"></div>
             <div><label for="qtKhu">Khu vực</label><input id="qtKhu" maxlength="40" list="dsKhuList"><datalist id="dsKhuList"></datalist></div>
@@ -1409,7 +1426,7 @@
             <div><label for="qtNhom">Nhóm giá</label><select id="qtNhom"></select></div>
             <div><label for="qtSdt">SĐT (10 số, để trống nếu chưa có)</label><input id="qtSdt" inputmode="tel" maxlength="16"></div>
             <div><label for="qtGhiChu">Ghi chú</label><input id="qtGhiChu" maxlength="200"></div>
-            <div class="rong hang"><button class="nut" type="submit" id="nutQtLuu">Lưu</button><button class="nut phu" type="button" id="nutQtDong">Đóng</button><button class="nut phu" type="button" id="nutQtChiSo">Xem / sửa chỉ số hộ này</button><button class="nut phu" type="button" id="nutQtDatMK">Đặt lại mật khẩu KH</button><span class="nho" id="kqQtKH"></span></div>
+            <div class="rong hang"><button class="nut an-ld" type="submit" id="nutQtLuu">Lưu</button><button class="nut phu" type="button" id="nutQtDong">Đóng</button><button class="nut phu" type="button" id="nutQtChiSo">Xem / sửa chỉ số hộ này</button><button class="nut phu" type="button" id="nutQtDatMK">Đặt lại mật khẩu KH</button><span class="nho" id="kqQtKH"></span></div>
             <div class="loi rong" id="loiQtForm"></div>
           </form>
         </div>
@@ -1426,9 +1443,9 @@
           <div id="qtCSDau" class="nho" style="margin-top:8px"></div>
         </div>
         <div class="the an" id="qtCSKhung">
-          <div class="cuon"><table class="sua" id="tblQtCS"></table></div>
-          <div class="nhom">Thêm tháng mới</div>
-          <form class="hang" id="fQtCSThem" autocomplete="off">
+          <div class="cuon chi-doc"><table class="sua" id="tblQtCS"></table></div>
+          <div class="nhom an-ld">Thêm tháng mới</div>
+          <form class="hang an-ld" id="fQtCSThem" autocomplete="off">
             <input id="csThang" placeholder="Tháng MM/YYYY" style="width:130px" maxlength="7">
             <input id="csCu" placeholder="Chỉ số cũ" inputmode="numeric" style="width:120px" maxlength="10">
             <input id="csMoi" placeholder="Chỉ số mới" inputmode="numeric" style="width:120px" maxlength="10">
@@ -1440,8 +1457,8 @@
 
       <div id="sub_qtTaiKhoan" class="an">
         <div class="the">
-          <div class="hang"><h3 style="margin:0;flex:1"><i class=ic data-ic=sliders></i> Tài khoản đăng nhập</h3><button class="nut phu nho-nut" id="nutTKThem" type="button">+ Thêm tài khoản</button></div>
-          <p class="nho">adm = toàn quyền (sửa dữ liệu, cấu hình, tài khoản). nv = nhân viên: xem số liệu, xử lý phiếu. Khóa tài khoản = bỏ tích "Hoạt động".</p>
+          <div class="hang"><h3 style="margin:0;flex:1"><i class=ic data-ic=sliders></i> Tài khoản đăng nhập</h3><button class="nut phu nho-nut an-ld" id="nutTKThem" type="button">+ Thêm tài khoản</button></div>
+          <p class="nho"><b>adm – Quản trị</b>: toàn quyền (sửa dữ liệu, cấu hình, tài khoản, xóa phiếu). <b>ld – Lãnh đạo quản lý</b>: xem mọi mục như quản trị, xử lý phiếu và duyệt, nhưng không có Cấu hình, không sửa dữ liệu khách/chỉ số/tài khoản, không xóa phiếu. <b>nv – Nhân viên</b>: Sản lượng và Phiếu khách gửi. Khóa tài khoản = bỏ tích "Hoạt động".</p>
           <div class="loi" id="loiTK"></div>
           <div class="cuon"><table id="tblTK"></table></div>
         </div>
@@ -1451,7 +1468,7 @@
             <div><label for="tkTen">Họ tên</label><input id="tkTen" maxlength="60"></div>
             <div><label for="tkSdt">SĐT đăng nhập</label><input id="tkSdt" inputmode="tel" maxlength="16" autocomplete="off"></div>
             <div><label for="tkMk">Mật khẩu <span class="nho" id="tkMkNho">(ít nhất 6 ký tự)</span></label><input id="tkMk" type="password" maxlength="60" autocomplete="new-password"></div>
-            <div><label for="tkVaiTro">Vai trò</label><select id="tkVaiTro"><option value="nv">nv – nhân viên</option><option value="adm">adm – quản trị</option></select></div>
+            <div><label for="tkVaiTro">Vai trò</label><select id="tkVaiTro"><option value="nv">nv – Nhân viên</option><option value="ld">ld – Lãnh đạo quản lý</option><option value="adm">adm – Quản trị</option></select></div>
             <div><label for="tkGhiChu">Ghi chú</label><input id="tkGhiChu" maxlength="120"></div>
             <div><label class="o-chon" style="margin:22px 0 0"><input type="checkbox" id="tkHien" checked><span>Hoạt động</span></label></div>
             <div class="rong hang"><button class="nut" type="submit">Lưu</button><button class="nut phu" type="button" id="nutTKDong">Đóng</button><span class="nho" id="kqTK"></span></div>
@@ -2452,10 +2469,14 @@
       };
     });
   }
+  const TEN_VT = { adm: 'Quản trị', ld: 'Lãnh đạo quản lý', nv: 'Nhân viên' };
+  const laQL = () => !!ND && (ND.vaitro === 'adm' || ND.vaitro === 'ld');
   function vaoNoiBo(r) {
     ND = r; NGUONG = r.nguong || 10; $('nguongSS').textContent = NGUONG;
     document.body.classList.toggle('la-adm', r.vaitro === 'adm');
-    $('ndTen').textContent = r.ten; $('ndVaiTro').textContent = r.vaitro === 'adm' ? 'Quản trị' : 'Nhân viên';
+    document.body.classList.toggle('la-ld', r.vaitro === 'ld');
+    document.body.classList.toggle('la-ql', r.vaitro === 'adm' || r.vaitro === 'ld');
+    $('ndTen').textContent = r.ten; $('ndVaiTro').textContent = TEN_VT[r.vaitro] || 'Nhân viên';
     $('chuDangNhap').textContent = r.ten; $('nutDangNhap').classList.add('on'); $('nutDangNhap').title = 'Nội bộ – ' + r.ten;
     $('khungPin').classList.add('an'); $('khungNoiBo').classList.remove('an'); $('khungDoiMK').classList.add('an');
     $('canhPin').classList.toggle('an', !r.mkMacDinh);
@@ -2469,7 +2490,7 @@
   function thoatNoiBo(loi) {
     TK = ''; ND = null; BC = null; SS = null; BCN = null; luuPhien(''); $('khungNoiBo').classList.remove('bat-doi');
     ['mkCu', 'mkMoi', 'mkMoi2'].forEach(id => { $(id).value = ''; });
-    document.body.classList.remove('la-adm');
+    document.body.classList.remove('la-adm', 'la-ld', 'la-ql');
     $('chuDangNhap').textContent = 'Đăng nhập'; $('nutDangNhap').classList.remove('on'); $('nutDangNhap').title = 'Đăng nhập nội bộ';
     $('khungNoiBo').classList.add('an'); $('khungPin').classList.remove('an'); $('pin').value = ''; $('dnLoaiNB').checked = true; chonLoaiDN();
     $('loiPin').textContent = loi || '';
@@ -2619,14 +2640,20 @@
         <div class="nt-dau"><div><b class="nt-ten">${hoTen(x.ten, x.ma)}</b>${x.ho ? ' <span class="nhan vang">Nộp hộ</span>' : ''}<div class="nho">${esc(x.xom)}${x.khu ? ', ' + esc(x.khu) : ''}</div></div>
           <div class="nt-tien">${x.tien ? tien(x.tien) : '–'}<span>Tháng ${esc(x.thang || '–')}</span></div></div>
         <div class="nt-ct"><span><i class=ic data-ic=clock></i> ${esc(x.tg)}</span><span>${String(x.cach || '').split(', ').filter(Boolean).map(c => (bieu[c] || '') + ' ' + esc(c)).join(' · ')}</span>${x.canbo ? `<span><i class=ic data-ic=user></i> Khách chọn: <b>${esc(x.canbo)}</b></span>` : ''}</div>
-        <label class="nt-tich"><input type="checkbox" class="ntChon" ${x.daNop ? 'checked' : ''}><span class="nt-hop"></span><span class="nt-chu">${x.daNop ? `<b>Đã nộp tiền</b><small>${esc(x.nv)} xác nhận lúc ${esc(x.tgxn)}</small>` : '<b>Chưa nộp</b><small>Tích khi đã nhận đủ tiền</small>'}</span></label>
+        <div class="nt-chon" role="group" aria-label="Trạng thái nộp tiền">
+          <button type="button" class="nt-nut chua ${x.daNop ? '' : 'on'}" data-v="0" aria-pressed="${!x.daNop}"><i class=ic data-ic=hourglass></i> Chưa nộp</button>
+          <button type="button" class="nt-nut roi ${x.daNop ? 'on' : ''}" data-v="1" aria-pressed="${!!x.daNop}"><i class=ic data-ic=checkCircle></i> Đã nộp</button>
+        </div>
+        <div class="nho nt-xn">${x.daNop ? `<i class=ic data-ic=check></i> ${esc(x.nv)} xác nhận lúc ${esc(x.tgxn)}` : 'Nhận đủ tiền thì bấm <b>Đã nộp</b> – tháng này trong tài khoản khách tự chuyển xanh.'}</div>
+        <div class="hang" style="justify-content:flex-end"><button class="nut nho-nut nut-xoa chi-adm pXoa" type="button" data-loai="NT" title="Xóa hẳn phiếu này (chỉ Quản trị)"><i class=ic data-ic=xCircle></i> Xóa phiếu</button></div>
       </div>`).join('') : `<div class="the">${ntMuc === 'roi' ? 'Chưa có hộ nào được tích đã nộp.' : 'Không còn hộ nào chưa nộp.'}</div>`;
-    $$('#dsNT .ntChon').forEach(o => o.onchange = () => {
-      const the = o.closest('.nt-the'), dong = Number(the.dataset.dong), x = NT.find(y => y.dong === dong);
-      if (o.checked && !confirm('Xác nhận hộ ' + x.ten + ' đã nộp ' + (x.tien ? tien(x.tien) : '') + ' tháng ' + x.thang + '?')) { o.checked = false; return; }
-      o.disabled = true;
-      goiNB('xacNhanNopTien', dong, o.checked).then(r => { x.daNop = r.daNop; x.nv = r.nv; x.tgxn = r.tgxn; ghiTC(r.daNop ? 'Xác nhận đã nộp tiền' : 'Bỏ xác nhận nộp tiền', x.ma); hienNT(); })
-        .catch(e => { o.checked = !o.checked; o.disabled = false; $('loiNT').textContent = e; });
+    $$('#dsNT .nt-nut').forEach(b => b.onclick = () => {
+      const the = b.closest('.nt-the'), dong = Number(the.dataset.dong), x = NT.find(y => y.dong === dong), moi = b.dataset.v === '1';
+      if (moi === !!x.daNop) return;
+      if (!confirm(moi ? 'Xác nhận hộ ' + x.ten + ' đã nộp ' + (x.tien ? tien(x.tien) : '') + ' tháng ' + x.thang + '?' : 'Chuyển hộ ' + x.ten + ' về CHƯA NỘP?')) return;
+      the.querySelectorAll('.nt-nut').forEach(y => { y.disabled = true; });
+      goiNB('xacNhanNopTien', dong, moi).then(r => { x.daNop = r.daNop; x.nv = r.nv; x.tgxn = r.tgxn; ghiTC(r.daNop ? 'Xác nhận đã nộp tiền' : 'Bỏ xác nhận nộp tiền', x.ma); hienNT(); })
+        .catch(e => { the.querySelectorAll('.nt-nut').forEach(y => { y.disabled = false; }); $('loiNT').textContent = e; });
     });
   }
   $('ntTaiLai').onclick = taiNT;
@@ -2653,7 +2680,7 @@
     goiNB('admDsDatLaiMK').then(r => { DL = r; hienDL(); }).catch(e => { $('loiDL').textContent = e; $('dsDL').innerHTML = ''; });
   }
   function hienDL() {
-    const loc = $('dlLoc').value, ds = DL.filter(x => !loc || x.tt === 'Chờ xử lý'), adm = ND && ND.vaitro === 'adm';
+    const loc = $('dlLoc').value, ds = DL.filter(x => !loc || x.tt === 'Chờ xử lý'), adm = laQL();
     $('demDL').textContent = DL.filter(x => x.tt === 'Chờ xử lý').length || ''; demNhom();
     $('dsDL').innerHTML = ds.length ? ds.map(x => `<div class="cn-the ${x.tt === 'Chờ xử lý' ? 'cho' : ''}">
         <div class="hang" style="justify-content:space-between"><div>${hoTen(x.ten, x.ma)} <span class="nho">${esc(x.ma)}</span></div><span class="nhan ${x.tt === 'Đã đặt lại' ? 'la' : x.tt === 'Từ chối' ? 'do' : 'vang'}">${esc(x.tt)}</span></div>
@@ -2721,7 +2748,7 @@
     goiNB('admDsCapNhat').then(ds => { DS_CN = ds; hienCN(); }).catch(e => { $('loiCNNB').textContent = e; $('dsCN').innerHTML = ''; });
   }
   function hienCN() {
-    const loc = $('cnLoc').value, ds = DS_CN.filter(x => !loc || x.tt === 'Chờ duyệt'), adm = ND && ND.vaitro === 'adm';
+    const loc = $('cnLoc').value, ds = DS_CN.filter(x => !loc || x.tt === 'Chờ duyệt'), adm = laQL();
     $('demCN').textContent = DS_CN.filter(x => x.tt === 'Chờ duyệt').length || ''; demNhom();
     $('dsCN').innerHTML = ds.length ? ds.map(x => `<div class="cn-the ${x.tt === 'Chờ duyệt' ? 'cho' : ''}">
         <div class="hang" style="justify-content:space-between"><div>${hoTen(x.ten, x.ma)} <span class="nho">${esc(x.ma)}</span></div><span class="nhan ${x.tt === 'Đã duyệt' ? 'la' : x.tt === 'Từ chối' ? 'do' : 'vang'}">${esc(x.tt)}</span></div>
@@ -2991,6 +3018,7 @@
         <input class="ycNV" placeholder="Nhân viên" value="${esc(y.nv)}" style="flex:1;min-width:120px" maxlength="60">
         <input class="ycGC" placeholder="Ghi chú (VD: áp lực 1,2 bar, clo 0,3)" value="${esc(y.ghichu)}" style="flex:2;min-width:160px" maxlength="300">
         <button class="nut nho-nut ycLuu" type="button">Lưu</button><span class="nho ycKQ"></span>
+        <button class="nut nho-nut nut-xoa chi-adm pXoa" type="button" data-loai="YC" title="Xóa hẳn phiếu này (chỉ Quản trị)"><i class=ic data-ic=xCircle></i> Xóa phiếu</button>
       </div></div>`).join('') : '<div class="the">Không có yêu cầu nào.</div>';
     $$('.ycLuu').forEach(b => b.onclick = () => {
       const o = b.closest('.yc'), dong = Number(o.dataset.dong);
@@ -3018,8 +3046,18 @@
         <input class="pNV" placeholder="Nhân viên" value="${esc(y.nv)}" style="flex:1;min-width:120px" maxlength="60">
         <input class="pGC" placeholder="Ghi chú xử lý" value="${esc(y.ghichu)}" style="flex:2;min-width:160px" maxlength="300">
         <button class="nut nho-nut pLuu" type="button">Lưu</button><span class="nho pKQ"></span>
+        <button class="nut nho-nut nut-xoa chi-adm pXoa" type="button" data-loai="${LOAI_HAM[ham]}" title="Xóa hẳn phiếu này (chỉ Quản trị)"><i class=ic data-ic=xCircle></i> Xóa phiếu</button>
       </div></div>`;
   }
+  const LOAI_HAM = { capNhatLienHe: 'LH', capNhatBaoCao: 'BC', capNhatSuaChua: 'SC', capNhatHenThu: 'HT' };
+  const TAI_LAI_PHIEU = { YC: () => taiYC(), LH: () => taiLH(), BC: () => taiBC(), SC: () => taiSC(), HT: () => taiHT(), NT: () => taiNT() };
+  document.addEventListener('click', e => {
+    const b = e.target.closest && e.target.closest('.pXoa'); if (!b) return;
+    const o = b.closest('[data-dong]'), dong = Number(o && o.dataset.dong), loai = b.dataset.loai;
+    if (!dong || !confirm('XÓA HẲN phiếu số ' + (dong - 1) + '? Không khôi phục được.')) return;
+    b.disabled = true;
+    goiNB('admXoaPhieu', loai, dong).then(() => { ghiTC('Xóa phiếu', loai + ' ' + (dong - 1)); TAI_LAI_PHIEU[loai](); }).catch(er => { b.disabled = false; alert(er); });
+  });
   function ganLuu(khung, ds) {
     $$('#' + khung + ' .pLuu').forEach(b => b.onclick = () => {
       const o = b.closest('.nv-the'), dong = Number(o.dataset.dong);
@@ -3154,7 +3192,7 @@
   const bayGioThang = () => new Date().getMonth() + 1;
   function hienQtCS() {
     $('tblQtCS').innerHTML = `<tr><th>Tháng</th><th>Chỉ số cũ</th><th>Chỉ số mới</th><th class="so">m³</th><th>Ghi chú</th><th></th></tr>` +
-      QT_CS.ds.map(d => `<tr data-dong="${d.dong}"><td><b>${esc(d.thang)}</b></td><td><input class="cs-cu" inputmode="numeric" value="${d.cu === null ? '' : d.cu}"></td><td><input class="cs-moi" inputmode="numeric" value="${d.moi === null ? '' : d.moi}"></td><td class="so cs-m3">${d.cu !== null && d.moi !== null ? so(d.moi - d.cu) : '–'}</td><td><input class="cs-gc" value="${esc(d.ghichu)}" maxlength="200"></td><td style="white-space:nowrap"><button class="nut nho-nut cs-luu" type="button">Lưu</button> <button class="nut phu nho-nut cs-xoa" type="button">Xóa</button><div class="nho cs-kq"></div></td></tr>`).join('');
+      QT_CS.ds.map(d => `<tr data-dong="${d.dong}"><td><b>${esc(d.thang)}</b></td><td><input class="cs-cu" inputmode="numeric" value="${d.cu === null ? '' : d.cu}"></td><td><input class="cs-moi" inputmode="numeric" value="${d.moi === null ? '' : d.moi}"></td><td class="so cs-m3">${d.cu !== null && d.moi !== null ? so(d.moi - d.cu) : '–'}</td><td><input class="cs-gc" value="${esc(d.ghichu)}" maxlength="200"></td><td style="white-space:nowrap"><button class="nut nho-nut cs-luu an-ld" type="button">Lưu</button> <button class="nut phu nho-nut cs-xoa an-ld" type="button">Xóa</button><div class="nho cs-kq"></div></td></tr>`).join('');
     $$('#tblQtCS tr[data-dong]').forEach(tr => {
       const dong = Number(tr.dataset.dong), kq = tr.querySelector('.cs-kq');
       const capNhatM3 = () => { const a = Number(tr.querySelector('.cs-cu').value), b = Number(tr.querySelector('.cs-moi').value); tr.querySelector('.cs-m3').textContent = isFinite(a) && isFinite(b) && tr.querySelector('.cs-moi').value !== '' ? so(b - a) : '–'; };
@@ -3176,7 +3214,7 @@
   }
   function hienTK() {
     $('tblTK').innerHTML = `<tr><th>Họ tên</th><th>SĐT đăng nhập</th><th>Vai trò</th><th>Trạng thái</th><th>Ghi chú</th><th></th></tr>` +
-      TKDS.map(t => `<tr><td><b>${esc(t.ten)}</b></td><td>${esc(t.sdt)}</td><td><span class="nhan ${t.vaitro === 'adm' ? 'vang' : 'xanh'}">${t.vaitro === 'adm' ? 'Quản trị' : 'Nhân viên'}</span></td><td>${t.hien ? '<span class="nhan la">Hoạt động</span>' : '<span class="nhan do">Khóa</span>'}${t.mkMacDinh ? ' <span class="nhan do" title="Đang dùng mật khẩu mặc định">MK mặc định</span>' : ''}</td><td class="nho">${esc(t.ghichu)}</td><td><button class="nut phu nho-nut tk-sua" data-dong="${t.dong}" type="button">Sửa / đặt lại MK</button></td></tr>`).join('');
+      TKDS.map(t => `<tr><td><b>${esc(t.ten)}</b></td><td>${esc(t.sdt)}</td><td><span class="nhan ${t.vaitro === 'adm' ? 'vang' : t.vaitro === 'ld' ? 'do' : 'xanh'}">${TEN_VT[t.vaitro] || 'Nhân viên'}</span></td><td>${t.hien ? '<span class="nhan la">Hoạt động</span>' : '<span class="nhan do">Khóa</span>'}${t.mkMacDinh ? ' <span class="nhan do" title="Đang dùng mật khẩu mặc định">MK mặc định</span>' : ''}</td><td class="nho">${esc(t.ghichu)}</td><td><button class="nut phu nho-nut tk-sua an-ld" data-dong="${t.dong}" type="button">Sửa / đặt lại MK</button></td></tr>`).join('');
     $$('#tblTK .tk-sua').forEach(b => b.onclick = () => moFormTK(TKDS.find(t => t.dong === Number(b.dataset.dong))));
   }
   function moFormTK(t) {
