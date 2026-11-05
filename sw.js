@@ -1,7 +1,7 @@
 /* Service worker – Nước sạch KV II
    Chỉ lưu sẵn GIAO DIỆN để mở nhanh / mở được khi mất mạng.
    KHÔNG lưu số liệu: mọi yêu cầu tới máy chủ Google (script.google.com…) luôn đi thẳng, không qua đây. */
-var BAN = 'nskv2-giaodien-v2';
+var BAN = 'nskv2-giaodien-v3';
 var GIAO_DIEN = [
   './',
   './index.html',
@@ -38,8 +38,12 @@ self.addEventListener('fetch', function (e) {
   if (req.mode === 'navigate') {
     e.respondWith(
       fetch(req).then(function (res) {
-        var copy = res.clone();
-        caches.open(BAN).then(function (c) { c.put('./index.html', copy); });
+        // chỉ lưu đúng trang chính khi tải thành công (không lưu trang lỗi 404/500)
+        var p = url.pathname;
+        if (res && res.ok && res.type === 'basic' && (p === '/' || p === '/index.html')) {
+          var copy = res.clone();
+          caches.open(BAN).then(function (c) { c.put('./index.html', copy); });
+        }
         return res;
       }).catch(function () {
         return caches.match('./index.html').then(function (r) { return r || caches.match('./'); });
@@ -52,7 +56,7 @@ self.addEventListener('fetch', function (e) {
   e.respondWith(
     caches.match(req).then(function (daLuu) {
       var moi = fetch(req).then(function (res) {
-        if (res && res.ok) { var copy = res.clone(); caches.open(BAN).then(function (c) { c.put(req, copy); }); }
+        if (res && res.ok && res.type === 'basic') { var copy = res.clone(); caches.open(BAN).then(function (c) { c.put(req, copy); }); }
         return res;
       }).catch(function () { return daLuu; });
       return daLuu || moi;
