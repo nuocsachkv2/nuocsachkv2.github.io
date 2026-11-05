@@ -29,6 +29,20 @@
     try { history.replaceState(null, '', location.pathname + location.search); } catch (e) {}
   }
   window.addEventListener('load', function () { setTimeout(moTheoDuongDan, 400); });
+
+  // Link Chính sách quyền riêng tư ở chân trang (cửa hàng ứng dụng yêu cầu có trong app)
+  window.addEventListener('DOMContentLoaded', function () {
+    var chan = document.querySelector('footer.chan');
+    if (!chan || document.getElementById('linkQRT')) return;
+    var d = document.createElement('div');
+    var a = document.createElement('a');
+    a.id = 'linkQRT';
+    a.href = 'chinh-sach-quyen-rieng-tu.html';
+    a.textContent = 'Chính sách quyền riêng tư';
+    a.style.cssText = 'color:inherit;text-decoration:underline';
+    d.appendChild(a);
+    chan.appendChild(d);
+  });
   window.addEventListener('hashchange', moTheoDuongDan);
 
   if (dangLaApp) {
