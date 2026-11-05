@@ -12,7 +12,7 @@
     if (biNhung) { document.documentElement.style.display = 'none'; try { window.top.location = window.self.location.href; } catch (e) {} }
     var S = '/' + '/', g = 'https:' + S;
     // chỉ cho chạy đúng đoạn mã của trạm (mã băm SHA-256 tính lúc đóng gói) → mã độc chèn vào trang không chạy được
-    var BAM = 'IqPSQzrMoN50xujtOy_jqUls0ZL9YOB8q4U_u8qUG_I=', B = BAM.split('_').join(String.fromCharCode(47));
+    var BAM = '9QOBkoav9R_eyJ8B9CJEIK2TEp5YNHJIghXOivOFilU=', B = BAM.split('_').join(String.fromCharCode(47));
     var m = document.createElement('meta'); m.httpEquiv = 'Content-Security-Policy';
     m.content = "default-src 'self'; script-src 'self' 'sha256-" + B + "'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https:; font-src 'self' data:; "
       + "connect-src 'self' " + g + 'script.google.com ' + g + "script.googleusercontent.com; frame-src https:' + S + 'www.youtube-nocookie.com https:' + S + 'drive.google.com; object-src 'none'; base-uri 'none'; form-action 'self'; upgrade-insecure-requests";
@@ -187,6 +187,7 @@
   footer.chan { position:relative; z-index:1; max-width:1180px; margin:0 auto; padding:18px 16px 26px; display:flex; flex-wrap:wrap; justify-content:space-between; gap:8px;
                 color:var(--xam); font-size:13px; border-top:1px solid var(--vien); }
   footer.chan .tk { font-weight:600; color:var(--xanh-dam); }
+  footer.chan .dk-chan a { color:var(--xanh-dam); font-weight:600; }
   .bb { color:var(--do); font-weight:700; margin-left:2px; }
   .bd { display:flex; align-items:flex-end; gap:6px; height:190px; padding:28px 4px 0; border-bottom:1px solid var(--vien); margin:8px 0 26px; }
   .bd.co-phu { margin-bottom:40px; }
@@ -1202,6 +1203,9 @@
   .vt-nut a { display:inline-flex; align-items:center; gap:6px; text-decoration:none; flex:1; justify-content:center; min-width:130px; }
 
   .hg-giay > .hg-demo, .hg-giay > .hg-dauTT { position:absolute !important; }
+  .hg-demo { opacity:.78; text-align:center; line-height:1.1; background:rgba(255,255,255,.62); }
+  .hg-demo small { display:block; font-size:.33em; letter-spacing:0; font-weight:800; line-height:1.35; margin:.45em 0 .15em; text-transform:none; }
+  .hg-demo small b { display:block; font-size:1.32em; letter-spacing:.5px; text-transform:uppercase; }
   .hg-giay > .hg-dauTT { right:4%; top:auto; bottom:13%; transform:rotate(-12deg); font-size:1.15em; }
   .vt-bando::after { content:none; }
   .vt-nut a.nut { background:var(--xanh); color:#fff; border:1.5px solid var(--xanh); border-radius:12px; padding:10px 14px; font-weight:700; font-size:14.5px; }
@@ -1238,6 +1242,14 @@
   .cb-ic { width:40px; height:40px; border-radius:12px; background:#fdecea; color:#d32f2f; display:flex; align-items:center; justify-content:center; flex:none; }
   .cb-ic .ic { width:22px; height:22px; }
   .cb-so { position:absolute; top:-9px; left:-9px; width:24px; height:24px; border-radius:50%; background:#e53935; color:#fff; font-weight:800; font-size:13px; display:flex; align-items:center; justify-content:center; box-shadow:0 2px 6px rgba(229,57,53,.4); }
+  .cb-dk { margin-top:14px; background:#fffaf0; border:1px solid #f0c36d; border-left:5px solid #e09b00; border-radius:14px; padding:14px 16px; font-size:14.5px; line-height:1.55; color:#344054; }
+  .cb-dk h3 { margin:0 0 6px; font-size:16px; color:#8a5300; display:flex; align-items:center; gap:6px; }
+  .cb-dk h3 .ic { width:18px; height:18px; }
+  .cb-dk ul { margin:6px 0 8px; padding-left:20px; }
+  .cb-dk li { margin:3px 0; }
+  .cb-dk p { margin:6px 0; }
+  .cb-dk a.nut { margin-top:4px; display:inline-flex; align-items:center; gap:6px; text-decoration:none; background:#fff; color:#8a5300; border:1.5px solid #e09b00; border-radius:10px; padding:8px 14px; font-weight:700; font-size:14.5px; }
+  .cb-dk a.nut .ic { width:17px; height:17px; }
   .cb-goi { margin-top:16px; display:flex; gap:12px; align-items:center; justify-content:space-between; flex-wrap:wrap; background:linear-gradient(135deg,#e8f5e9,#f1f8e9); border:1px solid #a5d6a7; border-radius:14px; padding:14px 16px; }
   .cb-goi b { display:block; font-size:16px; color:var(--la); }
   .cb-goi span { font-size:14px; color:#344054; }
@@ -1520,6 +1532,20 @@
       <div><h2>Cảnh giác lừa đảo</h2><p class="nho">Kẻ gian thường giả danh nhân viên nhà nước, điện nước để lấy tiền, mật khẩu. Bà con đọc kỹ {so} điều dưới đây và nhắc người thân cùng biết.</p></div></div>
     <div class="cb-ds" id="dsCanhBao"></div>
     <div class="cb-goi"><div><b>Nghi ngờ bị lừa?</b><span>Gọi ngay số của trạm để hỏi lại – trạm luôn sẵn sàng hỗ trợ.</span></div><div class="cb-goi-nut" id="cbGoi"></div></div>
+    <div class="cb-dk" id="cbDieuKhoan">
+      <h3><i class="ic" data-ic="doc"></i> Điều khoản sử dụng – phạm vi trách nhiệm</h3>
+      <p>Cách nộp tiền nước, cách nhận biết cán bộ của trạm và các thủ đoạn lừa đảo đã được trạm công khai trên web, trên giấy biên nhận và qua cán bộ địa bàn. Trạm <b>không chịu trách nhiệm</b> về thiệt hại khi khách hàng:</p>
+      <ul>
+        <li>Nộp tiền cho người không phải cán bộ thu của trạm, hoặc nộp mà không nhận giấy biên nhận.</li>
+        <li>Chuyển khoản, nạp ví, nạp thẻ theo yêu cầu của người lạ xưng danh trạm.</li>
+        <li>Tự cung cấp mật khẩu, mã OTP, số tài khoản, ảnh CCCD cho người khác.</li>
+        <li>Bấm link lạ, cài ứng dụng không tải từ trungtamnuocsach.vn.</li>
+        <li>Dùng hóa đơn demo, hóa đơn chưa có xác nhận và mã xác thực làm chứng từ.</li>
+        <li>Cố ý không tìm hiểu, không làm theo hướng dẫn đã công bố.</li>
+      </ul>
+      <p class="nho">Trạm vẫn hỗ trợ xác minh, cung cấp thông tin cho cơ quan công an khi bà con bị lừa. Điều khoản không áp dụng với thiệt hại do lỗi của chính trạm hoặc cán bộ trạm.</p>
+      <a class="nut phu" id="cbDkLink" target="_blank" rel="noopener"><i class="ic" data-ic="doc"></i> Đọc đầy đủ Điều khoản sử dụng</a>
+    </div>
   </section>
 
   <!-- ========== VĂN BẢN ========== -->
@@ -2340,6 +2366,7 @@
 <footer class="chan">
   <div>© <span id="namNay"></span> <span id="tenChan">Trạm Nước sạch và Vệ sinh môi trường Khu vực II</span></div>
   <div class="tk">Designer: <span id="thietKe">Nguyễn Văn Phong</span></div>
+  <div class="dk-chan"><a id="lkDieuKhoan" target="_blank" rel="noopener">Điều khoản sử dụng</a> · <a id="lkRiengTu" target="_blank" rel="noopener">Quyền riêng tư</a></div>
   <div class="bm"><i class="ic" data-ic="shield"></i>Kết nối mã hóa HTTPS · Mật khẩu lưu dạng mã hóa · Tự đăng xuất sau 30 phút không thao tác</div>
 </footer>
 <div id="thongBaoTuDong" role="status" aria-live="polite"></div>
@@ -2410,6 +2437,8 @@
   // Apps Script xóa mọi '//' kể cả trong chuỗi mẫu → ghép link bằng hằng số
   const SL = '/' + '/', URL_ZALO = 'https:' + SL + 'zalo.me/', URL_MAP = 'https:' + SL + 'www.google.com/maps?q=';
   const TEN_MIEN = 'trungtamnuocsach.vn', URL_WEB = 'https:' + SL + TEN_MIEN + '/';
+  const URL_DK = URL_WEB + 'chinh-sach-quyen-rieng-tu.html';
+  [['lkDieuKhoan', '#dieu-khoan'], ['lkRiengTu', '#rieng-tu'], ['cbDkLink', '#mien-tru']].forEach(([i, h]) => { const a = document.getElementById(i); if (a) a.href = URL_DK + h; });
   const URL_APK = URL_WEB + 'tai/nuoc-sach-kv2.apk?v=3';
   const linkZalo = z => esc(/^https:/.test(z) ? z : URL_ZALO + z);
   const zaloCB = x => (x.zalo === undefined ? x.sdt : x.zalo);   // dữ liệu cũ chưa có cột Zalo → dùng SĐT
@@ -3681,7 +3710,7 @@
         <div class="hg-ky-ten"><b>Nhân viên thu tiền</b><i>(Ký, ghi rõ họ tên)</i>${o.daTT && o.xn ? `<span class="hg-ten-nv">${esc(o.xn.ten)}</span>` : ''}</div></div>
       ${o.daTT && o.xn ? `<div class="hg-xt"><span>Mã xác thực hóa đơn: <b class="hg-ma">đang cấp…</b></span><span>Phát hành: <b class="hg-ph">–</b> · Cán bộ xác nhận thu: <b>${esc(o.xn.ten)}</b> (${esc(o.xn.tg)})</span></div>` : ''}
       <div class="hg-in">${BN.in}</div>
-      ${o.daTT && o.xn ? `<div class="hg-dauTT">ĐÃ THANH TOÁN<small>Xác nhận: ${esc(o.xn.ten)}<br>${esc(o.xn.tg)}</small></div>` : '<div class="hg-demo">HÓA ĐƠN DEMO</div>'}
+      ${o.daTT && o.xn ? `<div class="hg-dauTT">ĐÃ THANH TOÁN<small>Xác nhận: ${esc(o.xn.ten)}<br>${esc(o.xn.tg)}</small></div>` : '<div class="hg-demo">HÓA ĐƠN DEMO<small><b>Hóa đơn chưa thanh toán</b>Thanh toán và đăng nhập tài khoản để lấy hóa đơn chính thức</small></div>'}
     </div></div></div>
     ${o.daTT && o.xn ? `<div class="hg-ghi">${ic('checkCircle')}<span>Hóa đơn chính thức: cán bộ <b>${esc(o.xn.ten)}</b> xác nhận hộ đã thanh toán lúc ${esc(o.xn.tg)}. Cần hóa đơn đỏ (VAT): bấm nút bên dưới.</span></div>`
       : `<div class="hg-demo-ghi">${ic('alert')}<span><b>HÓA ĐƠN DEMO – CHỈ ĐỂ XEM TRƯỚC SỐ TIỀN</b>Không có giá trị thanh toán, không dùng làm chứng từ. Hãy thanh toán và đăng nhập tài khoản khách hàng để xem hóa đơn chính thức và yêu cầu hóa đơn đỏ.${t ? '' : ' Chỉ số tháng này đang được trạm kiểm tra.'}</span></div>`}`;
@@ -3704,10 +3733,10 @@
   }
   window.addEventListener('resize', () => { if ($('nenHG').classList.contains('mo')) coBN(); });
   function dongBN() { $('nenHG').classList.remove('mo'); document.body.style.overflow = ''; $('hgHD').innerHTML = ''; if (HG_TRUOC && HG_TRUOC.focus) try { HG_TRUOC.focus(); } catch (e) {} }
-  $('hgDong').onclick = dongBN;
+  $('hgDong').onclick = () => { document.body.classList.remove('dang-in'); dongBN(); };
   $('nenHG').addEventListener('click', e => { if (e.target === $('nenHG')) dongBN(); });
   document.addEventListener('keydown', e => { if (e.key === 'Escape' && $('nenHG').classList.contains('mo')) dongBN(); });
-  $('hgIn').onclick = () => { document.body.classList.add('dang-in'); ghiTC('In giấy biên nhận', ''); try { window.print(); } catch (e) {} setTimeout(() => document.body.classList.remove('dang-in'), 800); };
+  $('hgIn').onclick = () => { document.body.classList.add('dang-in'); ghiTC('In giấy biên nhận', ''); try { window.print(); } catch (e) {} };
   window.addEventListener('afterprint', () => document.body.classList.remove('dang-in'));
   // tra cứu công khai: địa chỉ chỉ hiện xóm, khu (không lộ địa chỉ chi tiết); mật khẩu VNPT mặc định chỉ hiện trong tài khoản
   function bnTraCuu(r, k) { return { thang: k.thang, ten: r.ten, ma: r.ma, diachi: [r.xom, r.khu].filter(Boolean).join(', '), cu: k.cu, moi: k.moi, m3: k.m3, tien: k.tien, nhom: r.nhom }; }
