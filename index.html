@@ -4,7 +4,7 @@
 <base target="_top">
 <meta charset="utf-8">
 <script>
-  // Bảo mật khi chạy ở tên miền riêng (trungtamnuocsach.vn): chặn trang lạ nhúng web vào khung, chỉ cho kết nối tới máy chủ Google của trạm
+  // Bảo mật khi chạy ở tên miền riêng (trungtamnuocsach.vn): chặn trang lạ nhúng website vào khung, chỉ cho kết nối tới máy chủ Google của trạm
   (function () {
     if (!location.hostname || /(^|\.)(google|googleusercontent)\.com$/i.test(location.hostname)) return;   // trong Google Apps Script đã có lớp bảo vệ riêng
     // bị trang lạ nhúng vào khung (lừa bấm) → ẩn toàn bộ trang và thử thoát ra ngoài
@@ -12,7 +12,7 @@
     if (biNhung) { document.documentElement.style.display = 'none'; try { window.top.location = window.self.location.href; } catch (e) {} }
     var S = '/' + '/', g = 'https:' + S;
     // chỉ cho chạy đúng đoạn mã của trạm (mã băm SHA-256 tính lúc đóng gói) → mã độc chèn vào trang không chạy được
-    var BAM = '9QOBkoav9R_eyJ8B9CJEIK2TEp5YNHJIghXOivOFilU=', B = BAM.split('_').join(String.fromCharCode(47));
+    var BAM = 'M6qPQWfJqX4OyKf4tX2JNuusMEcKfYe3VdYKrl59vPc=', B = BAM.split('_').join(String.fromCharCode(47));
     var m = document.createElement('meta'); m.httpEquiv = 'Content-Security-Policy';
     m.content = "default-src 'self'; script-src 'self' 'sha256-" + B + "'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https:; font-src 'self' data:; "
       + "connect-src 'self' " + g + 'script.google.com ' + g + "script.googleusercontent.com; frame-src https:' + S + 'www.youtube-nocookie.com https:' + S + 'drive.google.com; object-src 'none'; base-uri 'none'; form-action 'self'; upgrade-insecure-requests";
@@ -23,9 +23,9 @@
   })();
 </script>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Trạm Nước sạch và VSMT Khu vực II – Tra cứu tiền nước</title>
+<title>Trạm Nước sạch và Vệ sinh môi trường Khu vực II – Tra cứu tiền nước</title>
 <meta name="description" content="Tra cứu chỉ số, tiền nước hằng tháng; báo hỏng, yêu cầu kiểm tra nước, báo vi phạm – Trạm Nước sạch và Vệ sinh môi trường Khu vực II.">
-<meta property="og:title" content="Tra cứu tiền nước – Trạm Nước sạch và VSMT Khu vực II">
+<meta property="og:title" content="Tra cứu tiền nước – Trạm Nước sạch và Vệ sinh môi trường Khu vực II">
 <meta property="og:description" content="Gõ mã khách hàng hoặc họ tên chủ hộ để xem chỉ số, tiền nước; báo hỏng, kiểm tra nước, báo vi phạm.">
 <meta name="theme-color" content="#0b5394">
 <link rel="icon" type="image/png" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAMAAABg3Am1AAAAwFBMVEX%2F%2F%2F%2F+%2F%2F%2F%2F%2F%2F7%2F%2F%2F3+%2F%2F7+%2Fv79%2F%2F79%2Fv79%2Fv38%2Fv3%2F%2F%2Fr8%2Ff38%2FPz7%2Ffz7+%2Fv7+%2FX9+sP99on99Ff%2F9CD98CD%2F9w3%2F8w387hj97gv4+%2Frw+PXj8u3Y7dzM6NDw6yvA5M+31+Cu3MGv1YaU0a2NyLp6xYpqv45ytbx1vTZltkhStXtGsGE9p3IqpF4en1IQm0sPmEYImUQFl0QDlkUzi6kXe6sKdaoAk0EAjzYGdaQGca0Eca0DcK0BbawBaq4AZ6sUAr7DAAAEPUlEQVR42o2WaXuqOhCAB5SLaF1AWxZZpCnRUgKyqNTj8v%2F%2F1Z0AKtie514+oMZ5M3smAAAvk8kL%2FOfzkPpNug+S8BtTyY+eZBVlUH9TBv0nYoTES3f%2FgVJ9mBPLrDZS2n9KXHrSXun1ACyfhCyyI0qJb4nQH3Q2nHSAHsgOZSWlZewwFiWU2D4q7QIPi8SeMFOjQxZbyyS2HUJpSHxGbRBarrQcEEFQ9fl7HjsA%2FsEGeQyOF7AkCqSukrs5U011dTewQZHAW9arlhcyFlpd32%2FyrqGphtrj241hVaw%2FbC5mYwR8B+Qf8jNVW+jaTKiTMB6vr+dj8WHCeOD7YWjJ3ZSIvalmqAt9Bj2xWhAEWJ%2F252uxQm0+iykoHQLjYyxcTYXhbUUWrOK435%2FPazCRiEjHcTRI03RDFYatKoDVeY%2FIdQ0jiWey5YYocoPcxZQnukUUSBwrwmMs6CttBcZCU1Xotcu1VsGJFSaGMe8RW9F6ny%2FeNKlxuHkEwSxOnDjvLNkMqTeWmn8U8Jiq69pDgQI+AWUE62ut4gOAUHKTx7gFZaAZM6ECxphnGSImSSOptul4LkxwiG+DdKvyKEveeQ7uOyyT1MZwWsf6Oa9AoDFpnJDAipMsUmeCiFsvqW8BePnB72NnsO8KwEAtQ0ab1hiAnSTJgQwVrFfZZGVMRP9w8IGwMt%2FXQAEjsqUjEBqfsyT+%2FLRFqabzMvSy3KHlIfs+1SYVI%2FDj0IT+Dcg3c0OrnMYApVlJIxaUebbeceAPBrby2rzHMMs%2FdX0xFXtNkMuMkLiMvdWVy9eAn0RWHabKpMSd30pJgYlPo4g7X5y5%2FB%2F0YQAkQZOExultkm90HQM7lKBuehriq1Fw4k4jQGsXqrCmOUNgMRNg2BNFyRwHVB6vjrX8iYfVol%2F3Cu9DdEhyFwldnTaFSulUDS%2F7P1z+dMLEWRRbYvwojST%2F4oDhqrMptvc0+Jwb7v505PJo0dgkxLFAuIXJydJtvnl90%2FU3Q1+4rjvfbPDH7twAKzAjFtrwT2OSNECb0jx0EVmgGsN43WxeEbgcawWmvAwT31KERzWXSZp+7z7dV65G12ugqAD0AKPjeBbcj4G+ZLJDisRlF27cO%2FBWAUfeDX6Ax2FrYGDuDmmWpd+ny2W%2FQ9k7cDxzeTvaBnLn8MM4llskEiznyx2ILsfrHht6ScPQ6fe7U8eMyjTLsyz5vrh34Hot7OawfD6PsXNYTaSJ+1YDr2GxEvn+URz8PI0HNZHl+eEGGCquOzS0KVmaP4%2F7AVhhia7naQuwCGOMmr%2FP4QGvSOyy7QPwWMwYwUNSgt9mkIRm0aRMb3kw1OU2wokF%2FY54eyiiZ0vypdelYaBJeBZBd5Z0pyhU2ZnibHnfaJo6w62Fp9EzeR7s8rh9ZVCeJxWXfr464HQf9mRZxPePwIwmf7uc%2FO1C83yx+R%2FXn38Bu3ahb6eFgDoAAAAASUVORK5CYII=">
@@ -1203,11 +1203,26 @@
   .vt-nut a { display:inline-flex; align-items:center; gap:6px; text-decoration:none; flex:1; justify-content:center; min-width:130px; }
 
   .hg-giay > .hg-demo, .hg-giay > .hg-dauTT { position:absolute !important; }
+  .ba-cham { display:inline-flex; gap:3px; margin-left:4px; vertical-align:middle; }
+  .ba-cham i { width:5px; height:5px; border-radius:50%; background:currentColor; opacity:.25; animation:baCham 1s infinite ease-in-out; }
+  .ba-cham i:nth-child(2) { animation-delay:.18s; } .ba-cham i:nth-child(3) { animation-delay:.36s; }
+  @keyframes baCham { 0%,80%,100% { opacity:.25; transform:translateY(0); } 40% { opacity:1; transform:translateY(-3px); } }
+  @media (prefers-reduced-motion: reduce) { .ba-cham i { animation-duration:2.4s; transform:none !important; } }
   .hg-demo { opacity:.78; text-align:center; line-height:1.1; background:rgba(255,255,255,.62); }
   .hg-demo small { display:block; font-size:.33em; letter-spacing:0; font-weight:800; line-height:1.35; margin:.45em 0 .15em; text-transform:none; }
   .hg-demo small b { display:block; font-size:1.32em; letter-spacing:.5px; text-transform:uppercase; }
   .hg-giay > .hg-dauTT { right:4%; top:auto; bottom:13%; transform:rotate(-12deg); font-size:1.15em; }
   .vt-bando::after { content:none; }
+  /* v29: bản đồ minh họa vẽ bằng SVG (đường, sông, ruộng, khu dân cư, ghim có sóng lan) */
+  .vt-bando.svgmap { height:170px; background:#eef3e6; }
+  .vt-bando.svgmap > svg { position:absolute; inset:0; width:100%; height:100%; display:block; }
+  .vt-bando.svgmap .vt-song, .vt-bando.svgmap .vt-ghim { display:none; }
+  .vt-bando .vt-la { position:absolute; right:10px; bottom:10px; background:rgba(255,255,255,.92); border-radius:10px; padding:4px 9px; font-size:12px; font-weight:700; color:#344054; box-shadow:0 1px 4px rgba(16,24,40,.15); display:flex; align-items:center; gap:5px; }
+  .vt-bando .vt-la .ic { width:14px; height:14px; color:#e53935; }
+  .vt-bando .vt-bac { position:absolute; right:10px; top:10px; width:30px; height:30px; border-radius:50%; background:rgba(255,255,255,.92); box-shadow:0 1px 4px rgba(16,24,40,.18); }
+  .vt-song-lan { transform-box:fill-box; transform-origin:center; animation:vtLan 2.2s ease-out infinite; }
+  @keyframes vtLan { 0% { transform:scale(.4); opacity:.55; } 100% { transform:scale(2.4); opacity:0; } }
+  @media (prefers-reduced-motion: reduce) { .vt-song-lan { animation:none; opacity:.25; } }
   .vt-nut a.nut { background:var(--xanh); color:#fff; border:1.5px solid var(--xanh); border-radius:12px; padding:10px 14px; font-weight:700; font-size:14.5px; }
   .vt-nut a.nut.phu { background:#fff; color:var(--xanh); }
   .vt-nut a.nut:hover { filter:brightness(1.08); }
@@ -1242,6 +1257,10 @@
   .cb-ic { width:40px; height:40px; border-radius:12px; background:#fdecea; color:#d32f2f; display:flex; align-items:center; justify-content:center; flex:none; }
   .cb-ic .ic { width:22px; height:22px; }
   .cb-so { position:absolute; top:-9px; left:-9px; width:24px; height:24px; border-radius:50%; background:#e53935; color:#fff; font-weight:800; font-size:13px; display:flex; align-items:center; justify-content:center; box-shadow:0 2px 6px rgba(229,57,53,.4); }
+  .nk-loc { display:flex; flex-wrap:wrap; gap:6px; margin:10px 0 2px; }
+  .nk-loc button { border:1.5px solid var(--vien); background:#fff; border-radius:999px; padding:6px 12px; font:inherit; font-size:13.5px; font-weight:700; cursor:pointer; color:#344054; }
+  .nk-loc button.on { background:var(--xanh); border-color:var(--xanh); color:#fff; }
+  #tblNK .nk-tb { display:block; margin-top:3px; color:#0b5394; font-size:12.5px; }
   .cb-dk { margin-top:14px; background:#fffaf0; border:1px solid #f0c36d; border-left:5px solid #e09b00; border-radius:14px; padding:14px 16px; font-size:14.5px; line-height:1.55; color:#344054; }
   .cb-dk h3 { margin:0 0 6px; font-size:16px; color:#8a5300; display:flex; align-items:center; gap:6px; }
   .cb-dk h3 .ic { width:18px; height:18px; }
@@ -1298,7 +1317,7 @@
         <div class="the o-tim">
           <h2><i class="ic" data-ic="search"></i> Tra cứu chỉ số & tiền nước</h2>
           <form class="hang" id="fTraCuu" autocomplete="off">
-            <input class="to" id="maKH" placeholder="Mã KH, 4 số cuối hoặc tên chủ hộ, VD: 6143" aria-label="Mã khách hàng" maxlength="40">
+            <input class="to" id="maKH" placeholder="Mã khách hàng, 4 số cuối hoặc tên chủ hộ, VD: 6143" aria-label="Mã khách hàng" maxlength="40">
             <button class="nut" id="nutTra" type="submit">Xem</button>
           </form>
           <div class="goi-y"><span><i class=ic data-ic=hash></i> Mã đầy đủ: 01.36010116.143</span><span><i class=ic data-ic=scissors></i> Hoặc 4 số cuối: 6143</span><span><i class=ic data-ic=user></i> Hoặc họ tên chủ hộ</span></div>
@@ -1337,7 +1356,6 @@
         </div></div>
         <div class="the"><h3><i class="ic" data-ic="clock"></i> Giờ bơm nước</h3><div class="dsGioBom"></div></div>
         <div class="the" id="tbMoi"><h3><i class="ic" data-ic="bell"></i> Thông báo mới</h3><div id="dsTbMoi"></div></div>
-        <div class="the an" id="lienHe"><h3><i class="ic" data-ic="phone"></i> Liên hệ</h3><div id="dsLienHe"></div></div>
       </div>
     </div>
   </section>
@@ -1352,7 +1370,7 @@
         <form id="fYC" autocomplete="off">
           <div class="buoc"><i>1</i> Thông tin hộ dùng nước <span class="tuy-chon">(ghi đúng như trên hóa đơn)</span></div>
           <div class="hai-o">
-            <input id="ycMa" class="day" placeholder="Mã KH hoặc 4 số cuối" inputmode="decimal" maxlength="40" aria-label="Mã khách hàng">
+            <input id="ycMa" class="day" placeholder="Mã khách hàng hoặc 4 số cuối" inputmode="decimal" maxlength="40" aria-label="Mã khách hàng">
             <input id="ycTen" class="day" placeholder="Họ tên chủ hộ" maxlength="80" aria-label="Họ tên chủ hộ">
           </div>
           <div class="buoc"><i>2</i> Nội dung quý khách cần kiểm tra</div>
@@ -1403,7 +1421,7 @@
       </div>
       <div>
         <div class="the" id="lienHe4"><h3><i class="ic" data-ic="phone"></i> Gọi trực tiếp thợ trực</h3><div class="dsLienHe2"></div></div>
-        <div class="the nho">Khi ống vỡ lớn, nước phun mạnh: gọi điện ngay cho trạm rồi mới gửi web. Đứng gần chỗ hỏng và bấm <b>Ghim vị trí</b> để thợ đến đúng chỗ.</div>
+        <div class="the nho">Khi ống vỡ lớn, nước phun mạnh: gọi điện ngay cho trạm rồi mới gửi qua website. Đứng gần chỗ hỏng và bấm <b>Ghim vị trí</b> để thợ đến đúng chỗ.</div>
       </div>
     </div>
   </section>
@@ -1420,7 +1438,7 @@
           <div class="o-hanh-vi xanh" id="lhLoaiO" role="radiogroup" aria-label="Loại yêu cầu"></div>
           <div class="buoc"><i>2</i> Thông tin hộ dùng nước <span class="tuy-chon">(ghi đúng như trên hóa đơn)</span></div>
           <div class="hai-o">
-            <input id="lhMa" class="day" placeholder="Mã KH hoặc 4 số cuối" inputmode="decimal" maxlength="40" aria-label="Mã khách hàng">
+            <input id="lhMa" class="day" placeholder="Mã khách hàng hoặc 4 số cuối" inputmode="decimal" maxlength="40" aria-label="Mã khách hàng">
             <input id="lhTen" class="day" placeholder="Họ tên chủ hộ" maxlength="80" aria-label="Họ tên chủ hộ">
           </div>
           <input id="lhSdt" class="day" placeholder="Số điện thoại / Zalo để trạm gọi lại" inputmode="tel" maxlength="16" aria-label="Số điện thoại" style="margin-top:8px">
@@ -1461,7 +1479,7 @@
           <div class="buoc"><i>4</i> Số điện thoại để trạm liên hệ xác minh và trả thưởng</div>
           <input id="bcSdt" class="day" placeholder="Số điện thoại / Zalo" inputmode="tel" maxlength="16" aria-label="Số điện thoại">
           <label class="o-chon" style="margin-top:10px"><input type="checkbox" id="bcCoTen">
-            <span>Báo <b>có tên</b> (mã KH + họ tên) – xác minh, trả thưởng nhanh hơn. Không tích = <b>ẩn danh</b>.</span></label>
+            <span>Báo <b>có tên</b> (mã khách hàng + họ tên) – xác minh, trả thưởng nhanh hơn. Không tích = <b>ẩn danh</b>.</span></label>
           <div id="bcKhungKH" class="an">
             <input id="bcMa" class="day" placeholder="Mã khách hàng của anh/chị" inputmode="decimal" maxlength="40" aria-label="Mã khách hàng">
             <input id="bcTen" class="day" placeholder="Họ tên chủ hộ như trên hóa đơn" maxlength="80" aria-label="Họ tên" style="margin-top:8px">
@@ -1534,11 +1552,11 @@
     <div class="cb-goi"><div><b>Nghi ngờ bị lừa?</b><span>Gọi ngay số của trạm để hỏi lại – trạm luôn sẵn sàng hỗ trợ.</span></div><div class="cb-goi-nut" id="cbGoi"></div></div>
     <div class="cb-dk" id="cbDieuKhoan">
       <h3><i class="ic" data-ic="doc"></i> Điều khoản sử dụng – phạm vi trách nhiệm</h3>
-      <p>Cách nộp tiền nước, cách nhận biết cán bộ của trạm và các thủ đoạn lừa đảo đã được trạm công khai trên web, trên giấy biên nhận và qua cán bộ địa bàn. Trạm <b>không chịu trách nhiệm</b> về thiệt hại khi khách hàng:</p>
+      <p>Cách nộp tiền nước, cách nhận biết cán bộ của trạm và các thủ đoạn lừa đảo đã được trạm công khai trên website, trên giấy biên nhận và qua cán bộ địa bàn. Trạm <b>không chịu trách nhiệm</b> về thiệt hại khi khách hàng:</p>
       <ul>
         <li>Nộp tiền cho người không phải cán bộ thu của trạm, hoặc nộp mà không nhận giấy biên nhận.</li>
         <li>Chuyển khoản, nạp ví, nạp thẻ theo yêu cầu của người lạ xưng danh trạm.</li>
-        <li>Tự cung cấp mật khẩu, mã OTP, số tài khoản, ảnh CCCD cho người khác.</li>
+        <li>Tự cung cấp mật khẩu, mã OTP, số tài khoản, ảnh căn cước công dân cho người khác.</li>
         <li>Bấm link lạ, cài ứng dụng không tải từ trungtamnuocsach.vn.</li>
         <li>Dùng hóa đơn demo, hóa đơn chưa có xác nhận và mã xác thực làm chứng từ.</li>
         <li>Cố ý không tìm hiểu, không làm theo hướng dẫn đã công bố.</li>
@@ -1559,13 +1577,13 @@
   <!-- ========== HƯỚNG DẪN SỬ DỤNG ========== -->
   <section id="huongDan" class="an">
     <h2><i class="ic" data-ic="book"></i> Hướng dẫn sử dụng</h2>
-    <p class="nho" style="margin-top:-4px">Video và hướng dẫn từng bước: nộp tiền nước, lấy hóa đơn VAT, lấy hóa đơn thông thường và các chức năng khác trên web.</p>
+    <p class="nho" style="margin-top:-4px">Video và hướng dẫn từng bước: nộp tiền nước, lấy hóa đơn VAT, lấy hóa đơn thông thường và các chức năng khác trên website.</p>
     <div class="hd-video">
       <div class="hd-vthe"><div id="hdVidNop"></div>
         <div class="hd-chu"><b>Nộp tiền nước</b><ol class="hd-buoc-ds">
           <li><b>Tra cứu</b> mã khách hàng → xem số tiền tháng này (bấm <b>Xem hóa đơn</b> để xem hóa đơn demo).</li>
           <li>Bấm <b>Nộp tiền</b> (hoặc <b>Nộp tiền hộ</b>) → đọc lưu ý → chọn đúng cán bộ quản lý địa bàn → <b>Gọi</b> / <b>Zalo</b>.</li>
-          <li>Chỉ đưa tiền khi nhận <b>giấy biên nhận</b> ghi đúng tên, mã khách hàng, tháng, số tiền (đối chiếu với <b>Xem hóa đơn</b> trên web). Cán bộ xác nhận xong, hóa đơn chính thức hiện trong tài khoản của anh/chị.</li>
+          <li>Chỉ đưa tiền khi nhận <b>giấy biên nhận</b> ghi đúng tên, mã khách hàng, tháng, số tiền (đối chiếu với <b>Xem hóa đơn</b> trên website). Cán bộ xác nhận xong, hóa đơn chính thức hiện trong tài khoản của anh/chị.</li>
           <li>Trạm không thu qua chuyển khoản lạ, không xin mật khẩu, mã OTP.</li></ol></div></div>
       <div class="hd-vthe"><div id="hdVidVat"></div>
         <div class="hd-chu"><b>Yêu cầu lấy hóa đơn VAT (hóa đơn đỏ)</b><ol class="hd-buoc-ds">
@@ -1576,7 +1594,7 @@
       <div class="hd-vthe"><div id="hdVidThuong"></div>
         <div class="hd-chu"><b>Lấy hóa đơn thông thường (giấy biên nhận)</b><ol class="hd-buoc-ds">
           <li><b>Tra cứu</b> mã khách hàng hoặc họ tên → bấm <b>Xem hóa đơn</b> (cạnh nút Nộp tiền): đây là <b>hóa đơn DEMO</b> để xem trước chỉ số, số m³, đơn giá, thuế, phí, tổng tiền – không dùng làm chứng từ.</li>
-          <li>Nộp tiền cho cán bộ trạm. Cán bộ <b>xác nhận đã thu</b> trên web (ghi tên người xác nhận).</li>
+          <li>Nộp tiền cho cán bộ trạm. Cán bộ <b>xác nhận đã thu</b> trên website (ghi tên người xác nhận).</li>
           <li>Đăng nhập tài khoản khách hàng (đã đổi mật khẩu mặc định) → <b>Hóa đơn đã thanh toán</b> → bấm tháng để xem <b>hóa đơn chính thức</b> có dấu <b>Đã thanh toán</b>, tên cán bộ và <b>mã xác thực</b> (trạm dùng mã này kiểm tra hóa đơn thật – giả) → <b>In / Lưu PDF</b>.</li></ol></div></div>
     </div>
     <div class="hd-ds">
@@ -1584,7 +1602,7 @@
         <li>Bấm <b>Tra cứu</b> trên thanh menu.</li>
         <li>Gõ <b>mã khách hàng</b> in trên hóa đơn, hoặc <b>4 số cuối</b> của mã, hoặc <b>họ tên chủ hộ</b> → bấm <b>Xem</b>.</li>
         <li>Nếu có nhiều hộ trùng, bấm vào <b>đúng nhà mình</b> (xem cột thôn/xóm).</li>
-        <li>Web hiện chỉ số cũ – mới, số m³, tiền nước (đã gồm thuế, phí) và biểu đồ các tháng gần nhất.</li></ol></details>
+        <li>Website hiện chỉ số cũ – mới, số m³, tiền nước (đã gồm thuế, phí) và biểu đồ các tháng gần nhất.</li></ol></details>
       <details><summary><span class="bieu"><i class="ic" data-ic="card"></i></span>Nộp tiền nước an toàn</summary><ol>
         <li>Tra cứu ra số tiền → bấm <b>Nộp tiền / Nộp tiền hộ</b>.</li>
         <li>Đọc kỹ khung <b>Lưu ý</b>, tích <b>Tôi đã đọc và hiểu</b>.</li>
@@ -1601,15 +1619,15 @@
       <details><summary><span class="bieu"><i class="ic" data-ic="user"></i></span>Tài khoản khách hàng</summary><ol>
         <li>Bấm <b>Đăng nhập</b> ở góc trên → chọn <b>Khách hàng</b>.</li>
         <li>Tên đăng nhập là <b>mã khách hàng</b>, mật khẩu lần đầu <b>111111</b> → đổi ngay mật khẩu riêng.</li>
-        <li>Tích <b>Ghi nhớ đăng nhập</b> nếu dùng điện thoại của riêng mình – lần sau mở web là vào thẳng tài khoản (30 ngày).</li>
+        <li>Tích <b>Ghi nhớ đăng nhập</b> nếu dùng điện thoại của riêng mình – lần sau mở website là vào thẳng tài khoản (30 ngày).</li>
         <li>Trong tài khoản: xem 12 tháng, tháng đã / chưa thanh toán, <b>giấy biên nhận đã thanh toán</b>, yêu cầu <b>hóa đơn đỏ</b>, gửi cập nhật thông tin. Quên mật khẩu: bấm <b>Quên mật khẩu</b> để trạm gọi lại xác minh.</li></ol></details>
       <details><summary><span class="bieu"><i class="ic" data-ic="download"></i></span>Cài ứng dụng trên điện thoại</summary><ol>
         <li>Vào <b>Dịch vụ › Tải ứng dụng</b>.</li>
         <li>Android: bấm <b>Tải ứng dụng</b> rồi cài file. iPhone: mở <b>trungtamnuocsach.vn</b> bằng Safari → Chia sẻ → <b>Thêm vào MH chính</b>.</li>
         <li>Chỉ tải ứng dụng tại trang này – trạm không gửi file cài qua Zalo hay tin nhắn.</li></ol></details>
-      <details><summary><span class="bieu"><i class="ic" data-ic="message"></i></span>Góp ý, báo lỗi web</summary><ol>
+      <details><summary><span class="bieu"><i class="ic" data-ic="message"></i></span>Góp ý, báo lỗi website</summary><ol>
         <li>Bấm nút <b>Góp ý</b> (nút màu cam có hình bong bóng chat, phía trên nút gọi điện, góc phải màn hình).</li>
-        <li>Chọn <b>Góp ý</b> hoặc <b>Báo lỗi</b>, chọn mục trên web, ghi nội dung → <b>Gửi</b>.</li>
+        <li>Chọn <b>Góp ý</b> hoặc <b>Báo lỗi</b>, chọn mục trên website, ghi nội dung → <b>Gửi</b>.</li>
         <li>Để lại số điện thoại nếu muốn trạm gọi lại (không bắt buộc).</li></ol></details>
       <details><summary><span class="bieu"><i class="ic" data-ic="building"></i></span>Dành cho cán bộ trạm</summary><ol>
         <li>Bấm <b>Đăng nhập</b> → chọn <b>Bộ phận quản lý</b> → nhập tên đăng nhập, số điện thoại, mật khẩu do quản trị cấp.</li>
@@ -1632,7 +1650,7 @@
       <div class="ta-icon"><img id="taLogo" alt="Biểu tượng ứng dụng Nước sạch KV II" width="72" height="72"></div>
       <div>
         <h2>Ứng dụng Nước sạch KV II</h2>
-        <p>Tra cứu tiền nước, báo hỏng, báo vi phạm ngay trên điện thoại – mở là dùng, không phải gõ địa chỉ web.</p>
+        <p>Tra cứu tiền nước, báo hỏng, báo vi phạm ngay trên điện thoại – mở là dùng, không phải gõ địa chỉ website.</p>
         <div class="ta-chip"><span><i class=ic data-ic=search></i> Tra cứu tiền nước</span><span><i class=ic data-ic=wrench></i> Báo hỏng</span><span><i class=ic data-ic=alert></i> Báo vi phạm</span><span><i class=ic data-ic=user></i> Tài khoản khách hàng</span></div>
       </div>
     </div>
@@ -1645,14 +1663,14 @@
           <li>Máy hỏi <b>"Cho phép cài ứng dụng từ nguồn này"</b> → bấm <b>Cài đặt</b> → bật <b>Cho phép</b> → quay lại. Nếu máy báo "ứng dụng chưa được quét", bấm <b>Chi tiết → Vẫn cài đặt</b>.</li>
           <li>Bấm <b>Cài đặt</b>, xong bấm <b>Mở</b>. Lần sau mở biểu tượng <b>Nước sạch KV II</b> trên màn hình chính.</li>
         </ol>
-        <p class="ta-ghi"><i class=ic data-ic=checkCircle></i><span>Ứng dụng <b>không xin quyền gì</b> trên máy (không đọc danh bạ, tin nhắn, ảnh, vị trí). Trạm cập nhật web thì ứng dụng tự mới theo, không phải tải lại.</span></p>
+        <p class="ta-ghi"><i class=ic data-ic=checkCircle></i><span>Ứng dụng <b>không xin quyền gì</b> trên máy (không đọc danh bạ, tin nhắn, ảnh, vị trí). Trạm cập nhật website thì ứng dụng tự mới theo, không phải tải lại.</span></p>
         <details class="ta-kt"><summary>Mã kiểm tra file (dành cho người rành máy)</summary>
           <div>Phiên bản 1.0.2 (mã 3) · gói <code>io.github.nuocsachkv2.app</code><br>SHA-256 file APK:<br><code class="ta-ma">a440eb39a7657ec546f56bf9e7a42b9a121790621dd90dc7fc65647423ca2f43</code></div></details>
       </div>
       <div class="ta-the ta-ios" id="taIos">
         <div class="ta-tren"><span class="ta-hdh" aria-hidden="true"><svg viewBox="0 0 56 56"><defs><linearGradient id="gIos" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#4b5565"/><stop offset="1" stop-color="#1d2939"/></linearGradient></defs><rect width="56" height="56" rx="15" fill="url(#gIos)"/><rect x="17" y="8" width="22" height="40" rx="6" fill="#fff"/><rect x="19" y="10" width="18" height="36" rx="4.5" fill="#eef2f7"/><rect x="24.5" y="12.3" width="7" height="2.4" rx="1.2" fill="#1d2939"/><rect x="24" y="42.6" width="8" height="1.4" rx=".7" fill="#98a2b3"/><circle cx="41" cy="41" r="8" fill="#f5b400" stroke="#1d2939" stroke-width="2"/><path d="M41 37.2V41l2.6 1.6" fill="none" stroke="#1d2939" stroke-width="1.8" stroke-linecap="round"/></svg></span><div><h3>iPhone · iPad</h3><span class="ta-phu">Máy chạy iOS, iPadOS</span><span class="ta-nhan cho">Đang phát triển</span></div></div>
         <div class="ta-nut tat" aria-disabled="true"><i class=ic data-ic=hourglass></i><span><b>App Store – sắp có</b><small>Ứng dụng cho iPhone đang được phát triển</small></span></div>
-        <p class="ta-ghi2">Trong lúc chờ, anh/chị dùng web này ngay trên <b>Safari</b> – đầy đủ chức năng như ứng dụng. Muốn có biểu tượng trên màn hình chính:</p>
+        <p class="ta-ghi2">Trong lúc chờ, anh/chị dùng website này ngay trên <b>Safari</b> – đầy đủ chức năng như ứng dụng. Muốn có biểu tượng trên màn hình chính:</p>
         <ol class="ta-buoc">
           <li>Mở trang <b>trungtamnuocsach.vn</b> bằng <b>Safari</b>.</li>
           <li>Bấm nút <b>Chia sẻ</b> (ô vuông có mũi tên lên) ở dưới màn hình.</li>
@@ -1696,7 +1714,7 @@
         <input id="khMa" class="day" maxlength="30" placeholder="Mã khách hàng" inputmode="decimal" autocomplete="username">
         <label class="nhan-o" for="khMk">Mật khẩu</label>
         <input id="khMk" type="password" class="day" autocomplete="current-password" maxlength="60" placeholder="Mật khẩu">
-        <label class="ghi-nho" for="khNho"><input type="checkbox" id="khNho"><span>Ghi nhớ đăng nhập trên máy này<span class="nho">30 ngày, lần sau mở web là vào thẳng tài khoản. Không tích nếu dùng máy chung.</span></span></label>
+        <label class="ghi-nho" for="khNho"><input type="checkbox" id="khNho"><span>Ghi nhớ đăng nhập trên máy này<span class="nho">30 ngày, lần sau mở website là vào thẳng tài khoản. Không tích nếu dùng máy chung.</span></span></label>
         <button class="nut day" id="nutKH" type="submit" style="margin-top:12px">Đăng nhập</button>
         <div class="loi" id="loiKH"></div>
         <p class="nho">Tên đăng nhập là <b>mã khách hàng</b> in trên hóa đơn. Lần đầu dùng mật khẩu mặc định <b>111111</b>, sau đó đổi mật khẩu riêng để xem hồ sơ và cập nhật thông tin.</p>
@@ -1835,10 +1853,10 @@
         <button data-nb="phieu" data-sub="yeuCauNB"><i class=ic data-ic=flask></i> Kiểm tra chất lượng nước <span class="huy-hieu" id="demYC"></span></button>
         <button data-nb="phieu" data-sub="lienHeNB"><i class=ic data-ic=edit></i> Liên hệ / đổi TT <span class="huy-hieu" id="demLH"></span></button>
         <button data-nb="phieu" data-sub="baoCaoNB"><i class=ic data-ic=siren></i> Báo cáo vi phạm <span class="huy-hieu" id="demBC"></span></button>
-        <button data-nb="phieu" data-sub="gopYNB"><i class=ic data-ic=message></i> Góp ý, báo lỗi web <span class="huy-hieu" id="demGY"></span></button>
+        <button data-nb="phieu" data-sub="gopYNB"><i class=ic data-ic=message></i> Góp ý, báo lỗi website <span class="huy-hieu" id="demGY"></span></button>
         <button data-nb="duyet" data-sub="qtKH" class="chi-ql"><i class=ic data-ic=user></i> Hồ sơ khách hàng</button>
         <button data-nb="duyet" data-sub="qtChiSo" class="chi-ql"><i class=ic data-ic=hash></i> Chỉ số đồng hồ</button>
-        <button data-nb="duyet" data-sub="duyetCN" class="chi-ql"><i class=ic data-ic=checkCircle></i> Duyệt thông tin KH <span class="huy-hieu" id="demCN"></span></button>
+        <button data-nb="duyet" data-sub="duyetCN" class="chi-ql"><i class=ic data-ic=checkCircle></i> Duyệt thông tin khách hàng <span class="huy-hieu" id="demCN"></span></button>
         <button data-nb="duyet" data-sub="datLaiNB" class="chi-ql"><i class=ic data-ic=key></i> Cấp / đặt lại mật khẩu <span class="huy-hieu" id="demDL"></span></button>
         <button data-nb="quanLy" data-sub="tramNhanVien" class="chi-ql"><i class=ic data-ic=users></i> Nhân viên &amp; điểm</button>
         <button data-nb="quanLy" data-sub="qtTaiKhoan" class="chi-ql"><i class=ic data-ic=key></i> Tài khoản đăng nhập</button>
@@ -1879,7 +1897,7 @@
       <div id="sub_baoCaoNam" class="an">
         <div class="the">
           <div class="hang"><h3 style="margin:0">Doanh thu & sản lượng nước năm</h3><select id="bcnNam"></select><span class="nho" id="bcnTai"></span></div>
-          <p class="nho">Doanh thu = tiền phải thu theo chỉ số chốt (tiền nước + VAT + phí BVMT). Sản lượng = tổng m³ qua đồng hồ hộ dân.</p>
+          <p class="nho">Doanh thu = tiền phải thu theo chỉ số chốt (tiền nước + thuế VAT + phí nước thải). Sản lượng = tổng m³ qua đồng hồ hộ dân.</p>
           <div class="loi" id="loiBCN"></div>
         </div>
         <div id="bcnKQ"></div>
@@ -1919,7 +1937,7 @@
               <label>Khu<select id="dlKhu"><option value="">Tất cả</option></select></label>
               <label>Xóm<select id="dlXom"><option value="">Tất cả</option></select></label>
               <label>Sắp xếp<select id="dlXep"><option value="xom">Theo xóm</option><option value="tien">Tiền nhiều → ít</option><option value="ten">Theo tên</option></select></label>
-              <label class="rong">Tìm hộ<input id="dlTim" type="search" placeholder="Tên chủ hộ hoặc mã KH" autocomplete="off"></label>
+              <label class="rong">Tìm hộ<input id="dlTim" type="search" placeholder="Tên chủ hộ hoặc mã khách hàng" autocomplete="off"></label>
             </div>
             <div class="nho" id="dlGhiChu" style="margin-top:8px"></div>
             <div id="dlKhuBD" style="margin-top:10px"></div>
@@ -1971,10 +1989,10 @@
 
       <div id="sub_gopYNB" class="an">
         <div class="the">
-          <div class="hang"><h3 style="margin:0;flex:1">Góp ý, báo lỗi web</h3>
+          <div class="hang"><h3 style="margin:0;flex:1">Góp ý, báo lỗi website</h3>
             <select id="gyLoc"><option value="mo">Chưa xong</option><option value="">Tất cả</option></select>
             <button class="nut phu nho-nut" id="gyTaiLai" type="button">Tải lại</button></div>
-          <div class="nho">Khách và cán bộ gửi qua nút <b>Góp ý</b> trên mọi trang. Lỗi web: chuyển cho người quản trị web xử lý.</div>
+          <div class="nho">Khách và cán bộ gửi qua nút <b>Góp ý</b> trên mọi trang. Lỗi website: chuyển cho người quản trị website xử lý.</div>
           <div class="loi" id="loiGYNB"></div>
         </div>
         <div id="dsGY"></div>
@@ -1985,7 +2003,7 @@
           <div class="hang"><h3 style="margin:0;flex:1">Yêu cầu đổi thông tin / liên hệ</h3>
             <select id="lhLoc"><option value="mo">Chưa xong</option><option value="">Tất cả</option></select>
             <button class="nut phu nho-nut" id="lhTaiLai" type="button">Tải lại</button></div>
-          <div class="nho">Khi đổi tên, SĐT, xóm: sửa trực tiếp trong sheet KhachHang rồi đặt trạng thái "Đã xong".</div>
+          <div class="nho">Khi đổi tên, số điện thoại, xóm: sửa trực tiếp trong sheet KhachHang rồi đặt trạng thái "Đã xong".</div>
           <div class="loi" id="loiLHNB"></div>
         </div>
         <div id="dsLH"></div>
@@ -2021,7 +2039,7 @@
             <label>Kỳ<select id="ttThang"></select></label>
             <label>Khu<select id="ttKhu"><option value="">Tất cả</option></select></label>
             <label>Xóm<select id="ttXom"><option value="">Tất cả</option></select></label>
-            <label class="rong">Tìm hộ<input id="ttTim" type="search" placeholder="Tên chủ hộ hoặc mã KH" autocomplete="off"></label>
+            <label class="rong">Tìm hộ<input id="ttTim" type="search" placeholder="Tên chủ hộ hoặc mã khách hàng" autocomplete="off"></label>
           </div>
           <div class="nt-muc" id="ttTom" role="tablist" aria-label="Chưa thu / Đã thu"></div>
           <div class="loi" id="loiTT"></div>
@@ -2046,7 +2064,7 @@
       <div id="sub_kiemTraHD" class="an">
         <div class="the">
           <h3 style="margin-top:0"><i class=ic data-ic=shield></i> Kiểm tra hóa đơn – mã xác thực</h3>
-          <div class="nho">Mỗi hóa đơn chính thức (khách xem trong tài khoản sau khi cán bộ xác nhận thu tiền) có <b>mã xác thực 12 ký tự</b> in ở cuối giấy. Mã khác nhau theo từng hộ, từng tháng và đổi theo thời gian. Nhập mã để biết hóa đơn có do web phát hành không, ai xác nhận thu, lúc nào, và số liệu còn khớp không.</div>
+          <div class="nho">Mỗi hóa đơn chính thức (khách xem trong tài khoản sau khi cán bộ xác nhận thu tiền) có <b>mã xác thực 12 ký tự</b> in ở cuối giấy. Mã khác nhau theo từng hộ, từng tháng và đổi theo thời gian. Nhập mã để biết hóa đơn có do website phát hành không, ai xác nhận thu, lúc nào, và số liệu còn khớp không.</div>
           <form id="fKTHD" class="hang" style="margin-top:10px" autocomplete="off"><input id="kthdMa" maxlength="20" placeholder="VD: AB12-CD34-EF56" aria-label="Mã xác thực" style="flex:1;min-width:200px"><button class="nut" id="kthdNut" type="submit">Kiểm tra</button></form>
           <div class="loi" id="loiKTHD"></div><div id="kqKTHD"></div>
         </div>
@@ -2056,7 +2074,7 @@
           <div class="hang"><h3 style="margin:0;flex:1"><i class=ic data-ic=receipt></i> Yêu cầu hóa đơn đỏ (hóa đơn VAT)</h3>
             <select id="hddLoc" aria-label="Lọc"><option value="cho">Chờ duyệt</option><option value="">Tất cả</option></select>
             <button class="nut phu nho-nut" id="hddTaiLai" type="button">Tải lại</button></div>
-          <div class="nho">Khách đã thanh toán gửi yêu cầu trong tài khoản. Cách duyệt: bấm <b>Mở trang VNPT</b> → tìm hóa đơn theo <b>mã KH</b> và <b>tháng</b> → sao chép link xem/tải hóa đơn (hoặc tải PDF lên Google Drive, chia sẻ “Bất kỳ ai có đường liên kết”) → dán vào ô <b>Link hóa đơn</b> → <b>Duyệt</b>. Hóa đơn hiện ngay trong tài khoản khách. Không dán link: khách được hướng dẫn tự tra trên trang VNPT bằng mã KH.</div>
+          <div class="nho">Khách đã thanh toán gửi yêu cầu trong tài khoản. Cách duyệt: bấm <b>Mở trang VNPT</b> → tìm hóa đơn theo <b>mã khách hàng</b> và <b>tháng</b> → sao chép link xem/tải hóa đơn (hoặc tải PDF lên Google Drive, chia sẻ “Bất kỳ ai có đường liên kết”) → dán vào ô <b>Link hóa đơn</b> → <b>Duyệt</b>. Hóa đơn hiện ngay trong tài khoản khách. Không dán link: khách được hướng dẫn tự tra trên trang VNPT bằng mã khách hàng.</div>
           <div class="hang" style="margin-top:8px"><span id="hddVnpt"></span></div>
           <div class="loi" id="loiHDD"></div>
         </div>
@@ -2068,7 +2086,7 @@
           <div class="hd-video" style="margin-bottom:12px"><div class="hd-vthe" id="hdnbVidNV"></div></div>
           <div class="hdnb-ds">
             <div class="hdnb-o"><h4><span class="bieu"><i class=ic data-ic=clock></i></span>Mỗi ngày làm việc</h4><ol>
-              <li>Mở web → <b>Đăng nhập</b> → <b>Bộ phận quản lý</b> → nhập tên đăng nhập, số điện thoại, mật khẩu được cấp.</li>
+              <li>Mở website → <b>Đăng nhập</b> → <b>Bộ phận quản lý</b> → nhập tên đăng nhập, số điện thoại, mật khẩu được cấp.</li>
               <li>Xem <b>số đỏ</b> trên các nhóm: đó là phiếu mới khách gửi, cần xử lý trong ngày.</li>
               <li>Ưu tiên <b>Báo hỏng</b> (mất nước, vỡ ống) → rồi <b>Khách báo nộp tiền</b> → các phiếu còn lại.</li>
               <li>Làm xong việc nào thì đổi trạng thái việc đó ngay, ghi tên mình và ghi chú ngắn → bấm <b>Lưu</b>.</li>
@@ -2083,7 +2101,7 @@
               <li>Chưa nhận tiền: giữ <b>Chưa nộp</b>, gọi lại khách theo số trong phiếu.</li></ol></div>
             <div class="hdnb-o"><h4><span class="bieu"><i class=ic data-ic=coins></i></span>Thu tiền theo tháng</h4><ol>
               <li><b>Thu tiền › Xác nhận thu tiền</b> → chọn <b>Kỳ</b>, <b>Khu</b>, <b>Xóm</b> (hoặc gõ tên, mã hộ).</li>
-              <li>Thu xong hộ nào → bấm nút trạng thái hộ đó sang <b>Đã thu</b>. Web <b>ghi tên mình và giờ xác nhận</b>; khách đăng nhập thấy tháng đó màu xanh và có hóa đơn chính thức “Đã thanh toán” ghi tên mình ở ô Nhân viên thu tiền.</li>
+              <li>Thu xong hộ nào → bấm nút trạng thái hộ đó sang <b>Đã thu</b>. Website <b>ghi tên mình và giờ xác nhận</b>; khách đăng nhập thấy tháng đó màu xanh và có hóa đơn chính thức “Đã thanh toán” ghi tên mình ở ô Nhân viên thu tiền.</li>
               <li>Bấm nhầm → bấm lại để trả về <b>Chưa thu</b>. Không đánh dấu khi chưa cầm tiền.</li></ol></div>
             <div class="hdnb-o"><h4><span class="bieu"><i class=ic data-ic=banknote></i></span>Hẹn thu tiền</h4><ol>
               <li><b>Thu tiền › Hẹn thu tiền</b>: khách hẹn ngày, số liên hệ.</li>
@@ -2094,7 +2112,7 @@
             <div class="hdnb-o"><h4><span class="bieu"><i class=ic data-ic=edit></i></span>Liên hệ, vi phạm, góp ý</h4><ul>
               <li><b>Liên hệ / đổi TT</b>: gọi lại khách, xử lý → <b>Đã xong</b>.</li>
               <li><b>Báo cáo vi phạm</b>: đi xác minh → <b>Đã xử lý</b> hoặc <b>Không đúng sự thật</b>. Tuyệt đối giữ bí mật người báo.</li>
-              <li><b>Góp ý, báo lỗi web</b>: đọc, chuyển quản lý nếu cần → <b>Đã xem</b> / <b>Đã xử lý</b>.</li></ul></div>
+              <li><b>Góp ý, báo lỗi website</b>: đọc, chuyển quản lý nếu cần → <b>Đã xem</b> / <b>Đã xử lý</b>.</li></ul></div>
             <div class="hdnb-o"><h4><span class="bieu"><i class=ic data-ic=chart></i></span>Số liệu</h4><ul>
               <li><b>Số liệu tháng › Kiểm tra số liệu</b>: hộ có chỉ số bất thường (chỉ số mới nhỏ hơn cũ, tăng/giảm mạnh) → đi kiểm tra lại đồng hồ, báo quản lý sửa.</li>
               <li><b>Hộ nộp / chưa nộp, nghi ngờ</b>: xem hộ đã nộp / chưa nộp từng kỳ để đi thu.</li></ul></div>
@@ -2118,15 +2136,15 @@
               <li>Phiếu mới quá 1 ngày chưa xử lý → nhắc cán bộ địa bàn.</li></ol></div>
             <div class="hdnb-o"><h4><span class="bieu"><i class=ic data-ic=receipt></i></span>Duyệt hóa đơn đỏ (VAT)</h4><ol>
               <li><b>Thu tiền › Yêu cầu hóa đơn đỏ</b>: khách đã thanh toán gửi yêu cầu (cá nhân hoặc đơn vị có mã số thuế).</li>
-              <li>Mở trang VNPT → tìm hóa đơn đúng <b>mã KH</b>, <b>tháng</b>, <b>số tiền</b> → sao chép link → dán vào ô Link → <b>Duyệt</b>.</li>
+              <li>Mở trang VNPT → tìm hóa đơn đúng <b>mã khách hàng</b>, <b>tháng</b>, <b>số tiền</b> → sao chép link → dán vào ô Link → <b>Duyệt</b>.</li>
               <li>Đơn vị cần ghi mã số thuế trên hóa đơn: làm theo quy định trên VNPT trước, rồi dán link hóa đơn đúng. Sai thông tin → <b>Từ chối</b>, ghi lý do.</li></ol></div>
             <div class="hdnb-o"><h4><span class="bieu"><i class=ic data-ic=shield></i></span>Kiểm tra hóa đơn thật – giả</h4><ol>
               <li>Hóa đơn chính thức có <b>mã xác thực 12 ký tự</b> (khung cuối giấy), tên cán bộ xác nhận thu và giờ phát hành.</li>
-              <li><b>Thu tiền › Kiểm tra hóa đơn</b> → nhập mã → web cho biết hóa đơn có do web phát hành không, ai xác nhận thu, lúc nào.</li>
+              <li><b>Thu tiền › Kiểm tra hóa đơn</b> → nhập mã → website cho biết hóa đơn có do website phát hành không, ai xác nhận thu, lúc nào.</li>
               <li>Báo đỏ “không hợp lệ” hoặc “số liệu đã thay đổi” → hóa đơn giả hoặc đã bị sửa / hủy xác nhận: kiểm tra lại với cán bộ.</li></ol></div>
             <div class="hdnb-o"><h4><span class="bieu"><i class=ic data-ic=key></i></span>Tài khoản khách hàng</h4><ol>
-              <li><b>Cấp / đặt lại mật khẩu KH</b>: gọi đúng số điện thoại khách khai, hỏi lại họ tên, xóm → đúng mới đặt lại (mật khẩu về 111111).</li>
-              <li><b>Duyệt thông tin KH</b>: khách xin đổi tên, số điện thoại, địa chỉ → đối chiếu giấy tờ → Duyệt / Từ chối (ghi lý do).</li></ol></div>
+              <li><b>Cấp / đặt lại mật khẩu khách hàng</b>: gọi đúng số điện thoại khách khai, hỏi lại họ tên, xóm → đúng mới đặt lại (mật khẩu về 111111).</li>
+              <li><b>Duyệt thông tin khách hàng</b>: khách xin đổi tên, số điện thoại, địa chỉ → đối chiếu giấy tờ → Duyệt / Từ chối (ghi lý do).</li></ol></div>
             <div class="hdnb-o"><h4><span class="bieu"><i class=ic data-ic=users></i></span>Nhân viên, tài khoản</h4><ul>
               <li><b>Quản trị › Tài khoản đăng nhập</b> (quản trị): thêm, khóa, đặt lại mật khẩu, phân vai trò (Quản trị, Lãnh đạo quản lý, Nhân viên).</li>
               <li><b>Quản trị › Nhân viên &amp; điểm</b>: danh sách cán bộ trạm, địa bàn phụ trách.</li>
@@ -2134,11 +2152,11 @@
             <div class="hdnb-o"><h4><span class="bieu"><i class=ic data-ic=hash></i></span>Khách hàng, chỉ số</h4><ul>
               <li><b>Khách hàng › Hồ sơ khách hàng / Chỉ số đồng hồ</b>: tìm hộ, xem và sửa chỉ số (quản trị). Mọi lần sửa đều ghi Nhật ký.</li>
               <li>Sửa chỉ số chỉ khi đã kiểm tra lại đồng hồ hoặc đối chiếu hóa đơn VNPT.</li></ul></div>
-            <div class="hdnb-o"><h4><span class="bieu"><i class=ic data-ic=gear></i></span>Cấu hình web</h4><ul>
+            <div class="hdnb-o"><h4><span class="bieu"><i class=ic data-ic=gear></i></span>Cấu hình website</h4><ul>
               <li><b>Quản trị › Cấu hình</b> (quản trị sửa, lãnh đạo chỉ xem): thông báo đầu trang, giờ nhận yêu cầu, số liên hệ cán bộ từng khu, Telegram/email nhận báo.</li>
               <li>Video hướng dẫn: dán link YouTube hoặc Google Drive vào các ô <b>video_nop_tien</b>, <b>video_hd_vat</b>, <b>video_hd_thuong</b> (khách xem), <b>video_nhan_vien</b>, <b>video_quan_ly</b> (nội bộ).</li></ul></div>
             <div class="hdnb-o"><h4><span class="bieu"><i class=ic data-ic=history></i></span>Kiểm soát, an toàn</h4><ul>
-              <li><b>Truy cập</b>: ai vào web, thao tác gì. <b>Nhật ký</b>: mọi thay đổi dữ liệu, đăng nhập sai.</li>
+              <li><b>Truy cập</b>: ai vào website, thao tác gì. <b>Nhật ký</b>: mọi thay đổi dữ liệu, đăng nhập sai.</li>
               <li>Nhận cảnh báo đăng nhập sai nhiều lần → đổi mật khẩu quản trị.</li></ul></div>
           </div>
         </div>
@@ -2159,7 +2177,7 @@
           <div class="hang"><h3 style="margin:0;flex:1">Khách hàng xin cập nhật thông tin</h3>
             <select id="cnLoc"><option value="cho">Chờ duyệt</option><option value="">Tất cả</option></select>
             <button class="nut phu nho-nut" id="cnTaiLai" type="button">Tải lại</button></div>
-          <div class="nho">Đồng ý → web tự sửa sheet KhachHang và báo cho khách. Từ chối → ghi lý do để khách biết. Chỉ tài khoản adm được duyệt.</div>
+          <div class="nho">Đồng ý → website tự sửa sheet KhachHang và báo cho khách. Từ chối → ghi lý do để khách biết. Chỉ tài khoản adm được duyệt.</div>
           <div class="loi" id="loiCNNB"></div>
         </div>
         <div id="dsCN"></div>
@@ -2169,7 +2187,7 @@
         <div class="the">
           <h3><i class=ic data-ic=sliders></i> Khách hàng – tìm, kiểm tra, sửa, thêm mới</h3>
           <form class="hang" id="fQtTim" autocomplete="off">
-            <input id="qtQ" class="to" placeholder="Gõ tên chủ hộ, mã, 4 số cuối hoặc SĐT" maxlength="60">
+            <input id="qtQ" class="to" placeholder="Gõ tên chủ hộ, mã, 4 số cuối hoặc số điện thoại" maxlength="60">
             <button class="nut" type="submit" id="nutQtTim">Tìm</button>
             <button class="nut phu an-ld" type="button" id="nutQtThem">+ Thêm hộ mới</button>
           </form>
@@ -2186,9 +2204,9 @@
             <div><label for="qtXom">Xóm / thôn</label><input id="qtXom" maxlength="40"></div>
             <div><label for="qtDiaChi">Địa chỉ</label><input id="qtDiaChi" maxlength="120"></div>
             <div><label for="qtNhom">Nhóm giá</label><select id="qtNhom"></select></div>
-            <div><label for="qtSdt">SĐT (10 số, để trống nếu chưa có)</label><input id="qtSdt" inputmode="tel" maxlength="16"></div>
+            <div><label for="qtSdt">Số điện thoại (10 số, để trống nếu chưa có)</label><input id="qtSdt" inputmode="tel" maxlength="16"></div>
             <div><label for="qtGhiChu">Ghi chú</label><input id="qtGhiChu" maxlength="200"></div>
-            <div class="rong hang"><button class="nut an-ld" type="submit" id="nutQtLuu">Lưu</button><button class="nut phu" type="button" id="nutQtDong">Đóng</button><button class="nut phu" type="button" id="nutQtChiSo">Xem / sửa chỉ số hộ này</button><button class="nut phu" type="button" id="nutQtDatMK">Đặt lại mật khẩu KH</button><span class="nho" id="kqQtKH"></span></div>
+            <div class="rong hang"><button class="nut an-ld" type="submit" id="nutQtLuu">Lưu</button><button class="nut phu" type="button" id="nutQtDong">Đóng</button><button class="nut phu" type="button" id="nutQtChiSo">Xem / sửa chỉ số hộ này</button><button class="nut phu" type="button" id="nutQtDatMK">Đặt lại mật khẩu khách hàng</button><span class="nho" id="kqQtKH"></span></div>
             <div class="loi rong" id="loiQtForm"></div>
           </form>
         </div>
@@ -2198,7 +2216,7 @@
         <div class="the">
           <h3><i class=ic data-ic=sliders></i> Chỉ số từng hộ – sửa, thêm, xóa</h3>
           <form class="hang" id="fQtCS" autocomplete="off">
-            <input id="qtCSMa" class="to" placeholder="Mã KH, 4 số cuối hoặc tên chủ hộ" maxlength="60">
+            <input id="qtCSMa" class="to" placeholder="Mã khách hàng, 4 số cuối hoặc tên chủ hộ" maxlength="60">
             <button class="nut" type="submit" id="nutQtCS">Xem</button>
           </form>
           <div class="loi" id="loiQtCS"></div>
@@ -2228,7 +2246,7 @@
           <h3 id="tkTieuDe">Thêm tài khoản</h3>
           <form id="fTK" autocomplete="off" class="luoi-form">
             <div><label for="tkTen">Họ tên</label><input id="tkTen" maxlength="60"></div>
-            <div><label for="tkSdt">SĐT đăng nhập</label><input id="tkSdt" inputmode="tel" maxlength="16" autocomplete="off"></div>
+            <div><label for="tkSdt">Số điện thoại đăng nhập</label><input id="tkSdt" inputmode="tel" maxlength="16" autocomplete="off"></div>
             <div><label for="tkMk">Mật khẩu <span class="nho" id="tkMkNho">(ít nhất 6 ký tự)</span></label><input id="tkMk" type="password" maxlength="60" autocomplete="new-password"></div>
             <div><label for="tkVaiTro">Vai trò</label><select id="tkVaiTro"><option value="nv">nv – Nhân viên</option><option value="ld">ld – Lãnh đạo quản lý</option><option value="adm">adm – Quản trị</option></select></div>
             <div><label for="tkGhiChu">Ghi chú</label><input id="tkGhiChu" maxlength="120"></div>
@@ -2241,7 +2259,7 @@
 
       <div id="sub_qtCauHinh" class="an">
         <div class="the">
-          <h3><i class=ic data-ic=sliders></i> Cấu hình web (sheet CauHinh)</h3>
+          <h3><i class=ic data-ic=sliders></i> Cấu hình website (sheet CauHinh)</h3>
           <p class="nho chi-adm">Sửa xong bấm Lưu ở từng dòng. Có hiệu lực ngay, không cần triển khai lại.</p>
           <p class="thongbao chi-ld-xem" id="chChiXem" style="display:none"><i class=ic data-ic=lock></i> Tài khoản Lãnh đạo quản lý <b>chỉ xem</b> cấu hình, không sửa được. Các mã kết nối được che bớt.</p>
           <div class="loi" id="loiCH"></div>
@@ -2261,7 +2279,7 @@
         </div>
         <div class="the">
           <h3><i class=ic data-ic=zap></i> Dữ liệu tra cứu</h3>
-          <p class="nho">Web lưu sẵn danh sách khách và chỉ số để khách tra cứu nhanh. Sửa trên web thì tự cập nhật ngay. Nếu sửa <b>trực tiếp trong Google Sheet</b>, bấm nút dưới để khách thấy số mới liền (không bấm thì tự cập nhật sau tối đa 2 giờ).</p>
+          <p class="nho">Website lưu sẵn danh sách khách và chỉ số để khách tra cứu nhanh. Sửa trên website thì tự cập nhật ngay. Nếu sửa <b>trực tiếp trong Google Sheet</b>, bấm nút dưới để khách thấy số mới liền (không bấm thì tự cập nhật sau tối đa 2 giờ).</p>
           <button class="nut phu nho-nut" id="nutLamMoiTC" type="button"><i class=ic data-ic=repeat></i> Làm mới dữ liệu tra cứu</button> <span class="nho" id="kqLamMoiTC"></span>
         </div>
       </div>
@@ -2273,8 +2291,8 @@
             <button class="nut phu nho-nut" id="nvnTaiLai" type="button">Tải lại</button></div>
           <p class="nho" style="margin:6px 0 0">Chỉ gồm cán bộ nội bộ trạm: trạm phó và cán bộ quản lý địa bàn (theo cơ cấu tổ chức).</p>
           <div class="nv-khen"><i class=ic data-ic=sparkle></i><div><b>Ghi nhận đóng góp – làm căn cứ đề xuất khen thưởng</b><br>
-            Mọi thao tác trên web (đăng nhập, vào quản lý hóa đơn – thu tiền, xử lý phiếu, xác nhận khách nộp tiền, đánh dấu hộ đã thu…) đều được ghi nhận tự động, công khai và minh bạch.
-            Trạm sẽ căn cứ vào mức độ hoạt động này, cùng kết quả công việc thực tế, để <b>xem xét, đề xuất khen thưởng</b> cho các cán bộ tích cực, trách nhiệm trong việc đưa web vào phục vụ bà con.</div></div>
+            Mọi thao tác trên website (đăng nhập, vào quản lý hóa đơn – thu tiền, xử lý phiếu, xác nhận khách nộp tiền, đánh dấu hộ đã thu…) đều được ghi nhận tự động, công khai và minh bạch.
+            Trạm sẽ căn cứ vào mức độ hoạt động này, cùng kết quả công việc thực tế, để <b>xem xét, đề xuất khen thưởng</b> cho các cán bộ tích cực, trách nhiệm trong việc đưa website vào phục vụ bà con.</div></div>
           <div class="loi" id="loiNVN"></div>
         </div>
         <div id="nvnKQ"></div>
@@ -2288,7 +2306,7 @@
             <span class="sc-nhan"><i class=ic data-ic=hammer></i> Đang cập nhật tính năng</span>
             <h3>Lịch trực</h3>
             <p>Lịch trực của trạm theo ngày, tuần: ai trực sửa chữa, ai trực văn phòng, số điện thoại trực.</p>
-            <ul class="sc-ds"><li><i class=ic data-ic=checkCircle></i><span>Xếp lịch trực theo tuần / tháng</span></li><li><i class=ic data-ic=checkCircle></i><span>Nhắc ca trực qua Telegram</span></li><li><i class=ic data-ic=checkCircle></i><span>Khách xem số trực hôm nay ngay trên web</span></li></ul>
+            <ul class="sc-ds"><li><i class=ic data-ic=checkCircle></i><span>Xếp lịch trực theo tuần / tháng</span></li><li><i class=ic data-ic=checkCircle></i><span>Nhắc ca trực qua Telegram</span></li><li><i class=ic data-ic=checkCircle></i><span>Khách xem số trực hôm nay ngay trên website</span></li></ul>
           </div>
         </div>
       </div>
@@ -2332,10 +2350,10 @@
 
       <div id="sub_trienKhai" class="an">
         <div class="the">
-          <div class="hang"><h3 style="margin:0;flex:1"><i class=ic data-ic=gauge></i> Hiệu quả triển khai web</h3>
+          <div class="hang"><h3 style="margin:0;flex:1"><i class=ic data-ic=gauge></i> Hiệu quả triển khai website</h3>
             <select id="tkSoNgay"><option value="7">7 ngày</option><option value="30" selected>30 ngày</option><option value="60">60 ngày</option></select>
             <button class="nut phu nho-nut" id="tkTaiLai" type="button">Tải lại</button></div>
-          <div class="nho">Mức năng nổ đưa web vào hoạt động: thu tiền, số hộ dùng web, lượt truy cập, tốc độ xử lý phiếu và hoạt động của từng tài khoản nội bộ. Số liệu lấy từ sheet ChiSo, TaiKhoanKH, TruyCap, các sheet phiếu và Nhật ký.</div>
+          <div class="nho">Mức năng nổ đưa website vào hoạt động: thu tiền, số hộ dùng website, lượt truy cập, tốc độ xử lý phiếu và hoạt động của từng tài khoản nội bộ. Số liệu lấy từ sheet ChiSo, TaiKhoanKH, TruyCap, các sheet phiếu và Nhật ký.</div>
           <div class="loi" id="loiTK2"></div>
         </div>
         <div id="tkKQ"></div>
@@ -2346,7 +2364,7 @@
           <div class="hang"><h3 style="margin:0;flex:1"><i class=ic data-ic=trend></i> Thống kê truy cập</h3>
             <select id="tcSoNgay"><option value="1">Hôm nay</option><option value="7" selected>7 ngày</option><option value="30">30 ngày</option><option value="60">60 ngày</option></select>
             <button class="nut phu nho-nut" id="tcTaiLai" type="button">Tải lại</button></div>
-          <div class="nho">Mỗi lượt mở web là 1 lượt. "Khách lẻ" = người chưa đăng nhập (đánh số theo máy, không lấy thông tin cá nhân). Bấm vào 1 người để xem họ đã làm gì.</div>
+          <div class="nho">Mỗi lượt mở website là 1 lượt. "Khách lẻ" = người chưa đăng nhập (đánh số theo máy, không lấy thông tin cá nhân). Bấm vào 1 người để xem họ đã làm gì.</div>
           <div class="loi" id="loiTC"></div>
         </div>
         <div id="tcKQ"></div>
@@ -2355,6 +2373,11 @@
       <div id="sub_qtNhatKy" class="an">
         <div class="the">
           <div class="hang"><h3 style="margin:0;flex:1"><i class=ic data-ic=sliders></i> Nhật ký thao tác</h3><button class="nut phu nho-nut" id="nutNKTai" type="button">Tải lại</button></div>
+          <div class="nk-loc" id="nkLoc" role="tablist" aria-label="Lọc nhật ký">
+            <button type="button" data-loai="" class="on">Tất cả</button><button type="button" data-loai="kh">Khách hàng</button><button type="button" data-loai="nb">Cán bộ trạm</button><button type="button" data-loai="sai">Đăng nhập sai, bảo mật</button>
+          </div>
+          <div class="o-nhap-nut" style="max-width:420px;margin:8px 0"><input id="nkTim" class="day" placeholder="Tìm mã khách hàng, tên, hành động, thiết bị…" maxlength="60" aria-label="Tìm trong nhật ký"></div>
+          <p class="nho" id="nkGhiChu" style="margin:4px 0 8px">Mục <b>Khách hàng</b>: khách đăng nhập, đổi mật khẩu, gửi đổi thông tin (cũ → mới), kèm loại máy, hệ điều hành, trình duyệt. Mật khẩu chỉ lưu dạng mã hóa nên nhật ký không bao giờ hiện mật khẩu.</p>
           <div class="loi" id="loiNK"></div>
           <div class="cuon"><table id="tblNK"></table></div>
         </div>
@@ -2400,16 +2423,16 @@
 <div id="nenHG" role="dialog" aria-modal="true" aria-labelledby="hgTieuDe"><div id="khungHG">
   <div class="hg-thanh"><b id="hgTieuDe">Giấy biên nhận</b><button class="nut nho-nut" id="hgIn" type="button"><i class="ic" data-ic="printer"></i>In / Lưu PDF</button><button class="nut phu nho-nut" id="hgDong" type="button" aria-label="Đóng">Đóng</button></div>
   <div id="hgND"></div><div id="hgHD"></div></div></div>
-<button id="nutGopY" type="button" aria-label="Góp ý, báo lỗi web" title="Đóng góp ý kiến, báo lỗi web"><span class="tron-ic"><i class="ic" data-ic="gopY"></i></span><span>Góp ý</span></button>
+<button id="nutGopY" type="button" aria-label="Góp ý, báo lỗi website" title="Đóng góp ý kiến, báo lỗi website"><span class="tron-ic"><i class="ic" data-ic="gopY"></i></span><span>Góp ý</span></button>
 <div id="nenGY" role="dialog" aria-modal="true" aria-labelledby="gyTieuDe">
   <form id="fGY" autocomplete="off">
-    <div class="gy-dau"><i class="ic" data-ic="message" style="color:var(--xanh);width:26px;height:26px"></i><h3 id="gyTieuDe">Góp ý, báo lỗi web</h3><button class="gy-dong" id="gyDong" type="button" aria-label="Đóng">×</button></div>
-    <p class="nho" style="margin:0">Mọi ý kiến giúp trạm làm web tốt hơn. Trạm đọc tất cả góp ý.</p>
+    <div class="gy-dau"><i class="ic" data-ic="message" style="color:var(--xanh);width:26px;height:26px"></i><h3 id="gyTieuDe">Góp ý, báo lỗi website</h3><button class="gy-dong" id="gyDong" type="button" aria-label="Đóng">×</button></div>
+    <p class="nho" style="margin:0">Mọi ý kiến giúp trạm làm website tốt hơn. Trạm đọc tất cả góp ý.</p>
     <div class="gy-loai" role="radiogroup" aria-label="Loại">
       <label><input type="radio" name="gyLoai" value="Góp ý" checked><span class="bieu"><i class="ic" data-ic="heart"></i></span>Góp ý</label>
       <label class="loi-web"><input type="radio" name="gyLoai" value="Báo lỗi"><span class="bieu"><i class="ic" data-ic="alert"></i></span>Báo lỗi</label>
     </div>
-    <label class="nhan-o" for="gyMuc">Mục trên web</label>
+    <label class="nhan-o" for="gyMuc">Mục trên website</label>
     <select id="gyMuc" class="day"></select>
     <label class="nhan-o" for="gyND">Nội dung <span class="sao">*</span></label>
     <textarea id="gyND" class="day" rows="4" maxlength="1000" placeholder="VD: Khi bấm Xem ở mục Tra cứu thì báo lỗi… / Đề nghị thêm…"></textarea>
@@ -2462,6 +2485,26 @@
   const TC_KID = (() => { try { let k = localStorage.getItem('tnkv2_may'); if (!k || !/^[a-z0-9]{6,24}$/.test(k)) { k = maNN(12); localStorage.setItem('tnkv2_may', k); } return k; } catch (e) { return maNN(12); } })();
   const TC_SID = maNN(12);
   const TC_TB = (window.matchMedia('(max-width: 899px)').matches ? 'Điện thoại' : 'Máy tính') + ' · ' + (/iPhone|iPad/.test(navigator.userAgent) ? 'iOS' : /Android/.test(navigator.userAgent) ? 'Android' : /Windows/.test(navigator.userAgent) ? 'Windows' : /Mac/.test(navigator.userAgent) ? 'Mac' : 'khác');
+  // Thiết bị đang dùng (loại máy, hệ điều hành, trình duyệt) – chỉ gửi kèm lúc đăng nhập / đổi mật khẩu / gửi đổi thông tin để trạm ghi nhật ký
+  let THIET_BI = '';
+  (function () {
+    const ua = navigator.userAgent || '';
+    const m = (re, i) => { const x = ua.match(re); return x ? x[i || 1] : ''; };
+    let hdh = /iPhone|iPad|iPod/.test(ua) ? 'iOS ' + m(/OS (\d+[_.]\d+)/).replace('_', '.') : /Android/.test(ua) ? 'Android ' + m(/Android ([\d.]+)/) : /Windows NT 10/.test(ua) ? 'Windows 10/11' : /Windows NT/.test(ua) ? 'Windows ' + m(/Windows NT ([\d.]+)/) : /Mac OS X/.test(ua) ? 'macOS ' + m(/Mac OS X ([\d_]+)/).replace(/_/g, '.') : /Linux/.test(ua) ? 'Linux' : 'khác';
+    let may = /iPhone/.test(ua) ? 'iPhone' : /iPad/.test(ua) ? 'iPad' : /Android/.test(ua) ? (m(/Android [\d.]+; ([^;)]+?)(?: Build|\))/) || 'điện thoại Android') : /Windows|Macintosh|Linux/.test(ua) ? 'Máy tính' : 'Thiết bị khác';
+    const tr = /; wv\)/.test(ua) ? 'Ứng dụng Nước sạch KV II' : /Edg\/\d/.test(ua) ? 'Edge ' + m(/Edg\/(\d+)/) : /CriOS\/\d|Chrome\/\d/.test(ua) ? 'Chrome ' + m(/(?:CriOS|Chrome)\/(\d+)/) : /Firefox\/\d/.test(ua) ? 'Firefox ' + m(/Firefox\/(\d+)/) : /Safari\/\d/.test(ua) ? 'Safari' : 'trình duyệt khác';
+    const dat = () => { THIET_BI = [may, hdh, tr].filter(Boolean).join(' · ').replace(/[<>"'`=+@]/g, '').slice(0, 130); };
+    dat();
+    try {   // Chrome / Edge: lấy tên máy, phiên bản hệ điều hành chính xác
+      if (navigator.userAgentData && navigator.userAgentData.getHighEntropyValues) navigator.userAgentData.getHighEntropyValues(['model', 'platformVersion']).then(v => {
+        const nen = navigator.userAgentData.platform || '';
+        if (v.model) may = v.model;
+        if (/Windows/.test(nen) && v.platformVersion) hdh = parseInt(v.platformVersion, 10) >= 13 ? 'Windows 11' : 'Windows 10';
+        else if (/Android/.test(nen) && v.platformVersion) hdh = 'Android ' + v.platformVersion;
+        dat();
+      }).catch(() => {});
+    } catch (e) {}
+  })();
   let TC_HANG = [], TC_HEN = 0;
   const tcToken = () => { try { return TK || TKKH || ''; } catch (e) { return ''; } };
   function ghiTC(h, c) {
@@ -2664,6 +2707,41 @@
     $('cbGoi').innerHTML = so.map(x => `<a class="nut" href="tel:${esc(x.tel)}">${ic('phone')} ${esc(x.ten ? x.ten + ' · ' : '')}${esc(x.so)}</a>`).join('') || '';
   }
   // ---------- Dịch vụ › Vị trí trạm: thẻ bản đồ cho từng nhà máy nước ----------
+  // Bản đồ minh họa (không phải bản đồ thật – bấm Chỉ đường để mở Google Maps)
+  function bandoSVG(i) {
+    const p = 'vt' + i, lat = i % 2 === 1;
+    const song = lat ? 'M-20 40 C 120 70, 200 10, 330 52 S 520 120, 640 86' : 'M-20 176 C 110 150, 210 206, 340 168 S 520 120, 640 150';
+    const ruong = [[18, 18, 120, 58], [150, 120, 110, 70], [430, 20, 150, 52], [470, 150, 140, 60], [20, 150, 100, 60]].map(([x, y, w, h], k) =>
+      `<rect x="${x + (lat ? 10 : 0)}" y="${lat ? 220 - y - h : y}" width="${w}" height="${h}" rx="6" fill="url(#${p}r${k % 2})"/>`).join('');
+    const nha = Array.from({ length: 22 }, (_, k) => { const x = 215 + (k % 11) * 16 + (k > 10 ? 8 : 0), y = (lat ? 128 : 66) + (k > 10 ? 20 : 0); return `<rect x="${x}" y="${y}" width="11" height="9" rx="2" fill="#dfe3e8"/>`; }).join('');
+    return `<svg viewBox="0 0 600 220" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false">
+      <defs>
+        <pattern id="${p}r0" width="10" height="10" patternUnits="userSpaceOnUse" patternTransform="rotate(${lat ? -20 : 25})"><rect width="10" height="10" fill="#d7eac4"/><path d="M0 5h10" stroke="#c6dfae" stroke-width="2"/></pattern>
+        <pattern id="${p}r1" width="12" height="12" patternUnits="userSpaceOnUse" patternTransform="rotate(${lat ? 70 : -60})"><rect width="12" height="12" fill="#e3efd2"/><path d="M0 6h12" stroke="#d2e5bb" stroke-width="2.5"/></pattern>
+        <linearGradient id="${p}s" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#a8d8f5"/><stop offset="1" stop-color="#6db8e8"/></linearGradient>
+        <radialGradient id="${p}g" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#e53935" stop-opacity=".5"/><stop offset="1" stop-color="#e53935" stop-opacity="0"/></radialGradient>
+      </defs>
+      <rect width="600" height="220" fill="#eef3e6"/>
+      ${ruong}
+      <path d="${song}" fill="none" stroke="#cfe8f7" stroke-width="40" stroke-linecap="round"/>
+      <path d="${song}" fill="none" stroke="url(#${p}s)" stroke-width="28" stroke-linecap="round"/>
+      ${nha}
+      <g fill="none" stroke-linecap="round">
+        <path d="M-10 ${lat ? 112 : 100} L 610 ${lat ? 96 : 118}" stroke="#d6a93a" stroke-width="15"/>
+        <path d="M-10 ${lat ? 112 : 100} L 610 ${lat ? 96 : 118}" stroke="#ffd56b" stroke-width="11"/>
+        <path d="M${lat ? 380 : 210} -10 C ${lat ? 360 : 230} 80, ${lat ? 400 : 190} 150, ${lat ? 370 : 220} 230" stroke="#cfd6de" stroke-width="10"/>
+        <path d="M${lat ? 380 : 210} -10 C ${lat ? 360 : 230} 80, ${lat ? 400 : 190} 150, ${lat ? 370 : 220} 230" stroke="#fff" stroke-width="7"/>
+        <path d="M120 -10 L 140 230 M 470 -10 L 450 230" stroke="#fff" stroke-width="4" opacity=".9"/>
+      </g>
+      <g transform="translate(300 ${lat ? 104 : 108})">
+        <ellipse cx="0" cy="4" rx="14" ry="5" fill="rgba(0,0,0,.18)"/>
+        <circle class="vt-song-lan" cx="0" cy="0" r="16" fill="url(#${p}g)"/>
+        <path d="M0 0 C -6 -10, -20 -18, -20 -32 A 20 20 0 1 1 20 -32 C 20 -18, 6 -10, 0 0 Z" fill="#e53935" stroke="#b71c1c" stroke-width="1.5"/>
+        <circle cx="0" cy="-32" r="11" fill="#fff"/>
+        <path d="M0 -40 C -3 -35, -6 -32, -6 -29 A 6 6 0 0 0 6 -29 C 6 -32, 3 -35, 0 -40 Z" fill="#1e88e5"/>
+      </g>
+    </svg>`;
+  }
   function veViTri(c) {
     const ds = (c.tram || []).filter(t => t.ten);
     if (!ds.length) { $('dsViTri').innerHTML = '<div class="the nho">Trạm đang cập nhật vị trí.</div>'; return; }
@@ -2673,7 +2751,7 @@
       const [nhan, ...du] = String(t.ten).split(/\s+[–-]\s+/), ten = du.length ? du.join(' – ') : t.ten, kd = khongDauJS(t.ten);
       const dt = so.find(x => x.ten && kd.indexOf(x.ten) >= 0) || (so.length === 1 ? so[0] : null);
       return `<article class="vt-the">
-        <div class="vt-bando" aria-hidden="true"><span class="vt-song"></span><span class="vt-ghim">${ic('pin')}</span><span class="vt-so">${esc(du.length ? nhan : 'Trạm ' + (i + 1))}</span></div>
+        <div class="vt-bando svgmap" aria-hidden="true">${bandoSVG(i)}<span class="vt-so">${esc(du.length ? nhan : 'Trạm ' + (i + 1))}</span><span class="vt-la">${ic('pin')} Nhà máy nước</span></div>
         <div class="vt-noi">
           <h3>${esc(ten)}</h3>
           ${t.diaBan ? `<p class="vt-db">${ic('drop')}<span>${esc(t.diaBan)}</span></p>` : ''}
@@ -2749,7 +2827,7 @@
   // nút gọi nổi
   // ---------- góp ý, báo lỗi web ----------
   const DS_MUC_GY = ['Tra cứu chỉ số, tiền nước', 'Nộp tiền / nộp tiền hộ', 'Báo hỏng, sửa chữa', 'Kiểm tra chất lượng nước', 'Đổi thông tin, liên hệ', 'Thanh toán', 'Giá nước', 'Tải ứng dụng',
-    'Báo vi phạm', 'Thông báo', 'Tuyên truyền', 'Văn bản', 'Cơ cấu tổ chức', 'Hướng dẫn sử dụng', 'Đăng nhập, tài khoản khách hàng', 'Nội bộ (cán bộ trạm)', 'Gọi điện cho trạm', 'Giao diện, tốc độ web', 'Khác'];
+    'Báo vi phạm', 'Thông báo', 'Tuyên truyền', 'Văn bản', 'Cơ cấu tổ chức', 'Hướng dẫn sử dụng', 'Đăng nhập, tài khoản khách hàng', 'Nội bộ (cán bộ trạm)', 'Gọi điện cho trạm', 'Giao diện, tốc độ website', 'Khác'];
   const MUC_THEO_TAB = { traCuu: 0, suaChua: 2, yeuCau: 3, lienHeTab: 4, thanhToan: 5, bangGia: 6, taiApp: 7, baoViPham: 8, thongBaoTab: 9, tuyenTruyen: 10, vanBan: 11, coCau: 12, huongDan: 13 };
   $('gyMuc').innerHTML = DS_MUC_GY.map(m => `<option>${esc(m)}</option>`).join('');
   const thietBi = () => { const u = navigator.userAgent || ''; const hdh = /android/i.test(u) ? 'Android' : /iphone|ipad|ipod/i.test(u) ? 'iPhone/iPad' : /windows/i.test(u) ? 'Windows' : /mac os/i.test(u) ? 'Mac' : 'Khác';
@@ -2773,7 +2851,7 @@
     if (d.sdt && !sdtOK(d.sdt)) { $('gyLoi').textContent = 'Số điện thoại chưa đúng (10 số) – hoặc để trống.'; return; }
     $('gyGui').disabled = true; $('gyGui').textContent = 'Đang gửi…';
     goi('guiGopY', d).then(r => { ghiTC('Gửi góp ý', d.loai + ' · ' + d.muc); $('gyND').value = '';
-        $('gyKQ').innerHTML = `<div class="thanhcong"><i class=ic data-ic=checkCircle></i> Đã gửi ${esc(d.loai.toLowerCase())} số ${esc(r.phieu)}. Cảm ơn anh/chị đã giúp trạm làm web tốt hơn!</div>`; })
+        $('gyKQ').innerHTML = `<div class="thanhcong"><i class=ic data-ic=checkCircle></i> Đã gửi ${esc(d.loai.toLowerCase())} số ${esc(r.phieu)}. Cảm ơn anh/chị đã giúp trạm làm website tốt hơn!</div>`; })
       .catch(er => $('gyLoi').textContent = er).finally(() => { $('gyGui').disabled = false; $('gyGui').textContent = 'Gửi góp ý'; });
   };
   $('nutGoi').onclick = e => { e.stopPropagation(); $('bangGoi').classList.toggle('mo'); };
@@ -2937,7 +3015,6 @@
     const lienHeHTML = (c.hotline ? esc(c.hotline).replace(/(\+?\d[\d .]{7,}\d)/g, m => `<a class="tel" href="tel:${m.replace(/[^\d+]/g, '')}">${m}</a>`) : '')
       + (c.diaChi ? `<div class="nho" style="margin-top:6px">${esc(c.diaChi)}</div>` : '')
       + (c.maSoThue ? `<div class="nho">Mã số thuế: ${esc(c.maSoThue)}${c.quyetDinh ? ' · ' + esc(c.quyetDinh) : ''}</div>` : '');
-    if (lienHeHTML) { $('dsLienHe').innerHTML = lienHeHTML; $('lienHe').classList.remove('an'); }
     const tramHTML = c.tram.map(t => `<div class="tram"><b>${esc(t.ten)}</b>${t.diaBan ? '<div class="nho">' + esc(t.diaBan) + '</div>' : ''}${anToan(t.map) ? '<div>' + lk(t.map, '<i class=ic data-ic=map></i> Xem trên Google Maps') + '</div>' : ''}</div>`).join('');
     veViTri(c);
     $$('.dsLienHe2').forEach(x => x.innerHTML = lienHeHTML + (tramHTML ? '<div style="margin-top:8px">' + tramHTML + '</div>' : '') || '<span class="nho">Đang cập nhật.</span>');
@@ -3079,7 +3156,7 @@
     const ten = b.querySelector('.cm-ten') ? b.querySelector('.cm-ten').textContent : '', xom = b.querySelector('.cm-xom') ? b.querySelector('.cm-xom').textContent : '';
     $('maKH').value = b.dataset.ma; $('loiTra').textContent = '';
     $('chonMa').classList.add('an');
-    $('kqTra').innerHTML = `<div class="the tc-cho"><div class="tc-dau"><div class="tc-av" aria-hidden="true">${esc(chuDau(ten))}</div><div style="min-width:0"><div class="tc-ten">${esc(ten)}</div><div class="nho">Mã KH <b>${esc(b.dataset.ma)}</b> · ${esc(xom)}</div></div></div>
+    $('kqTra').innerHTML = `<div class="the tc-cho"><div class="tc-dau"><div class="tc-av" aria-hidden="true">${esc(chuDau(ten))}</div><div style="min-width:0"><div class="tc-ten">${esc(ten)}</div><div class="nho">Mã khách hàng <b>${esc(b.dataset.ma)}</b> · ${esc(xom)}</div></div></div>
       <div class="tc-the-tien"><div class="nho">Đang lấy số nước…</div><div class="tc-tien"><span class="cho-cham"><i></i><i></i><i></i></span></div></div></div>`;
     $('kqTra').scrollIntoView({ block: 'nearest', behavior: 'smooth' });
     traCuuMa(b.dataset.ma, true);
@@ -3110,7 +3187,7 @@
   function moNop(ho) {
     if (!TC || !TC.ky.length) return;
     const k = TC.ky[0], t = k.tien, ds = canBoThu();
-    const noiDung = (ho ? 'Tôi muốn nộp tiền nước HỘ cho' : 'Tôi muốn nộp tiền nước cho') + ' mã KH ' + TC.ma + ' – chủ hộ ' + TC.ten + ' – ' + TC.xom + ', tháng ' + k.thang + ': ' + (t ? tien(t.tong) : '') + '.';
+    const noiDung = (ho ? 'Tôi muốn nộp tiền nước HỘ cho' : 'Tôi muốn nộp tiền nước cho') + ' mã khách hàng ' + TC.ma + ' – chủ hộ ' + TC.ten + ' – ' + TC.xom + ', tháng ' + k.thang + ': ' + (t ? tien(t.tong) : '') + '.';
     $('bnTieuDe').textContent = ho ? 'Nộp tiền hộ' : 'Nộp tiền nước';
     $('bnThan').innerHTML = `<div class="bn-hd">
         <span>Mã khách hàng</span><b>${esc(TC.ma)}</b>
@@ -3211,7 +3288,7 @@
     const vat = CHUNG ? CHUNG.vat : 5, bvmt = CHUNG ? CHUNG.bvmt : 10;
     const dau = `<div class="tc-dau"><div class="tc-av" aria-hidden="true">${esc(chuDau(r.ten))}</div><div style="min-width:0">
         <div class="tc-ten">${esc(r.ten)}</div>
-        <div class="nho">Mã KH <b>${esc(r.ma)}</b> · ${esc(r.xom)}${r.khu ? ', ' + esc(r.khu) : ''}</div>
+        <div class="nho">Mã khách hàng <b>${esc(r.ma)}</b> · ${esc(r.xom)}${r.khu ? ', ' + esc(r.khu) : ''}</div>
         <div><span class="nhan xanh" style="margin-top:4px">${esc(r.nhom)}</span></div></div></div>`;
     const bom = r.gioBom ? `<div class="o" style="margin-top:12px"><span class="nho">Giờ bơm khu ${esc(r.khu)}</span><div>${hienBom(r.gioBom)}</div></div>` : '';
     if (!r.ky.length) { $('kqTra').innerHTML = `<div class="the">${dau}<p>Chưa có số liệu chốt số.</p>${bom}</div>`; return; }
@@ -3219,7 +3296,7 @@
     let html = `<div class="the">${dau}
       <div class="tc-the-tien"><div class="nho"><i class=ic data-ic=drop></i> Tiền nước tháng ${esc(k.thang)}${kyCua(k.thang)}</div>
         <div class="tc-tien-hang"><div><div class="tc-tien">${t ? tien(t.tong) : '–'}</div>
-        <div class="nho">${t ? 'Đã gồm thuế GTGT ' + vat + '%' + (t.bvmt ? ' và phí BVMT nước thải ' + bvmt + '%' : '') : 'Chỉ số đang được kiểm tra'}</div></div>
+        <div class="nho">${t ? 'Đã gồm thuế GTGT ' + vat + '%' + (t.bvmt ? ' và phí bảo vệ môi trường đối với nước thải ' + bvmt + '%' : '') : 'Chỉ số đang được kiểm tra'}</div></div>
         ${t ? `<div class="tc-nop"><button type="button" class="chinh" id="tcNop">Nộp tiền</button><button type="button" class="phu2" id="tcNopHo">Nộp tiền hộ</button><button type="button" class="phu2 xem-hd" id="tcBN">${ic('receipt')} Xem hóa đơn</button></div>` : ''}</div></div>
       <div class="tc-dong-ho" aria-label="Chỉ số đồng hồ">
         <div class="o"><span class="nho">Chỉ số cũ</span><b>${so(k.cu)}</b></div><span class="mui-ten">→</span>
@@ -3230,7 +3307,7 @@
       html += `<div class="tc-ct">` +
         (t.chiTiet.length ? t.chiTiet.map(c => `<div><span>Tiền nước: ${so(c.m3)} m³ × ${so(c.gia)} đ</span><b>${tien(c.tien)}</b></div>`).join('') : `<div><span>Tiền nước: 0 m³</span><b>${tien(0)}</b></div>`) +
         `<div><span>Thuế GTGT <span class="pt">${vat}%</span></span><b>${tien(t.vat)}</b></div>` +
-        (t.bvmt ? `<div><span>Phí BVMT nước thải <span class="pt">${bvmt}%</span></span><b>${tien(t.bvmt)}</b></div>` : '') +
+        (t.bvmt ? `<div><span>Phí nước thải <span class="pt">${bvmt}%</span></span><b>${tien(t.bvmt)}</b></div>` : '') +
         `<div><span>Tổng phải nộp</span><span>${tien(t.tong)}</span></div></div>`;
     } else if (k.m3 !== null && k.m3 < 0) {
       html += `<div class="canhbao" style="margin-top:12px">Chỉ số tháng này đang được trạm kiểm tra lại.</div>`;
@@ -3362,7 +3439,7 @@
   function thuNho() {
     const o = docNho(); if (!o || TK || TKKH || thuNho.dang) return;
     thuNho.dang = true; $('nhoDang').classList.remove('an');
-    goi('dangNhapNho', o.nho).then(r => {
+    goi('dangNhapNho', o.nho, THIET_BI).then(r => {
       guiTC();
       if (o.loai === 'nb') { TK = r.token; luuPhien(TK); ghiTC('Đăng nhập nội bộ', r.vaitro + ' · ghi nhớ'); vaoNoiBo(r); }
       else { TKKH = r.token; luuKH(TKKH); ghiTC('Đăng nhập khách hàng', 'ghi nhớ'); vaoKH(r); }
@@ -3373,12 +3450,20 @@
   }
   // điền sẵn tên đăng nhập đã ghi nhớ
   try { const d = JSON.parse(localStorage.getItem(KHO_DN) || 'null'); if (d) { if (d.ma) { $('khMa').value = d.ma; $('khNho').checked = true; } if (d.ten) { $('dnTen').value = d.ten; $('dnSdt').value = d.sdt || ''; $('nbNho').checked = true; if (d.loai === 'nb') { $('dnLoaiNB').checked = true; chonLoaiDN(); } } } } catch (e) {}
+  const DANG_DN = 'Đang đăng nhập<span class="ba-cham" aria-hidden="true"><i></i><i></i><i></i></span>';
+  function nutCho(id, cho) { const b = $(id); b.disabled = cho; if (cho) { b.innerHTML = DANG_DN; b.setAttribute('aria-busy', 'true'); } else { b.textContent = 'Đăng nhập'; b.removeAttribute('aria-busy'); } }
+  // mã ghi nhớ: máy chủ tạo ngay sau khi đã vào tài khoản (khách không phải chờ)
+  function layNhoSau(r, loai) { if (r && r.nhoSau && r.token) goi('taoNhoPhien', r.token).then(x => { if (x && x.nho) luuNho({ loai: loai, nho: x.nho }); }).catch(() => {}); }
+  // làm nóng máy chủ khi khách mở khung đăng nhập (đăng nhập không phải chờ máy chủ khởi động)
+  let NONG_DN = 0;
+  function lamNongDN() { if (Date.now() - NONG_DN < 180000) return; NONG_DN = Date.now(); goi('lamNongBoDem').catch(() => {}); }
+  ['nutDangNhap', 'khMa', 'khMk', 'dnTen', 'pin'].forEach(id => { const e = $(id); if (e) e.addEventListener(id === 'nutDangNhap' ? 'click' : 'focus', lamNongDN, { passive: true }); });
   function luuKH(t) { try { if (t) sessionStorage.setItem(KHO_KH, t); else sessionStorage.removeItem(KHO_KH); } catch (e) {} }
   const goiKH = (ham, ...a) => goi(ham, TKKH, ...a).catch(e => { if (/hết hạn/.test(String(e))) thoatKH(String(e)); throw e; });
   function vaoKH(r) {
     KH = r;
     $('khungPin').classList.add('an'); $('khungKH').classList.remove('an');
-    $('chuDangNhap').textContent = 'KH ' + maNgan(r.ma); $('nutDangNhap').classList.add('on'); $('nutDangNhap').title = 'Tài khoản khách hàng ' + r.ma;
+    $('chuDangNhap').textContent = 'Khách ' + maNgan(r.ma); $('nutDangNhap').classList.add('on'); $('nutDangNhap').title = 'Tài khoản khách hàng ' + r.ma;
     $('khTen').textContent = r.ten; $('khPhu').textContent = r.ma + ' · ' + [r.xom, r.khu].filter(Boolean).join(', ') + ' · ' + r.nhom;
     $('khCanhMK').classList.toggle('an', !r.macDinh);
     if (r.macDinh) { $('khKhungMK').classList.remove('an'); }
@@ -3442,11 +3527,11 @@
     const ma = $('khMa').value.trim(), mk = $('khMk').value;
     if (ma.replace(/[^0-9]/g, '').length < 6) { $('loiKH').textContent = 'Nhập mã khách hàng đầy đủ in trên hóa đơn.'; return; }
     if (!mk) { $('loiKH').textContent = 'Nhập mật khẩu.'; return; }
-    $('nutKH').disabled = true; $('nutKH').textContent = 'Đang đăng nhập…';
+    nutCho('nutKH', true);
     const nho = $('khNho').checked;
-    goi('khDangNhap', ma, mk, nho).then(r => { guiTC(); TKKH = r.token; luuKH(TKKH);
-      if (nho) { luuDN({ ma: ma }); if (r.nho) luuNho({ loai: 'kh', nho: r.nho }); } else { boNho('kh'); luuDN(null); } ghiTC('Đăng nhập khách hàng', r.macDinh ? 'mật khẩu mặc định' : ''); $('khMk').value = ''; vaoKH(r); if (r.macDinh) $('khMkCu').value = ''; })
-      .catch(e => $('loiKH').textContent = e).finally(() => { $('nutKH').disabled = false; $('nutKH').textContent = 'Đăng nhập'; });
+    goi('khDangNhap', ma, mk, nho, THIET_BI).then(r => { guiTC(); TKKH = r.token; luuKH(TKKH);
+      if (nho) { luuDN({ ma: ma }); if (r.nho) luuNho({ loai: 'kh', nho: r.nho }); layNhoSau(r, 'kh'); } else { boNho('kh'); luuDN(null); } ghiTC('Đăng nhập khách hàng', r.macDinh ? 'mật khẩu mặc định' : ''); $('khMk').value = ''; vaoKH(r); if (r.macDinh) $('khMkCu').value = ''; })
+      .catch(e => $('loiKH').textContent = e).finally(() => nutCho('nutKH', false));
   };
   $('moQuenMK').onclick = e => { e.preventDefault(); $('fQuenMK').classList.remove('an'); $('qmMa').value = $('khMa').value; $('qmTen').focus(); };
   $('dongQuenMK').onclick = () => $('fQuenMK').classList.add('an');
@@ -3468,8 +3553,9 @@
     if (moi.length < 6) { $('khKqMK').textContent = 'Mật khẩu mới ít nhất 6 ký tự.'; return; }
     if (moi !== $('khMkMoi2').value) { $('khKqMK').textContent = 'Hai lần nhập mật khẩu mới không khớp.'; return; }
     $('khNutLuuMK').disabled = true;
-    goiKH('khDoiMatKhau', cu, moi).then(r => {
-      if ($('khNho').checked && KH) { boNho('kh'); goi('khDangNhap', KH.ma, moi, true).then(x => { if (x.nho) luuNho({ loai: 'kh', nho: x.nho }); }).catch(() => {}); } $('khMkCu').value = $('khMkMoi').value = $('khMkMoi2').value = ''; $('khKhungMK').classList.add('an'); vaoKH(r); $('khTB').insertAdjacentHTML('afterbegin', '<div class="thanhcong" style="margin:0 0 16px"><i class=ic data-ic=checkCircle></i> Đã đổi mật khẩu. Lần sau đăng nhập bằng mật khẩu mới.</div>'); })
+    const nhoMK = $('khNho').checked && !!KH, tkMK = TKKH;
+    goiKH('khDoiMatKhau', cu, moi, THIET_BI, nhoMK).then(r => {
+      if (nhoMK) { boNho('kh'); layNhoSau({ nhoSau: true, token: tkMK }, 'kh'); } $('khMkCu').value = $('khMkMoi').value = $('khMkMoi2').value = ''; $('khKhungMK').classList.add('an'); vaoKH(r); $('khTB').insertAdjacentHTML('afterbegin', '<div class="thanhcong" style="margin:0 0 16px"><i class=ic data-ic=checkCircle></i> Đã đổi mật khẩu. Lần sau đăng nhập bằng mật khẩu mới.</div>'); })
       .catch(e => $('khKqMK').textContent = e).finally(() => $('khNutLuuMK').disabled = false);
   };
   $('khNutHuyCN').onclick = () => $('khKhungCN').classList.add('an');
@@ -3485,7 +3571,8 @@
     if (!d.ten && !d.sdt && !d.xom && !d.diachi) { $('loiCN').textContent = 'Anh/chị chưa thay đổi thông tin nào.'; return; }
     if (d.ten && d.lydo.length < 5) { $('loiCN').textContent = 'Đổi tên chủ hộ cần ghi lý do.'; return; }
     $('khNutCN').disabled = true; $('khNutCN').textContent = 'Đang gửi…';
-    goiKH('khGuiCapNhat', d).then(() => { ghiTC('Gửi cập nhật thông tin', Object.keys(d).filter(k => k !== 'lydo').join(', ')); return goiKH('khTongQuan'); }).then(r => { $('khKhungCN').classList.add('an'); vaoKH(r); $('khTB').insertAdjacentHTML('afterbegin', '<div class="thanhcong" style="margin:0 0 16px"><i class=ic data-ic=checkCircle></i> Đã gửi trạm duyệt. Khi trạm duyệt xong, thông báo sẽ hiện ở trang này.</div>'); })
+    d.tb = THIET_BI;
+    goiKH('khGuiCapNhat', d).then(() => { ghiTC('Gửi cập nhật thông tin', Object.keys(d).filter(k => k !== 'lydo' && k !== 'tb').join(', ')); return goiKH('khTongQuan'); }).then(r => { $('khKhungCN').classList.add('an'); vaoKH(r); $('khTB').insertAdjacentHTML('afterbegin', '<div class="thanhcong" style="margin:0 0 16px"><i class=ic data-ic=checkCircle></i> Đã gửi trạm duyệt. Khi trạm duyệt xong, thông báo sẽ hiện ở trang này.</div>'); })
       .catch(e => $('loiCN').textContent = e).finally(() => { $('khNutCN').disabled = false; $('khNutCN').textContent = 'Gửi trạm duyệt'; });
   };
   { let t = ''; try { t = sessionStorage.getItem(KHO_KH) || ''; } catch (e) {} if (t) { TKKH = t; goi('khTongQuan', t).then(vaoKH).catch(() => { TKKH = ''; luuKH(''); }); } }
@@ -3528,12 +3615,13 @@
     $('khungNoiBo').classList.toggle('bat-doi', !!r.mkMacDinh);
     HDNB = null; setTimeout(xepNhomNB, 0);
     if (r.mkMacDinh) { $('khungDoiMK').classList.remove('an'); $('kqDoiMK').textContent = ''; setTimeout(() => $('mkCu').focus(), 60); return; }
-    $('demYC').textContent = r.ycMoi || ''; $('demLH').textContent = r.lhMoi || ''; $('demBC').textContent = r.bcMoi || ''; $('demSC').textContent = r.scMoi || ''; $('demCN').textContent = r.cnMoi || ''; $('demDL').textContent = r.dlMoi || ''; $('demHT').textContent = r.htMoi || ''; $('demNT').textContent = r.ntMoi || ''; $('demGY').textContent = r.gyMoi || ''; $('demHDD').textContent = r.hdMoi || ''; demNhom(); xepNhomNB();
+    datDemNB(r);
     $('canhBao').classList.toggle('an', !!r.coBao);
     $('canhTG').classList.toggle('an', !r.tgThieu);
     $('chonThang').innerHTML = r.thangs.map(t => `<option>${esc(t)}</option>`).join('');
     if (r.thangs.length) { if (!BC) taiBaoCao(); } else $('loiNB').textContent = 'Chưa có số liệu chỉ số.';
   }
+  function datDemNB(r) { $('demYC').textContent = r.ycMoi || ''; $('demLH').textContent = r.lhMoi || ''; $('demBC').textContent = r.bcMoi || ''; $('demSC').textContent = r.scMoi || ''; $('demCN').textContent = r.cnMoi || ''; $('demDL').textContent = r.dlMoi || ''; $('demHT').textContent = r.htMoi || ''; $('demNT').textContent = r.ntMoi || ''; $('demGY').textContent = r.gyMoi || ''; $('demHDD').textContent = r.hdMoi || ''; demNhom(); xepNhomNB(); if (typeof demNhom === 'function') demNhom(); }
   function thoatNoiBo(loi) {
     TK = ''; ND = null; BC = null; SS = null; BCN = null; luuPhien(''); $('khungNoiBo').classList.remove('bat-doi');
     ['mkCu', 'mkMoi', 'mkMoi2'].forEach(id => { $(id).value = ''; });
@@ -3545,12 +3633,14 @@
   }
   $('fPin').onsubmit = e => {
     e.preventDefault();
-    $('loiPin').textContent = ''; $('nutPin').disabled = true; $('nutPin').textContent = 'Đang đăng nhập…';
-    if (!$('dnTen').value.trim()) { $('loiPin').textContent = 'Nhập tên đăng nhập.'; $('nutPin').disabled = false; $('nutPin').textContent = 'Đăng nhập'; return; }
+    $('loiPin').textContent = '';
+    if (!$('dnTen').value.trim()) { $('loiPin').textContent = 'Nhập tên đăng nhập.'; return; }
+    nutCho('nutPin', true);
     const nho = $('nbNho').checked, dnTen = $('dnTen').value.trim(), dnSdt = $('dnSdt').value.trim();
-    goi('dangNhap', dnSdt, $('pin').value, dnTen, nho).then(r => {
-      if (nho) { luuDN({ ten: dnTen, sdt: dnSdt, loai: 'nb' }); if (r.nho) luuNho({ loai: 'nb', nho: r.nho }); } else { boNho('nb'); luuDN(null); } guiTC(); if (TKKH) { goi('khDangXuat', TKKH).catch(() => {}); thoatKH(); } TK = r.token; luuPhien(TK); ghiTC('Đăng nhập nội bộ', r.vaitro); $('pin').value = ''; vaoNoiBo(r); })
-      .catch(e => $('loiPin').textContent = e).finally(() => { $('nutPin').disabled = false; $('nutPin').textContent = 'Đăng nhập'; });
+    goi('dangNhap', dnSdt, $('pin').value, dnTen, nho, THIET_BI).then(r => {
+      if (nho) { luuDN({ ten: dnTen, sdt: dnSdt, loai: 'nb' }); if (r.nho) luuNho({ loai: 'nb', nho: r.nho }); layNhoSau(r, 'nb'); } else { boNho('nb'); luuDN(null); } guiTC(); if (TKKH) { goi('khDangXuat', TKKH).catch(() => {}); thoatKH(); } TK = r.token; luuPhien(TK); ghiTC('Đăng nhập nội bộ', r.vaitro); $('pin').value = ''; vaoNoiBo(r);
+        if (!r.mkMacDinh) goi('kiemTraPhien', r.token).then(x => { if (TK === r.token) datDemNB(x); }).catch(() => {}); })   // số đỏ lúc đăng nhập lấy từ bộ đệm ≤ 60 giây → cập nhật ngay số mới nhất
+      .catch(e => $('loiPin').textContent = e).finally(() => nutCho('nutPin', false));
   };
   $('nutDangXuat').onclick = () => { const t = TK; boNho('nb'); thoatNoiBo(); if (t) goi('dangXuat', t).catch(() => {}); };
   $('nutDoiMK').onclick = () => { $('khungDoiMK').classList.toggle('an'); $('kqDoiMK').textContent = ''; };
@@ -3561,8 +3651,8 @@
     if (moi.length < 6) { $('kqDoiMK').textContent = 'Mật khẩu mới ít nhất 6 ký tự.'; return; }
     if (moi !== moi2) { $('kqDoiMK').textContent = 'Hai lần nhập mật khẩu mới không khớp.'; return; }
     $('nutLuuMK').disabled = true;
-    goiNB('doiMatKhau', cu, moi).then(() => {
-        if ($('nbNho').checked && ND) { boNho('nb'); goi('dangNhap', ND.sdt, moi, ND.ten, true).then(x => { if (x.nho) luuNho({ loai: 'nb', nho: x.nho }); if (x.token) { const cuTK = TK; TK = x.token; luuPhien(TK); goi('dangXuat', cuTK).catch(() => {}); } }).catch(() => {}); } const batDoi = $('khungNoiBo').classList.contains('bat-doi'); $('kqDoiMK').textContent = 'Đã đổi mật khẩu ✓'; $('mkCu').value = $('mkMoi').value = $('mkMoi2').value = ''; $('canhPin').classList.add('an');
+    goiNB('doiMatKhau', cu, moi, THIET_BI).then(() => {
+        if ($('nbNho').checked && ND) { boNho('nb'); goi('dangNhap', ND.sdt, moi, ND.ten, true, THIET_BI).then(x => { if (x.nho) luuNho({ loai: 'nb', nho: x.nho }); layNhoSau(x, 'nb'); if (x.token) { const cuTK = TK; TK = x.token; luuPhien(TK); goi('dangXuat', cuTK).catch(() => {}); } }).catch(() => {}); } const batDoi = $('khungNoiBo').classList.contains('bat-doi'); $('kqDoiMK').textContent = 'Đã đổi mật khẩu ✓'; $('mkCu').value = $('mkMoi').value = $('mkMoi2').value = ''; $('canhPin').classList.add('an');
         if (batDoi) { $('khungNoiBo').classList.remove('bat-doi'); goiNB('kiemTraPhien').then(vaoNoiBo); baoNhanh('Đã đổi mật khẩu. Từ lần sau đăng nhập bằng mật khẩu mới.'); } })
       .catch(e => $('kqDoiMK').textContent = e).finally(() => $('nutLuuMK').disabled = false);
   };
@@ -3756,8 +3846,8 @@
     }
     $('khHD').innerHTML = (ky.length ? `<div class="nho" style="margin-bottom:8px">Bấm vào tháng để xem giấy biên nhận đã thanh toán, in hoặc lưu PDF.</div><div class="hd-luoi">`
       + ky.map(k => { const h = hddCua(r, k.thang); return `<button type="button" class="hd-o" data-thang="${esc(k.thang)}"><span class="t">${ic('checkCircle')} Tháng ${esc(k.thang)}</span><b>${tien(k.tien.tong)}</b><span class="nho">${so(k.m3)} m³</span>${h ? chipHDD(h) : ''}</button>`; }).join('') + '</div>'
-      : '<p class="nho">Chưa có hóa đơn đã thanh toán. Nộp tiền cho cán bộ trạm, cán bộ xác nhận trên web thì hóa đơn chính thức hiện ở đây.</p>')
-      + (truoc.length ? `<div class="hd-chu-y">${ic('info')} ${truoc.length > 1 ? 'Tháng ' + esc(truoc[truoc.length - 1].thang) + ' – ' + esc(truoc[0].thang) : 'Tháng ' + esc(truoc[0].thang)}: đã thanh toán trước khi trạm xác nhận trên web nên không có hóa đơn giấy điện tử (cần biên nhận xin liên hệ trạm). Hóa đơn đỏ của các tháng này vẫn yêu cầu được.</div>` : '');
+      : '<p class="nho">Chưa có hóa đơn đã thanh toán. Nộp tiền cho cán bộ trạm, cán bộ xác nhận trên website thì hóa đơn chính thức hiện ở đây.</p>')
+      + (truoc.length ? `<div class="hd-chu-y">${ic('info')} ${truoc.length > 1 ? 'Tháng ' + esc(truoc[truoc.length - 1].thang) + ' – ' + esc(truoc[0].thang) : 'Tháng ' + esc(truoc[0].thang)}: đã thanh toán trước khi trạm xác nhận trên website nên không có hóa đơn giấy điện tử (cần biên nhận xin liên hệ trạm). Hóa đơn đỏ của các tháng này vẫn yêu cầu được.</div>` : '');
     $$('#khHD .hd-o').forEach(b => b.onclick = () => moBNKH(b.dataset.thang));
     veHDDoKH();
   }
@@ -3779,7 +3869,7 @@
     const hdd = r.hdDo || [], ky = kyDaTT(r);
     let h = `<div class="nho">Hóa đơn đỏ là hóa đơn giá trị gia tăng (VAT) điện tử do Trung tâm phát hành trên hệ thống VNPT – dùng khi cơ quan, doanh nghiệp hoặc cá nhân cần chứng từ. Chỉ yêu cầu cho <b>tháng đã thanh toán</b>.</div>`;
     h += hdd.map(x => `<div class="hdd-the ${x.tt === 'Đã duyệt' ? 'ok' : x.tt === 'Từ chối' ? 'tc' : 'cho'}"><div class="hang" style="justify-content:space-between"><b>Tháng ${esc(x.thang)}${x.tien ? ' · ' + tien(x.tien) : ''}</b><span class="nhan ${x.tt === 'Đã duyệt' ? 'la' : x.tt === 'Từ chối' ? 'do' : 'vang'}">${esc(x.tt)}</span></div>
-      <div class="nho">${x.loai === 'Đơn vị' ? 'Đơn vị: ' + esc(x.tendv) + ' · MST ' + esc(x.mst) : 'Cá nhân'} · gửi ${esc(x.tg)}${x.tgd ? ' · trạm xử lý ' + esc(x.tgd) : ''}</div>
+      <div class="nho">${x.loai === 'Đơn vị' ? 'Đơn vị: ' + esc(x.tendv) + ' · Mã số thuế ' + esc(x.mst) : 'Cá nhân'} · gửi ${esc(x.tg)}${x.tgd ? ' · trạm xử lý ' + esc(x.tgd) : ''}</div>
       ${x.tt === 'Đã duyệt' ? '<div style="margin-top:6px">' + (anToan(x.link) ? lk(x.link, ic('receipt') + ' Xem / tải hóa đơn đỏ') : 'Hóa đơn đã sẵn sàng tại ' + lk(BN.web, '2700988149-tt78.vnpt-invoice.com.vn') + ' – đăng nhập bằng mã khách hàng.') + '</div>' : x.tt === 'Chờ duyệt' ? '<div class="nho" style="margin-top:4px">Trạm đang xử lý. Duyệt xong hóa đơn hiện ngay tại đây.</div>' : ''}
       ${x.ghichu ? `<div class="nho">Trạm ghi chú: ${esc(x.ghichu)}</div>` : ''}</div>`).join('');
     const conLai = ky.filter(k => !hddCua(r, k.thang));
@@ -3834,7 +3924,7 @@
     $('demHDD').textContent = HDD.filter(x => x.tt === 'Chờ duyệt').length || ''; demNhom();
     $('dsHDD').innerHTML = ds.length ? ds.map(x => `<div class="cn-the ${x.tt === 'Chờ duyệt' ? 'cho' : ''}" data-dong="${x.dong}">
         <div class="hang" style="justify-content:space-between"><div>${hoTen(x.ten, x.ma)} <span class="nho">${esc(x.ma)}</span></div><span class="nhan ${x.tt === 'Đã duyệt' ? 'la' : x.tt === 'Từ chối' ? 'do' : 'vang'}">${esc(x.tt)}</span></div>
-        <div style="margin-top:4px"><b>Tháng ${esc(x.thang)}</b> · ${tien(x.tien)} · ${x.loai === 'Đơn vị' ? `<b>Đơn vị:</b> ${esc(x.tendv)} · MST <b>${esc(x.mst)}</b> · ${esc(x.diachidv)}` : 'Cá nhân'}</div>
+        <div style="margin-top:4px"><b>Tháng ${esc(x.thang)}</b> · ${tien(x.tien)} · ${x.loai === 'Đơn vị' ? `<b>Đơn vị:</b> ${esc(x.tendv)} · Mã số thuế <b>${esc(x.mst)}</b> · ${esc(x.diachidv)}` : 'Cá nhân'}</div>
         <div class="nho">Gửi lúc ${esc(x.tg)} · Nhận qua: ${esc(x.nhan)}${x.nv ? ' · Xử lý: ' + esc(x.nv) + ' ' + esc(x.tgd) : ''}</div>
         ${anToan(x.link) ? `<div>${lk(x.link, ic('link') + ' Link hóa đơn đã gửi khách')}</div>` : ''}${x.ghichu ? `<div class="nho">Ghi chú: ${esc(x.ghichu)}</div>` : ''}
         ${adm && x.tt === 'Chờ duyệt' ? `<div class="hang" style="margin-top:8px"><input class="hddLink" placeholder="Link hóa đơn VNPT hoặc Google Drive (https…)" maxlength="500" style="flex:2;min-width:200px" aria-label="Link hóa đơn"><input class="hddGhi" placeholder="Ghi chú / lý do từ chối" maxlength="300" style="flex:1;min-width:150px" aria-label="Ghi chú"><button class="nut nho-nut hddDuyet" type="button">Duyệt</button><button class="nut phu nho-nut hddTuChoi" type="button">Từ chối</button><span class="nho hddKQ"></span></div>` : ''}
@@ -3844,7 +3934,7 @@
       const link = o.querySelector('.hddLink').value.trim(), ghi = o.querySelector('.hddGhi').value.trim();
       if (link && !/^https:\/\/(([a-z0-9-]+\.)*vnpt-invoice\.com\.vn|drive\.google\.com|docs\.google\.com)(\/|$)/i.test(link)) { kq.textContent = 'Link phải là https của VNPT hoặc Google Drive.'; return; }
       if (tt === 'Từ chối' && ghi.length < 3) { kq.textContent = 'Ghi lý do từ chối để khách biết.'; return; }
-      if (tt === 'Đã duyệt' && !link && !confirm('Chưa dán link hóa đơn. Khách sẽ được hướng dẫn tự tra trên trang VNPT bằng mã KH. Vẫn duyệt?')) return;
+      if (tt === 'Đã duyệt' && !link && !confirm('Chưa dán link hóa đơn. Khách sẽ được hướng dẫn tự tra trên trang VNPT bằng mã khách hàng. Vẫn duyệt?')) return;
       b.disabled = true; kq.textContent = 'Đang lưu…';
       goiNB('xuLyYeuCauHD', Number(o.dataset.dong), tt, link, ghi).then(() => { ghiTC('Duyệt hóa đơn đỏ', tt); taiHDD(); }).catch(e => { kq.textContent = e; b.disabled = false; });
     });
@@ -3861,7 +3951,7 @@
       ghiTC('Kiểm tra mã hóa đơn', r.hopLe ? 'hợp lệ' : 'không có');
       if (!r.hopLe) { $('kqKTHD').innerHTML = `<div class="xt-kq loi"><h4>${ic('xCircle')} KHÔNG HỢP LỆ – mã ${esc(r.ma)}</h4><div>${esc(r.lyDo)}</div></div>`; return; }
       const cb = r.canhBao || [];
-      $('kqKTHD').innerHTML = `<div class="xt-kq ${cb.length ? 'loi' : 'ok'}"><h4>${ic(cb.length ? 'alert' : 'checkCircle')} ${cb.length ? 'Do web phát hành nhưng SỐ LIỆU ĐÃ THAY ĐỔI' : 'HỢP LỆ – hóa đơn do web phát hành'} · ${esc(r.ma)}</h4>
+      $('kqKTHD').innerHTML = `<div class="xt-kq ${cb.length ? 'loi' : 'ok'}"><h4>${ic(cb.length ? 'alert' : 'checkCircle')} ${cb.length ? 'Do website phát hành nhưng SỐ LIỆU ĐÃ THAY ĐỔI' : 'HỢP LỆ – hóa đơn do website phát hành'} · ${esc(r.ma)}</h4>
         ${cb.length ? '<ul style="margin:0 0 8px;padding-left:20px">' + cb.map(x => '<li>' + esc(x) + '</li>').join('') + '</ul>' : ''}
         <div class="xt-luoi">
           <div><span>Phát hành lúc</span><b>${esc(r.ph)}</b></div>
@@ -3989,7 +4079,7 @@
     $('dlSoRoi').textContent = so(roi.length) + ' hộ'; $('dlTienRoi').textContent = tien(tong(roi));
     $('dlSoChua').textContent = so(chua.length) + ' hộ'; $('dlTienChua').textContent = tien(tong(chua));
     const truocMoc = DLK.tu && /^\d\d\/\d{4}$/.test(DLK.tu) && (DLK.thang.slice(3) + DLK.thang.slice(0, 2)) < (DLK.tu.slice(3) + DLK.tu.slice(0, 2));
-    $('dlGhiChu').innerHTML = (truocMoc ? `<div class="dl-ghi">${ic('info')} Kỳ ${esc(DLK.thang)} trước mốc theo dõi (${esc(DLK.tu)}): web coi như các hộ đã nộp đủ, trừ hộ được ghi "Nợ". Chọn kỳ từ ${esc(DLK.tu)} trở đi để xem số thực tế.</div>` : '')
+    $('dlGhiChu').innerHTML = (truocMoc ? `<div class="dl-ghi">${ic('info')} Kỳ ${esc(DLK.thang)} trước mốc theo dõi (${esc(DLK.tu)}): website coi như các hộ đã nộp đủ, trừ hộ được ghi "Nợ". Chọn kỳ từ ${esc(DLK.tu)} trở đi để xem số thực tế.</div>` : '')
       + `<div style="margin-top:6px">Kỳ <b>${esc(DLK.thang)}</b>: phải thu <b>${so(roi.length + chua.length)}</b> hộ · <b>${tien(tong(roi) + tong(chua))}</b>. Đã thu <b class="chu-xanh">${tien(tong(roi))}</b>, còn <b class="chu-do">${tien(tong(chua))}</b>. Đánh dấu hộ đã nộp ở mục <a href="#" id="dlDiThu">Thu tiền › Xác nhận thu tiền</a>.</div>`;
     if ($('dlDiThu')) $('dlDiThu').onclick = e => { e.preventDefault(); const b = $$('#tabNB [data-sub=thuTienNB]')[0]; chonNhomNB(b.dataset.nb, false); b.click(); };
     // thanh tiến độ theo khu (hoặc theo xóm khi đã chọn khu)
@@ -4038,7 +4128,7 @@
       const mc = Math.max(1, ...x.theoNgay), cot = x.theoNgay.slice(-30).map((v, j, a) => `<i class="${v ? '' : 'k'}" style="height:${Math.max(4, Math.round(v / mc * 100))}%" title="${ngay(r.ngays[r.ngays.length - a.length + j])}: ${v} thao tác"></i>`).join('');
       return `<div class="nv-the ${i < 3 && x.diem > 0 ? 'top' + (i + 1) : ''}">
         <div class="nv-tren"><div class="nv-av">${esc(chuDau(x.ten))}<span class="nv-hang">${i + 1}</span></div>
-          <div class="nv-ten"><b>${esc(x.ten)}</b><span>${esc([x.chucVu, x.vaitro].filter(Boolean).join(' · ') || 'Cán bộ')}${x.coTK ? (x.khoa ? ' · tài khoản đang khóa' : '') : ' · <b class="chu-do">chưa có tài khoản web</b>'}</span></div>
+          <div class="nv-ten"><b>${esc(x.ten)}</b><span>${esc([x.chucVu, x.vaitro].filter(Boolean).join(' · ') || 'Cán bộ')}${x.coTK ? (x.khoa ? ' · tài khoản đang khóa' : '') : ' · <b class="chu-do">chưa có tài khoản website</b>'}</span></div>
           <div class="nv-diem"><b>${so(x.diem)}</b><span>điểm</span></div></div>
         <div class="nv-so">
           <div><b>${so(x.dangNhap)}</b><span>lượt đăng nhập</span></div>
@@ -4069,14 +4159,14 @@
     let h = `<div class="the"><div class="tk-dong">
         <div class="tk-vong" style="--p:${r.diem};--m:${mau(r.diem)}"><div><b>${r.diem}</b><span>/ 100 điểm</span></div></div>
         <div style="flex:1;min-width:220px"><h3 style="margin:0 0 6px">Chỉ số triển khai chung</h3>
-          <div class="nho" style="line-height:1.6">= Thu tiền <b>50%</b> (tỉ lệ hộ đã nộp kỳ theo dõi gần nhất) + Hộ dùng web <b>30%</b> (có tài khoản riêng hoặc đã tra cứu / đăng nhập trong 60 ngày) + Phiếu đã xử lý <b>20%</b> (${r.soNgay} ngày). Phần nào chưa có số liệu thì không tính.</div></div>
+          <div class="nho" style="line-height:1.6">= Thu tiền <b>50%</b> (tỉ lệ hộ đã nộp kỳ theo dõi gần nhất) + Hộ dùng website <b>30%</b> (có tài khoản riêng hoặc đã tra cứu / đăng nhập trong 60 ngày) + Phiếu đã xử lý <b>20%</b> (${r.soNgay} ngày). Phần nào chưa có số liệu thì không tính.</div></div>
       </div><div class="luoi" style="margin-top:12px">
         <div class="o"><span class="nho">Thu tiền ${ky ? 'kỳ ' + esc(ky.thang) : ''}</span><b style="font-size:22px;display:block">${ky ? pt(ky.da, ky.phai) + '%' : '–'}</b><span class="nho">${ky ? so(ky.da) + '/' + so(ky.phai) + ' hộ · ' + tien(ky.tienDa) : 'chưa có kỳ theo dõi (từ ' + esc(r.tu) + ')'}</span></div>
-        <div class="o"><span class="nho">Hộ dùng web</span><b style="font-size:22px;display:block">${pt(t.dungWeb, t.ho)}%</b><span class="nho">${so(t.dungWeb)}/${so(t.ho)} hộ · ${so(t.taiKhoan)} có tài khoản riêng</span></div>
+        <div class="o"><span class="nho">Hộ dùng website</span><b style="font-size:22px;display:block">${pt(t.dungWeb, t.ho)}%</b><span class="nho">${so(t.dungWeb)}/${so(t.ho)} hộ · ${so(t.taiKhoan)} có tài khoản riêng</span></div>
         <div class="o"><span class="nho">Lượt truy cập ${r.soNgay} ngày</span><b style="font-size:22px;display:block">${so(t.luot)}</b><span class="nho">${so(t.khachLe)} khách lẻ · ${so(t.khachHang)} khách hàng · ${so(t.noiBo)} nội bộ</span></div>
         <div class="o"><span class="nho">Phiếu khách gửi đã xử lý</span><b style="font-size:22px;display:block">${t.phieu ? pt(t.phieuXong, t.phieu) + '%' : '–'}</b><span class="nho">${so(t.phieuXong)}/${so(t.phieu)} phiếu trong ${r.soNgay} ngày</span></div>
       </div></div>`;
-    h += `<div class="the"><h3>${ic('building')} Chỉ số triển khai theo khu</h3><div class="cuon"><table class="tk-bang"><tr><th>Khu</th><th class="so">Điểm</th><th class="so">Thu tiền</th><th class="so">Hộ dùng web</th><th class="so">Phiếu đã xử lý</th></tr>`
+    h += `<div class="the"><h3>${ic('building')} Chỉ số triển khai theo khu</h3><div class="cuon"><table class="tk-bang"><tr><th>Khu</th><th class="so">Điểm</th><th class="so">Thu tiền</th><th class="so">Hộ dùng website</th><th class="so">Phiếu đã xử lý</th></tr>`
       + r.khu.map(x => `<tr><td><b>${esc(x.khu)}</b><div class="thanh xanh" style="margin-top:4px;max-width:220px"><i style="width:${x.diem}%"></i></div></td><td class="so"><b style="color:${mau(x.diem)};font-size:18px">${x.diem}</b></td>
           <td class="so">${x.phai ? pt(x.da, x.phai) + '%<br><span class="nho">' + so(x.da) + '/' + so(x.phai) + '</span>' : '–'}</td>
           <td class="so">${pt(x.dungWeb, x.ho)}%<br><span class="nho">${so(x.dungWeb)}/${so(x.ho)}</span></td>
@@ -4085,7 +4175,7 @@
     if (r.theoNgay.length > 1) h += `<div class="the"><h3>${ic('chart')} Lượt truy cập theo ngày</h3>${bieuDo(r.theoNgay.slice(-14).map(x => ({ nhan: x.ngay.slice(8, 10) + '/' + x.ngay.slice(5, 7), gt: x.luot, chu: so(x.luot), phu: '' })), 'lượt')}</div>`;
     h += `<div class="the"><h3>${ic('inbox')} Phiếu khách gửi – ${r.soNgay} ngày</h3><div class="cuon"><table class="tk-bang"><tr><th>Loại phiếu</th><th class="so">Phiếu mới</th><th class="so">Đã xử lý</th><th class="so">Đang chờ (tất cả)</th><th class="so">Phản hồi TB</th><th class="so">Trong 24 giờ</th></tr>`
       + r.phieu.map(p => `<tr><td>${esc(p.ten)}</td><td class="so">${so(p.tong)}</td><td class="so">${so(p.xong)}</td><td class="so">${p.cho ? '<b class="chu-do">' + so(p.cho) + '</b>' : '0'}</td><td class="so">${p.gioTB == null ? '–' : (p.gioTB < 1 ? Math.round(p.gioTB * 60) + ' phút' : String(p.gioTB).replace('.', ',') + ' giờ')}</td><td class="so">${p.coGio ? pt(p.trong24, p.coGio) + '%' : '–'}</td></tr>`).join('') + '</table></div></div>';
-    if (r.hanhDong.length) { const mx = r.hanhDong[0].so || 1; h += `<div class="the"><h3>Bà con dùng web để làm gì</h3><div class="nv-xh">${r.hanhDong.map(x => `<div class="h"><span>${esc(x.ten)}</span><div class="thanh xanh"><i style="width:${Math.max(3, Math.round(x.so / mx * 100))}%"></i></div><span class="g">${so(x.so)}</span></div>`).join('')}</div></div>`; }
+    if (r.hanhDong.length) { const mx = r.hanhDong[0].so || 1; h += `<div class="the"><h3>Bà con dùng website để làm gì</h3><div class="nv-xh">${r.hanhDong.map(x => `<div class="h"><span>${esc(x.ten)}</span><div class="thanh xanh"><i style="width:${Math.max(3, Math.round(x.so / mx * 100))}%"></i></div><span class="g">${so(x.so)}</span></div>`).join('')}</div></div>`; }
     h += `<div class="the nho">Mức năng nổ của từng cán bộ xem ở <a href="#" id="tkDiNV">Quản trị › Nhân viên &amp; điểm</a>.</div>`;
     $('tkKQ').innerHTML = h;
     $('tkDiNV').onclick = e => { e.preventDefault(); chonNhomNB('quanLy', false); $$('#tabNB [data-sub=tramNhanVien]')[0].click(); };
@@ -4267,7 +4357,7 @@
       <b>${esc(x.khu)}</b>
       <div class="nho">${so(x.soHo)} khách hàng · ${so(x.m3)} m³</div>
       <div>Phải thu: <b style="display:inline">${tien(x.tien)}</b></div>
-      <div class="nho">Tiền nước ${tien(x.tienNuoc)} · VAT ${tien(x.vat)} · BVMT ${tien(x.bvmt)}</div></div>`).join('');
+      <div class="nho">Tiền nước ${tien(x.tienNuoc)} · VAT ${tien(x.vat)} · Phí nước thải ${tien(x.bvmt)}</div></div>`).join('');
 
     const coVD = BC.dong.filter(d => d.vanDe.length);
     const soLoi = coVD.filter(d => d.vanDe.some(v => v.muc === 'loi')).length;
@@ -4306,11 +4396,11 @@
       let h = `<div class="luoi" style="margin-bottom:12px">
         <div class="o"><span class="nho">Doanh thu năm ${esc(r.nam)} (${r.tong.soThang} tháng có số liệu)</span><b>${tien(r.tong.tong)}</b></div>
         <div class="o"><span class="nho">Sản lượng qua đồng hồ hộ dân</span><b>${so(r.tong.m3)} m³</b></div>
-        <div class="o"><span class="nho">Tiền nước / VAT / phí BVMT</span><b style="font-size:14px">${tien(r.tong.tienNuoc)} / ${tien(r.tong.vat)} / ${tien(r.tong.bvmt)}</b></div>
+        <div class="o"><span class="nho">Tiền nước / thuế VAT / phí nước thải</span><b style="font-size:14px">${tien(r.tong.tienNuoc)} / ${tien(r.tong.vat)} / ${tien(r.tong.bvmt)}</b></div>
         <div class="o"><span class="nho">Bình quân tháng</span><b>${co.length ? tien(Math.round(r.tong.tong / co.length)) : '–'} · ${co.length ? so(Math.round(r.tong.m3 / co.length)) : '–'} m³</b></div></div>`;
       h += `<div class="the"><h3>${ic('chart')} Sản lượng nước từng tháng (m³)</h3>${bieuDo(r.thangs.map(t => ({ nhan: nhanT(t), gt: t.m3, chu: t.coSo ? so(t.m3) : '' })), 'm³')}</div>`;
       h += `<div class="the"><h3>${ic('chart')} Doanh thu từng tháng (đồng)</h3>${bieuDo(r.thangs.map(t => ({ nhan: nhanT(t), gt: t.tong, chu: t.coSo ? (t.tong / 1e6).toFixed(1) + ' tr' : '' })), 'đồng')}</div>`;
-      h += `<div class="the"><div class="cuon"><table><tr><th>Tháng</th><th class="so">Số hộ</th>${r.khus.map(k => `<th class="so">m³ ${esc(k)}</th>`).join('')}<th class="so">Tổng m³</th><th class="so">Tiền nước</th><th class="so">VAT</th><th class="so">BVMT</th><th class="so">Doanh thu</th></tr>` +
+      h += `<div class="the"><div class="cuon"><table><tr><th>Tháng</th><th class="so">Số hộ</th>${r.khus.map(k => `<th class="so">m³ ${esc(k)}</th>`).join('')}<th class="so">Tổng m³</th><th class="so">Tiền nước</th><th class="so">VAT</th><th class="so">Phí nước thải</th><th class="so">Doanh thu</th></tr>` +
         r.thangs.map(t => `<tr><td>${esc(t.thang)}</td><td class="so">${t.coSo ? so(t.soHo) : '–'}</td>${r.khus.map(k => `<td class="so">${t.khu[k] ? so(t.khu[k].m3) : '–'}</td>`).join('')}<td class="so"><b>${t.coSo ? so(t.m3) : '–'}</b></td><td class="so">${t.coSo ? tien(t.tienNuoc) : '–'}</td><td class="so">${t.coSo ? tien(t.vat) : '–'}</td><td class="so">${t.coSo ? tien(t.bvmt) : '–'}</td><td class="so"><b>${t.coSo ? tien(t.tong) : '–'}</b></td></tr>`).join('') +
         `<tr><td><b>Cả năm</b></td><td></td>${r.khus.map(k => `<td class="so"><b>${so(r.thangs.reduce((a, t) => a + (t.khu[k] ? t.khu[k].m3 : 0), 0))}</b></td>`).join('')}<td class="so"><b>${so(r.tong.m3)}</b></td><td class="so"><b>${tien(r.tong.tienNuoc)}</b></td><td class="so"><b>${tien(r.tong.vat)}</b></td><td class="so"><b>${tien(r.tong.bvmt)}</b></td><td class="so"><b>${tien(r.tong.tong)}</b></td></tr></table></div></div>`;
       $('bcnKQ').innerHTML = h;
@@ -4554,7 +4644,7 @@
     $('dsLH').innerHTML = ds.length ? ds.map(y => khungPhieu(y, 'capNhatLienHe', TT_LH,
       `<div><span class="nhan xanh">${esc(y.loai)}</span></div>
        <div style="margin-top:6px">${hoTen(y.ten, y.ma)} · ${esc(y.xom)}, ${esc(y.khu)}</div>
-       <div>SĐT/Zalo: <a href="${URL_ZALO}${esc(y.sdt.replace(/\D/g, ''))}" target="_blank" rel="noopener" style="color:var(--xanh);font-weight:700">${esc(y.sdt)}</a> · <a class="tel" href="tel:${esc(y.sdt)}">Gọi</a></div>
+       <div>Điện thoại/Zalo: <a href="${URL_ZALO}${esc(y.sdt.replace(/\D/g, ''))}" target="_blank" rel="noopener" style="color:var(--xanh);font-weight:700">${esc(y.sdt)}</a> · <a class="tel" href="tel:${esc(y.sdt)}">Gọi</a></div>
        <div style="white-space:pre-line;margin-top:4px">${esc(y.noidung)}</div>`, mo)).join('') : '<div class="the">Không có yêu cầu nào.</div>';
     ganLuu('dsLH', LH);
   }
@@ -4610,7 +4700,7 @@
     $('demSC').textContent = SCDS.filter(y => y.tt === 'Mới').length || '';
     $('dsSC').innerHTML = ds.length ? ds.map(y => khungPhieu(y, 'capNhatSuaChua', TT_SC,
       `<div><span class="nhan do">${esc(y.loai)}</span></div>
-       <div style="margin-top:6px">SĐT: <a class="tel" href="tel:${esc(y.sdt)}">${esc(y.sdt)}</a> · <a href="${URL_ZALO}${esc(y.sdt)}" target="_blank" rel="noopener" style="color:var(--xanh)">Zalo</a>
+       <div style="margin-top:6px">Điện thoại: <a class="tel" href="tel:${esc(y.sdt)}">${esc(y.sdt)}</a> · <a href="${URL_ZALO}${esc(y.sdt)}" target="_blank" rel="noopener" style="color:var(--xanh)">Zalo</a>
          ${anToan(y.vitri) ? ' · ' + lk(y.vitri, '<i class=ic data-ic=pin></i> Mở bản đồ') : ''}</div>
        ${y.diachi ? '<div>Địa chỉ: ' + esc(y.diachi) + '</div>' : ''}
        <div style="white-space:pre-line;margin-top:4px">${esc(y.noidung)}</div>`, mo)).join('') : '<div class="the">Không có báo hỏng nào.</div>';
@@ -4626,7 +4716,7 @@
     goiNB('admTimKH', $('qtQ').value.trim()).then(r => {
       QT_NHOM = r.nhoms;
       $('qtTom').textContent = r.tong ? `${so(r.tong)} hộ${r.tong > r.ds.length ? ' – đang hiện ' + r.ds.length + ', gõ rõ hơn để thu hẹp' : ''}. Bấm vào hộ để xem và sửa.` : 'Không tìm thấy hộ nào.';
-      $('qtKQ').innerHTML = r.ds.map(k => `<div class="kq-kh" data-dong="${k.dong}"><div>${hoTen(k.ten, k.ma)}<div class="nho">${esc(k.xom)}${k.khu ? ', ' + esc(k.khu) : ''} · ${esc(k.nhom || '—')} · ${k.sdt ? 'SĐT ' + esc(k.sdt) : 'chưa có SĐT'}</div></div><span class="nho">Mã ${esc(k.ma)}</span></div>`).join('');
+      $('qtKQ').innerHTML = r.ds.map(k => `<div class="kq-kh" data-dong="${k.dong}"><div>${hoTen(k.ten, k.ma)}<div class="nho">${esc(k.xom)}${k.khu ? ', ' + esc(k.khu) : ''} · ${esc(k.nhom || '—')} · ${k.sdt ? 'Điện thoại ' + esc(k.sdt) : 'chưa có số điện thoại'}</div></div><span class="nho">Mã ${esc(k.ma)}</span></div>`).join('');
       $$('#qtKQ .kq-kh').forEach(el => el.onclick = () => { $$('#qtKQ .kq-kh').forEach(x => x.classList.toggle('on', x === el)); moFormKH(r.ds.find(k => k.dong === Number(el.dataset.dong))); });
     }).catch(e => { $('loiQtKH').textContent = e; $('qtTom').textContent = ''; });
   };
@@ -4703,8 +4793,8 @@
     goiNB('admDsTaiKhoan').then(r => { TKDS = r; hienTK(); }).catch(e => { $('loiTK').textContent = e; $('tblTK').innerHTML = ''; });
   }
   function hienTK() {
-    $('tblTK').innerHTML = `<tr><th>Họ tên</th><th>SĐT đăng nhập</th><th>Vai trò</th><th>Trạng thái</th><th>Ghi chú</th><th></th></tr>` +
-      TKDS.map(t => `<tr><td><b>${esc(t.ten)}</b></td><td>${esc(t.sdt)}</td><td><span class="nhan ${t.vaitro === 'adm' ? 'vang' : t.vaitro === 'ld' ? 'do' : 'xanh'}">${TEN_VT[t.vaitro] || 'Nhân viên'}</span></td><td>${t.hien ? '<span class="nhan la">Hoạt động</span>' : '<span class="nhan do">Khóa</span>'}${t.mkMacDinh ? ' <span class="nhan do" title="Đang dùng mật khẩu mặc định">MK mặc định</span>' : ''}</td><td class="nho">${esc(t.ghichu)}</td><td><button class="nut phu nho-nut tk-sua an-ld" data-dong="${t.dong}" type="button">Sửa / đặt lại MK</button></td></tr>`).join('');
+    $('tblTK').innerHTML = `<tr><th>Họ tên</th><th>Số điện thoại đăng nhập</th><th>Vai trò</th><th>Trạng thái</th><th>Ghi chú</th><th></th></tr>` +
+      TKDS.map(t => `<tr><td><b>${esc(t.ten)}</b></td><td>${esc(t.sdt)}</td><td><span class="nhan ${t.vaitro === 'adm' ? 'vang' : t.vaitro === 'ld' ? 'do' : 'xanh'}">${TEN_VT[t.vaitro] || 'Nhân viên'}</span></td><td>${t.hien ? '<span class="nhan la">Hoạt động</span>' : '<span class="nhan do">Khóa</span>'}${t.mkMacDinh ? ' <span class="nhan do" title="Đang dùng mật khẩu mặc định">Mật khẩu mặc định</span>' : ''}</td><td class="nho">${esc(t.ghichu)}</td><td><button class="nut phu nho-nut tk-sua an-ld" data-dong="${t.dong}" type="button">Sửa / đặt lại mật khẩu</button></td></tr>`).join('');
     $$('#tblTK .tk-sua').forEach(b => b.onclick = () => moFormTK(TKDS.find(t => t.dong === Number(b.dataset.dong))));
   }
   function moFormTK(t) {
@@ -4742,10 +4832,17 @@
   }
 
   // ---------- QUẢN TRỊ: nhật ký ----------
+  let NK_LOAI = '', NK_DS = [];
+  function veNK() {
+    const q = khongDauJS($('nkTim').value.trim().toLowerCase()), r = q ? NK_DS.filter(x => khongDauJS((x.tg + ' ' + x.tk + ' ' + x.hd + ' ' + x.ct).toLowerCase()).indexOf(q) >= 0) : NK_DS;
+    const chiTiet = ct => { const i = ct.lastIndexOf('Thiết bị: '); return i < 0 ? esc(ct) : esc(ct.slice(0, i).replace(/ · $/, '')) + `<span class="nk-tb">${ic('phone')} ${esc(ct.slice(i + 10))}</span>`; };
+    $('tblNK').innerHTML = `<tr><th>Thời gian</th><th>Tài khoản</th><th>Hành động</th><th>Chi tiết</th></tr>` + (r.length ? r.map(x => `<tr><td style="white-space:nowrap">${esc(x.tg)}</td><td>${esc(x.tk)}</td><td><b>${esc(x.hd)}</b></td><td class="nho">${chiTiet(x.ct)}</td></tr>`).join('') : '<tr><td colspan="4" class="nho">Không có dòng nào.</td></tr>');
+  }
+  $('nkLoc').addEventListener('click', e => { const b = e.target.closest('button[data-loai]'); if (!b) return; NK_LOAI = b.dataset.loai; $$('#nkLoc button').forEach(x => x.classList.toggle('on', x === b)); taiNK(); });
+  $('nkTim').addEventListener('input', veNK);
   function taiNK() {
     $('loiNK').textContent = ''; $('tblNK').innerHTML = '<tr><td class="nho">Đang tải…</td></tr>';
-    goiNB('admNhatKy').then(r => {
-      $('tblNK').innerHTML = `<tr><th>Thời gian</th><th>Tài khoản</th><th>Hành động</th><th>Chi tiết</th></tr>` + (r.length ? r.map(x => `<tr><td style="white-space:nowrap">${esc(x.tg)}</td><td>${esc(x.tk)}</td><td><b>${esc(x.hd)}</b></td><td class="nho">${esc(x.ct)}</td></tr>`).join('') : '<tr><td colspan="4" class="nho">Chưa có thao tác nào.</td></tr>');
+    goiNB('admNhatKy', NK_LOAI).then(r => { NK_DS = r; veNK();
     }).catch(e => { $('loiNK').textContent = e; $('tblNK').innerHTML = ''; });
   }
   $('nutNKTai').onclick = taiNK;
