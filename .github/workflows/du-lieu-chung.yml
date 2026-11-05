@@ -1,0 +1,65 @@
+# Mỗi ~10 phút: gọi máy chủ Apps Script để giữ máy chủ "nóng" (khách tra cứu không phải chờ máy chủ khởi động)
+# và chụp sẵn thông tin chung công khai (bảng giá, thông báo, văn bản, cơ cấu…) vào du-lieu/chung.json
+# → khách vào web LẦN ĐẦU thấy ngay nội dung, không phải chờ máy chủ. Chỉ lưu khi nội dung đổi.
+# Không chứa dữ liệu khách hàng: chỉ là thông tin chung đã công khai trên web.
+name: Cập nhật dữ liệu chung
+on:
+  schedule:
+    - cron: '*/10 * * * *'
+  workflow_dispatch:
+permissions:
+  contents: write
+  pages: write
+concurrency:
+  group: du-lieu-chung
+  cancel-in-progress: false
+jobs:
+  cap-nhat:
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    env:
+      API: https://script.google.com/macros/s/AKfycbzLhGtXtZTenoMZT0-AJGUs6tnvxbV8VdE7HUVbbhB0KmCDGsG_q61OPde9x3TNesPdfw/exec
+    steps:
+      - uses: actions/checkout@v4
+      - name: Giữ máy chủ nóng + lấy thông tin chung
+        run: |
+          mkdir -p du-lieu anh
+          goi() { curl -sSL --retry 2 --max-time 90 -H 'Content-Type: text/plain;charset=utf-8' -d "{\"rpc\":\"$1\",\"a\":[$2]}" "$API"; }
+          goi lamNongBoDem "" > /tmp/nong.json || true
+          goi layThongTinChung "" > /tmp/ttc.json || true
+          goi layAnh '"logo"' > /tmp/logo.json || true
+          python3 - <<'PY'
+          import json, os, base64
+          def doc(p):
+              try:
+                  r = json.load(open(p, encoding='utf-8'))
+                  return r.get('kq') if r.get('ok') else None
+              except Exception:
+                  return None
+          c = doc('/tmp/ttc.json')
+          if isinstance(c, dict) and c.get('donVi'):
+              for k in ('bayGio', 'gioBom', 'dangNhan'):
+                  c.pop(k, None)
+              s = json.dumps(c, ensure_ascii=False, separators=(',', ':'), sort_keys=True)
+              p = 'du-lieu/chung.json'
+              if not os.path.exists(p) or open(p, encoding='utf-8').read() != s:
+                  open(p, 'w', encoding='utf-8').write(s); print('chung.json: cập nhật')
+          else:
+              print('Máy chủ chưa trả thông tin chung – giữ bản cũ')
+          b = doc('/tmp/logo.json')
+          if isinstance(b, str) and len(b) > 200:
+              d = base64.b64decode(b)
+              if d[:8] == b'\x89PNG\r\n\x1a\n' and (not os.path.exists('anh/logo.png') or open('anh/logo.png', 'rb').read() != d):
+                  open('anh/logo.png', 'wb').write(d); print('logo.png: cập nhật')
+          PY
+      - name: Lưu nếu có thay đổi
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          git config user.name "may-cap-nhat-du-lieu"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add du-lieu anh
+          if git diff --cached --quiet; then echo "Không đổi"; exit 0; fi
+          git commit -m "Cập nhật dữ liệu chung (tự động)"
+          git push
+          curl -sS -X POST -H "Authorization: Bearer $GH_TOKEN" -H "Accept: application/vnd.github+json" "https://api.github.com/repos/${{ github.repository }}/pages/builds" || true
