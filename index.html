@@ -12,7 +12,7 @@
     if (biNhung) { document.documentElement.style.display = 'none'; try { window.top.location = window.self.location.href; } catch (e) {} }
     var S = '/' + '/', g = 'https:' + S;
     // chỉ cho chạy đúng đoạn mã của trạm (mã băm SHA-256 tính lúc đóng gói) → mã độc chèn vào trang không chạy được
-    var BAM = 'Go6m5Q4_zJty1aQQoPoDukWK6YYs9pUnhEW8vZxf_Oo=', B = BAM.split('_').join(String.fromCharCode(47));
+    var BAM = 'EDOU8cTWhDrwlxyHKH+3z3N+0mSfTxZboURSQmJlrDU=', B = BAM.split('_').join(String.fromCharCode(47));
     var m = document.createElement('meta'); m.httpEquiv = 'Content-Security-Policy';
     m.content = "default-src 'self'; script-src 'self' 'sha256-" + B + "'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https:; font-src 'self' data:; "
       + "connect-src 'self' " + g + 'script.google.com ' + g + "script.googleusercontent.com; frame-src https:' + S + 'www.youtube-nocookie.com https:' + S + 'drive.google.com; object-src 'none'; base-uri 'none'; form-action 'self'; upgrade-insecure-requests";
@@ -2876,6 +2876,7 @@
   }
   const BO_TRA = new Map();   // chỉ giữ trong bộ nhớ trang, tắt trang là mất
   function traCuuMa(ma, giuKhung) {
+    clearTimeout(HEN_DD);   // đã bấm Xem → bỏ lượt lấy trước đang hẹn (không gọi máy chủ 2 lần)
     if (!giuKhung) { $('kqTra').innerHTML = ''; }
     $('nutTra').disabled = true; $('nutTra').textContent = 'Đang tìm…';
     const kTra = khongDauJS(ma).replace(/\s+/g, ' ').trim(), daCo = BO_TRA.get(kTra);
@@ -3649,6 +3650,7 @@
     const v = $('maKH').value.trim(), k = khongDauJS(v).replace(/\s+/g, ' ').trim();
     if (/[^0-9.\s-]/.test(v) || v.replace(/[^0-9]/g, '').length !== 13 || BO_TRA.has(k) || DANG_TRA.has(k)) return;
     HEN_DD = setTimeout(() => {
+      if (BO_TRA.has(k) || DANG_TRA.has(k) || $('maKH').value.trim() !== v) return;
       const p = goi('traCuu', v).then(r => { BO_TRA.set(k, { t: Date.now(), r: r }); return r; });
       DANG_TRA.set(k, p); p.catch(() => {}).finally(() => DANG_TRA.delete(k));
     }, 300);
