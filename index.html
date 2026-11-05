@@ -4,7 +4,7 @@
 <base target="_top">
 <meta charset="utf-8">
 <script>
-  // Bảo mật khi chạy ở tên miền riêng (github.io hoặc tên miền của trạm): chặn trang lạ nhúng web vào khung, chỉ cho kết nối tới máy chủ Google của trạm
+  // Bảo mật khi chạy ở tên miền riêng (trungtamnuocsach.vn): chặn trang lạ nhúng web vào khung, chỉ cho kết nối tới máy chủ Google của trạm
   (function () {
     if (!location.hostname || /(^|\.)(google|googleusercontent)\.com$/i.test(location.hostname)) return;   // trong Google Apps Script đã có lớp bảo vệ riêng
     // bị trang lạ nhúng vào khung (lừa bấm) → ẩn toàn bộ trang và thử thoát ra ngoài
@@ -12,11 +12,14 @@
     if (biNhung) { document.documentElement.style.display = 'none'; try { window.top.location = window.self.location.href; } catch (e) {} }
     var S = '/' + '/', g = 'https:' + S;
     // chỉ cho chạy đúng đoạn mã của trạm (mã băm SHA-256 tính lúc đóng gói) → mã độc chèn vào trang không chạy được
-    var BAM = 'SEerAHL5v1PwgImF6hCMrTn+G4HyfZeUjnTr21GCiBM=', B = BAM.split('_').join(String.fromCharCode(47));
+    var BAM = 'QG8Rh9nCWIhzJ_awXqm19HZV6+UGc8fr5fvz2A4nhbA=', B = BAM.split('_').join(String.fromCharCode(47));
     var m = document.createElement('meta'); m.httpEquiv = 'Content-Security-Policy';
     m.content = "default-src 'self'; script-src 'self' 'sha256-" + B + "'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https:; font-src 'self' data:; "
       + "connect-src 'self' " + g + 'script.google.com ' + g + "script.googleusercontent.com; frame-src 'none'; object-src 'none'; base-uri 'none'; form-action 'self'; upgrade-insecure-requests";
     document.head.appendChild(m);
+    ['script.google.com', 'script.googleusercontent.com'].forEach(function (h) {
+      var l = document.createElement('link'); l.rel = 'preconnect'; l.href = g + h; l.crossOrigin = 'anonymous'; document.head.appendChild(l);
+    });
   })();
 </script>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
@@ -25,13 +28,6 @@
 <meta property="og:title" content="Tra cứu tiền nước – Trạm Nước sạch và VSMT Khu vực II">
 <meta property="og:description" content="Gõ mã khách hàng hoặc họ tên chủ hộ để xem chỉ số, tiền nước; báo hỏng, kiểm tra nước, báo vi phạm.">
 <meta name="theme-color" content="#0b5394">
-<link rel="manifest" href="manifest.webmanifest">
-<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
-<meta name="mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-title" content="Nước sạch KV II">
-<meta name="apple-mobile-web-app-status-bar-style" content="default">
-<script src="pwa.js" defer></script>
 <link rel="icon" type="image/png" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAMAAABg3Am1AAAAwFBMVEX%2F%2F%2F%2F+%2F%2F%2F%2F%2F%2F7%2F%2F%2F3+%2F%2F7+%2Fv79%2F%2F79%2Fv79%2Fv38%2Fv3%2F%2F%2Fr8%2Ff38%2FPz7%2Ffz7+%2Fv7+%2FX9+sP99on99Ff%2F9CD98CD%2F9w3%2F8w387hj97gv4+%2Frw+PXj8u3Y7dzM6NDw6yvA5M+31+Cu3MGv1YaU0a2NyLp6xYpqv45ytbx1vTZltkhStXtGsGE9p3IqpF4en1IQm0sPmEYImUQFl0QDlkUzi6kXe6sKdaoAk0EAjzYGdaQGca0Eca0DcK0BbawBaq4AZ6sUAr7DAAAEPUlEQVR42o2WaXuqOhCAB5SLaF1AWxZZpCnRUgKyqNTj8v%2F%2F1Z0AKtie514+oMZ5M3smAAAvk8kL%2FOfzkPpNug+S8BtTyY+eZBVlUH9TBv0nYoTES3f%2FgVJ9mBPLrDZS2n9KXHrSXun1ACyfhCyyI0qJb4nQH3Q2nHSAHsgOZSWlZewwFiWU2D4q7QIPi8SeMFOjQxZbyyS2HUJpSHxGbRBarrQcEEFQ9fl7HjsA%2FsEGeQyOF7AkCqSukrs5U011dTewQZHAW9arlhcyFlpd32%2FyrqGphtrj241hVaw%2FbC5mYwR8B+Qf8jNVW+jaTKiTMB6vr+dj8WHCeOD7YWjJ3ZSIvalmqAt9Bj2xWhAEWJ%2F252uxQm0+iykoHQLjYyxcTYXhbUUWrOK435%2FPazCRiEjHcTRI03RDFYatKoDVeY%2FIdQ0jiWey5YYocoPcxZQnukUUSBwrwmMs6CttBcZCU1Xotcu1VsGJFSaGMe8RW9F6ny%2FeNKlxuHkEwSxOnDjvLNkMqTeWmn8U8Jiq69pDgQI+AWUE62ut4gOAUHKTx7gFZaAZM6ECxphnGSImSSOptul4LkxwiG+DdKvyKEveeQ7uOyyT1MZwWsf6Oa9AoDFpnJDAipMsUmeCiFsvqW8BePnB72NnsO8KwEAtQ0ab1hiAnSTJgQwVrFfZZGVMRP9w8IGwMt%2FXQAEjsqUjEBqfsyT+%2FLRFqabzMvSy3KHlIfs+1SYVI%2FDj0IT+Dcg3c0OrnMYApVlJIxaUebbeceAPBrby2rzHMMs%2FdX0xFXtNkMuMkLiMvdWVy9eAn0RWHabKpMSd30pJgYlPo4g7X5y5%2FB%2F0YQAkQZOExultkm90HQM7lKBuehriq1Fw4k4jQGsXqrCmOUNgMRNg2BNFyRwHVB6vjrX8iYfVol%2F3Cu9DdEhyFwldnTaFSulUDS%2F7P1z+dMLEWRRbYvwojST%2F4oDhqrMptvc0+Jwb7v505PJo0dgkxLFAuIXJydJtvnl90%2FU3Q1+4rjvfbPDH7twAKzAjFtrwT2OSNECb0jx0EVmgGsN43WxeEbgcawWmvAwT31KERzWXSZp+7z7dV65G12ugqAD0AKPjeBbcj4G+ZLJDisRlF27cO%2FBWAUfeDX6Ax2FrYGDuDmmWpd+ny2W%2FQ9k7cDxzeTvaBnLn8MM4llskEiznyx2ILsfrHht6ScPQ6fe7U8eMyjTLsyz5vrh34Hot7OawfD6PsXNYTaSJ+1YDr2GxEvn+URz8PI0HNZHl+eEGGCquOzS0KVmaP4%2F7AVhhia7naQuwCGOMmr%2FP4QGvSOyy7QPwWMwYwUNSgt9mkIRm0aRMb3kw1OU2wokF%2FY54eyiiZ0vypdelYaBJeBZBd5Z0pyhU2ZnibHnfaJo6w62Fp9EzeR7s8rh9ZVCeJxWXfr464HQf9mRZxPePwIwmf7uc%2FO1C83yx+R%2FXn38Bu3ahb6eFgDoAAAAASUVORK5CYII=">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <meta name="format-detection" content="telephone=no">
@@ -900,6 +896,106 @@
     .dl-muc { grid-template-columns:1fr; } .dl-muc button b { font-size:20px; }
     .sap-co { flex-direction:column; padding:18px; } .dl-khu .h, .nv-xh .h { grid-template-columns:minmax(80px,110px) 1fr auto; }
   }
+
+  /* ===== v25 ===== */
+  /* Tuyên truyền dạng thẻ chủ đề như Văn bản */
+  .tt-the2 { gap:8px; }
+  .tt-the2 .tt-dau { display:flex; align-items:center; gap:10px; }
+  .tt-the2 .tt-bieu { width:40px; height:40px; border-radius:11px; display:flex; align-items:center; justify-content:center; flex:none; color:var(--mau); background:color-mix(in srgb, var(--mau, #0b5394) 12%, #fff); }
+  .tt-the2 .tt-bieu .ic { width:22px; height:22px; }
+  .tt-the2 h3 { font-size:16px; margin:2px 0 0; line-height:1.35; color:var(--chu); }
+  .tt-the2 .tt-nd { font-size:14.5px; color:#344054; white-space:pre-line; display:-webkit-box; -webkit-line-clamp:4; -webkit-box-orient:vertical; overflow:hidden; }
+  .tt-the2.mo .tt-nd { -webkit-line-clamp:unset; display:block; }
+  .tt-the2 .tt-them { border:0; background:none; color:var(--mau, var(--xanh)); font-weight:700; cursor:pointer; padding:4px 0; font-size:14px; }
+  .tt-the2 .vb-chan a { color:var(--xanh); font-weight:700; text-decoration:none; display:inline-flex; align-items:center; gap:4px; }
+  /* Ghi nhớ đăng nhập */
+  .ghi-nho { display:flex; align-items:flex-start; gap:9px; margin-top:12px; font-size:14.5px; cursor:pointer; line-height:1.35; }
+  .ghi-nho input { width:20px; height:20px; margin:0; flex:none; accent-color:var(--xanh); }
+  .ghi-nho .nho { display:block; }
+  .nho-dang { display:flex; align-items:center; gap:10px; padding:12px 14px; border-radius:12px; background:var(--xanh2); color:var(--xanh-dam); font-weight:700; margin-bottom:10px; }
+  /* Nút Góp ý / báo lỗi (nổi trên nút gọi) */
+  #nutGopY { position:fixed; right:18px; bottom:92px; z-index:34; height:44px; padding:0 15px 0 12px; border-radius:999px; border:0; background:var(--xanh); color:#fff;
+    display:flex; align-items:center; gap:7px; font-weight:700; font-size:14px; box-shadow:0 6px 18px rgba(11,83,148,.35); cursor:pointer; }
+  #nutGopY .ic { width:20px; height:20px; }
+  #nutGopY:hover { filter:brightness(1.1); }
+  #nenGY { position:fixed; inset:0; z-index:82; background:rgba(16,24,40,.55); display:none; align-items:center; justify-content:center; padding:14px; }
+  #nenGY.mo { display:flex; animation:hienLen .2s ease both; }
+  #fGY { background:#fff; border-radius:18px; padding:18px 18px 16px; width:min(520px, 100%); max-height:calc(100vh - 28px); overflow:auto; box-shadow:0 24px 60px rgba(16,24,40,.35); }
+  #fGY .gy-dau { display:flex; align-items:center; gap:10px; margin-bottom:4px; }
+  #fGY .gy-dau h3 { margin:0; flex:1; font-size:18px; color:var(--xanh-dam); }
+  #fGY .gy-dong { border:0; background:none; font-size:26px; line-height:1; cursor:pointer; color:var(--xam); padding:2px 6px; }
+  .gy-loai { display:grid; grid-template-columns:1fr 1fr; gap:10px; margin:10px 0 4px; }
+  .gy-loai label { display:flex; align-items:center; gap:10px; border:1.5px solid var(--vien); border-radius:12px; padding:11px 12px; cursor:pointer; font-weight:700; }
+  .gy-loai input { width:18px; height:18px; margin:0; accent-color:var(--xanh); flex:none; }
+  .gy-loai .bieu { width:34px; height:34px; border-radius:10px; display:flex; align-items:center; justify-content:center; background:var(--xanh2); color:var(--xanh); flex:none; }
+  .gy-loai label.loi-web .bieu { background:#fdecea; color:var(--do); }
+  .gy-loai label:has(input:checked) { border-color:var(--xanh); background:#f3f8fe; box-shadow:0 0 0 3px rgba(11,83,148,.12); }
+  .gy-loai label.loi-web:has(input:checked) { border-color:var(--do); background:#fff6f5; box-shadow:0 0 0 3px rgba(198,40,40,.12); }
+  .gy-kem { font-size:12.5px; color:var(--xam); margin-top:8px; display:flex; gap:6px; align-items:flex-start; }
+  .gy-kem .ic { width:15px; height:15px; flex:none; margin-top:1px; }
+  @media (max-width:860px) {
+    #nutGopY { bottom:calc(140px + env(safe-area-inset-bottom)); right:14px; width:46px; height:46px; padding:0; justify-content:center; }
+    #nutGopY span { display:none; }
+  }
+  /* Hướng dẫn sử dụng */
+  .hd-video { display:grid; grid-template-columns:repeat(auto-fit, minmax(260px,1fr)); gap:14px; margin-bottom:16px; }
+  .hd-vthe { border-radius:16px; overflow:hidden; background:#fff; border:1px solid var(--vien); box-shadow:var(--bong); }
+  .hd-khung { aspect-ratio:16/9; background:linear-gradient(135deg,#0b5394,#1e88e5 60%,#4fc3f7); display:flex; flex-direction:column; align-items:center; justify-content:center; color:#fff; gap:8px; text-align:center; padding:12px; }
+  .hd-khung .tron { width:64px; height:64px; border-radius:50%; background:rgba(255,255,255,.22); display:flex; align-items:center; justify-content:center; }
+  .hd-khung .tron .ic { width:30px; height:30px; }
+  .hd-khung small { opacity:.9; }
+  .hd-vthe .hd-chu { padding:12px 14px; }
+  .hd-vthe .hd-chu b { display:block; font-size:16px; color:var(--xanh-dam); }
+  .hd-ds details { background:#fff; border:1px solid var(--vien); border-radius:14px; margin-bottom:10px; box-shadow:var(--bong); }
+  .hd-ds summary { list-style:none; cursor:pointer; padding:14px 16px; display:flex; align-items:center; gap:12px; font-weight:700; font-size:16px; }
+  .hd-ds summary::-webkit-details-marker { display:none; }
+  .hd-ds summary .bieu { width:38px; height:38px; border-radius:11px; background:var(--xanh2); color:var(--xanh); display:flex; align-items:center; justify-content:center; flex:none; }
+  .hd-ds summary::after { content:"▾"; margin-left:auto; color:var(--xam); transition:transform .2s; }
+  .hd-ds details[open] summary::after { transform:rotate(180deg); }
+  .hd-ds ol { margin:0; padding:0 18px 14px 58px; line-height:1.6; }
+  .hd-ds ol li { margin-bottom:4px; }
+  .hd-ds .hd-luu { margin:0 16px 14px; }
+  /* Cơ cấu tổ chức: sơ đồ trên máy tính, danh sách trên điện thoại */
+  .cc-so-do { display:none; }
+  @media (min-width:900px) {
+    .cc-so-do { display:block; --sd:#9cc3ea; padding:6px 0 10px; overflow-x:auto; }
+    .cc-ds { display:none; }
+  }
+  .sd-don { margin:0 auto 0; width:max-content; max-width:100%; padding:10px 20px; border-radius:12px; background:linear-gradient(135deg,#0b5394,#1565c0); color:#fff; font-weight:800; text-align:center; position:relative; box-shadow:0 8px 20px rgba(11,83,148,.25); }
+  .sd-don small { display:block; font-weight:600; opacity:.85; font-size:12.5px; }
+  .sd-tang { position:relative; padding-top:26px; }
+  .sd-tang::before { content:""; position:absolute; top:0; left:50%; height:26px; border-left:2px solid var(--sd); }
+  .sd-hang { display:flex; justify-content:center; align-items:flex-start; position:relative; padding-top:22px; }
+  .sd-hang > .sd-o { position:relative; padding:0 7px; }
+  .sd-hang > .sd-o::before, .sd-hang > .sd-o::after { content:""; position:absolute; top:-22px; width:50%; height:22px; border-top:2px solid var(--sd); }
+  .sd-hang > .sd-o::before { right:50%; }
+  .sd-hang > .sd-o::after { left:50%; border-left:2px solid var(--sd); }
+  .sd-hang > .sd-o:first-child::before, .sd-hang > .sd-o:last-child::after { border-top:0; }
+  .sd-hang > .sd-o:first-child::after { border-radius:8px 0 0 0; }
+  .sd-hang > .sd-o:last-child::before { border-right:2px solid var(--sd); border-radius:0 8px 0 0; }
+  .sd-hang > .sd-o:only-child::before { display:none; }
+  .sd-hang > .sd-o:only-child::after { border-top:0; border-radius:0; }
+  .sd-nhan { text-align:center; margin:0 0 8px; }
+  .sd-nhan span { display:inline-block; font-size:12px; font-weight:800; letter-spacing:.5px; text-transform:uppercase; color:var(--xanh-dam); background:#e3f0fc; border:1px solid #c7def5; border-radius:999px; padding:3px 12px; }
+  .sd-the { width:170px; background:#fff; border:1px solid var(--vien); border-radius:14px; padding:14px 10px 12px; text-align:center; box-shadow:var(--bong); border-top:4px solid var(--mau, var(--nuoc)); transition:transform .15s, box-shadow .15s; }
+  .sd-the:hover { transform:translateY(-2px); box-shadow:0 10px 24px rgba(16,24,40,.12); }
+  .sd-the.lon { width:220px; --mau:#0b5394; }
+  .sd-the .av { width:52px; height:52px; margin:0 auto 8px; border-radius:50%; background:linear-gradient(135deg, color-mix(in srgb, var(--mau, #1e88e5) 70%, #fff), var(--mau, #1e88e5)); color:#fff; display:flex; align-items:center; justify-content:center; font-weight:800; font-size:20px; }
+  .sd-the .ten { font-weight:800; color:var(--xanh-dam); font-size:15px; line-height:1.3; }
+  .sd-the .cv { font-size:12.5px; font-weight:700; color:var(--xam); margin:3px 0 6px; }
+  .sd-the .so { font-size:14px; font-weight:800; letter-spacing:.2px; margin-bottom:8px; }
+  .sd-the .nut-sd { display:flex; gap:6px; justify-content:center; }
+  .sd-the .nut-sd a { display:inline-flex; align-items:center; gap:4px; font-size:13px; font-weight:700; text-decoration:none; border-radius:9px; padding:6px 10px; }
+  .sd-the .nut-sd a .ic { width:15px; height:15px; }
+  .sd-the .nut-sd a.goi-cc { background:var(--la); color:#fff; }
+  .sd-the .nut-sd a.zalo { background:#0068ff; color:#fff; }
+  .sd-day { display:flex; justify-content:center; gap:28px; align-items:flex-start; }
+  .sd-day > .sd-nhom { position:relative; }
+  .cc-chu-giai { text-align:center; font-size:13px; color:var(--xam); margin-top:14px; }
+  /* Lãnh đạo quản lý xem cấu hình (chỉ đọc) */
+  .ch-xem { display:block; padding:8px 10px; background:#f5f7fa; border:1px solid var(--vien); border-radius:8px; word-break:break-word; min-height:36px; }
+  /* tăng tốc: nền trống đồng là lớp riêng, cuộn trang không phải vẽ lại */
+  #nen { contain:strict; transform:translateZ(0); }
 </style>
 </head>
 <body>
@@ -921,7 +1017,7 @@
     <button data-nhom="baoHong"><i class="ic" data-ic="wrench"></i> Báo hỏng</button>
     <button data-nhom="viPham"><i class="ic" data-ic="alert"></i> Báo vi phạm</button>
     <button data-nhom="tinTuc"><i class="ic" data-ic="bell"></i> Tin tức <span class="huy-hieu demTB"></span> <span class="mui">▾</span></button>
-    <button data-nhom="taiKhoan"><i class="ic" data-ic="user"></i> Tài khoản</button>
+    <button data-nhom="huongDan"><i class="ic" data-ic="book"></i> Hướng dẫn</button>
   </nav>
 </header>
 
@@ -1154,7 +1250,9 @@
   <!-- ========== TUYÊN TRUYỀN ========== -->
   <section id="tuyenTruyen" class="an">
     <h2><i class="ic" data-ic="wave"></i> Tuyên truyền về nước sạch</h2>
-    <div class="tt-luoi" id="dsTuyenTruyen"></div>
+    <div class="o-nhap-nut" style="max-width:560px"><input id="tuyenTim" class="day" placeholder="Tìm bài: tiết kiệm nước, đồng hồ, chất lượng nước…" maxlength="60" aria-label="Tìm bài tuyên truyền"></div>
+    <div class="loc-vb" id="tuyenLoc"></div>
+    <div class="vb-luoi" id="dsTuyenTruyen"></div>
   </section>
 
   <!-- ========== CƠ CẤU TỔ CHỨC ========== -->
@@ -1173,6 +1271,56 @@
     <div class="o-nhap-nut" style="max-width:560px"><input id="vbTim" class="day" placeholder="Tìm số hiệu, tên văn bản…" maxlength="60" aria-label="Tìm văn bản"></div>
     <div class="loc-vb" id="vbLoc"></div>
     <div class="vb-luoi" id="dsVanBan"></div>
+  </section>
+
+  <!-- ========== HƯỚNG DẪN SỬ DỤNG ========== -->
+  <section id="huongDan" class="an">
+    <h2><i class="ic" data-ic="book"></i> Hướng dẫn sử dụng</h2>
+    <p class="nho" style="margin-top:-4px">Hướng dẫn từng bước các chức năng trên web. Video hướng dẫn trạm đang cập nhật.</p>
+    <div class="hd-video">
+      <div class="hd-vthe"><div class="hd-khung"><span class="tron"><i class="ic" data-ic="play"></i></span><b>Video dành cho khách hàng</b><small>Đang cập nhật</small></div>
+        <div class="hd-chu"><b>Tra cứu, nộp tiền, báo hỏng</b><span class="nho">Cách dùng web cho bà con: tra số nước, nộp tiền an toàn, báo hỏng, tài khoản khách hàng.</span></div></div>
+      <div class="hd-vthe"><div class="hd-khung" style="background:linear-gradient(135deg,#1b5e20,#2e7d32 60%,#66bb6a)"><span class="tron"><i class="ic" data-ic="play"></i></span><b>Video dành cho cán bộ trạm</b><small>Đang cập nhật</small></div>
+        <div class="hd-chu"><b>Nội bộ: phiếu, thu tiền, số liệu</b><span class="nho">Cách xử lý phiếu khách gửi, đánh dấu thu tiền, xem sản lượng và dữ liệu khách hàng.</span></div></div>
+    </div>
+    <div class="hd-ds">
+      <details open><summary><span class="bieu"><i class="ic" data-ic="search"></i></span>Tra cứu chỉ số, tiền nước</summary><ol>
+        <li>Bấm <b>Tra cứu</b> trên thanh menu.</li>
+        <li>Gõ <b>mã khách hàng</b> in trên hóa đơn, hoặc <b>4 số cuối</b> của mã, hoặc <b>họ tên chủ hộ</b> → bấm <b>Xem</b>.</li>
+        <li>Nếu có nhiều hộ trùng, bấm vào <b>đúng nhà mình</b> (xem cột thôn/xóm).</li>
+        <li>Web hiện chỉ số cũ – mới, số m³, tiền nước (đã gồm thuế, phí) và biểu đồ các tháng gần nhất.</li></ol></details>
+      <details><summary><span class="bieu"><i class="ic" data-ic="card"></i></span>Nộp tiền nước an toàn</summary><ol>
+        <li>Tra cứu ra số tiền → bấm <b>Nộp tiền / Nộp tiền hộ</b>.</li>
+        <li>Đọc kỹ khung <b>Lưu ý</b>, tích <b>Tôi đã đọc và hiểu</b>.</li>
+        <li>Chọn đúng cán bộ quản lý địa bàn → bấm <b>Gọi</b> hoặc <b>Zalo</b>. Chỉ nộp khi có hóa đơn / biên nhận ghi đủ thông tin và số tiền.</li>
+        <li>Trạm <b>không</b> thu tiền nước qua chuyển khoản lạ, không xin mật khẩu, mã OTP.</li></ol></details>
+      <details><summary><span class="bieu"><i class="ic" data-ic="wrench"></i></span>Báo hỏng, mất nước</summary><ol>
+        <li>Bấm <b>Báo hỏng</b> → chọn loại sự cố.</li>
+        <li>Bấm <b>Ghim vị trí</b> (cho phép định vị) hoặc dán link Google Maps / ghi địa chỉ chỗ hỏng.</li>
+        <li>Nhập số điện thoại để thợ gọi lại → bấm <b>Gửi</b>. Việc gấp: gọi ngay số trong khung <b>Gọi gấp</b>.</li></ol></details>
+      <details><summary><span class="bieu"><i class="ic" data-ic="alert"></i></span>Báo vi phạm sử dụng nước</summary><ol>
+        <li>Bấm <b>Báo vi phạm</b> → chọn hành vi.</li>
+        <li>Ghi chỗ xảy ra (hoặc ghim vị trí), mô tả ngắn, số điện thoại.</li>
+        <li>Mặc định <b>ẩn danh</b> – thông tin người báo được trạm giữ bí mật.</li></ol></details>
+      <details><summary><span class="bieu"><i class="ic" data-ic="user"></i></span>Tài khoản khách hàng</summary><ol>
+        <li>Bấm <b>Đăng nhập</b> ở góc trên → chọn <b>Khách hàng</b>.</li>
+        <li>Tên đăng nhập là <b>mã khách hàng</b>, mật khẩu lần đầu <b>111111</b> → đổi ngay mật khẩu riêng.</li>
+        <li>Tích <b>Ghi nhớ đăng nhập</b> nếu dùng điện thoại của riêng mình – lần sau mở web là vào thẳng tài khoản (30 ngày).</li>
+        <li>Trong tài khoản: xem 12 tháng, tháng đã / chưa thanh toán, gửi cập nhật thông tin. Quên mật khẩu: bấm <b>Quên mật khẩu</b> để trạm gọi lại xác minh.</li></ol></details>
+      <details><summary><span class="bieu"><i class="ic" data-ic="download"></i></span>Cài ứng dụng trên điện thoại</summary><ol>
+        <li>Vào <b>Dịch vụ › Tải ứng dụng</b>.</li>
+        <li>Android: bấm <b>Tải ứng dụng</b> rồi cài file. iPhone: mở <b>trungtamnuocsach.vn</b> bằng Safari → Chia sẻ → <b>Thêm vào MH chính</b>.</li>
+        <li>Chỉ tải ứng dụng tại trang này – trạm không gửi file cài qua Zalo hay tin nhắn.</li></ol></details>
+      <details><summary><span class="bieu"><i class="ic" data-ic="message"></i></span>Góp ý, báo lỗi web</summary><ol>
+        <li>Bấm nút <b>Góp ý</b> (nút xanh phía trên nút gọi điện, góc phải màn hình).</li>
+        <li>Chọn <b>Góp ý</b> hoặc <b>Báo lỗi</b>, chọn mục trên web, ghi nội dung → <b>Gửi</b>.</li>
+        <li>Để lại số điện thoại nếu muốn trạm gọi lại (không bắt buộc).</li></ol></details>
+      <details><summary><span class="bieu"><i class="ic" data-ic="building"></i></span>Dành cho cán bộ trạm</summary><ol>
+        <li>Bấm <b>Đăng nhập</b> → chọn <b>Bộ phận quản lý</b> → nhập tên đăng nhập, số điện thoại, mật khẩu do quản trị cấp.</li>
+        <li>Chỉ tích <b>Ghi nhớ đăng nhập</b> trên máy của riêng mình (14 ngày). Máy dùng chung thì không tích và nhớ bấm <b>Đăng xuất</b>.</li>
+        <li><b>Phiếu khách gửi</b>: xử lý báo hỏng, khách báo nộp tiền, hẹn thu, góp ý… Đổi trạng thái rồi bấm <b>Lưu</b>.</li>
+        <li><b>Sản lượng › Dữ liệu khách hàng</b>: xem hộ đã nộp / chưa nộp tiền từng kỳ.</li></ol></details>
+    </div>
   </section>
 
   <!-- ========== TẢI ỨNG DỤNG ========== -->
@@ -1196,14 +1344,14 @@
         </ol>
         <p class="ta-ghi"><i class=ic data-ic=checkCircle></i><span>Ứng dụng <b>không xin quyền gì</b> trên máy (không đọc danh bạ, tin nhắn, ảnh, vị trí). Trạm cập nhật web thì ứng dụng tự mới theo, không phải tải lại.</span></p>
         <details class="ta-kt"><summary>Mã kiểm tra file (dành cho người rành máy)</summary>
-          <div>Phiên bản 1.0.1 (mã 2) · gói <code>io.github.nuocsachkv2.app</code><br>SHA-256 file APK:<br><code class="ta-ma">01d73ab563ad7d79837a18268deaa1202f2f63d8681c9fad357d4a6cbad4ccb1</code></div></details>
+          <div>Phiên bản 1.0.2 (mã 3) · gói <code>io.github.nuocsachkv2.app</code><br>SHA-256 file APK:<br><code class="ta-ma">a440eb39a7657ec546f56bf9e7a42b9a121790621dd90dc7fc65647423ca2f43</code></div></details>
       </div>
       <div class="ta-the ta-ios" id="taIos">
         <div class="ta-tren"><span class="ta-hdh" aria-hidden="true"><svg viewBox="0 0 56 56"><defs><linearGradient id="gIos" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#4b5565"/><stop offset="1" stop-color="#1d2939"/></linearGradient></defs><rect width="56" height="56" rx="15" fill="url(#gIos)"/><rect x="17" y="8" width="22" height="40" rx="6" fill="#fff"/><rect x="19" y="10" width="18" height="36" rx="4.5" fill="#eef2f7"/><rect x="24.5" y="12.3" width="7" height="2.4" rx="1.2" fill="#1d2939"/><rect x="24" y="42.6" width="8" height="1.4" rx=".7" fill="#98a2b3"/><circle cx="41" cy="41" r="8" fill="#f5b400" stroke="#1d2939" stroke-width="2"/><path d="M41 37.2V41l2.6 1.6" fill="none" stroke="#1d2939" stroke-width="1.8" stroke-linecap="round"/></svg></span><div><h3>iPhone · iPad</h3><span class="ta-phu">Máy chạy iOS, iPadOS</span><span class="ta-nhan cho">Đang phát triển</span></div></div>
         <div class="ta-nut tat" aria-disabled="true"><i class=ic data-ic=hourglass></i><span><b>App Store – sắp có</b><small>Ứng dụng cho iPhone đang được phát triển</small></span></div>
         <p class="ta-ghi2">Trong lúc chờ, anh/chị dùng web này ngay trên <b>Safari</b> – đầy đủ chức năng như ứng dụng. Muốn có biểu tượng trên màn hình chính:</p>
         <ol class="ta-buoc">
-          <li>Mở trang <b>nuocsachkv2.github.io</b> bằng <b>Safari</b>.</li>
+          <li>Mở trang <b>trungtamnuocsach.vn</b> bằng <b>Safari</b>.</li>
           <li>Bấm nút <b>Chia sẻ</b> (ô vuông có mũi tên lên) ở dưới màn hình.</li>
           <li>Chọn <b>Thêm vào MH chính</b> → bấm <b>Thêm</b>.</li>
         </ol>
@@ -1235,6 +1383,7 @@
   <section id="noiBo" class="an">
     <div class="the" id="khungPin" style="max-width:480px">
       <h2><i class="ic" data-ic="lock"></i> Đăng nhập</h2>
+      <div class="nho-dang an" id="nhoDang"><span class="cho-cham"><i></i><i></i><i></i></span><span>Đang đăng nhập tự động (đã ghi nhớ trên máy này)…</span></div>
       <div class="chon-loai" role="radiogroup" aria-label="Loại tài khoản">
         <label class="chon"><input type="radio" name="loaiDN" value="kh" id="dnLoaiKH" checked> <i class=ic data-ic=user></i> Khách hàng</label>
         <label><input type="radio" name="loaiDN" value="nb" id="dnLoaiNB"> <i class=ic data-ic=building></i> Bộ phận quản lý</label>
@@ -1244,6 +1393,7 @@
         <input id="khMa" class="day" maxlength="30" placeholder="Mã khách hàng" inputmode="decimal" autocomplete="username">
         <label class="nhan-o" for="khMk">Mật khẩu</label>
         <input id="khMk" type="password" class="day" autocomplete="current-password" maxlength="60" placeholder="Mật khẩu">
+        <label class="ghi-nho" for="khNho"><input type="checkbox" id="khNho"><span>Ghi nhớ đăng nhập trên máy này<span class="nho">30 ngày, lần sau mở web là vào thẳng tài khoản. Không tích nếu dùng máy chung.</span></span></label>
         <button class="nut day" id="nutKH" type="submit" style="margin-top:12px">Đăng nhập</button>
         <div class="loi" id="loiKH"></div>
         <p class="nho">Tên đăng nhập là <b>mã khách hàng</b> in trên hóa đơn. Lần đầu dùng mật khẩu mặc định <b>111111</b>, sau đó đổi mật khẩu riêng để xem hồ sơ và cập nhật thông tin.</p>
@@ -1265,6 +1415,7 @@
         <input id="dnSdt" class="day" inputmode="tel" maxlength="16" placeholder="Số điện thoại" autocomplete="tel">
         <label class="nhan-o" for="pin">Mật khẩu</label>
         <input id="pin" type="password" class="day" autocomplete="current-password" maxlength="60" placeholder="Mật khẩu">
+        <label class="ghi-nho" for="nbNho"><input type="checkbox" id="nbNho"><span>Ghi nhớ đăng nhập trên máy này<span class="nho">14 ngày. Chỉ tích trên máy của riêng mình.</span></span></label>
         <button class="nut day" id="nutPin" type="submit" style="margin-top:12px">Đăng nhập</button>
         <div class="loi" id="loiPin"></div>
         <p class="nho">Dành cho cán bộ trạm. Tài khoản do quản trị cấp.</p>
@@ -1359,6 +1510,7 @@
         <button data-nb="phieu" data-sub="yeuCauNB"><i class=ic data-ic=flask></i> Kiểm tra chất lượng nước <span class="huy-hieu" id="demYC"></span></button>
         <button data-nb="phieu" data-sub="lienHeNB"><i class=ic data-ic=edit></i> Liên hệ / đổi TT <span class="huy-hieu" id="demLH"></span></button>
         <button data-nb="phieu" data-sub="baoCaoNB"><i class=ic data-ic=siren></i> Báo cáo vi phạm <span class="huy-hieu" id="demBC"></span></button>
+        <button data-nb="phieu" data-sub="gopYNB"><i class=ic data-ic=message></i> Góp ý, báo lỗi web <span class="huy-hieu" id="demGY"></span></button>
         <button data-nb="duyet" data-sub="datLaiNB" class="chi-ql"><i class=ic data-ic=key></i> Cấp / đặt lại mật khẩu KH <span class="huy-hieu" id="demDL"></span></button>
         <button data-nb="duyet" data-sub="duyetCN" class="chi-ql"><i class=ic data-ic=checkCircle></i> Duyệt thông tin KH <span class="huy-hieu" id="demCN"></span></button>
         <button data-nb="tram" data-sub="tramNhanVien" class="chi-ql"><i class=ic data-ic=users></i> Quản lý nhân viên</button>
@@ -1370,7 +1522,7 @@
         <button data-nb="quanLy" data-sub="qtKH" class="chi-ql"><i class=ic data-ic=user></i> Khách hàng</button>
         <button data-nb="quanLy" data-sub="qtChiSo" class="chi-ql"><i class=ic data-ic=hash></i> Chỉ số</button>
         <button data-nb="duyet" data-sub="qtTaiKhoan" class="chi-ql"><i class=ic data-ic=users></i> Tài khoản nhân viên</button>
-        <button data-nb="quanLy" data-sub="qtCauHinh" class="chi-adm"><i class=ic data-ic=gear></i> Cấu hình</button>
+        <button data-nb="quanLy" data-sub="qtCauHinh" class="chi-ql"><i class=ic data-ic=gear></i> Cấu hình</button>
         <button data-nb="quanLy" data-sub="qtTruyCap" class="chi-ql"><i class=ic data-ic=trend></i> Truy cập</button>
         <button data-nb="quanLy" data-sub="qtNhatKy" class="chi-ql"><i class=ic data-ic=history></i> Nhật ký</button>
       </div>
@@ -1430,7 +1582,7 @@
       <div id="sub_nghiNgo" class="an">
         <div class="the">
           <div class="hang"><h3 style="margin:0;flex:1"><i class=ic data-ic=users></i> Dữ liệu khách hàng</h3>
-            <button class="nut phu nho-nut" id="dlTaiLai" type="button">Tải lại</button></div>
+            <button class="nut phu nho-nut" id="dlkTaiLai" type="button">Tải lại</button></div>
           <div class="nt-muc dl-muc" id="dlMuc" role="tablist" aria-label="Dữ liệu khách hàng">
             <button type="button" role="tab" data-dl="roi" class="roi"><i class=ic data-ic=checkCircle></i><span>Hộ đã nộp tiền</span><b id="dlSoRoi">…</b><small id="dlTienRoi"></small></button>
             <button type="button" role="tab" data-dl="chua" class="chua on" aria-selected="true"><i class=ic data-ic=hourglass></i><span>Hộ chưa nộp tiền</span><b id="dlSoChua">…</b><small id="dlTienChua"></small></button>
@@ -1448,7 +1600,7 @@
             </div>
             <div class="nho" id="dlGhiChu" style="margin-top:8px"></div>
             <div id="dlKhuBD" style="margin-top:10px"></div>
-            <div class="loi" id="loiDL"></div>
+            <div class="loi" id="loiDLK"></div>
           </div>
           <div class="the">
             <div class="hang" style="justify-content:space-between"><h3 style="margin:0" id="dlTieuDe"></h3><span class="nho" id="dlDem"></span></div>
@@ -1492,6 +1644,17 @@
           <div class="loi" id="loiYCNB"></div>
         </div>
         <div id="dsYC"></div>
+      </div>
+
+      <div id="sub_gopYNB" class="an">
+        <div class="the">
+          <div class="hang"><h3 style="margin:0;flex:1">Góp ý, báo lỗi web</h3>
+            <select id="gyLoc"><option value="mo">Chưa xong</option><option value="">Tất cả</option></select>
+            <button class="nut phu nho-nut" id="gyTaiLai" type="button">Tải lại</button></div>
+          <div class="nho">Khách và cán bộ gửi qua nút <b>Góp ý</b> trên mọi trang. Lỗi web: chuyển cho người quản trị web xử lý.</div>
+          <div class="loi" id="loiGYNB"></div>
+        </div>
+        <div id="dsGY"></div>
       </div>
 
       <div id="sub_lienHeNB" class="an">
@@ -1656,11 +1819,12 @@
       <div id="sub_qtCauHinh" class="an">
         <div class="the">
           <h3><i class=ic data-ic=sliders></i> Cấu hình web (sheet CauHinh)</h3>
-          <p class="nho">Sửa xong bấm Lưu ở từng dòng. Có hiệu lực ngay, không cần triển khai lại.</p>
+          <p class="nho chi-adm">Sửa xong bấm Lưu ở từng dòng. Có hiệu lực ngay, không cần triển khai lại.</p>
+          <p class="thongbao chi-ld-xem" id="chChiXem" style="display:none"><i class=ic data-ic=lock></i> Tài khoản Lãnh đạo quản lý <b>chỉ xem</b> cấu hình, không sửa được. Các mã kết nối được che bớt.</p>
           <div class="loi" id="loiCH"></div>
           <div class="cuon"><table class="sua" id="tblCH"></table></div>
         </div>
-        <div class="the">
+        <div class="the chi-adm">
           <h3><i class=ic data-ic=bell></i> Báo đẩy qua Telegram (tin về điện thoại ngay)</h3>
           <ol class="nho tg-buoc">
             <li>Mở Telegram, tìm <b>@BotFather</b> → gửi <b>/newbot</b> → đặt tên (vd: Trạm nước KVII) và tên bot kết thúc bằng <b>bot</b>.</li>
@@ -1798,7 +1962,7 @@
   <button data-nhom="baoHong"><i class="ic lon-ic" data-ic="wrench"></i>Báo hỏng</button>
   <button data-nhom="viPham"><i class="ic lon-ic" data-ic="alert"></i>Báo vi phạm</button>
   <button data-nhom="tinTuc"><i class="ic lon-ic" data-ic="bell"></i>Tin tức<span class="huy-hieu demTB"></span></button>
-  <button data-nhom="taiKhoan"><i class="ic lon-ic" data-ic="user"></i>Tài khoản</button>
+  <button data-nhom="huongDan"><i class="ic lon-ic" data-ic="book"></i>Hướng dẫn</button>
 </nav>
 <div id="menuBay" role="menu" aria-label="Mục con"></div>
 <div id="nenNop" role="dialog" aria-modal="true" aria-labelledby="bnTieuDe">
@@ -1806,6 +1970,26 @@
     <div class="bn-dau"><h3 id="bnTieuDe">Nộp tiền nước</h3><button class="bg-dong" id="dongNop" type="button" aria-label="Đóng" style="border:0;background:none;font-size:26px;cursor:pointer;color:var(--xam)">×</button></div>
     <div class="bn-than" id="bnThan"></div>
   </div>
+</div>
+<button id="nutGopY" type="button" aria-label="Góp ý, báo lỗi web" title="Góp ý, báo lỗi web"><i class="ic" data-ic="message"></i><span>Góp ý</span></button>
+<div id="nenGY" role="dialog" aria-modal="true" aria-labelledby="gyTieuDe">
+  <form id="fGY" autocomplete="off">
+    <div class="gy-dau"><i class="ic" data-ic="message" style="color:var(--xanh);width:26px;height:26px"></i><h3 id="gyTieuDe">Góp ý, báo lỗi web</h3><button class="gy-dong" id="gyDong" type="button" aria-label="Đóng">×</button></div>
+    <p class="nho" style="margin:0">Mọi ý kiến giúp trạm làm web tốt hơn. Trạm đọc tất cả góp ý.</p>
+    <div class="gy-loai" role="radiogroup" aria-label="Loại">
+      <label><input type="radio" name="gyLoai" value="Góp ý" checked><span class="bieu"><i class="ic" data-ic="heart"></i></span>Góp ý</label>
+      <label class="loi-web"><input type="radio" name="gyLoai" value="Báo lỗi"><span class="bieu"><i class="ic" data-ic="alert"></i></span>Báo lỗi</label>
+    </div>
+    <label class="nhan-o" for="gyMuc">Mục trên web</label>
+    <select id="gyMuc" class="day"></select>
+    <label class="nhan-o" for="gyND">Nội dung <span class="sao">*</span></label>
+    <textarea id="gyND" class="day" rows="4" maxlength="1000" placeholder="VD: Khi bấm Xem ở mục Tra cứu thì báo lỗi… / Đề nghị thêm…"></textarea>
+    <label class="nhan-o" for="gySdt">Số điện thoại (không bắt buộc)</label>
+    <input id="gySdt" class="day" inputmode="tel" maxlength="16" placeholder="Để trạm gọi lại khi cần">
+    <div class="gy-kem"><i class="ic" data-ic="info"></i><span>Kèm theo loại máy, trình duyệt để trạm dễ tìm lỗi. Không gửi thông tin cá nhân nào khác.</span></div>
+    <button class="nut day" id="gyGui" type="submit" style="margin-top:12px">Gửi góp ý</button>
+    <div class="loi" id="gyLoi"></div><div id="gyKQ"></div>
+  </form>
 </div>
 <button id="nutGoi" type="button" aria-label="Gọi điện cho trạm" title="Gọi điện cho trạm"><i class="ic" data-ic="phone"></i></button>
 <div id="bangGoi" role="dialog" aria-label="Chọn số để gọi">
@@ -1823,13 +2007,14 @@
   const anToan = u => /^https?:\/+/i.test(String(u || '').trim()) ? String(u).trim() : '';
   // Apps Script xóa mọi '//' kể cả trong chuỗi mẫu → ghép link bằng hằng số
   const SL = '/' + '/', URL_ZALO = 'https:' + SL + 'zalo.me/', URL_MAP = 'https:' + SL + 'www.google.com/maps?q=';
-  const URL_APK = 'https:' + SL + 'nuocsachkv2.github.io/tai/nuoc-sach-kv2.apk?v=2';
+  const TEN_MIEN = 'trungtamnuocsach.vn', URL_WEB = 'https:' + SL + TEN_MIEN + '/';
+  const URL_APK = URL_WEB + 'tai/nuoc-sach-kv2.apk?v=3';
   const linkZalo = z => esc(/^https:/.test(z) ? z : URL_ZALO + z);
   const zaloCB = x => (x.zalo === undefined ? x.sdt : x.zalo);   // dữ liệu cũ chưa có cột Zalo → dùng SĐT
   // Chạy trong Google (link script.google.com) thì dùng google.script.run; đặt ở tên miền riêng / Cloudflare thì gọi máy chủ qua mạng.
   const API_URL = 'https:' + SL + 'script.google.com/macros/s/AKfycbzLhGtXtZTenoMZT0-AJGUs6tnvxbV8VdE7HUVbbhB0KmCDGsG_q61OPde9x3TNesPdfw/exec';
   const TRONG_GOOGLE = !!(window.google && google.script && google.script.run);
-  const FORM_CONG_KHAI = ['guiYeuCau', 'guiLienHe', 'guiBaoCao', 'guiSuaChua', 'guiHenThu', 'khXinDatLaiMK', 'ghiNopTien'];
+  const FORM_CONG_KHAI = ['guiYeuCau', 'guiLienHe', 'guiBaoCao', 'guiSuaChua', 'guiHenThu', 'khXinDatLaiMK', 'ghiNopTien', 'guiGopY'];
   function goi(ham, ...thamSo) {
     if (FORM_CONG_KHAI.indexOf(ham) >= 0 && thamSo[0] && typeof thamSo[0] === 'object') { const hp = document.getElementById('hpWeb'); thamSo[0] = Object.assign({}, thamSo[0], { web: hp ? hp.value : '' }); }
     if (TRONG_GOOGLE) return new Promise((ok, loi) => {
@@ -1872,6 +2057,8 @@
 
   // ---------- bộ icon nét (SVG) ----------
   const ICON = {
+    book: '<path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20V3H6.5A2.5 2.5 0 0 0 4 5.5v14z"/><path d="M4 19.5A2.5 2.5 0 0 0 6.5 22H20v-5"/><path d="M9 7h7M9 11h5"/>',
+    play: '<path d="M8 5.5v13a1 1 0 0 0 1.5.86l11-6.5a1 1 0 0 0 0-1.72l-11-6.5A1 1 0 0 0 8 5.5z" fill="currentColor" stroke="none"/>',
     download: '<path d="M12 3v12M7 10l5 5 5-5"/><path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/>',
     hash: '<path d="M4 9h16M4 15h16M10 3 8 21M16 3l-2 18"/>',
     scissors: '<circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M20 4 8.1 15.9M14.5 14.5 20 20M8.1 8.1 12 12"/>',
@@ -2025,7 +2212,8 @@
     dichVu: [['yeuCau', 'flask', 'Kiểm tra chất lượng nước'], ['lienHeTab', 'edit', 'Đổi thông tin'], ['thanhToan', 'card', 'Thanh toán'], ['bangGia', 'drop', 'Giá nước'], ['taiApp', 'download', 'Tải ứng dụng']],
     viPham: [['baoViPham', 'alert', 'Báo vi phạm']],
     tinTuc: [['thongBaoTab', 'bell', 'Thông báo'], ['tuyenTruyen', 'wave', 'Tuyên truyền'], ['vanBan', 'doc', 'Văn bản'], ['coCau', 'users', 'Cơ cấu tổ chức']],
-    taiKhoan: [['noiBo', 'user', 'Tài khoản']]
+    huongDan: [['huongDan', 'book', 'Hướng dẫn sử dụng']],
+    taiKhoan: [['noiBo', 'user', 'Tài khoản']]   // không còn nút trên thanh menu – mở bằng nút Đăng nhập ở đầu trang
   };
   // ---------- Tải ứng dụng: link file APK, logo, gợi ý đúng loại máy ----------
   (() => {
@@ -2046,6 +2234,7 @@
     const g = NHOM_CUA[t]; CUOI[g] = t;
     const nhanTab = (NHOM[g].find(x => x[0] === t) || [, , t])[2];
     if (moTab.truoc !== t) { ghiTC('Xem', nhanTab); moTab.truoc = t; }
+    if (t === 'noiBo') setTimeout(() => { try { thuNho(); } catch (e) {} }, 0);
     TABS.forEach(x => $(x).classList.toggle('an', x !== t));
     $$('[data-nhom]').forEach(b => b.classList.toggle('on', b.dataset.nhom === g));
     const ds = NHOM[g], tn = $('thanhNhom');
@@ -2091,6 +2280,35 @@
   $$('[data-nhom]').forEach(b => b.addEventListener('click', () => { moTab(CUOI[b.dataset.nhom] || NHOM[b.dataset.nhom][0][0]); if (NHOM[b.dataset.nhom].length > 1) { if (coChuot) $('menuBay').classList.remove('mo'); else moBay(b); } }));
   $$('[data-tab]').forEach(b => b.addEventListener('click', () => moTab(b.dataset.tab)));
   // nút gọi nổi
+  // ---------- góp ý, báo lỗi web ----------
+  const DS_MUC_GY = ['Tra cứu chỉ số, tiền nước', 'Nộp tiền / nộp tiền hộ', 'Báo hỏng, sửa chữa', 'Kiểm tra chất lượng nước', 'Đổi thông tin, liên hệ', 'Thanh toán', 'Giá nước', 'Tải ứng dụng',
+    'Báo vi phạm', 'Thông báo', 'Tuyên truyền', 'Văn bản', 'Cơ cấu tổ chức', 'Hướng dẫn sử dụng', 'Đăng nhập, tài khoản khách hàng', 'Nội bộ (cán bộ trạm)', 'Gọi điện cho trạm', 'Giao diện, tốc độ web', 'Khác'];
+  const MUC_THEO_TAB = { traCuu: 0, suaChua: 2, yeuCau: 3, lienHeTab: 4, thanhToan: 5, bangGia: 6, taiApp: 7, baoViPham: 8, thongBaoTab: 9, tuyenTruyen: 10, vanBan: 11, coCau: 12, huongDan: 13 };
+  $('gyMuc').innerHTML = DS_MUC_GY.map(m => `<option>${esc(m)}</option>`).join('');
+  const thietBi = () => { const u = navigator.userAgent || ''; const hdh = /android/i.test(u) ? 'Android' : /iphone|ipad|ipod/i.test(u) ? 'iPhone/iPad' : /windows/i.test(u) ? 'Windows' : /mac os/i.test(u) ? 'Mac' : 'Khác';
+    const td = (u.match(/(Edg|OPR|SamsungBrowser|CriOS|Chrome|Firefox|FxiOS|Version)\/(\d+)/) || []).slice(1, 3).join(' ').replace('Version', 'Safari');
+    let app = ''; try { app = matchMedia('(display-mode: standalone)').matches ? ' · ứng dụng' : ''; } catch (e) {}
+    return hdh + (td ? ' · ' + td : '') + ' · ' + window.innerWidth + '×' + window.innerHeight + app; };
+  $('nutGopY').onclick = () => {
+    const dm = document.querySelector('main > section:not(.an)'), id = dm ? dm.id : 'traCuu';
+    const k = id === 'noiBo' ? (TK ? 15 : 14) : (id in MUC_THEO_TAB ? MUC_THEO_TAB[id] : 18);
+    $('gyMuc').selectedIndex = k; $('gyLoi').textContent = ''; $('gyKQ').innerHTML = ''; $('fGY').classList.remove('da-gui');
+    $('nenGY').classList.add('mo'); ghiTC('Mở góp ý', DS_MUC_GY[k]); setTimeout(() => $('gyND').focus(), 60);
+  };
+  const dongGY = () => $('nenGY').classList.remove('mo');
+  $('gyDong').onclick = dongGY;
+  $('nenGY').addEventListener('click', e => { if (e.target === $('nenGY')) dongGY(); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape' && $('nenGY').classList.contains('mo')) dongGY(); });
+  $('fGY').onsubmit = e => {
+    e.preventDefault(); $('gyLoi').textContent = ''; $('gyKQ').innerHTML = '';
+    const d = { loai: (document.querySelector('input[name=gyLoai]:checked') || {}).value || 'Góp ý', muc: $('gyMuc').value, noidung: $('gyND').value.trim(), sdt: $('gySdt').value.trim(), tb: thietBi(), kid: TC_KID };
+    if (d.noidung.length < 5) { $('gyLoi').textContent = 'Anh/chị ghi nội dung góp ý (ít nhất vài chữ).'; $('gyND').focus(); return; }
+    if (d.sdt && !sdtOK(d.sdt)) { $('gyLoi').textContent = 'Số điện thoại chưa đúng (10 số) – hoặc để trống.'; return; }
+    $('gyGui').disabled = true; $('gyGui').textContent = 'Đang gửi…';
+    goi('guiGopY', d).then(r => { ghiTC('Gửi góp ý', d.loai + ' · ' + d.muc); $('gyND').value = '';
+        $('gyKQ').innerHTML = `<div class="thanhcong"><i class=ic data-ic=checkCircle></i> Đã gửi ${esc(d.loai.toLowerCase())} số ${esc(r.phieu)}. Cảm ơn anh/chị đã giúp trạm làm web tốt hơn!</div>`; })
+      .catch(er => $('gyLoi').textContent = er).finally(() => { $('gyGui').disabled = false; $('gyGui').textContent = 'Gửi góp ý'; });
+  };
   $('nutGoi').onclick = e => { e.stopPropagation(); $('bangGoi').classList.toggle('mo'); };
   $('dongGoi').onclick = () => $('bangGoi').classList.remove('mo');
   document.addEventListener('click', e => { if (!e.target.closest('#bangGoi') && !e.target.closest('#nutGoi')) $('bangGoi').classList.remove('mo'); });
@@ -2173,6 +2391,40 @@
   }
   const khongDauJS = t => String(t || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/đ/g, 'd').replace(/Đ/g, 'D').toLowerCase();
   $('vbTim').oninput = veVanBan;
+  // ---------- tuyên truyền: thẻ theo chủ đề, tìm + lọc như Văn bản ----------
+  const CHU_DE_TT = [
+    ['Tiết kiệm nước', /tiet kiem/, 'drop', '#0277bd'],
+    ['Thanh toán, tra cứu', /thanh toan|tien nuoc|hoa don|tra cuu|nop tien|tai khoan/, 'coins', '#b26a00'],
+    ['Đồng hồ, đường ống', /dong ho|chi so|ro ri|duong ong|may bom|bom hut/, 'gauge', '#1565c0'],
+    ['Chất lượng nước', /duc|mau la|mui|clo|chat luong|qcvn|nuoc gieng|nuoc mua|an toan|tru nuoc/, 'flask', '#2e7d32'],
+    ['Vệ sinh, sức khỏe', /rua tay|ve sinh|benh|suc khoe/, 'sparkle', '#ad1457'],
+    ['Lắp đặt, sửa chữa', /lap dat|dau noi|di doi|sua chua|vo ong|mat nuoc|su co/, 'wrench', '#546e7a'],
+    ['Bảo vệ nguồn nước', /nguon nuoc|o nhiem|moi truong|ngay nuoc/, 'leaf', '#558b2f'],
+    ['Chính sách, pháp luật', /luat|nghi dinh|quy dinh|vi pham|xu phat|chien luoc|tuan le|quoc gia|chinh sach/, 'scale', '#6a1b9a']
+  ], CD_KHAC = ['Khác', null, 'wave', '#0b5394'];
+  function chuDeTT(t) {
+    const td = khongDauJS(t.tieude), nd = khongDauJS(t.tieude + ' ' + t.noidung);
+    return CHU_DE_TT.find(d => d[1].test(td)) || CHU_DE_TT.find(d => d[1].test(nd)) || CD_KHAC;
+  }
+  let DS_TT = [], LOC_TT = '';
+  function veLocTT() {
+    const dem = {}; DS_TT.forEach(t => { dem[t.cd[0]] = (dem[t.cd[0]] || 0) + 1; });
+    $('tuyenLoc').innerHTML = `<button type="button" data-cd="" class="${LOC_TT ? '' : 'on'}">Tất cả<span>${DS_TT.length}</span></button>` +
+      CHU_DE_TT.concat([CD_KHAC]).filter(d => dem[d[0]]).map(d => `<button type="button" data-cd="${esc(d[0])}" class="${LOC_TT === d[0] ? 'on' : ''}">${esc(d[0])}<span>${dem[d[0]]}</span></button>`).join('');
+    $$('#tuyenLoc button').forEach(b => b.onclick = () => { LOC_TT = b.dataset.cd; veLocTT(); veTuyenTruyen(); });
+  }
+  function veTuyenTruyen() {
+    const q = khongDauJS($('tuyenTim').value.trim());
+    const ds = DS_TT.filter(t => (!LOC_TT || t.cd[0] === LOC_TT) && (!q || khongDauJS(t.tieude + ' ' + t.noidung).indexOf(q) >= 0));
+    $('dsTuyenTruyen').innerHTML = ds.length ? ds.map(t => `<article class="vb-the tt-the2" style="--mau:${t.cd[3]}">
+        <div class="tt-dau"><span class="tt-bieu">${ic(t.cd[2])}</span><span class="vb-loai">${esc(t.cd[0])}</span></div>
+        <h3>${esc(t.tieude)}</h3>
+        <div class="tt-nd">${esc(t.noidung)}</div>
+        <div class="vb-chan">${t.noidung.length > 180 ? '<button class="tt-them" type="button" aria-expanded="false">Đọc tiếp ▾</button>' : '<span></span>'}${anToan(t.link) ? lk(t.link, ic('link') + ' Nguồn') : ''}</div></article>`).join('')
+      : '<div class="the">' + (DS_TT.length ? 'Không có bài phù hợp.' : 'Đang cập nhật nội dung tuyên truyền.') + '</div>';
+    $$('#dsTuyenTruyen .tt-them').forEach(b => b.onclick = () => { const the = b.closest('.tt-the2'); const mo = the.classList.toggle('mo'); b.textContent = mo ? 'Thu gọn ▴' : 'Đọc tiếp ▾'; b.setAttribute('aria-expanded', mo); });
+  }
+  $('tuyenTim').oninput = veTuyenTruyen;
   // tuyên truyền: biểu tượng theo chủ đề
   function bieuTT(t) {
     const x = khongDauJS(t);
@@ -2253,11 +2505,7 @@
     $('bcLoaiO').innerHTML = c.loaiBC.map((x, i) => `<label title="${esc(x)}"><input type="radio" name="bcLoai" value="${esc(x)}"><span class="bieu">${BIEU_BC[i] || '<i class=ic data-ic=alert></i>'}</span>${esc(GON_BC[i] && c.loaiBC.length === GON_BC.length ? GON_BC[i] : x)}</label>`).join('');
     $$('#bcLoaiO input').forEach(r => r.onchange = () => danhDauChon('#bcLoaiO'));
     oThe('#scLoaiO', 'scLoai', c.loaiSC, ['<i class=ic data-ic=pipe></i>', '<i class=ic data-ic=dropOff></i>', '<i class=ic data-ic=gauge></i>', '<i class=ic data-ic=dropAlert></i>', '<i class=ic data-ic=nut></i>', '<i class=ic data-ic=help></i>'], ['Vỡ, rò rỉ đường ống', 'Mất nước, nước yếu', 'Đồng hồ hỏng, kẹt, vỡ kính', 'Nước đục, có mùi, màu lạ', 'Van, hố van, nắp hố hỏng', 'Sự cố khác']);
-    $('dsTuyenTruyen').innerHTML = c.tuyenTruyen.length ? c.tuyenTruyen.map(t => { const b = bieuTT(t.tieude + ' ' + t.noidung); return `<div class="tt-the"><div class="bieu" style="background:${b[1]}">${b[0]}</div><div style="min-width:0">
-        <h3>${esc(t.tieude)}</h3><div class="tt-nd">${esc(t.noidung)}</div>
-        ${t.noidung.length > 260 ? '<button class="tt-them" type="button">Đọc tiếp ▾</button>' : ''}${anToan(t.link) ? '<div style="margin-top:6px">' + lk(t.link, '<i class=ic data-ic=link></i> Nguồn / xem thêm') + '</div>' : ''}</div></div>`; }).join('')
-      : '<div class="the">Đang cập nhật nội dung tuyên truyền.</div>';
-    $$('#dsTuyenTruyen .tt-them').forEach(b => b.onclick = () => { const the = b.closest('.tt-the'); the.classList.toggle('mo'); b.textContent = the.classList.contains('mo') ? 'Thu gọn ▴' : 'Đọc tiếp ▾'; });
+    DS_TT = c.tuyenTruyen.map(t => Object.assign({ cd: chuDeTT(t) }, t)); veLocTT(); veTuyenTruyen();
     // số điện thoại: nút gọi nổi + thanh toán
     veCoCau(c.coCau || []);
     const phoTram = (c.coCau || []).filter(x => x.sdt && /Trạm phó/i.test(x.chucVu)).map(x => ({ nhan: 'Sửa chữa gấp · ' + x.ten + ' (Trạm phó)', so: dinhSdt(x.sdt), tel: x.sdt, ten: x.ten }));
@@ -2351,10 +2599,13 @@
     $('kqTra').scrollIntoView({ block: 'nearest', behavior: 'smooth' });
     traCuuMa(b.dataset.ma, true);
   }
+  const BO_TRA = new Map();   // chỉ giữ trong bộ nhớ trang, tắt trang là mất
   function traCuuMa(ma, giuKhung) {
     if (!giuKhung) { $('kqTra').innerHTML = ''; }
     $('nutTra').disabled = true; $('nutTra').textContent = 'Đang tìm…';
-    goi('traCuu', ma).then(r => { if (giuKhung) $('kqTra').innerHTML = ''; hienTraCuu(r); }).catch(e => { $('loiTra').textContent = e; if (giuKhung) $('kqTra').innerHTML = ''; })
+    const kTra = khongDauJS(ma).replace(/\s+/g, ' ').trim(), daCo = BO_TRA.get(kTra);
+    (daCo && Date.now() - daCo.t < 600000 ? Promise.resolve(daCo.r) : goi('traCuu', ma).then(r => { BO_TRA.set(kTra, { t: Date.now(), r: r }); if (BO_TRA.size > 40) BO_TRA.delete(BO_TRA.keys().next().value); return r; }))
+      .then(r => { if (giuKhung) $('kqTra').innerHTML = ''; hienTraCuu(r); }).catch(e => { $('loiTra').textContent = e; if (giuKhung) $('kqTra').innerHTML = ''; })
       .finally(() => { $('nutTra').disabled = false; $('nutTra').textContent = 'Xem'; });
   }
   $('fTraCuu').onsubmit = e => {
@@ -2440,7 +2691,23 @@
         <div class="ten">${esc(x.ten)}</div><div class="cv">${esc(x.chucVu)}</div>
         ${x.sdt ? `<div class="so-cc">${ic('phone')}${esc(dinhSdt(x.sdt))}</div><div class="nut-cc"><a class="goi-cc" href="tel:${esc(x.sdt)}" aria-label="Gọi ${esc(x.ten)}">${ic('phone')}Gọi</a>${zaloCB(x) ? `<a class="zalo" href="${linkZalo(zaloCB(x))}" target="_blank" rel="noopener" aria-label="Nhắn Zalo ${esc(x.ten)}">Zalo</a>` : ''}</div>` : ''}</div></div>`;
     const nhom = [['Lãnh đạo trạm', x => /Trạm trưởng|Trạm phó/i.test(x.chucVu)], ['Quản lý địa bàn', x => /Quản lý địa bàn/i.test(x.chucVu)], ['Bộ phận khác', x => !/Trạm trưởng|Trạm phó|Quản lý địa bàn/i.test(x.chucVu)]];
-    $('dsCoCau').innerHTML = ds.length ? nhom.map(([ten, f]) => { const d = ds.filter(f); return d.length ? `<div class="cc-nhom">${esc(ten)}</div><div class="cc-luoi">${d.map(the).join('')}</div>` : ''; }).join('') : '<div class="the">Đang cập nhật.</div>';
+    const dsHTML = ds.length ? nhom.map(([ten, f]) => { const d = ds.filter(f); return d.length ? `<div class="cc-nhom">${esc(ten)}</div><div class="cc-luoi">${d.map(the).join('')}</div>` : ''; }).join('') : '<div class="the">Đang cập nhật.</div>';
+    $('dsCoCau').innerHTML = (ds.length ? soDoCC(ds) : '') + '<div class="cc-ds">' + dsHTML + '</div>';
+  }
+  // sơ đồ tổ chức (máy tính ≥ 900px): đơn vị → trạm trưởng → trạm phó → quản lý địa bàn / bộ phận khác
+  function soDoCC(ds) {
+    const MAU = { tt: '#0b5394', tp: '#1565c0', ql: '#00897b', khac: '#6d4c41' };
+    const the = (x, mau, lon) => `<div class="sd-o"><div class="sd-the${lon ? ' lon' : ''}" style="--mau:${mau}"><div class="av">${esc(chuDau(x.ten))}</div>
+        <div class="ten">${esc(x.ten)}</div><div class="cv">${esc(x.chucVu)}</div>
+        ${x.sdt ? `<div class="so">${esc(dinhSdt(x.sdt))}</div><div class="nut-sd"><a class="goi-cc" href="tel:${esc(x.sdt)}" aria-label="Gọi ${esc(x.ten)}">${ic('phone')}Gọi</a>${zaloCB(x) ? `<a class="zalo" href="${linkZalo(zaloCB(x))}" target="_blank" rel="noopener" aria-label="Zalo ${esc(x.ten)}">Zalo</a>` : ''}</div>` : ''}</div></div>`;
+    const tt = ds.filter(x => /Trạm trưởng/i.test(x.chucVu)), tp = ds.filter(x => /Trạm phó/i.test(x.chucVu)),
+      ql = ds.filter(x => /Quản lý địa bàn/i.test(x.chucVu)), khac = ds.filter(x => !/Trạm trưởng|Trạm phó|Quản lý địa bàn/i.test(x.chucVu));
+    const tang = (nhan, ds2, mau, lon) => ds2.length ? `<div class="sd-tang">${nhan ? `<div class="sd-nhan"><span>${esc(nhan)}</span></div>` : ''}<div class="sd-hang">${ds2.map(x => the(x, mau, lon)).join('')}</div></div>` : '';
+    const nhomDuoi = (nhan, ds2, mau) => ds2.length ? `<div class="sd-nhom"><div class="sd-nhan"><span>${esc(nhan)}</span></div><div class="sd-hang">${ds2.map(x => the(x, mau)).join('')}</div></div>` : '';
+    const duoi = (ql.length || khac.length) ? `<div class="sd-tang"><div class="sd-day">${nhomDuoi('Quản lý địa bàn', ql, MAU.ql)}${nhomDuoi('Bộ phận khác', khac, MAU.khac)}</div></div>` : '';
+    return `<div class="cc-so-do"><div class="sd-don">${esc((CHUNG && CHUNG.donVi) || 'Trạm Nước sạch và Vệ sinh môi trường Khu vực II')}<small>${esc((CHUNG && CHUNG.chuQuan) || '')}</small></div>`
+      + tang('Lãnh đạo trạm', tt, MAU.tt, true) + tang(tt.length ? '' : 'Lãnh đạo trạm', tp, MAU.tp) + duoi
+      + `<div class="cc-chu-giai">Bấm <b>Gọi</b> hoặc <b>Zalo</b> để liên hệ trực tiếp. Chỉ nộp tiền cho đúng cán bộ có tên trong sơ đồ.</div></div>`;
   }
   let TC = null;
   function hienTraCuu(r) {
@@ -2598,7 +2865,26 @@
 
   // ---------- tài khoản khách hàng ----------
   let TKKH = '', KH = null;
-  const KHO_KH = 'tnkv2_kh';
+  const KHO_KH = 'tnkv2_kh', KHO_NHO = 'tnkv2_nho', KHO_DN = 'tnkv2_dn';
+  // ghi nhớ đăng nhập: trình duyệt chỉ giữ 1 mã ngẫu nhiên do máy chủ cấp (không lưu mật khẩu)
+  const docNho = () => { try { const o = JSON.parse(localStorage.getItem(KHO_NHO) || 'null'); return o && /^[0-9a-f]{64}$/.test(o.nho) && (o.loai === 'kh' || o.loai === 'nb') ? o : null; } catch (e) { return null; } };
+  const luuNho = o => { try { if (o) localStorage.setItem(KHO_NHO, JSON.stringify(o)); else localStorage.removeItem(KHO_NHO); } catch (e) {} };
+  const luuDN = o => { try { if (o) localStorage.setItem(KHO_DN, JSON.stringify(o)); else localStorage.removeItem(KHO_DN); } catch (e) {} };
+  function boNho(loai) { const o = docNho(); if (o && (!loai || o.loai === loai)) { luuNho(null); goi('huyNho', o.nho).catch(() => {}); } }
+  function thuNho() {
+    const o = docNho(); if (!o || TK || TKKH || thuNho.dang) return;
+    thuNho.dang = true; $('nhoDang').classList.remove('an');
+    goi('dangNhapNho', o.nho).then(r => {
+      guiTC();
+      if (o.loai === 'nb') { TK = r.token; luuPhien(TK); ghiTC('Đăng nhập nội bộ', r.vaitro + ' · ghi nhớ'); vaoNoiBo(r); }
+      else { TKKH = r.token; luuKH(TKKH); ghiTC('Đăng nhập khách hàng', 'ghi nhớ'); vaoKH(r); }
+    }).catch(e => {
+      if (/hết hạn|đã đổi/.test(String(e))) { luuNho(null); if (o.loai === 'nb') { $('dnLoaiNB').checked = true; chonLoaiDN(); } }
+      $(o.loai === 'nb' ? 'loiPin' : 'loiKH').textContent = e;
+    }).finally(() => { thuNho.dang = false; $('nhoDang').classList.add('an'); });
+  }
+  // điền sẵn tên đăng nhập đã ghi nhớ
+  try { const d = JSON.parse(localStorage.getItem(KHO_DN) || 'null'); if (d) { if (d.ma) { $('khMa').value = d.ma; $('khNho').checked = true; } if (d.ten) { $('dnTen').value = d.ten; $('dnSdt').value = d.sdt || ''; $('nbNho').checked = true; if (d.loai === 'nb') { $('dnLoaiNB').checked = true; chonLoaiDN(); } } } } catch (e) {}
   function luuKH(t) { try { if (t) sessionStorage.setItem(KHO_KH, t); else sessionStorage.removeItem(KHO_KH); } catch (e) {} }
   const goiKH = (ham, ...a) => goi(ham, TKKH, ...a).catch(e => { if (/hết hạn/.test(String(e))) thoatKH(String(e)); throw e; });
   function vaoKH(r) {
@@ -2668,7 +2954,9 @@
     if (ma.replace(/[^0-9]/g, '').length < 6) { $('loiKH').textContent = 'Nhập mã khách hàng đầy đủ in trên hóa đơn.'; return; }
     if (!mk) { $('loiKH').textContent = 'Nhập mật khẩu.'; return; }
     $('nutKH').disabled = true; $('nutKH').textContent = 'Đang đăng nhập…';
-    goi('khDangNhap', ma, mk).then(r => { guiTC(); TKKH = r.token; luuKH(TKKH); ghiTC('Đăng nhập khách hàng', r.macDinh ? 'mật khẩu mặc định' : ''); $('khMk').value = ''; vaoKH(r); if (r.macDinh) $('khMkCu').value = ''; })
+    const nho = $('khNho').checked;
+    goi('khDangNhap', ma, mk, nho).then(r => { guiTC(); TKKH = r.token; luuKH(TKKH);
+      if (nho) { luuDN({ ma: ma }); if (r.nho) luuNho({ loai: 'kh', nho: r.nho }); } else { boNho('kh'); luuDN(null); } ghiTC('Đăng nhập khách hàng', r.macDinh ? 'mật khẩu mặc định' : ''); $('khMk').value = ''; vaoKH(r); if (r.macDinh) $('khMkCu').value = ''; })
       .catch(e => $('loiKH').textContent = e).finally(() => { $('nutKH').disabled = false; $('nutKH').textContent = 'Đăng nhập'; });
   };
   $('moQuenMK').onclick = e => { e.preventDefault(); $('fQuenMK').classList.remove('an'); $('qmMa').value = $('khMa').value; $('qmTen').focus(); };
@@ -2683,7 +2971,7 @@
     goi('khXinDatLaiMK', d).then(r => { ghiTC('Xin đặt lại mật khẩu', d.ma); $('kqQuenMK').innerHTML = `<div class="thanhcong"><i class=ic data-ic=checkCircle></i> Đã gửi yêu cầu số ${esc(r.phieu)}. Trạm sẽ gọi lại số ${esc(d.sdt)} để xác minh, sau đó anh/chị đăng nhập bằng mật khẩu mặc định 111111 và đổi mật khẩu mới.</div>`; $('qmTen').value = $('qmSdt').value = ''; })
       .catch(e => $('loiQuenMK').textContent = e).finally(() => { $('nutQuenMK').disabled = false; $('nutQuenMK').textContent = 'Gửi yêu cầu'; });
   };
-  $('khNutThoat').onclick = () => { const t = TKKH; thoatKH(); if (t) goi('khDangXuat', t).catch(() => {}); };
+  $('khNutThoat').onclick = () => { const t = TKKH; boNho('kh'); thoatKH(); if (t) goi('khDangXuat', t).catch(() => {}); };
   $('khNutMK').onclick = () => { $('khKhungMK').classList.toggle('an'); $('khKqMK').textContent = ''; };
   $('fKHMK').onsubmit = e => {
     e.preventDefault(); $('khKqMK').textContent = '';
@@ -2691,7 +2979,8 @@
     if (moi.length < 6) { $('khKqMK').textContent = 'Mật khẩu mới ít nhất 6 ký tự.'; return; }
     if (moi !== $('khMkMoi2').value) { $('khKqMK').textContent = 'Hai lần nhập mật khẩu mới không khớp.'; return; }
     $('khNutLuuMK').disabled = true;
-    goiKH('khDoiMatKhau', cu, moi).then(r => { $('khMkCu').value = $('khMkMoi').value = $('khMkMoi2').value = ''; $('khKhungMK').classList.add('an'); vaoKH(r); $('khTB').insertAdjacentHTML('afterbegin', '<div class="thanhcong" style="margin:0 0 16px"><i class=ic data-ic=checkCircle></i> Đã đổi mật khẩu. Lần sau đăng nhập bằng mật khẩu mới.</div>'); })
+    goiKH('khDoiMatKhau', cu, moi).then(r => {
+      if ($('khNho').checked && KH) { boNho('kh'); goi('khDangNhap', KH.ma, moi, true).then(x => { if (x.nho) luuNho({ loai: 'kh', nho: x.nho }); }).catch(() => {}); } $('khMkCu').value = $('khMkMoi').value = $('khMkMoi2').value = ''; $('khKhungMK').classList.add('an'); vaoKH(r); $('khTB').insertAdjacentHTML('afterbegin', '<div class="thanhcong" style="margin:0 0 16px"><i class=ic data-ic=checkCircle></i> Đã đổi mật khẩu. Lần sau đăng nhập bằng mật khẩu mới.</div>'); })
       .catch(e => $('khKqMK').textContent = e).finally(() => $('khNutLuuMK').disabled = false);
   };
   $('khNutHuyCN').onclick = () => $('khKhungCN').classList.add('an');
@@ -2749,7 +3038,7 @@
     $('canhPin').classList.toggle('an', !r.mkMacDinh);
     $('khungNoiBo').classList.toggle('bat-doi', !!r.mkMacDinh);
     if (r.mkMacDinh) { $('khungDoiMK').classList.remove('an'); $('kqDoiMK').textContent = ''; setTimeout(() => $('mkCu').focus(), 60); return; }
-    $('demYC').textContent = r.ycMoi || ''; $('demLH').textContent = r.lhMoi || ''; $('demBC').textContent = r.bcMoi || ''; $('demSC').textContent = r.scMoi || ''; $('demCN').textContent = r.cnMoi || ''; $('demDL').textContent = r.dlMoi || ''; $('demHT').textContent = r.htMoi || ''; $('demNT').textContent = r.ntMoi || ''; demNhom();
+    $('demYC').textContent = r.ycMoi || ''; $('demLH').textContent = r.lhMoi || ''; $('demBC').textContent = r.bcMoi || ''; $('demSC').textContent = r.scMoi || ''; $('demCN').textContent = r.cnMoi || ''; $('demDL').textContent = r.dlMoi || ''; $('demHT').textContent = r.htMoi || ''; $('demNT').textContent = r.ntMoi || ''; $('demGY').textContent = r.gyMoi || ''; demNhom();
     $('canhBao').classList.toggle('an', !!r.coBao);
     $('canhTG').classList.toggle('an', !r.tgThieu);
     $('chonThang').innerHTML = r.thangs.map(t => `<option>${esc(t)}</option>`).join('');
@@ -2762,15 +3051,18 @@
     $('chuDangNhap').textContent = 'Đăng nhập'; $('nutDangNhap').classList.remove('on'); $('nutDangNhap').title = 'Đăng nhập nội bộ';
     $('khungNoiBo').classList.add('an'); $('khungPin').classList.remove('an'); $('pin').value = ''; $('dnLoaiNB').checked = true; chonLoaiDN();
     $('loiPin').textContent = loi || '';
+    if (loi && /hết hạn/.test(loi) && docNho() && docNho().loai === 'nb') setTimeout(thuNho, 200);
   }
   $('fPin').onsubmit = e => {
     e.preventDefault();
     $('loiPin').textContent = ''; $('nutPin').disabled = true; $('nutPin').textContent = 'Đang đăng nhập…';
     if (!$('dnTen').value.trim()) { $('loiPin').textContent = 'Nhập tên đăng nhập.'; $('nutPin').disabled = false; $('nutPin').textContent = 'Đăng nhập'; return; }
-    goi('dangNhap', $('dnSdt').value.trim(), $('pin').value, $('dnTen').value.trim()).then(r => { guiTC(); if (TKKH) { goi('khDangXuat', TKKH).catch(() => {}); thoatKH(); } TK = r.token; luuPhien(TK); ghiTC('Đăng nhập nội bộ', r.vaitro); $('pin').value = ''; vaoNoiBo(r); })
+    const nho = $('nbNho').checked, dnTen = $('dnTen').value.trim(), dnSdt = $('dnSdt').value.trim();
+    goi('dangNhap', dnSdt, $('pin').value, dnTen, nho).then(r => {
+      if (nho) { luuDN({ ten: dnTen, sdt: dnSdt, loai: 'nb' }); if (r.nho) luuNho({ loai: 'nb', nho: r.nho }); } else { boNho('nb'); luuDN(null); } guiTC(); if (TKKH) { goi('khDangXuat', TKKH).catch(() => {}); thoatKH(); } TK = r.token; luuPhien(TK); ghiTC('Đăng nhập nội bộ', r.vaitro); $('pin').value = ''; vaoNoiBo(r); })
       .catch(e => $('loiPin').textContent = e).finally(() => { $('nutPin').disabled = false; $('nutPin').textContent = 'Đăng nhập'; });
   };
-  $('nutDangXuat').onclick = () => { const t = TK; thoatNoiBo(); if (t) goi('dangXuat', t).catch(() => {}); };
+  $('nutDangXuat').onclick = () => { const t = TK; boNho('nb'); thoatNoiBo(); if (t) goi('dangXuat', t).catch(() => {}); };
   $('nutDoiMK').onclick = () => { $('khungDoiMK').classList.toggle('an'); $('kqDoiMK').textContent = ''; };
   $('nutHuyMK').onclick = () => $('khungDoiMK').classList.add('an');
   $('fDoiMK').onsubmit = e => {
@@ -2779,7 +3071,8 @@
     if (moi.length < 6) { $('kqDoiMK').textContent = 'Mật khẩu mới ít nhất 6 ký tự.'; return; }
     if (moi !== moi2) { $('kqDoiMK').textContent = 'Hai lần nhập mật khẩu mới không khớp.'; return; }
     $('nutLuuMK').disabled = true;
-    goiNB('doiMatKhau', cu, moi).then(() => { const batDoi = $('khungNoiBo').classList.contains('bat-doi'); $('kqDoiMK').textContent = 'Đã đổi mật khẩu ✓'; $('mkCu').value = $('mkMoi').value = $('mkMoi2').value = ''; $('canhPin').classList.add('an');
+    goiNB('doiMatKhau', cu, moi).then(() => {
+        if ($('nbNho').checked && ND) { boNho('nb'); goi('dangNhap', ND.sdt, moi, ND.ten, true).then(x => { if (x.nho) luuNho({ loai: 'nb', nho: x.nho }); if (x.token) { const cuTK = TK; TK = x.token; luuPhien(TK); goi('dangXuat', cuTK).catch(() => {}); } }).catch(() => {}); } const batDoi = $('khungNoiBo').classList.contains('bat-doi'); $('kqDoiMK').textContent = 'Đã đổi mật khẩu ✓'; $('mkCu').value = $('mkMoi').value = $('mkMoi2').value = ''; $('canhPin').classList.add('an');
         if (batDoi) { $('khungNoiBo').classList.remove('bat-doi'); goiNB('kiemTraPhien').then(vaoNoiBo); baoNhanh('Đã đổi mật khẩu. Từ lần sau đăng nhập bằng mật khẩu mới.'); } })
       .catch(e => $('kqDoiMK').textContent = e).finally(() => $('nutLuuMK').disabled = false);
   };
@@ -2789,6 +3082,7 @@
   ['pointerdown', 'keydown', 'touchstart', 'wheel'].forEach(ev => document.addEventListener(ev, () => { lanCuoi = Date.now(); }, { passive: true, capture: true }));
   function kiemNghi() {
     if (Date.now() - lanCuoi < NGHI_TOI_DA || (!TK && !TKKH)) return;
+    { const o = docNho(); if (o && ((o.loai === 'nb' && TK) || (o.loai === 'kh' && TKKH))) return; }
     const t = TK, k = TKKH;
     if (t) { thoatNoiBo('Đã tự đăng xuất sau 30 phút không thao tác để bảo vệ tài khoản. Anh/chị đăng nhập lại.'); goi('dangXuat', t).catch(() => {}); }
     if (k) { goi('khDangXuat', k).catch(() => {}); thoatKH(); }
@@ -2800,7 +3094,7 @@
   { const t = docPhien(); if (t) { TK = t; goi('kiemTraPhien', t).then(vaoNoiBo).catch(() => { TK = ''; luuPhien(''); }); } }
   $$('#tabNB button').forEach(b => b.onclick = () => {
     moSub('tabNB', 'sub', b.dataset.sub);
-    ['baoCao', 'baoCaoNam', 'soSanh', 'nghiNgo', 'suaChuaNB', 'nopTienNB', 'thuTienNB', 'henThuNB', 'yeuCauNB', 'lienHeNB', 'baoCaoNB', 'datLaiNB', 'duyetCN', 'tramNhanVien', 'tramLichTruc', 'tramLichChot', 'tramNVChot', 'tramTGChot', 'trienKhai', 'qtTruyCap', 'qtKH', 'qtChiSo', 'qtTaiKhoan', 'qtCauHinh', 'qtNhatKy'].forEach(t => $('sub_' + t).classList.toggle('an', t !== b.dataset.sub));
+    ['baoCao', 'baoCaoNam', 'soSanh', 'nghiNgo', 'suaChuaNB', 'nopTienNB', 'thuTienNB', 'henThuNB', 'yeuCauNB', 'lienHeNB', 'baoCaoNB', 'gopYNB', 'datLaiNB', 'duyetCN', 'tramNhanVien', 'tramLichTruc', 'tramLichChot', 'tramNVChot', 'tramTGChot', 'trienKhai', 'qtTruyCap', 'qtKH', 'qtChiSo', 'qtTaiKhoan', 'qtCauHinh', 'qtNhatKy'].forEach(t => $('sub_' + t).classList.toggle('an', t !== b.dataset.sub));
     if (b.dataset.sub === 'qtTaiKhoan') taiTK();
     if (b.dataset.sub === 'qtCauHinh') taiCH();
     if (b.dataset.sub === 'qtNhatKy') taiNK();
@@ -2811,6 +3105,7 @@
     if (b.dataset.sub === 'tramNhanVien') taiNVNN();
     if (b.dataset.sub === 'yeuCauNB') taiYC();
     if (b.dataset.sub === 'suaChuaNB') taiSC();
+    if (b.dataset.sub === 'gopYNB') taiGY();
     if (b.dataset.sub === 'lienHeNB') taiLH();
     if (b.dataset.sub === 'baoCaoNB') taiBC();
     if (b.dataset.sub === 'duyetCN') taiCN();
@@ -2831,7 +3126,7 @@
   $$('#nhomNB button').forEach(b => b.onclick = () => chonNhomNB(b.dataset.nb, true));
   function demNhom() {
     const n = ids => ids.reduce((a, id) => a + (Number($(id).textContent) || 0), 0);
-    $('demNhomPhieu').textContent = n(['demSC', 'demNT', 'demHT', 'demYC', 'demLH', 'demBC']) || '';
+    $('demNhomPhieu').textContent = n(['demSC', 'demNT', 'demHT', 'demYC', 'demLH', 'demBC', 'demGY']) || '';
     $('demNhomDuyet').textContent = n(['demDL', 'demCN']) || '';
   }
   chonNhomNB('sanLuong', false);
@@ -2901,14 +3196,14 @@
   }
   $$('#dlMuc [data-dl]').forEach(b => b.onclick = () => chonMucDL(b.dataset.dl));
   function taiDLK(thang) {
-    $('loiDL').textContent = ''; $('dlDS').innerHTML = '<div class="nho">Đang tải danh sách hộ…</div>';
+    $('loiDLK').textContent = ''; $('dlDS').innerHTML = '<div class="nho">Đang tải danh sách hộ…</div>';
     goiNB('dsThuTien', thang || '').then(r => {
       DLK = r;
       $('dlThang').innerHTML = r.thangs.map(t => `<option ${t === r.thang ? 'selected' : ''}>${esc(t)}</option>`).join('');
       const khus = [...new Set(r.ds.map(x => x[2]).filter(Boolean))].sort(), giu = $('dlKhu').value;
       $('dlKhu').innerHTML = '<option value="">Tất cả</option>' + khus.map(k => `<option ${k === giu ? 'selected' : ''}>${esc(k)}</option>`).join('');
       dienXomDL(); dlSo = 60; hienDLK();
-    }).catch(e => { $('loiDL').textContent = e; $('dlDS').innerHTML = ''; });
+    }).catch(e => { $('loiDLK').textContent = e; $('dlDS').innerHTML = ''; });
   }
   function dienXomDL() {
     const khu = $('dlKhu').value, giu = $('dlXom').value;
@@ -2950,7 +3245,7 @@
   $('dlXep').onchange = () => hienDLK();
   $('dlTim').oninput = () => { dlSo = 60; hienDLK(); };
   $('dlThem').onclick = () => { dlSo += 100; hienDLK(); };
-  $('dlTaiLai').onclick = () => { if (dlMuc === 'nn') { SS = null; taiSoSanh(hienNghiNgo); } else taiDLK(DLK ? DLK.thang : ''); };
+  $('dlkTaiLai').onclick = () => { if (dlMuc === 'nn') { SS = null; taiSoSanh(hienNghiNgo); } else taiDLK(DLK ? DLK.thang : ''); };
 
   // ---------- Quản lý trạm › Quản lý nhân viên (mức năng nổ) ----------
   let NVN = null;
@@ -3455,8 +3750,8 @@
         <button class="nut nho-nut nut-xoa chi-adm pXoa" type="button" data-loai="${LOAI_HAM[ham]}" title="Xóa hẳn phiếu này (chỉ Quản trị)"><i class=ic data-ic=xCircle></i> Xóa phiếu</button>
       </div></div>`;
   }
-  const LOAI_HAM = { capNhatLienHe: 'LH', capNhatBaoCao: 'BC', capNhatSuaChua: 'SC', capNhatHenThu: 'HT' };
-  const TAI_LAI_PHIEU = { YC: () => taiYC(), LH: () => taiLH(), BC: () => taiBC(), SC: () => taiSC(), HT: () => taiHT(), NT: () => taiNT() };
+  const LOAI_HAM = { capNhatLienHe: 'LH', capNhatBaoCao: 'BC', capNhatSuaChua: 'SC', capNhatHenThu: 'HT', capNhatGopY: 'GY' };
+  const TAI_LAI_PHIEU = { YC: () => taiYC(), LH: () => taiLH(), BC: () => taiBC(), SC: () => taiSC(), HT: () => taiHT(), NT: () => taiNT(), GY: () => taiGY() };
   document.addEventListener('click', e => {
     const b = e.target.closest && e.target.closest('.pXoa'); if (!b) return;
     const o = b.closest('[data-dong]'), dong = Number(o && o.dataset.dong), loai = b.dataset.loai;
@@ -3472,7 +3767,7 @@
       goiNB(o.dataset.ham, dong, tt, nv, gc).then(() => {
         const y = ds.find(x => x.dong === dong); Object.assign(y, { tt: tt, nv: nv, ghichu: gc });
         o.querySelector('.pKQ').textContent = 'Đã lưu ✓';
-        const bd = { capNhatLienHe: 'demLH', capNhatBaoCao: 'demBC', capNhatSuaChua: 'demSC', capNhatHenThu: 'demHT' }[o.dataset.ham];
+        const bd = { capNhatLienHe: 'demLH', capNhatBaoCao: 'demBC', capNhatSuaChua: 'demSC', capNhatHenThu: 'demHT', capNhatGopY: 'demGY' }[o.dataset.ham];
         if (bd) $(bd).textContent = ds.filter(y => y.tt === 'Mới').length || '';
         demNhom();
       }).catch(e => o.querySelector('.pKQ').textContent = e).finally(() => b.disabled = false);
@@ -3494,6 +3789,25 @@
     ganLuu('dsLH', LH);
   }
   $('lhLoc').onchange = hienLH; $('lhTaiLai').onclick = taiLH;
+
+  // ---------- góp ý, báo lỗi web (nội bộ) ----------
+  const TT_GY = ['Mới', 'Đã xem', 'Đang xử lý', 'Đã xử lý', 'Không xử lý'];
+  let GY = [];
+  function taiGY() {
+    $('loiGYNB').textContent = ''; $('dsGY').innerHTML = '<div class="the nho">Đang tải…</div>';
+    goiNB('dsGopY').then(r => { GY = r; hienGY(); }).catch(e => { $('loiGYNB').textContent = e; $('dsGY').innerHTML = ''; });
+  }
+  function hienGY() {
+    const loc = $('gyLoc').value, mo = ['Mới', 'Đã xem', 'Đang xử lý'];
+    const ds = GY.filter(y => !loc || mo.indexOf(y.tt) >= 0);
+    $('demGY').textContent = GY.filter(y => y.tt === 'Mới').length || ''; demNhom();
+    $('dsGY').innerHTML = ds.length ? ds.map(y => khungPhieu(y, 'capNhatGopY', TT_GY,
+      `<div><span class="nhan ${y.loai === 'Báo lỗi' ? 'do' : 'xanh'}">${esc(y.loai)}</span> <span class="nhan vang">${esc(y.muc)}</span></div>
+       <div style="white-space:pre-line;margin-top:6px">${esc(y.noidung)}</div>
+       <div class="nho" style="margin-top:4px">${y.sdt ? 'SĐT: <a class="tel" href="tel:' + esc(y.sdt) + '">' + esc(y.sdt) + '</a> · ' : 'Ẩn danh · '}${esc(y.tb)}</div>`, mo)).join('') : '<div class="the">Không có góp ý nào.</div>';
+    ganLuu('dsGY', GY);
+  }
+  $('gyLoc').onchange = hienGY; $('gyTaiLai').onclick = taiGY;
 
   // ---------- báo cáo vi phạm (nội bộ) ----------
   function taiBC() {
@@ -3646,6 +3960,8 @@
   function taiCH() {
     $('loiCH').textContent = ''; $('tblCH').innerHTML = '<tr><td class="nho">Đang tải…</td></tr>';
     goiNB('admCauHinh').then(r => {
+      const chiXem = !ND || ND.vaitro !== 'adm'; $('chChiXem').style.display = chiXem ? 'flex' : 'none';
+      if (chiXem) { $('tblCH').innerHTML = `<tr><th>Khóa</th><th style="min-width:220px">Giá trị</th><th>Giải thích</th></tr>` + r.map(x => `<tr><td><b>${esc(x.khoa)}</b></td><td><span class="ch-xem">${esc(x.giatri)}</span></td><td class="nho">${esc(x.giaithich)}</td></tr>`).join(''); return; }
       $('tblCH').innerHTML = `<tr><th>Khóa</th><th style="min-width:220px">Giá trị</th><th>Giải thích</th><th></th></tr>` +
         r.map(x => `<tr data-khoa="${esc(x.khoa)}"><td><b>${esc(x.khoa)}</b></td><td><input class="ch-gt" value="${esc(x.giatri)}" maxlength="1000"></td><td class="nho">${esc(x.giaithich)}</td><td style="white-space:nowrap"><button class="nut nho-nut ch-luu" type="button">Lưu</button><div class="nho ch-kq"></div></td></tr>`).join('');
       $$('#tblCH tr[data-khoa]').forEach(tr => tr.querySelector('.ch-luu').onclick = () => {
