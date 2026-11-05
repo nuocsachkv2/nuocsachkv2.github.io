@@ -17,10 +17,28 @@
     });
   }
 
+  // 1b) Có bản web mới (service worker báo): khách chưa thao tác → tự tải lại; đang dùng → hiện nút "Cập nhật"
+  var luocMo = Date.now(), daThaoTac = false;
+  ['pointerdown', 'keydown', 'touchstart'].forEach(function (ev) { document.addEventListener(ev, function () { daThaoTac = true; }, { passive: true, capture: true }); });
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.addEventListener('message', function (ev) {
+      if (!ev.data || ev.data.loai !== 'ban-moi') return;
+      if (!daThaoTac && Date.now() - luocMo < 8000) { location.reload(); return; }
+      if (document.getElementById('banMoi')) return;
+      var k = document.createElement('div'); k.id = 'banMoi'; k.setAttribute('role', 'status');
+      k.style.cssText = 'position:fixed;z-index:90;left:50%;transform:translateX(-50%);top:10px;background:#0b5394;color:#fff;border-radius:999px;padding:8px 8px 8px 16px;display:flex;gap:10px;align-items:center;font-size:14px;box-shadow:0 8px 24px rgba(0,0,0,.25);max-width:calc(100vw - 20px)';
+      var t = document.createElement('span'); t.textContent = 'Web vừa có bản mới';
+      var b = document.createElement('button'); b.type = 'button'; b.textContent = 'Cập nhật';
+      b.style.cssText = 'border:0;border-radius:999px;background:#fff;color:#0b5394;font-weight:700;padding:6px 12px;cursor:pointer';
+      b.onclick = function () { location.reload(); };
+      k.appendChild(t); k.appendChild(b); document.body.appendChild(k);
+    });
+  }
+
   // 2) Mở thẳng mục khi bấm phím tắt trên biểu tượng app (#baoHong, #viPham, #traCuu)
   function moTheoDuongDan() {
     var nhom = (location.hash || '').replace('#', '');
-    if (!/^(traCuu|baoHong|viPham|dichVu|tinTuc)$/.test(nhom)) return;
+    if (!/^(traCuu|baoHong|viPham|dichVu|tinTuc|huongDan)$/.test(nhom)) return;
     var nut = null;
     document.querySelectorAll('nav button[data-nhom="' + nhom + '"]').forEach(function (b) {
       if (!nut && b.offsetParent !== null) nut = b;

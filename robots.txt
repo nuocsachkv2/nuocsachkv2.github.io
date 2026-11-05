@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+Disallow: /tai/
+Sitemap: https://trungtamnuocsach.vn/sitemap.xml
