@@ -12,7 +12,7 @@
     if (biNhung) { document.documentElement.style.display = 'none'; try { window.top.location = window.self.location.href; } catch (e) {} }
     var S = '/' + '/', g = 'https:' + S;
     // chỉ cho chạy đúng đoạn mã của trạm (mã băm SHA-256 tính lúc đóng gói) → mã độc chèn vào trang không chạy được
-    var BAM = 'rAPMe+xWyvAAvXyzTASqaijs0ThXwCARNr3aVtfc41k=', B = BAM.split('_').join(String.fromCharCode(47));
+    var BAM = 'x5EOuPqQ11yL8sivsvrjzHNK_cu6WcVxB3rAp4LxXRw=', B = BAM.split('_').join(String.fromCharCode(47));
     var m = document.createElement('meta'); m.httpEquiv = 'Content-Security-Policy';
     m.content = "default-src 'self'; script-src 'self' 'sha256-" + B + "'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https:; font-src 'self' data:; "
       + "connect-src 'self' " + g + 'script.google.com ' + g + "script.googleusercontent.com; frame-src 'none'; object-src 'none'; base-uri 'none'; form-action 'self'; upgrade-insecure-requests";
@@ -812,6 +812,47 @@
   /* tên nhóm giá dài (VD hộ HD2) không được tràn ngang trên điện thoại */
   #kqTra .nhan, #khungKH .nhan, .tc-the .nhan { white-space:normal; overflow-wrap:anywhere; max-width:100%; display:inline-block; line-height:1.35; text-align:left; }
   .bn-meo { margin:8px 2px 0; }
+  /* ---------- Tải ứng dụng ---------- */
+  .ta-dau { display:flex; gap:16px; align-items:center; background:linear-gradient(120deg,#0b5394,#1e88e5); color:#fff; border-radius:18px; padding:18px 20px; box-shadow:var(--bong); }
+  .ta-dau h2 { margin:0 0 4px; color:#fff; font-size:22px; }
+  .ta-dau p { margin:0 0 10px; opacity:.95; line-height:1.45; }
+  .ta-icon { flex:none; width:84px; height:84px; border-radius:22px; background:#fff; display:flex; align-items:center; justify-content:center; box-shadow:0 6px 18px rgba(0,0,0,.18); }
+  .ta-icon img { width:72px; height:72px; border-radius:16px; object-fit:contain; }
+  .ta-chip { display:flex; flex-wrap:wrap; gap:6px; }
+  .ta-chip span { display:inline-flex; align-items:center; gap:5px; background:rgba(255,255,255,.18); border:1px solid rgba(255,255,255,.35); border-radius:999px; padding:4px 10px; font-size:13px; font-weight:600; }
+  .ta-luoi { display:grid; grid-template-columns:repeat(2, minmax(0,1fr)); gap:14px; margin-top:14px; }
+  .ta-the { background:#fff; border:1px solid var(--vien); border-radius:16px; padding:16px; box-shadow:var(--bong); }
+  .ta-the.goi-y { border:2px solid var(--nuoc); box-shadow:0 0 0 4px rgba(30,136,229,.12); }
+  .ta-tren { display:flex; gap:12px; align-items:center; margin-bottom:12px; }
+  .ta-tren h3 { margin:0 0 3px; font-size:18px; }
+  .ta-hdh { width:48px; height:48px; border-radius:14px; display:inline-flex; align-items:center; justify-content:center; font-size:26px; flex:none; }
+  .ta-android .ta-hdh { background:var(--la2); color:var(--la); }
+  .ta-ios .ta-hdh { background:#eef2f7; color:#344054; }
+  .ta-nhan { display:inline-block; font-size:12px; font-weight:800; border-radius:999px; padding:2px 9px; }
+  .ta-nhan.co { background:var(--la2); color:var(--la); } .ta-nhan.cho { background:var(--vang2); color:var(--vang); }
+  .ta-nhan.may { background:var(--xanh2); color:var(--xanh); margin-left:4px; }
+  .ta-nut { display:flex; align-items:center; gap:12px; text-decoration:none; border-radius:14px; padding:12px 16px; min-height:60px; background:var(--la); color:#fff; font-size:26px; box-shadow:0 4px 12px rgba(46,125,50,.28); }
+  .ta-nut:hover { filter:brightness(1.06); } .ta-nut:active { transform:translateY(1px); }
+  .ta-nut span { display:flex; flex-direction:column; line-height:1.25; }
+  .ta-nut b { font-size:18px; } .ta-nut small { font-size:13px; opacity:.92; font-weight:500; }
+  .ta-nut.tat { background:#eef2f7; color:var(--xam); box-shadow:none; cursor:default; }
+  .ta-buoc { list-style:none; counter-reset:ta; padding:0; margin:14px 0 6px; display:grid; gap:10px; }
+  .ta-buoc li { counter-increment:ta; position:relative; padding-left:40px; line-height:1.45; font-size:15px; }
+  .ta-buoc li::before { content:counter(ta); position:absolute; left:0; top:0; width:28px; height:28px; border-radius:50%; background:var(--xanh2); color:var(--xanh); font-weight:800; display:flex; align-items:center; justify-content:center; }
+  .ta-ghi { display:flex; gap:8px; align-items:flex-start; background:var(--la2); border-radius:10px; padding:10px 12px; font-size:14px; color:#1b5e20; margin:10px 0 0; }
+  .ta-ghi .ic { flex:none; margin-top:2px; }
+  .ta-ghi2 { font-size:15px; line-height:1.5; margin:12px 0 0; }
+  .ta-kt { margin-top:10px; font-size:13px; color:var(--xam); }
+  .ta-kt summary { cursor:pointer; font-weight:600; padding:4px 0; }
+  .ta-kt div { background:#f6f8fb; border-radius:10px; padding:10px; margin-top:6px; line-height:1.6; }
+  .ta-ma { display:block; word-break:break-all; font-size:12px; }
+  .ta-canh { display:flex; gap:12px; align-items:flex-start; margin-top:14px; background:var(--do2); border:1px solid #f5b5ae; color:#7f1d1d; border-radius:14px; padding:14px; line-height:1.5; }
+  .ta-canh > .ic { font-size:24px; flex:none; color:var(--do); }
+  @media (max-width: 899px) {
+    .ta-luoi { grid-template-columns:1fr; }
+    .ta-dau { flex-direction:column; text-align:center; padding:18px 14px; }
+    .ta-chip { justify-content:center; }
+  }
 </style>
 </head>
 <body>
@@ -1087,6 +1128,43 @@
     <div class="vb-luoi" id="dsVanBan"></div>
   </section>
 
+  <!-- ========== TẢI ỨNG DỤNG ========== -->
+  <section id="taiApp" class="an">
+    <div class="ta-dau">
+      <div class="ta-icon"><img id="taLogo" alt="Biểu tượng ứng dụng Nước sạch KV II" width="72" height="72"></div>
+      <div>
+        <h2>Ứng dụng Nước sạch KV II</h2>
+        <p>Tra cứu tiền nước, báo hỏng, báo vi phạm ngay trên điện thoại – mở là dùng, không phải gõ địa chỉ web.</p>
+        <div class="ta-chip"><span><i class=ic data-ic=search></i> Tra cứu tiền nước</span><span><i class=ic data-ic=wrench></i> Báo hỏng</span><span><i class=ic data-ic=alert></i> Báo vi phạm</span><span><i class=ic data-ic=user></i> Tài khoản khách hàng</span></div>
+      </div>
+    </div>
+    <div class="ta-luoi">
+      <div class="ta-the ta-android" id="taAndroid">
+        <div class="ta-tren"><span class="ta-hdh"><i class=ic data-ic=android></i></span><div><h3>Điện thoại Android</h3><span class="ta-nhan co">Có sẵn</span></div></div>
+        <a class="ta-nut" id="taNutApk" href="#" target="_blank" rel="noopener" download="NuocSachKV2.apk"><i class=ic data-ic=download></i><span><b>Tải ứng dụng</b><small>File cài đặt APK · 0,74 MB · Android 7 trở lên</small></span></a>
+        <ol class="ta-buoc">
+          <li><b>Bấm "Tải ứng dụng"</b> ở trên. Tải xong, bấm vào thông báo <b>NuocSachKV2.apk</b> (hoặc mở mục <b>Tệp đã tải xuống</b>).</li>
+          <li>Máy hỏi <b>"Cho phép cài ứng dụng từ nguồn này"</b> → bấm <b>Cài đặt</b> → bật <b>Cho phép</b> → quay lại. Nếu máy báo "ứng dụng chưa được quét", bấm <b>Chi tiết → Vẫn cài đặt</b>.</li>
+          <li>Bấm <b>Cài đặt</b>, xong bấm <b>Mở</b>. Lần sau mở biểu tượng <b>Nước sạch KV II</b> trên màn hình chính.</li>
+        </ol>
+        <p class="ta-ghi"><i class=ic data-ic=checkCircle></i><span>Ứng dụng <b>không xin quyền gì</b> trên máy (không đọc danh bạ, tin nhắn, ảnh, vị trí). Trạm cập nhật web thì ứng dụng tự mới theo, không phải tải lại.</span></p>
+        <details class="ta-kt"><summary>Mã kiểm tra file (dành cho người rành máy)</summary>
+          <div>Phiên bản 1.0.1 (mã 2) · gói <code>io.github.nuocsachkv2.app</code><br>SHA-256 file APK:<br><code class="ta-ma">01d73ab563ad7d79837a18268deaa1202f2f63d8681c9fad357d4a6cbad4ccb1</code></div></details>
+      </div>
+      <div class="ta-the ta-ios" id="taIos">
+        <div class="ta-tren"><span class="ta-hdh"><i class=ic data-ic=apple></i></span><div><h3>iPhone, iPad</h3><span class="ta-nhan cho">Đang phát triển</span></div></div>
+        <div class="ta-nut tat" aria-disabled="true"><i class=ic data-ic=hourglass></i><span><b>App Store – sắp có</b><small>Ứng dụng cho iPhone đang được phát triển</small></span></div>
+        <p class="ta-ghi2">Trong lúc chờ, anh/chị dùng web này ngay trên <b>Safari</b> – đầy đủ chức năng như ứng dụng. Muốn có biểu tượng trên màn hình chính:</p>
+        <ol class="ta-buoc">
+          <li>Mở trang <b>nuocsachkv2.github.io</b> bằng <b>Safari</b>.</li>
+          <li>Bấm nút <b>Chia sẻ</b> (ô vuông có mũi tên lên) ở dưới màn hình.</li>
+          <li>Chọn <b>Thêm vào MH chính</b> → bấm <b>Thêm</b>.</li>
+        </ol>
+      </div>
+    </div>
+    <div class="ta-canh"><i class=ic data-ic=shieldAlert></i><div><b>Chỉ tải ứng dụng tại trang này của trạm.</b> Trạm <b>không</b> gửi file cài đặt qua Zalo, tin nhắn hay cuộc gọi. Ai gửi file <b>.apk</b> hoặc đường link lạ tự xưng là trạm, nhân viên điện nước → đó là <b>lừa đảo</b>, không cài, gọi ngay cho cán bộ quản lý địa bàn.</div></div>
+  </section>
+
   <!-- ========== BẢNG GIÁ ========== -->
   <section id="bangGia" class="an">
     <div class="luoi2">
@@ -1243,6 +1321,7 @@
         <button data-nb="quanLy" data-sub="qtNhatKy" class="chi-ql"><i class=ic data-ic=history></i> Nhật ký</button>
       </div>
       <div id="canhBao" class="thongbao an">Chưa cấu hình báo đẩy: điền <b>email_adm</b> (Gmail của quản lý), <b>Telegram</b> (Quản trị › Cấu hình) hoặc <b>webhook_adm</b>. <button class="nut phu nho-nut" id="nutThuBao" type="button">Thử báo đẩy</button> <span class="nho" id="kqThuBao"></span></div>
+      <div id="canhTG" class="thongbao an chi-ql"><b>Telegram chưa có người nhận</b> – đã có mã bot nhưng ô <b>telegram_chat_id</b> đang trống nên phiếu mới chỉ báo qua Gmail. Quản trị › Cấu hình › <b>Lấy người nhận</b> → bấm <b>Thêm</b> tên mình (trước đó nhắn /start cho bot).</div>
 
       <div id="sub_baoCao">
         <div class="the">
@@ -1587,6 +1666,7 @@
   const anToan = u => /^https?:\/+/i.test(String(u || '').trim()) ? String(u).trim() : '';
   // Apps Script xóa mọi '//' kể cả trong chuỗi mẫu → ghép link bằng hằng số
   const SL = '/' + '/', URL_ZALO = 'https:' + SL + 'zalo.me/', URL_MAP = 'https:' + SL + 'www.google.com/maps?q=';
+  const URL_APK = 'https:' + SL + 'nuocsachkv2.github.io/tai/nuoc-sach-kv2.apk?v=2';
   const linkZalo = z => esc(/^https:/.test(z) ? z : URL_ZALO + z);
   const zaloCB = x => (x.zalo === undefined ? x.sdt : x.zalo);   // dữ liệu cũ chưa có cột Zalo → dùng SĐT
   // Chạy trong Google (link script.google.com) thì dùng google.script.run; đặt ở tên miền riêng / Cloudflare thì gọi máy chủ qua mạng.
@@ -1635,6 +1715,9 @@
 
   // ---------- bộ icon nét (SVG) ----------
   const ICON = {
+    download: '<path d="M12 3v12M7 10l5 5 5-5"/><path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/>',
+    android: '<path d="M5 10a7 7 0 0 1 14 0v7a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1Z"/><path d="M5 12h14M8 4 6.5 2M16 4l1.5-2M3 11v5M21 11v5M9 18v3M15 18v3"/><circle cx="9.5" cy="7.5" r=".6" fill="currentColor"/><circle cx="14.5" cy="7.5" r=".6" fill="currentColor"/>',
+    apple: '<path d="M16.5 3.5c-1.2.1-2.6.9-3.3 2-.7.9-1.1 2.2-.9 3.4 1.3.1 2.6-.7 3.3-1.8.7-1 1.1-2.3.9-3.6Z"/><path d="M19 16.3c-.6 1.4-.9 2-1.7 3.2-1.1 1.6-2.6 3.6-4.5 1.9-1-.9-1.7-.9-2.8-.9-1.4 0-2 1.7-3.6.2C4 18.3 2.9 14 4.5 11c.9-1.6 2.5-2.6 4.1-2.6 1.2 0 2.2.8 3.2.8 1 0 2-.9 3.5-.8 1.2.1 2.4.6 3.2 1.6-2.8 1.6-2.4 5.7.5 6.3Z"/>',
     hash: '<path d="M4 9h16M4 15h16M10 3 8 21M16 3l-2 18"/>',
     scissors: '<circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M20 4 8.1 15.9M14.5 14.5 20 20M8.1 8.1 12 12"/>',
     siren: '<path d="M7 18v-6a5 5 0 0 1 10 0v6"/><path d="M5 21h14v-3H5z"/><path d="M12 3v2M4.2 6.2l1.4 1.4M19.8 6.2l-1.4 1.4M2 12h2M20 12h2"/>',
@@ -1784,11 +1867,23 @@
   const NHOM = {
     traCuu: [['traCuu', 'search', 'Tra cứu']],
     baoHong: [['suaChua', 'wrench', 'Báo hỏng']],
-    dichVu: [['yeuCau', 'flask', 'Kiểm tra chất lượng nước'], ['lienHeTab', 'edit', 'Đổi thông tin'], ['thanhToan', 'card', 'Thanh toán'], ['bangGia', 'drop', 'Giá nước']],
+    dichVu: [['yeuCau', 'flask', 'Kiểm tra chất lượng nước'], ['lienHeTab', 'edit', 'Đổi thông tin'], ['thanhToan', 'card', 'Thanh toán'], ['bangGia', 'drop', 'Giá nước'], ['taiApp', 'download', 'Tải ứng dụng']],
     viPham: [['baoViPham', 'alert', 'Báo vi phạm']],
     tinTuc: [['thongBaoTab', 'bell', 'Thông báo'], ['tuyenTruyen', 'wave', 'Tuyên truyền'], ['vanBan', 'doc', 'Văn bản'], ['coCau', 'users', 'Cơ cấu tổ chức']],
     taiKhoan: [['noiBo', 'user', 'Tài khoản']]
   };
+  // ---------- Tải ứng dụng: link file APK, logo, gợi ý đúng loại máy ----------
+  (() => {
+    const nut = $('taNutApk'); if (!nut) return;
+    nut.href = URL_APK;
+    nut.addEventListener('click', () => ghiTC('Tải ứng dụng', 'Android APK'));
+    const lg = document.querySelector('#logo img'); if (lg) $('taLogo').src = lg.src;
+    const ua = navigator.userAgent || '';
+    const may = /android/i.test(ua) ? 'taAndroid' : (/iphone|ipad|ipod/i.test(ua) || (/macintosh/i.test(ua) && navigator.maxTouchPoints > 1)) ? 'taIos' : '';
+    if (may) { $(may).classList.add('goi-y'); $(may).querySelector('h3').insertAdjacentHTML('afterend', '<span class="ta-nhan may">Máy của anh/chị</span>'); if (may === 'taIos') $('taIos').parentNode.insertBefore($('taIos'), $('taAndroid')); }
+    let laApp = false; try { laApp = matchMedia('(display-mode: standalone)').matches || /^android-app:/.test(document.referrer); } catch (e) {}
+    if (laApp) $('taAndroid').querySelector('.ta-tren').insertAdjacentHTML('afterend', '<p class="ta-ghi"><i class=ic data-ic=checkCircle></i><span>Anh/chị đang dùng ứng dụng rồi.</span></p>');
+  })();
   const NHOM_CUA = {}; Object.keys(NHOM).forEach(g => NHOM[g].forEach(x => { NHOM_CUA[x[0]] = g; }));
   const TABS = Object.keys(NHOM_CUA), CUOI = {};
   function moTab(t) {
@@ -1838,7 +1933,7 @@
   window.addEventListener('scroll', () => { if (!coChuot && Date.now() - tBay > 600) $('menuBay').classList.remove('mo'); }, { passive: true });
   let DEM_TB = 0;
   ghiTC('Mở web', (document.referrer ? 'từ ' + String(document.referrer).replace(/^https?:\/+/, '').split('/')[0] : 'gõ trực tiếp') + (TRONG_GOOGLE ? ' · link Google' : ''));
-  $$('[data-nhom]').forEach(b => b.addEventListener('click', () => { moTab(CUOI[b.dataset.nhom] || NHOM[b.dataset.nhom][0][0]); if (NHOM[b.dataset.nhom].length > 1) moBay(b); }));
+  $$('[data-nhom]').forEach(b => b.addEventListener('click', () => { moTab(CUOI[b.dataset.nhom] || NHOM[b.dataset.nhom][0][0]); if (NHOM[b.dataset.nhom].length > 1) { if (coChuot) $('menuBay').classList.remove('mo'); else moBay(b); } }));
   $$('[data-tab]').forEach(b => b.addEventListener('click', () => moTab(b.dataset.tab)));
   // nút gọi nổi
   $('nutGoi').onclick = e => { e.stopPropagation(); $('bangGoi').classList.toggle('mo'); };
@@ -2501,6 +2596,7 @@
     if (r.mkMacDinh) { $('khungDoiMK').classList.remove('an'); $('kqDoiMK').textContent = ''; setTimeout(() => $('mkCu').focus(), 60); return; }
     $('demYC').textContent = r.ycMoi || ''; $('demLH').textContent = r.lhMoi || ''; $('demBC').textContent = r.bcMoi || ''; $('demSC').textContent = r.scMoi || ''; $('demCN').textContent = r.cnMoi || ''; $('demDL').textContent = r.dlMoi || ''; $('demHT').textContent = r.htMoi || ''; $('demNT').textContent = r.ntMoi || ''; demNhom();
     $('canhBao').classList.toggle('an', !!r.coBao);
+    $('canhTG').classList.toggle('an', !r.tgThieu);
     $('chonThang').innerHTML = r.thangs.map(t => `<option>${esc(t)}</option>`).join('');
     if (r.thangs.length) { if (!BC) taiBaoCao(); } else $('loiNB').textContent = 'Chưa có số liệu chỉ số.';
   }

@@ -1,7 +1,7 @@
 /* Service worker – Nước sạch KV II
    Chỉ lưu sẵn GIAO DIỆN để mở nhanh / mở được khi mất mạng.
    KHÔNG lưu số liệu: mọi yêu cầu tới máy chủ Google (script.google.com…) luôn đi thẳng, không qua đây. */
-var BAN = 'nskv2-giaodien-v3';
+var BAN = 'nskv2-giaodien-v4';
 var GIAO_DIEN = [
   './',
   './index.html',
@@ -33,6 +33,7 @@ self.addEventListener('fetch', function (e) {
   if (req.method !== 'GET') return;                       // gửi phiếu, đăng nhập… đi thẳng
   var url = new URL(req.url);
   if (url.origin !== self.location.origin) return;        // máy chủ Google, bản đồ, Zalo… đi thẳng
+  if (url.pathname.indexOf('/tai/') === 0) return;        // file cài ứng dụng (APK): luôn tải thẳng, không lưu
 
   // Trang chính: luôn lấy bản mới nhất; mất mạng mới dùng bản đã lưu
   if (req.mode === 'navigate') {
