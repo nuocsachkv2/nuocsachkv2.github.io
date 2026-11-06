@@ -12,7 +12,7 @@
     if (biNhung) { document.documentElement.style.display = 'none'; try { window.top.location = window.self.location.href; } catch (e) {} }
     var S = '/' + '/', g = 'https:' + S;
     // chỉ cho chạy đúng đoạn mã của trạm (mã băm SHA-256 tính lúc đóng gói) → mã độc chèn vào trang không chạy được
-    var BAM = 'M6qPQWfJqX4OyKf4tX2JNuusMEcKfYe3VdYKrl59vPc=', B = BAM.split('_').join(String.fromCharCode(47));
+    var BAM = 'eNq9e3jLXBJIWLiWqts85SSA0VJUUqwB3x57v5ORRUM=', B = BAM.split('_').join(String.fromCharCode(47));
     var m = document.createElement('meta'); m.httpEquiv = 'Content-Security-Policy';
     m.content = "default-src 'self'; script-src 'self' 'sha256-" + B + "'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https:; font-src 'self' data:; "
       + "connect-src 'self' " + g + 'script.google.com ' + g + "script.googleusercontent.com; frame-src https:' + S + 'www.youtube-nocookie.com https:' + S + 'drive.google.com; object-src 'none'; base-uri 'none'; form-action 'self'; upgrade-insecure-requests";
@@ -1257,6 +1257,11 @@
   .cb-ic { width:40px; height:40px; border-radius:12px; background:#fdecea; color:#d32f2f; display:flex; align-items:center; justify-content:center; flex:none; }
   .cb-ic .ic { width:22px; height:22px; }
   .cb-so { position:absolute; top:-9px; left:-9px; width:24px; height:24px; border-radius:50%; background:#e53935; color:#fff; font-weight:800; font-size:13px; display:flex; align-items:center; justify-content:center; box-shadow:0 2px 6px rgba(229,57,53,.4); }
+  .xem-kh-bang { display:none; }
+  body.xem-kh .xem-kh-bang { display:flex; gap:12px; align-items:center; justify-content:space-between; flex-wrap:wrap; background:#fff4e5; border:2px solid #f57c00; color:#7a3d00; border-radius:14px; padding:12px 14px; margin-bottom:12px; font-size:14px; line-height:1.45; }
+  body.xem-kh .xem-kh-bang b { display:block; font-size:15px; letter-spacing:.3px; color:#e65100; }
+  body.xem-kh .xem-kh-bang .nut { background:#f57c00; border-color:#f57c00; color:#fff; }
+  body.xem-kh #khNutMK, body.xem-kh #khNutThoat, body.xem-kh #khMoCN, body.xem-kh #hddMo, body.xem-kh #khNutXem, body.xem-kh #khKhungMK, body.xem-kh #khKhungCN, body.xem-kh #khKhungHDD, body.xem-kh #hgYCHD { display:none !important; }
   .nk-loc { display:flex; flex-wrap:wrap; gap:6px; margin:10px 0 2px; }
   .nk-loc button { border:1.5px solid var(--vien); background:#fff; border-radius:999px; padding:6px 12px; font:inherit; font-size:13.5px; font-weight:700; cursor:pointer; color:#344054; }
   .nk-loc button.on { background:var(--xanh); border-color:var(--xanh); color:#fff; }
@@ -1745,6 +1750,7 @@
 
     <!-- trang khách hàng -->
     <div id="khungKH" class="an">
+      <div class="xem-kh-bang" id="khXemBang" role="status"><span><b>ĐANG XEM TÀI KHOẢN KHÁCH – CHỈ XEM</b><span id="khXemChu">Quản trị thấy đúng như khách thấy, không cần mật khẩu của khách, không thay đổi được gì. Tự hết sau 30 phút, đã ghi nhật ký.</span></span><button class="nut" type="button" id="khXemThoat">Quay lại quản trị</button></div>
       <div class="the kh-dau">
         <i class="ic lon-ic" data-ic="user" style="color:var(--xanh)"></i>
         <div style="flex:1;min-width:180px"><div class="kh-ten" id="khTen"></div><div class="nho" id="khPhu"></div></div>
@@ -2206,7 +2212,7 @@
             <div><label for="qtNhom">Nhóm giá</label><select id="qtNhom"></select></div>
             <div><label for="qtSdt">Số điện thoại (10 số, để trống nếu chưa có)</label><input id="qtSdt" inputmode="tel" maxlength="16"></div>
             <div><label for="qtGhiChu">Ghi chú</label><input id="qtGhiChu" maxlength="200"></div>
-            <div class="rong hang"><button class="nut an-ld" type="submit" id="nutQtLuu">Lưu</button><button class="nut phu" type="button" id="nutQtDong">Đóng</button><button class="nut phu" type="button" id="nutQtChiSo">Xem / sửa chỉ số hộ này</button><button class="nut phu" type="button" id="nutQtDatMK">Đặt lại mật khẩu khách hàng</button><span class="nho" id="kqQtKH"></span></div>
+            <div class="rong hang"><button class="nut an-ld" type="submit" id="nutQtLuu">Lưu</button><button class="nut phu" type="button" id="nutQtDong">Đóng</button><button class="nut phu" type="button" id="nutQtChiSo">Xem / sửa chỉ số hộ này</button><button class="nut phu" type="button" id="nutQtDatMK">Đặt lại mật khẩu khách hàng</button><button class="nut phu an-ld" type="button" id="nutQtXemKH"><i class="ic" data-ic="user"></i> Xem tài khoản khách (chỉ xem)</button><span class="nho" id="kqQtKH"></span></div>
             <div class="loi rong" id="loiQtForm"></div>
           </form>
         </div>
@@ -3517,6 +3523,7 @@
       + `<div class="tt-chu-giai nho"><span><i class="cham da"></i>Xanh: đã thanh toán</span><span><i class="cham chua"></i>Đỏ: chưa thanh toán</span><span><i class="cham khong"></i>Xám: tháng không dùng nước</span></div>`;
   }
   function thoatKH(loi) {
+    if (document.body.classList.contains('xem-kh')) { thoiXemKH(); if (loi) baoNhanh(String(loi)); return; }
     TKKH = ''; KH = null; luuKH('');
     $('khungKH').classList.add('an'); $('khungPin').classList.remove('an'); $('khMk').value = '';
     $('chuDangNhap').textContent = 'Đăng nhập'; $('nutDangNhap').classList.remove('on'); $('nutDangNhap').title = 'Đăng nhập';
@@ -3623,6 +3630,7 @@
   }
   function datDemNB(r) { $('demYC').textContent = r.ycMoi || ''; $('demLH').textContent = r.lhMoi || ''; $('demBC').textContent = r.bcMoi || ''; $('demSC').textContent = r.scMoi || ''; $('demCN').textContent = r.cnMoi || ''; $('demDL').textContent = r.dlMoi || ''; $('demHT').textContent = r.htMoi || ''; $('demNT').textContent = r.ntMoi || ''; $('demGY').textContent = r.gyMoi || ''; $('demHDD').textContent = r.hdMoi || ''; demNhom(); xepNhomNB(); if (typeof demNhom === 'function') demNhom(); }
   function thoatNoiBo(loi) {
+    if (document.body.classList.contains('xem-kh')) { const t = TKKH; TKKH = ''; KH = null; document.body.classList.remove('xem-kh'); $('khungKH').classList.add('an'); if (t) goi('khDangXuat', t).catch(() => {}); }
     TK = ''; ND = null; BC = null; SS = null; BCN = null; luuPhien(''); $('khungNoiBo').classList.remove('bat-doi');
     ['mkCu', 'mkMoi', 'mkMoi2'].forEach(id => { $(id).value = ''; });
     document.body.classList.remove('la-adm', 'la-ld', 'la-ql');
@@ -4731,7 +4739,7 @@
     $('qtMa').value = k ? k.ma : ''; $('qtTen').value = k ? k.ten : ''; $('qtKhu').value = k ? k.khu : ''; $('qtXom').value = k ? k.xom : '';
     $('qtDiaChi').value = k ? k.diachi : ''; $('qtSdt').value = k ? k.sdt : ''; $('qtGhiChu').value = k ? k.ghichu : '';
     dienNhom(k ? k.nhom : 'HD');
-    $('nutQtChiSo').classList.toggle('an', !k); $('nutQtDatMK').classList.toggle('an', !k);
+    $('nutQtChiSo').classList.toggle('an', !k); $('nutQtDatMK').classList.toggle('an', !k); $('nutQtXemKH').classList.toggle('an', !k);
     $('kqQtKH').textContent = ''; $('loiQtForm').textContent = '';
     $('qtKHForm').classList.remove('an'); $('qtKHForm').scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
@@ -4754,6 +4762,25 @@
     $('kqQtKH').textContent = 'Đang đặt lại…';
     goiNB('admDatLaiMKKH', QT_KH.ma).then(r => $('kqQtKH').textContent = 'Đã đặt lại mật khẩu ' + r.ma + ' về mặc định ✓').catch(e => $('kqQtKH').textContent = e);
   };
+  // quản trị xem tài khoản khách (chỉ xem) – không dùng, không lưu mật khẩu khách
+  $('nutQtXemKH').onclick = () => {
+    if (!QT_KH || !QT_KH.ma) return;
+    $('kqQtKH').textContent = 'Đang mở tài khoản khách…';
+    goiNB('admXemTaiKhoanKH', QT_KH.ma).then(r => {
+      $('kqQtKH').textContent = ''; TKKH = r.token; document.body.classList.add('xem-kh');
+      $('khungNoiBo').classList.add('an'); vaoKH(r);
+      $('khXemChu').textContent = 'Mã ' + r.ma + (r.coMK ? ' · khách đã đổi mật khẩu riêng' : ' · khách còn mật khẩu mặc định (khách sẽ thấy như dưới)') + (r.khoa ? ' · tài khoản đang bị khóa' : '') + '. Quản trị thấy đúng như khách thấy, không cần mật khẩu của khách, không thay đổi được gì. Tự hết sau 30 phút, đã ghi nhật ký.';
+      ghiTC('Quản trị xem tài khoản khách', r.ma); window.scrollTo({ top: 0, behavior: 'smooth' });
+    }).catch(e => $('kqQtKH').textContent = e);
+  };
+  function thoiXemKH() {
+    const t = TKKH; TKKH = ''; KH = null; document.body.classList.remove('xem-kh');
+    $('khungKH').classList.add('an'); $('khungPin').classList.add('an'); $('khungNoiBo').classList.remove('an');
+    if (ND) { $('chuDangNhap').textContent = ND.ten; $('nutDangNhap').title = 'Nội bộ – ' + ND.ten; }
+    if (t) goi('khDangXuat', t).catch(() => {});
+    if (QT_KH) setTimeout(() => $('qtKHForm').scrollIntoView({ behavior: 'smooth', block: 'start' }), 60);
+  }
+  $('khXemThoat').onclick = thoiXemKH;
   $('nutQtChiSo').onclick = () => { if (!QT_KH) return; $('qtCSMa').value = QT_KH.ma; moSub('tabNB', 'sub', 'qtChiSo'); $$('#tabNB button').find(b => b.dataset.sub === 'qtChiSo').click(); $('fQtCS').requestSubmit(); };
 
   // ---------- QUẢN TRỊ: chỉ số từng hộ ----------
