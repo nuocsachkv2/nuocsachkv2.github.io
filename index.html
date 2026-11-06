@@ -12,7 +12,7 @@
     if (biNhung) { document.documentElement.style.display = 'none'; try { window.top.location = window.self.location.href; } catch (e) {} }
     var S = '/' + '/', g = 'https:' + S;
     // chỉ cho chạy đúng đoạn mã của trạm (mã băm SHA-256 tính lúc đóng gói) → mã độc chèn vào trang không chạy được
-    var BAM = 'rylZpG5UGnRrdlz9MwYs+_BCTU5Xfm0Ga5W0Mx5+xh4=', B = BAM.split('_').join(String.fromCharCode(47));
+    var BAM = 'ilnrtc+6SjOR2DvU6l4WebrcG_rT6YkutpsXZjl_AY4=', B = BAM.split('_').join(String.fromCharCode(47));
     var m = document.createElement('meta'); m.httpEquiv = 'Content-Security-Policy';
     m.content = "default-src 'self'; script-src 'self' 'sha256-" + B + "'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https:; font-src 'self' data:; "
       + "connect-src 'self' " + g + 'script.google.com ' + g + "script.googleusercontent.com; frame-src https:' + S + 'www.youtube-nocookie.com https:' + S + 'drive.google.com; object-src 'none'; base-uri 'none'; form-action 'self'; upgrade-insecure-requests";
@@ -1266,6 +1266,10 @@
   body.xem-kh .xem-kh-bang b { display:block; font-size:15px; letter-spacing:.3px; color:#e65100; }
   body.xem-kh .xem-kh-bang .nut { background:#f57c00; border-color:#f57c00; color:#fff; }
   body.xem-kh #khNutThoat, body.xem-kh #khMkCu, body.xem-kh label[for=khMkCu], body.xem-kh #khCanhMK { display:none !important; }
+  html.web-khoa body > *:not(#manKhoa) { display:none !important; }
+  #manKhoa { position:fixed; inset:0; z-index:99999; background:#f4f7fb; display:flex; align-items:center; justify-content:center; padding:20px; }
+  #manKhoa > div { max-width:520px; background:#fff; border-radius:16px; padding:28px 24px; box-shadow:0 6px 24px rgba(16,24,40,.1); text-align:center; line-height:1.6; }
+  #manKhoa h1 { color:#0b5394; font-size:21px; margin:0 0 10px; }
   .nk-loc { display:flex; flex-wrap:wrap; gap:6px; margin:10px 0 2px; }
   .nk-loc button { border:1.5px solid var(--vien); background:#fff; border-radius:999px; padding:6px 12px; font:inherit; font-size:13.5px; font-weight:700; cursor:pointer; color:#344054; }
   .nk-loc button.on { background:var(--xanh); border-color:var(--xanh); color:#fff; }
@@ -2269,6 +2273,13 @@
       </div>
 
       <div id="sub_qtCauHinh" class="an">
+        <div class="the chi-adm kw-the" id="kwThe">
+          <h3><i class=ic data-ic=lock></i> Khóa website</h3>
+          <p class="nho" id="kwTT">Đang kiểm tra…</p>
+          <div class="hang"><button class="nut" type="button" id="kwKhoa">Khóa website</button><button class="nut phu" type="button" id="kwMo">Mở khóa website</button></div>
+          <div class="nho" id="kwLink" style="margin-top:8px;word-break:break-all"></div>
+          <p class="nho">Khóa: khách, nhân viên, ứng dụng đều không vào được (dữ liệu giữ nguyên). Quản trị vào bằng <b>link quản trị</b> hiện ra lúc khóa – lưu lại link đó, mỗi lần khóa link mới. Mở khóa: vào link quản trị → Cấu hình → Mở khóa.</p>
+        </div>
         <div class="the">
           <h3><i class=ic data-ic=sliders></i> Cấu hình website (sheet CauHinh)</h3>
           <p class="nho chi-adm">Sửa xong bấm Lưu ở từng dòng. Có hiệu lực ngay, không cần triển khai lại.</p>
@@ -2479,17 +2490,27 @@
   // Chạy trong Google (link script.google.com) thì dùng google.script.run; đặt ở tên miền riêng / Cloudflare thì gọi máy chủ qua mạng.
   const API_URL = 'https:' + SL + 'script.google.com/macros/s/AKfycbzLhGtXtZTenoMZT0-AJGUs6tnvxbV8VdE7HUVbbhB0KmCDGsG_q61OPde9x3TNesPdfw/exec';
   const TRONG_GOOGLE = !!(window.google && google.script && google.script.run);
+  const QT_KHOA = ((document.querySelector('meta[name="qt-khoa"]') || {}).content || '').replace(/[^a-z0-9]/g, '');
   const FORM_CONG_KHAI = ['guiYeuCau', 'guiLienHe', 'guiBaoCao', 'guiSuaChua', 'guiHenThu', 'khXinDatLaiMK', 'ghiNopTien', 'guiGopY'];
+  function hienKhoa(chu) {
+    if (document.getElementById('manKhoa')) return;
+    const d = document.createElement('div'); d.id = 'manKhoa'; d.setAttribute('role', 'alert');
+    d.innerHTML = `<div><h1>Website đang tạm dừng</h1><p>${esc(chu || 'Website đang tạm dừng để bảo trì.')}</p></div>`;
+    document.body.appendChild(d); document.documentElement.classList.add('web-khoa');
+  }
   function goi(ham, ...thamSo) {
+    if (TRONG_GOOGLE && QT_KHOA) return new Promise((ok, loi) => {   // mở bằng link quản trị khi website đang khóa
+      google.script.run.withSuccessHandler(r => r && r.ok ? ok(r.kq) : loi((r && r.err) || 'Máy chủ đang bận, thử lại sau ít phút.')).withFailureHandler(e => loi(e && e.message ? e.message : String(e))).quaKhoa(QT_KHOA, ham, thamSo);
+    });
     if (FORM_CONG_KHAI.indexOf(ham) >= 0 && thamSo[0] && typeof thamSo[0] === 'object') { const hp = document.getElementById('hpWeb'); thamSo[0] = Object.assign({}, thamSo[0], { web: hp ? hp.value : '' }); }
     if (TRONG_GOOGLE) return new Promise((ok, loi) => {
-      google.script.run.withSuccessHandler(ok).withFailureHandler(e => loi(e && e.message ? e.message : String(e)))[ham](...thamSo);
+      google.script.run.withSuccessHandler(ok).withFailureHandler(e => { const m = e && e.message ? e.message : String(e); if (/Website đang tạm dừng/.test(m)) hienKhoa(m); loi(m); })[ham](...thamSo);
     });
     const guiMot = () => fetch(API_URL, { method: 'POST', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify({ rpc: ham, a: thamSo }), redirect: 'follow' })
       .then(r => { if (!r.ok) throw new Error('mang'); return r.json(); });
     return guiMot().catch(() => new Promise(r => setTimeout(r, 1200)).then(guiMot))
       .catch(() => { throw 'Không kết nối được máy chủ. Kiểm tra mạng (3G/4G/Wi-Fi) rồi thử lại.'; })
-      .then(r => { if (!r || !r.ok) throw (r && r.err) || 'Máy chủ đang bận, thử lại sau ít phút.'; return r.kq; });
+      .then(r => { if (r && r.khoa) hienKhoa(r.err); if (!r || !r.ok) throw (r && r.err) || 'Máy chủ đang bận, thử lại sau ít phút.'; return r.kq; });
   }
   // ---------- ghi truy cập (gom thao tác, gửi ~20 giây/lần hoặc khi rời trang) ----------
   const maNN = n => { let t = ''; const a = 'abcdefghijklmnopqrstuvwxyz0123456789'; const r = (window.crypto && crypto.getRandomValues) ? crypto.getRandomValues(new Uint8Array(n)) : Array.from({ length: n }, () => Math.random() * 256); for (let i = 0; i < n; i++) t += a[r[i] % 36]; return t; };
@@ -3005,6 +3026,7 @@
   // Lần đầu vào web (máy chưa lưu gì): lấy bản chụp sẵn cùng tên miền (cập nhật tự động 10 phút/lần) để hiện ngay, máy chủ trả về sau thì thay
   if (!ttcDaVe && !TRONG_GOOGLE && location.protocol === 'https:') {
     fetch('du-lieu/chung.json', { cache: 'no-cache' }).then(x => x.ok ? x.json() : null).then(c0 => {
+      if (c0 && c0.khoa) { hienKhoa(c0.thongBao); return; }
       if (!c0 || !c0.donVi || ttcDaVe) return;
       const p = h => { const m = String(h || '').match(/(\d+):(\d+)/); return m ? +m[1] * 60 + +m[2] : null; }, d = new Date(), bg = d.getHours() * 60 + d.getMinutes(), tu = p(c0.gioNhanTu), den = p(c0.gioNhanDen);
       c0.dangNhan = tu !== null && den !== null && (tu <= den ? bg >= tu && bg < den : bg >= tu || bg < den); c0.gioBom = [];
@@ -3690,7 +3712,7 @@
     moSub('tabNB', 'sub', b.dataset.sub);
     ['baoCao', 'baoCaoNam', 'soSanh', 'nghiNgo', 'suaChuaNB', 'nopTienNB', 'thuTienNB', 'henThuNB', 'yeuCauNB', 'lienHeNB', 'baoCaoNB', 'gopYNB', 'datLaiNB', 'duyetCN', 'hoaDonDoNB', 'kiemTraHD', 'hdNhanVien', 'hdQuanLy', 'tramNhanVien', 'lichLamViec', 'trienKhai', 'qtTruyCap', 'qtKH', 'qtChiSo', 'qtTaiKhoan', 'qtCauHinh', 'qtNhatKy'].forEach(t => $('sub_' + t).classList.toggle('an', t !== b.dataset.sub));
     if (b.dataset.sub === 'qtTaiKhoan') taiTK();
-    if (b.dataset.sub === 'qtCauHinh') taiCH();
+    if (b.dataset.sub === 'qtCauHinh') { taiCH(); taiKW(); }
     if (b.dataset.sub === 'qtNhatKy') taiNK();
     if (b.dataset.sub === 'soSanh' && !SS) taiSoSanh();
     if (b.dataset.sub === 'baoCaoNam' && !BCN) taiBaoCaoNam();
@@ -4867,6 +4889,20 @@
   };
 
   // ---------- QUẢN TRỊ: cấu hình ----------
+  // khóa website (quản trị)
+  function taiKW() {
+    if (!document.body.classList.contains('la-adm')) return;
+    goiNB('admTrangThaiWeb').then(r => { $('kwTT').innerHTML = r.khoa ? `<b class="chu-do">ĐANG KHÓA</b> từ ${esc(r.tg)}${r.ai ? ' · ' + esc(r.ai) : ''}` : '<b style="color:#2e7d32">Đang mở</b> – mọi người truy cập bình thường.'; $('kwKhoa').classList.toggle('an', r.khoa); $('kwMo').classList.toggle('an', !r.khoa); }).catch(e => $('kwTT').textContent = e);
+  }
+  $('kwKhoa').onclick = () => {
+    if (!confirm('Khóa website? Khách, nhân viên, ứng dụng sẽ không vào được cho tới khi mở khóa.')) return;
+    $('kwLink').textContent = 'Đang khóa…';
+    goiNB('admKhoaWeb', true).then(r => {   // từ giờ chỉ link quản trị mới vào được → không gọi máy chủ nữa ở trang này
+      $('kwTT').innerHTML = '<b class="chu-do">ĐANG KHÓA</b> – từ giờ chỉ vào được bằng link quản trị bên dưới.'; $('kwKhoa').classList.add('an'); $('kwMo').classList.add('an');
+      $('kwLink').innerHTML = `<b>Link quản trị (lưu lại, giữ bí mật):</b><br><a href="${esc(r.link)}" target="_blank" rel="noopener">${esc(r.link)}</a><br>Mở khóa: vào link này → Quản trị › Cấu hình → Mở khóa website.`;
+    }).catch(e => $('kwLink').textContent = e);
+  };
+  $('kwMo').onclick = () => { $('kwLink').textContent = 'Đang mở khóa…'; goiNB('admKhoaWeb', false).then(() => { $('kwLink').textContent = 'Đã mở khóa ✓'; taiKW(); }).catch(e => $('kwLink').textContent = e); };
   function taiCH() {
     $('loiCH').textContent = ''; $('tblCH').innerHTML = '<tr><td class="nho">Đang tải…</td></tr>';
     goiNB('admCauHinh').then(r => {
