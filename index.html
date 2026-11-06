@@ -12,7 +12,7 @@
     if (biNhung) { document.documentElement.style.display = 'none'; try { window.top.location = window.self.location.href; } catch (e) {} }
     var S = '/' + '/', g = 'https:' + S;
     // chỉ cho chạy đúng đoạn mã của trạm (mã băm SHA-256 tính lúc đóng gói) → mã độc chèn vào trang không chạy được
-    var BAM = 'eNq9e3jLXBJIWLiWqts85SSA0VJUUqwB3x57v5ORRUM=', B = BAM.split('_').join(String.fromCharCode(47));
+    var BAM = 'rylZpG5UGnRrdlz9MwYs+_BCTU5Xfm0Ga5W0Mx5+xh4=', B = BAM.split('_').join(String.fromCharCode(47));
     var m = document.createElement('meta'); m.httpEquiv = 'Content-Security-Policy';
     m.content = "default-src 'self'; script-src 'self' 'sha256-" + B + "'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https:; font-src 'self' data:; "
       + "connect-src 'self' " + g + 'script.google.com ' + g + "script.googleusercontent.com; frame-src https:' + S + 'www.youtube-nocookie.com https:' + S + 'drive.google.com; object-src 'none'; base-uri 'none'; form-action 'self'; upgrade-insecure-requests";
@@ -1258,10 +1258,14 @@
   .cb-ic .ic { width:22px; height:22px; }
   .cb-so { position:absolute; top:-9px; left:-9px; width:24px; height:24px; border-radius:50%; background:#e53935; color:#fff; font-weight:800; font-size:13px; display:flex; align-items:center; justify-content:center; box-shadow:0 2px 6px rgba(229,57,53,.4); }
   .xem-kh-bang { display:none; }
+  body.thay-nb .thay-nb-bang { display:flex; gap:12px; align-items:center; justify-content:space-between; flex-wrap:wrap; background:#fff4e5; border:2px solid #f57c00; color:#7a3d00; border-radius:14px; padding:12px 14px; margin-bottom:12px; font-size:14px; line-height:1.45; }
+  body.thay-nb .thay-nb-bang b { display:block; font-size:15px; color:#e65100; }
+  body.thay-nb .thay-nb-bang .nut { background:#f57c00; border-color:#f57c00; color:#fff; }
+  body.thay-nb #mkCu, body.thay-nb label[for=mkCu], body.thay-nb #nutDangXuat { display:none !important; }
   body.xem-kh .xem-kh-bang { display:flex; gap:12px; align-items:center; justify-content:space-between; flex-wrap:wrap; background:#fff4e5; border:2px solid #f57c00; color:#7a3d00; border-radius:14px; padding:12px 14px; margin-bottom:12px; font-size:14px; line-height:1.45; }
   body.xem-kh .xem-kh-bang b { display:block; font-size:15px; letter-spacing:.3px; color:#e65100; }
   body.xem-kh .xem-kh-bang .nut { background:#f57c00; border-color:#f57c00; color:#fff; }
-  body.xem-kh #khNutMK, body.xem-kh #khNutThoat, body.xem-kh #khMoCN, body.xem-kh #hddMo, body.xem-kh #khNutXem, body.xem-kh #khKhungMK, body.xem-kh #khKhungCN, body.xem-kh #khKhungHDD, body.xem-kh #hgYCHD { display:none !important; }
+  body.xem-kh #khNutThoat, body.xem-kh #khMkCu, body.xem-kh label[for=khMkCu], body.xem-kh #khCanhMK { display:none !important; }
   .nk-loc { display:flex; flex-wrap:wrap; gap:6px; margin:10px 0 2px; }
   .nk-loc button { border:1.5px solid var(--vien); background:#fff; border-radius:999px; padding:6px 12px; font:inherit; font-size:13.5px; font-weight:700; cursor:pointer; color:#344054; }
   .nk-loc button.on { background:var(--xanh); border-color:var(--xanh); color:#fff; }
@@ -1750,7 +1754,7 @@
 
     <!-- trang khách hàng -->
     <div id="khungKH" class="an">
-      <div class="xem-kh-bang" id="khXemBang" role="status"><span><b>ĐANG XEM TÀI KHOẢN KHÁCH – CHỈ XEM</b><span id="khXemChu">Quản trị thấy đúng như khách thấy, không cần mật khẩu của khách, không thay đổi được gì. Tự hết sau 30 phút, đã ghi nhật ký.</span></span><button class="nut" type="button" id="khXemThoat">Quay lại quản trị</button></div>
+      <div class="xem-kh-bang" id="khXemBang" role="status"><span><b>QUẢN TRỊ ĐANG Ở TRONG TÀI KHOẢN KHÁCH</b><span id="khXemChu">Xem và làm được mọi việc như khách. Mọi thao tác ghi nhật ký là quản trị làm thay.</span></span><button class="nut" type="button" id="khXemThoat">Quay lại quản trị</button></div>
       <div class="the kh-dau">
         <i class="ic lon-ic" data-ic="user" style="color:var(--xanh)"></i>
         <div style="flex:1;min-width:180px"><div class="kh-ten" id="khTen"></div><div class="nho" id="khPhu"></div></div>
@@ -1817,6 +1821,7 @@
     </div>
 
     <div id="khungNoiBo" class="an">
+      <div class="xem-kh-bang thay-nb-bang" id="nbThayBang" role="status"><span><b>QUẢN TRỊ ĐANG Ở TRONG TÀI KHOẢN <span id="nbThayTen"></span></b><span>Làm được mọi việc của tài khoản này; đổi mật khẩu không cần mật khẩu cũ. Mọi thao tác ghi nhật ký tên "(quản trị thay)".</span></span><button class="nut" type="button" id="nbThayVe">Quay lại tài khoản quản trị</button></div>
       <div class="the nd-thanh">
         <span class="nd-av"><i class="ic" data-ic="user"></i></span>
         <span class="nd-chu"><span>Xin chào, <span class="ten-nd" id="ndTen"></span></span><span class="nhan xanh" id="ndVaiTro"></span></span>
@@ -2212,7 +2217,7 @@
             <div><label for="qtNhom">Nhóm giá</label><select id="qtNhom"></select></div>
             <div><label for="qtSdt">Số điện thoại (10 số, để trống nếu chưa có)</label><input id="qtSdt" inputmode="tel" maxlength="16"></div>
             <div><label for="qtGhiChu">Ghi chú</label><input id="qtGhiChu" maxlength="200"></div>
-            <div class="rong hang"><button class="nut an-ld" type="submit" id="nutQtLuu">Lưu</button><button class="nut phu" type="button" id="nutQtDong">Đóng</button><button class="nut phu" type="button" id="nutQtChiSo">Xem / sửa chỉ số hộ này</button><button class="nut phu" type="button" id="nutQtDatMK">Đặt lại mật khẩu khách hàng</button><button class="nut phu an-ld" type="button" id="nutQtXemKH"><i class="ic" data-ic="user"></i> Xem tài khoản khách (chỉ xem)</button><span class="nho" id="kqQtKH"></span></div>
+            <div class="rong hang"><button class="nut an-ld" type="submit" id="nutQtLuu">Lưu</button><button class="nut phu" type="button" id="nutQtDong">Đóng</button><button class="nut phu" type="button" id="nutQtChiSo">Xem / sửa chỉ số hộ này</button><button class="nut phu" type="button" id="nutQtDatMK">Đặt lại mật khẩu khách hàng</button><button class="nut phu an-ld" type="button" id="nutQtXemKH"><i class="ic" data-ic="user"></i> Vào tài khoản khách</button><span class="nho" id="kqQtKH"></span></div>
             <div class="loi rong" id="loiQtForm"></div>
           </form>
         </div>
@@ -3630,6 +3635,7 @@
   }
   function datDemNB(r) { $('demYC').textContent = r.ycMoi || ''; $('demLH').textContent = r.lhMoi || ''; $('demBC').textContent = r.bcMoi || ''; $('demSC').textContent = r.scMoi || ''; $('demCN').textContent = r.cnMoi || ''; $('demDL').textContent = r.dlMoi || ''; $('demHT').textContent = r.htMoi || ''; $('demNT').textContent = r.ntMoi || ''; $('demGY').textContent = r.gyMoi || ''; $('demHDD').textContent = r.hdMoi || ''; demNhom(); xepNhomNB(); if (typeof demNhom === 'function') demNhom(); }
   function thoatNoiBo(loi) {
+    if (document.body.classList.contains('thay-nb') && TK_ADM) { veAdm(); if (loi) baoNhanh(String(loi)); return; }
     if (document.body.classList.contains('xem-kh')) { const t = TKKH; TKKH = ''; KH = null; document.body.classList.remove('xem-kh'); $('khungKH').classList.add('an'); if (t) goi('khDangXuat', t).catch(() => {}); }
     TK = ''; ND = null; BC = null; SS = null; BCN = null; luuPhien(''); $('khungNoiBo').classList.remove('bat-doi');
     ['mkCu', 'mkMoi', 'mkMoi2'].forEach(id => { $(id).value = ''; });
@@ -4762,15 +4768,31 @@
     $('kqQtKH').textContent = 'Đang đặt lại…';
     goiNB('admDatLaiMKKH', QT_KH.ma).then(r => $('kqQtKH').textContent = 'Đã đặt lại mật khẩu ' + r.ma + ' về mặc định ✓').catch(e => $('kqQtKH').textContent = e);
   };
-  // quản trị xem tài khoản khách (chỉ xem) – không dùng, không lưu mật khẩu khách
+  // quản trị vào tài khoản nhân viên / lãnh đạo (không cần mật khẩu của họ)
+  let TK_ADM = '';
+  function vaoTKNB(dong) {
+    $('loiTK').textContent = 'Đang vào tài khoản…';
+    goiNB('admVaoTaiKhoanNB', dong).then(r => {
+      $('loiTK').textContent = ''; TK_ADM = TK; TK = r.token; BC = null; SS = null; BCN = null;
+      document.body.classList.add('thay-nb'); $('nbThayTen').textContent = (r.tenGoc || r.ten) + ' – ' + (TEN_VT[r.vaitro] || 'Nhân viên');
+      vaoNoiBo(r); ghiTC('Quản trị vào tài khoản cán bộ', r.vaitro); window.scrollTo({ top: 0, behavior: 'smooth' });
+    }).catch(e => $('loiTK').textContent = e);
+  }
+  function veAdm() {
+    const t = TK; TK = TK_ADM; TK_ADM = ''; BC = null; SS = null; BCN = null; document.body.classList.remove('thay-nb');
+    if (t && t !== TK) goi('dangXuat', t).catch(() => {});
+    goiNB('kiemTraPhien').then(vaoNoiBo).catch(() => {});
+  }
+  $('nbThayVe').onclick = veAdm;
+  // quản trị vào tài khoản khách – không dùng, không lưu mật khẩu khách
   $('nutQtXemKH').onclick = () => {
     if (!QT_KH || !QT_KH.ma) return;
     $('kqQtKH').textContent = 'Đang mở tài khoản khách…';
     goiNB('admXemTaiKhoanKH', QT_KH.ma).then(r => {
       $('kqQtKH').textContent = ''; TKKH = r.token; document.body.classList.add('xem-kh');
       $('khungNoiBo').classList.add('an'); vaoKH(r);
-      $('khXemChu').textContent = 'Mã ' + r.ma + (r.coMK ? ' · khách đã đổi mật khẩu riêng' : ' · khách còn mật khẩu mặc định (khách sẽ thấy như dưới)') + (r.khoa ? ' · tài khoản đang bị khóa' : '') + '. Quản trị thấy đúng như khách thấy, không cần mật khẩu của khách, không thay đổi được gì. Tự hết sau 30 phút, đã ghi nhật ký.';
-      ghiTC('Quản trị xem tài khoản khách', r.ma); window.scrollTo({ top: 0, behavior: 'smooth' });
+      $('khXemChu').textContent = 'Mã ' + r.ma + (r.coMK ? ' · khách đã đổi mật khẩu riêng' : ' · khách còn mật khẩu mặc định') + (r.khoa ? ' · tài khoản đang bị khóa' : '') + '. Xem và làm được mọi việc như khách; đổi mật khẩu không cần mật khẩu cũ. Mọi thao tác ghi nhật ký là quản trị làm thay.';
+      ghiTC('Quản trị vào tài khoản khách', r.ma); window.scrollTo({ top: 0, behavior: 'smooth' });
     }).catch(e => $('kqQtKH').textContent = e);
   };
   function thoiXemKH() {
@@ -4821,8 +4843,9 @@
   }
   function hienTK() {
     $('tblTK').innerHTML = `<tr><th>Họ tên</th><th>Số điện thoại đăng nhập</th><th>Vai trò</th><th>Trạng thái</th><th>Ghi chú</th><th></th></tr>` +
-      TKDS.map(t => `<tr><td><b>${esc(t.ten)}</b></td><td>${esc(t.sdt)}</td><td><span class="nhan ${t.vaitro === 'adm' ? 'vang' : t.vaitro === 'ld' ? 'do' : 'xanh'}">${TEN_VT[t.vaitro] || 'Nhân viên'}</span></td><td>${t.hien ? '<span class="nhan la">Hoạt động</span>' : '<span class="nhan do">Khóa</span>'}${t.mkMacDinh ? ' <span class="nhan do" title="Đang dùng mật khẩu mặc định">Mật khẩu mặc định</span>' : ''}</td><td class="nho">${esc(t.ghichu)}</td><td><button class="nut phu nho-nut tk-sua an-ld" data-dong="${t.dong}" type="button">Sửa / đặt lại mật khẩu</button></td></tr>`).join('');
+      TKDS.map(t => `<tr><td><b>${esc(t.ten)}</b></td><td>${esc(t.sdt)}</td><td><span class="nhan ${t.vaitro === 'adm' ? 'vang' : t.vaitro === 'ld' ? 'do' : 'xanh'}">${TEN_VT[t.vaitro] || 'Nhân viên'}</span></td><td>${t.hien ? '<span class="nhan la">Hoạt động</span>' : '<span class="nhan do">Khóa</span>'}${t.mkMacDinh ? ' <span class="nhan do" title="Đang dùng mật khẩu mặc định">Mật khẩu mặc định</span>' : ''}</td><td class="nho">${esc(t.ghichu)}</td><td><button class="nut phu nho-nut tk-sua an-ld" data-dong="${t.dong}" type="button">Sửa / đặt lại mật khẩu</button>${t.vaitro !== 'adm' && t.hien ? ` <button class="nut nho-nut tk-vao an-ld" data-dong="${t.dong}" type="button">Vào tài khoản</button>` : ''}</td></tr>`).join('');
     $$('#tblTK .tk-sua').forEach(b => b.onclick = () => moFormTK(TKDS.find(t => t.dong === Number(b.dataset.dong))));
+    $$('#tblTK .tk-vao').forEach(b => b.onclick = () => vaoTKNB(Number(b.dataset.dong)));
   }
   function moFormTK(t) {
     TK_SUA = t || null;
