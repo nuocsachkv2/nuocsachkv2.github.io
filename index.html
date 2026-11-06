@@ -9,7 +9,7 @@
     var BAM = 'J5_dQ3gmxex6RFJl+oAzZuMUHH_qSQePfeMmQhOmKgU=', B = BAM.split('_').join(String.fromCharCode(47));
     var m = document.createElement('meta'); m.httpEquiv = 'Content-Security-Policy';
     m.content = "default-src 'self'; script-src 'self' 'sha256-" + B + "'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https:; font-src 'self' data:; "
-      + "connect-src 'self' " + g + 'script.google.com ' + g + "script.googleusercontent.com; frame-src https:' + S + 'www.youtube-nocookie.com https:' + S + 'drive.google.com; object-src 'none'; base-uri 'none'; form-action 'self'; upgrade-insecure-requests";
+      + "connect-src 'self' " + g + 'script.google.com ' + g + "script.googleusercontent.com; frame-src " + g + "www.youtube-nocookie.com " + g + "drive.google.com; object-src 'none'; base-uri 'none'; form-action 'self'; upgrade-insecure-requests";
     document.head.appendChild(m);
     ['script.google.com', 'script.googleusercontent.com'].forEach(function (h) {
       var l = document.createElement('link'); l.rel = 'preconnect'; l.href = g + h; l.crossOrigin = 'anonymous'; document.head.appendChild(l);
