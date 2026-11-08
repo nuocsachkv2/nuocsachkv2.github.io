@@ -1,7 +1,7 @@
 /* Service worker – Nước sạch KV II
    Chỉ lưu sẵn GIAO DIỆN để mở nhanh / mở được khi mất mạng.
    KHÔNG lưu số liệu: mọi yêu cầu tới máy chủ Google (script.google.com…) luôn đi thẳng, không qua đây. */
-var BAN = 'nskv2-giaodien-v7';
+var BAN = 'nskv2-giaodien-v8';
 var GIAO_DIEN = [
   './',
   './index.html',

@@ -52,6 +52,8 @@
   window.addEventListener('DOMContentLoaded', function () {
     var chan = document.querySelector('footer.chan');
     if (!chan || document.getElementById('linkQRT')) return;
+    var cu = document.getElementById('lkRiengTu');   // v89: chân trang gọn – dùng lại link "Quyền riêng tư" sẵn có, không thêm dòng mới
+    if (cu) { cu.id = 'linkQRT'; cu.href = 'chinh-sach-quyen-rieng-tu.html'; cu.textContent = 'Chính sách quyền riêng tư'; cu.removeAttribute('target'); return; }
     var d = document.createElement('div');
     var a = document.createElement('a');
     a.id = 'linkQRT';
