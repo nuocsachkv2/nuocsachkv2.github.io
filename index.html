@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; img-src 'self'; script-src 'sha256-dlslRS5RiFe4rXEuJLHotqW0z0I0SjKvMKn2DF3I+Sw='; connect-src 'self'; base-uri 'none'; form-action 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; img-src 'self'; script-src 'sha256-leyPGINsSAoajXt79HOTbLvBAgtdrXPLXPCcXIBLgkg='; connect-src 'self'; base-uri 'none'; form-action 'none'">
 <meta name="robots" content="noindex, nofollow">
 <meta name="trang-khoa" content="1">
 <meta name="theme-color" content="#0b3d6e">
@@ -68,7 +68,7 @@
     <p class="mo-ta" id="moTa">Trạm đang đưa số liệu và thông tin mới nhất của bà con lên website. Mọi dữ liệu vẫn được giữ nguyên.</p>
     <div class="dong-ho" role="timer" aria-label="Thời gian dự kiến còn lại">
       <svg viewBox="0 0 188 188" aria-hidden="true"><defs><linearGradient id="mau" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#1273c4"/><stop offset="1" stop-color="#16b89a"/></linearGradient></defs><circle class="vong-nen" cx="94" cy="94" r="80"/><circle class="vong" id="vong" cx="94" cy="94" r="80"/></svg>
-      <div class="so"><small id="tren">Dự kiến mở lại sau</small><strong id="dem">200:00</strong><em id="duoi">phút : giây</em></div>
+      <div class="so"><small id="tren">Dự kiến mở lại sau</small><strong id="dem">…</strong><em id="duoi">phút : giây</em></div>
     </div>
     <p class="du-kien" id="duKien" aria-live="polite">Dự kiến mở lại khoảng <b>17:00</b> ngày 12/11/2026</p>
     <div class="gap">
@@ -85,7 +85,7 @@
 <script>(function(){var D=1794477615892,T=12000000,C=502.65,g=function(i){return document.getElementById(i)},xong=false;
 function hai(n){return(n<10?'0':'')+n}
 function ve(){var c=D-Date.now();if(c<=0){if(!xong){xong=true;g('dem').textContent='Sắp xong';g('dem').style.fontSize='30px';g('dem').style.letterSpacing='0';g('tren').textContent='Đang hoàn tất';g('duoi').textContent='chờ thêm ít phút';g('vong').style.strokeDashoffset=C;g('nhan').textContent='Đang hoàn tất';g('duKien').textContent='Việc cập nhật đang ở bước cuối. Trang sẽ tự mở lại ngay khi xong.'}return}
-var s=Math.ceil(c/1000),p=Math.floor(s/60);g('dem').textContent=hai(p)+':'+hai(s%60);g('vong').style.strokeDashoffset=(C*(1-Math.min(1,c/T))).toFixed(2)}
+var s=Math.ceil(c/1000),p=Math.floor(s/60),h=Math.floor(p/60),e=g('dem');if(h>0){e.textContent=h+':'+hai(p%60)+':'+hai(s%60);e.style.fontSize='34px';g('duoi').textContent='giờ : phút : giây'}else{e.textContent=hai(p)+':'+hai(s%60);e.style.fontSize='';g('duoi').textContent='phút : giây'}g('vong').style.strokeDashoffset=(C*(1-Math.min(1,c/T))).toFixed(2)}
 function hoi(){try{fetch('./index.html?t='+Date.now(),{cache:'no-store'}).then(function(r){return r.ok?r.text():null}).then(function(t){if(t&&t.length>2000&&t.indexOf('name="trang-khoa"')<0)location.replace('./?mo='+Date.now())}).catch(function(){})}catch(e){}}
 ve();setInterval(ve,1000);setInterval(hoi,45000);document.addEventListener('visibilitychange',function(){if(!document.hidden){ve();hoi()}})})();</script>
 </body>
