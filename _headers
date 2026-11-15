@@ -6,8 +6,18 @@
   Referrer-Policy: strict-origin-when-cross-origin
   Permissions-Policy: camera=(self), microphone=(), payment=(), usb=(), geolocation=(self)
 /
-  Content-Security-Policy: default-src 'self'; script-src 'self' 'sha256-z5V6CrdG61MerTScxvuP4jK+jKlpBzhR1iJf+Cf9hWw='; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https:; font-src 'self' data:; connect-src 'self' https://script.google.com https://script.googleusercontent.com https://may-chu-nuoc-kv2.nguyenvanphong061093.workers.dev; media-src 'self' https://trungtamnuocsach.vn; frame-src https://www.youtube-nocookie.com https://drive.google.com; object-src 'none'; base-uri 'none'; form-action 'self'; frame-ancestors 'none'; upgrade-insecure-requests
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'sha256-MiiqvslVrRr2RekzP35zkuLNqI2HYX88OidovE9LwVk=' 'sha256-4ka3nLjOy++NVxsj/evbPA/t7dSfMaUcvHRIFIB+TaY='; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https:; font-src 'self' data:; connect-src 'self' https://script.google.com https://script.googleusercontent.com https://may-chu-nuoc-kv2.nguyenvanphong061093.workers.dev; media-src 'self' https://trungtamnuocsach.vn; frame-src https://www.youtube-nocookie.com https://drive.google.com; object-src 'none'; base-uri 'none'; form-action 'self'; frame-ancestors 'none'; upgrade-insecure-requests
 /index.html
-  Content-Security-Policy: default-src 'self'; script-src 'self' 'sha256-z5V6CrdG61MerTScxvuP4jK+jKlpBzhR1iJf+Cf9hWw='; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https:; font-src 'self' data:; connect-src 'self' https://script.google.com https://script.googleusercontent.com https://may-chu-nuoc-kv2.nguyenvanphong061093.workers.dev; media-src 'self' https://trungtamnuocsach.vn; frame-src https://www.youtube-nocookie.com https://drive.google.com; object-src 'none'; base-uri 'none'; form-action 'self'; frame-ancestors 'none'; upgrade-insecure-requests
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'sha256-MiiqvslVrRr2RekzP35zkuLNqI2HYX88OidovE9LwVk=' 'sha256-4ka3nLjOy++NVxsj/evbPA/t7dSfMaUcvHRIFIB+TaY='; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https:; font-src 'self' data:; connect-src 'self' https://script.google.com https://script.googleusercontent.com https://may-chu-nuoc-kv2.nguyenvanphong061093.workers.dev; media-src 'self' https://trungtamnuocsach.vn; frame-src https://www.youtube-nocookie.com https://drive.google.com; object-src 'none'; base-uri 'none'; form-action 'self'; frame-ancestors 'none'; upgrade-insecure-requests
 /noi-bo.*
   Cache-Control: public, max-age=31536000, immutable
+/tai/*
+  Content-Security-Policy: default-src 'none'; img-src 'self' data:; style-src 'unsafe-inline'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'
+  Cache-Control: no-cache
+  X-Robots-Tag: noindex
+/tai/nuoc-sach-kv2.apk
+  Content-Type: application/vnd.android.package-archive
+  Content-Disposition: attachment
+/tai/nuoc-sach-kv2-may-cu.apk
+  Content-Type: application/vnd.android.package-archive
+  Content-Disposition: attachment
